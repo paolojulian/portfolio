@@ -13,7 +13,7 @@
         </transition>
 
         <transition name="fade" mode="out-in">
-        <div id="PageLoader__post" v-if="pageState.post">
+        <div id="PageLoader__post" v-show="pageState.post">
             <transition name="fade" mode="out-in">
                 <slot/>
             </transition>

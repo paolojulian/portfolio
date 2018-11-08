@@ -37,7 +37,20 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	color: #2c3e50;
 }
-main {
-    margin-top: 7vh;
+
+@media screen and (min-width: 600px){
+    main {
+        margin-top: 7vh;
+    }
+}
+@media screen and (max-width: 600px){
+    main {
+        margin-bottom: 7vh;
+    }
+}
+@media screen and (max-width: 1000px) {
+    .lg-only {
+        display: none;
+    }
 }
 </style>

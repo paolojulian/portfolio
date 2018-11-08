@@ -8,6 +8,9 @@
                 >chef</span>.PIPZ
             </span>
         </div>
+        <div id="NavBar__title" class="lg-only">
+            {{ headerTitle }}
+        </div>
         <ul class="NavBar__clearfix">
             <li v-for="(route, index) in routes">
                 <nav-bar-routes 
@@ -43,6 +46,11 @@ export default {
             currentActive: ''
         }
     },
+    computed: {
+        headerTitle () {
+            return this.$route.meta.en_title ? this.$route.meta.en_title : ''
+        }
+    },
     watch: {
         '$route' (to, from) {
             this.currentActive = to.path
@@ -74,17 +82,28 @@ export default {
 </script>
 
 <style>
+@media screen and (min-width: 600px){
+    #NavBar {
+        top: 0;
+        left: 0;
+        margin-bottom: 6.5vh;
+    }
+}
+@media screen and (max-width: 600px){
+    #NavBar {
+        bottom: 0;
+        left: 0;
+        margin-top: 6.5vh;
+    }
+}
 #NavBar {
     position: fixed;
     z-index: 1;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 7vh;
     padding: 0px 10px;
     box-sizing: border-box;
     transition: 300ms;
-    margin-bottom: 6.5vh;
 
     opacity: 20%;
     color: #ffffff;
@@ -94,5 +113,11 @@ export default {
 }
 #NavBar.dark {
     background-color: rgba(0, 0, 0, 0.75);
+}
+#NavBar__title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 </style>

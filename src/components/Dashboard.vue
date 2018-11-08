@@ -1,8 +1,7 @@
 <template lang="html">
-    <div id="Dashboard">
-        <img src="@/assets/img/main3.jpg"
-            id="Dashboard__img"
-            alt="Vue.js PWA">
+    <div id="Dashboard"
+        :style="{ 'backgroundImage': 'url(' + require('@/assets/img/main3.jpg') + ') no-reapeat'}"
+    >
     </div>
 </template>
 
@@ -17,8 +16,9 @@ export default {
     text-align: center;
     position: absolute;
     top: 0;
-}
-#Dashboard__img {
     width: 100%;
+    height: 100%;
+    display: block;
+    background-size: cover;
 }
 </style>

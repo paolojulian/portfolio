@@ -1,4 +1,4 @@
-export const api = '/api'
+export const API_URL = 'http://127.0.0.1:8000'
 // normal
 export const theme = {
     primary: '#fffb00',
@@ -17,11 +17,19 @@ export const headers = {
     en: {
         login: 'Login',
         dashboard: 'Dashboard',
-        hobby: 'Hobby',
-        hobbyList: 'Hobbies'
+        hobbies: 'Hobbies'
+    }
+}
+
+export const hobbiesHeader = {
+    en: {
+        cooking: 'Cooking',
+        music: 'Music',
+        sports: 'Sports',
+        coding: 'Coding'
     }
 }
 
 export default {
-    api
+    API_URL
 }
