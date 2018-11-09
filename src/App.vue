@@ -37,7 +37,9 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	color: #2c3e50;
 }
-
+main {
+    background-color: rgba(0,0,0,0.1)
+}
 @media screen and (min-width: 600px){
     main {
         margin-top: 7vh;

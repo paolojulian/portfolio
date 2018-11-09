@@ -1,6 +1,7 @@
 <template lang="html">
     <button
         type="button"
+        :class="variant"
         :style="styles"
         @click="$emit('click')"
     >
@@ -71,5 +72,9 @@ button {
     padding-left: 15px;
     padding-right: 15px;
     border-radius: 5px;
+    cursor: pointer;
+}
+button.light {
+    color: #131313;
 }
 </style>

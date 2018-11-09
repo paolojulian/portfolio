@@ -1,4 +1,5 @@
 import { APIHobby } from '@/api/APIHobby'
+import { $pageLoader } from '@/helpers/constants'
 const apiHobby = new APIHobby()
 
 const cookingList = [
@@ -43,65 +44,17 @@ const actions = {
     },
 
     getHobbyCooking: ({ commit }) => {
-        return apiHobby.getHobby(1)
-        // setTimeout(function () {
-        //     let list = {
-        //         indian: {
-        //             chickenTikkaMasala: {
-        //                 name: 'Chicken Tikka Masala'
-
-        //             },
-        //             biryani: {
-
-        //             }
-        //         },
-        //         asian: {
-        //             noodlesPoachedEgg: {
-        //                 name: 'Noodles with Poached Egg',
-        //                 ingredients: {
-        //                     noodles: {
-        //                         name: 'Noodles',
-        //                         subIngredients: {
-        //                             breadFlour: { name: 'Bread Flour' },
-        //                             water: { name: 'Water' },
-        //                             bakingSoda: { name: 'Baking Soda' }
-        //                         },
-        //                         optionals: {
-        //                             egg: { name: 'Egg' }
-        //                         }
-        //                     },
-        //                     misoBrothSimple: {
-        //                         name: 'Miso Broth',
-        //                         subIngredients: [
-        //                             'Water',
-        //                             'Miso Paste',
-        //                             'Ginger Paste',
-        //                             'Dry Shitake Mushroom',
-        //                             'Soy Sauce'
-        //                         ]
-        //                     },
-        //                     poachedEgg: {
-        //                         name: 'Poached Egg'
-        //                     },
-        //                     spinach: {
-        //                         name: 'Spinach'
-        //                     }
-        //                 },
-        //                 optionals: {
-        //                     ham: {
-        //                         name: 'Ham'
-        //                     },
-        //                     shrimp: {
-        //                         name: 'Shrimp'
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //     }
-        //     let cooking = new HobbyList('cooking', list)
-        //     commit('setHobbyList', cooking)
-        //     resolve()
-        // }, 100)
+        commit($pageLoader + '/pageLoading', {}, { root: true })
+        apiHobby.getRecipes()
+            .then(list => {
+                commit($pageLoader + '/pagePost', {}, { root: true })
+                let hobbyList = new HobbyList('cooking', list)
+                commit('setHobbyList', hobbyList)
+            })
+            .catch(error => {
+                console.log(error)
+                commit($pageLoader + '/pageError', {}, { root: true })
+            })
     }
 }
 
@@ -114,11 +67,11 @@ class Hobby {
         this.categories = categories
     }
 }
-// class HobbyList {
-//     constructor (hobbyName, list) {
-//         this.hobbyName = hobbyName
-//         this.list = list
-//     }
-// }
+class HobbyList {
+    constructor (hobbyName, list) {
+        this.hobbyName = hobbyName
+        this.list = list
+    }
+}
 
 export default actions

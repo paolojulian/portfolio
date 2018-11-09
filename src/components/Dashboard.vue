@@ -1,6 +1,6 @@
 <template lang="html">
     <div id="Dashboard"
-        :style="{ 'backgroundImage': 'url(' + require('@/assets/img/main3.jpg') + ') no-reapeat'}"
+        :style="'background-image: url(' + require('@/assets/img/main3.jpg') + ');'"
     >
     </div>
 </template>
