@@ -3,7 +3,7 @@
         type="button"
         :class="variant"
         :style="styles"
-        @click="$emit('click')"
+        @click="bClick($event)"
     >
         <slot/>
     </button>
@@ -14,6 +14,9 @@ import { theme } from '@/helpers/constants'
 export default {
     name: 'VButton',
     props: {
+        onClick: {
+            type: Function
+        },
         variant: {
             type: String,
             default: 'primary'
@@ -25,6 +28,9 @@ export default {
         textColor: {
             type: String,
             default: theme.light
+        },
+        buttonColor: {
+            type: String
         }
     },
     data () {
@@ -48,6 +54,10 @@ export default {
         },
         backgroundColor () {
             let backgroundColor = 'background-color'
+            if (this.buttonColor && this.buttonColor.length > 0) {
+                return `${backgroundColor}: ${this.buttonColor}`
+            }
+
             return this.variants.hasOwnProperty(this.variant)
                 ? backgroundColor + ': ' + this.variants[this.variant]
                 : backgroundColor + ': ' + this.variant
@@ -60,6 +70,11 @@ export default {
         },
         computedTextColor () {
             return 'color: ' + this.textColor
+        }
+    },
+    methods: {
+        bClick (e) {
+            this.$emit('click', e)
         }
     }
 }

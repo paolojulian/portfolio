@@ -1,5 +1,5 @@
-import { APIHobby } from '@/api/APIHobby'
 import { $pageLoader } from '@/helpers/constants'
+import { APIHobby } from '@/api/APIHobby'
 const apiHobby = new APIHobby()
 
 const cookingList = [
@@ -55,6 +55,10 @@ const actions = {
                 console.log(error)
                 commit($pageLoader + '/pageError', {}, { root: true })
             })
+    },
+
+    getRecipe: (context, recipeId) => {
+        return apiHobby.getRecipes(recipeId)
     }
 }
 

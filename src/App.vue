@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
         <navbar v-if="hasNavbar"/>
-		<main>
+		<main class="clearfix">
             <page-loader>
                 <router-view></router-view>
             </page-loader>
@@ -27,8 +27,15 @@ export default {
 </script>
 
 <style>
+html {
+    min-height: 100%;
+}
 body {
 	margin: 0;
+    background: -webkit-linear-gradient(#e8e8e8, #ececec); 
+    background: -o-linear-gradient(#e8e8e8, #ececec); 
+    background: -moz-linear-gradient(#e8e8e8, #ececec); 
+    background: linear-gradient(#e8e8e8, #ececec); 
 }
 
 #app {
@@ -38,7 +45,6 @@ body {
 	color: #2c3e50;
 }
 main {
-    background-color: rgba(0,0,0,0.1)
 }
 @media screen and (min-width: 600px){
     main {
@@ -54,5 +60,10 @@ main {
     .lg-only {
         display: none;
     }
+}
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
 }
 </style>

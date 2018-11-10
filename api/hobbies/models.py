@@ -32,16 +32,30 @@ class Ingredient(models.Model):
 class RecipeIngredients(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
-    quantity = models.CharField(max_length=100, default='None')
+    quantity = models.CharField(max_length=100, default='')
     description = models.CharField(max_length=100, default='')
     order = models.PositiveIntegerField(validators=[MaxValueValidator(100)], default=1)
     date_created = models.DateTimeField(auto_now_add=True)
     
     class Meta:
         unique_together = ('recipe', 'ingredient', 'description')
+        unique_together = ('recipe', 'order')
         ordering = ['order']
 
 class SubIngredients(models.Model):
     parent_ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE, related_name='parent_id')
     sub_ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE, related_name='sub_id')
     date_created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('parent_ingredient', 'sub_ingredient')
+
+class Procedure(models.Model):
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    description = models.TextField(default='')
+    order = models.PositiveIntegerField(validators=[MaxValueValidator(100)], default=1)
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('recipe', 'order')
+        ordering = ['order']

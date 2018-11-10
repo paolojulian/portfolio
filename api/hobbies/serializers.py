@@ -7,6 +7,7 @@ from .models import Recipe
 from .models import Ingredient
 from .models import SubIngredients
 from .models import RecipeIngredients
+from .models import Procedure
 
 class HobbySerializer(serializers.ModelSerializer):
     class Meta:
@@ -25,7 +26,7 @@ class RecipeSerializer(serializers.ModelSerializer):
 class RecipeWIngredientsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Recipe
-        fields = ('id', 'name', 'ingredients', 'date_created', 'date_modified')
+        fields = ('id', 'name', 'date_created', 'date_modified')
         read_only_fields = ('date_created', 'date_modified')
 
 class IngredientSerializer(serializers.ModelSerializer):
@@ -50,3 +51,29 @@ class RecipeIngredientsSerializer(serializers.ModelSerializer):
             'description',
             'order')
         read_only_fields = ('date_created', )
+
+class SubIngredientsSerializer(serializers.ModelSerializer):
+    sub_ingredient_name = serializers.CharField(source='sub_ingredient.name', read_only=True)
+    class Meta:
+        model = SubIngredients
+        fields = (
+            'id',
+            'date_created',
+            'parent_ingredient',
+            'sub_ingredient',
+            'sub_ingredient_name'
+        )
+        read_only_fields = ('date_created', )
+
+class ProcedureSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Procedure
+        fields = (
+            'id',
+            'date_created',
+            'recipe',
+            'description',
+            'order'
+        )
+        read_only_fields = ('date_created', )
+

@@ -1,13 +1,20 @@
 <template lang="html">
 <div class="RecipeCard">
-    <div class="RecipeCard__img">
+    <div class="RecipeCard__name">
+        {{ recipeName }}
     </div>
+    <div class="RecipeCard__img"
+        :style="recipeImg"
+        />
     <div class="RecipeCard__content">
-        <div class="RecipeCard__name">
-            {{ recipeName }}
-        </div>
         <div class="RecipeCard__buttons">
-            <VButton variant="light" text-color="#131313">View Recipe</VButton>
+            <VButton variant="light"
+                button-color="#000000"
+                text-color="#ffffff"
+                @click="$emit('view-recipe')"
+                >
+                View Recipe
+            </VButton>
         </div>
     </div>
 </div>
@@ -33,10 +40,14 @@ export default {
             type: String,
             required: true
         }
+    },
+    computed: {
+        recipeImg () {
+            return `background-image: url('${require('@/assets/img/cooking/' + this.recipeId + '.png')}')`
+        }
     }
 }
 </script>
 
 <style scoped>
-
 </style>

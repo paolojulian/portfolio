@@ -1,9 +1,16 @@
 export const API_URL = '/api'
 // normal
+export const mangoTheme = {
+    primary: '#f7da2c',
+    secondary: '#fcf0a3',
+    accent: '#94c33b',
+    dark: '#498036',
+    light: '#fefadb'
+}
 export const theme = {
     primary: '#fffb00',
     accent: '#f2ba49',
-    dark: '#22181c',
+    dark: '#3a3a3a',
     light: '#ffffff'
 }
 // store namespace
