@@ -44,6 +44,9 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	color: #2c3e50;
 }
+.text-center {
+    text-align: center;
+}
 main {
 }
 @media screen and (min-width: 600px){

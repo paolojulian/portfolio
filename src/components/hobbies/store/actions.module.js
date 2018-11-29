@@ -59,6 +59,21 @@ const actions = {
 
     getRecipe: (context, recipeId) => {
         return apiHobby.getRecipes(recipeId)
+    },
+
+    getMusicList: ({ commit }) => {
+        commit($pageLoader + '/pageLoading', {}, { root: true })
+        apiHobby.getMusicList()
+            .then(list => {
+                console.log(list)
+                commit($pageLoader + '/pagePost', {}, { root: true })
+                let hobbyList = new HobbyList('music', list)
+                commit('setHobbyList', hobbyList)
+            })
+            .catch(error => {
+                console.log(error)
+                commit($pageLoader + '/pageError', {}, { root: true })
+            })
     }
 }
 

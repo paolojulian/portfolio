@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
 <div id="HobbyCooking">
     <recipe-card
         v-for="recipe in hobbyCooking.list"
@@ -18,9 +18,9 @@
 </div>
 </template>
 
-<script type="text/javscript">
+<script type="text/javascript">
 import { $hobbies } from '@/helpers/constants'
-import { mapGetters, mapActions, mapMutations } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
     data () {
         return {
@@ -35,7 +35,7 @@ export default {
     },
     computed: {
         ...mapGetters($hobbies, [
-            'hobbyCooking',
+            'hobbyCooking'
         ])
     },
     methods: {

@@ -1,20 +1,26 @@
 <template lang="html">
 <div id="HobbyMusic">
-    
-    <my-covers/>
+    <PlayList/>
+    <Player/>
 </div>
 </template>
 
 <script type="text/javascript">
-import MyCovers from './utils/MyCovers'
+import PlayList from './utils/PlayList'
+import Player from './utils/Player'
 export default {
     name: 'HobbyMusic',
     components: {
-        MyCovers
+        PlayList,
+        Player
     }
 }
 </script>
 
 <style scoped>
-
+#HobbyMusic {
+    position: relative;
+    height: 93vh;
+    display: flex;
+}
 </style>

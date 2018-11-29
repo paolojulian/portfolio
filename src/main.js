@@ -4,6 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
+import axios from 'axios'
+import moment from 'moment'
 import './helpers/globals'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 Vue.component('font-awesome-icon', FontAwesomeIcon)
@@ -16,4 +18,16 @@ new Vue({
     store,
     template: '<App/>',
     components: { App }
+})
+
+Vue.filter('convertDateTime', function (value) {
+    let datetime = moment(value)
+    return (datetime.isValid())
+        ? datetime.format('D-MMM-YYYY')
+        : value
+})
+
+axios.interceptors.response.use(undefined, error => {
+    console.error(error)
+    return Promise.reject(error)
 })
