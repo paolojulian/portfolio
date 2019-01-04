@@ -8,6 +8,7 @@ Vue.use(Router)
 
 const router = new Router({
     routes,
+    mode: 'history',
     scrollBehavior (to, from, savedPosition) {
         if (savedPosition) {
             return savedPosition
@@ -21,7 +22,7 @@ router.beforeEach((to, from, next) => {
     // check if the route requires authentication
     const isAuthRequired = to.meta.hasOwnProperty('authRequired')
         ? to.meta.authRequired
-        : true
+        : false
 
     // continue to page if authentication is not required
     if (!isAuthRequired) return next()

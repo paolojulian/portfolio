@@ -14,6 +14,7 @@ export const theme = {
     light: '#ffffff'
 }
 // store namespace
+export const $cv = 'cvModule'
 export const $hobbies = 'hobbyModule'
 export const $auth = 'authModule'
 export const $common = 'commonModule'
@@ -24,7 +25,8 @@ export const headers = {
     en: {
         login: 'Login',
         dashboard: 'Dashboard',
-        hobbies: 'Hobbies'
+        hobbies: 'Hobbies',
+        cv: 'Curriculum Vitae'
     }
 }
 

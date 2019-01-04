@@ -4,6 +4,8 @@ import actions from './actions.module'
 
 import language from './language'
 
+import { Page } from '@/helpers/libraries'
+
 const state = {
     language,
 
@@ -16,12 +18,15 @@ const state = {
 
     cooking: {
         header: 'Cooking',
+        list: [],
         categories: [],
-        list: []
+        page: new Page()
     },
     music: {
         header: 'Music',
         categories: [],
+        currentPlaying: 0,
+        isPlaying: false,
         list: []
     },
     sports: {

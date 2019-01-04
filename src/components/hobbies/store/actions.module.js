@@ -23,16 +23,16 @@ const actions = {
             'Basketball',
             'Hiking',
             'Jogging',
-            'DOTA'
+            'E-sports'
         ]
         let sports = new Hobby('sports', sportsList)
 
         let codingList = [
-            'HTML && CSS',
+            'HTML',
+            'CSS',
             'Javascript',
-            'Jquery',
-            'Vue',
             'Java',
+            'Python',
             'PHP'
         ]
         let coding = new Hobby('coding', codingList)
@@ -43,9 +43,9 @@ const actions = {
         commit('setHobbyCategories', coding)
     },
 
-    getHobbyCooking: ({ commit }) => {
+    getHobbyCooking: ({ commit }, sortBy = 'favorite') => {
         commit($pageLoader + '/pageLoading', {}, { root: true })
-        apiHobby.getRecipes()
+        apiHobby.getRecipes(null, sortBy)
             .then(list => {
                 commit($pageLoader + '/pagePost', {}, { root: true })
                 let hobbyList = new HobbyList('cooking', list)
@@ -59,6 +59,21 @@ const actions = {
 
     getRecipe: (context, recipeId) => {
         return apiHobby.getRecipes(recipeId)
+    },
+
+    getMusicList: ({ commit }) => {
+        commit($pageLoader + '/pageLoading', {}, { root: true })
+        apiHobby.getMusicList()
+            .then(list => {
+                console.log(list)
+                commit($pageLoader + '/pagePost', {}, { root: true })
+                let hobbyList = new HobbyList('music', list)
+                commit('setHobbyList', hobbyList)
+            })
+            .catch(error => {
+                console.log(error)
+                commit($pageLoader + '/pageError', {}, { root: true })
+            })
     }
 }
 
