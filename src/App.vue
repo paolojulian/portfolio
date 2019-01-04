@@ -3,7 +3,7 @@
         <navbar v-if="hasNavbar"/>
 		<main class="clearfix">
             <page-loader>
-                <router-view></router-view>
+                <router-view/>
             </page-loader>
 		</main>
 	</div>
@@ -69,4 +69,27 @@ main {
     clear: both;
     display: table;
 }
+.center-absolute {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition-duration: 0.3s;
+  transition-property: opacity;
+  transition-timing-function: ease;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0
+}
+
 </style>

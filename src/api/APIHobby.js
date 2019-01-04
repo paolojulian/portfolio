@@ -11,12 +11,15 @@ const APIMusicList = `${APIMusic}/list`
 // const recipeIngredientsAPI = `${cookingAPI}/recipe-ingredients`
 
 export class APIHobby {
-    getRecipes (recipeId) {
+    getRecipes (recipeId, sortBy = 'favorite') {
         let url = recipeId
             ? `${APIRecipe}/${recipeId}`
             : APIRecipe
 
-        return myApi.xhrGet(url)
+        let params = {
+            sortBy: sortBy
+        }
+        return myApi.xhrGet(url, params)
     }
 
     getMusicList () {

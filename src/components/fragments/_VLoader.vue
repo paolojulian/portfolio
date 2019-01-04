@@ -1,5 +1,5 @@
 <template>
-    <div id="VLoader">
+    <div class="VLoader">
         <font-awesome-icon
             icon="spinner"
             spin/>
@@ -15,7 +15,7 @@ export default {
 
 
 <style scoped>
-#VLoader{
+.VLoader{
     position: absolute;
     top: 50%;
     left: 50%;

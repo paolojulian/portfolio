@@ -29,6 +29,13 @@
 <script type="text/javascript">
 import NavBarRoutes from './NavBarRoutes'
 import { theme } from '@/helpers/mixins'
+class NavbarRoute {
+    constructor (name, link, icon) {
+        this.name = name
+        this.link = link
+        this.icon = icon
+    }
+}
 export default {
     name: 'NavBar',
     mixins: [theme],
@@ -38,11 +45,11 @@ export default {
     data () {
         return {
             routes: [
-                { name: 'Home', link: '/', icon: 'home' },
-                { name: 'Hobby', link: '/hobby', icon: 'gamepad' },
-                { name: 'Curriculum Vitae', link: '/curricilum-vitae', icon: 'newspaper' }
+                new NavbarRoute('Home', '/', 'home'),
+                new NavbarRoute('Hobby', '/hobby', 'gamepad'),
+                new NavbarRoute('CurriculumVitae', '/curriculum-vitae', 'newspaper')
             ],
-            isDark: false,
+            isDark: true,
             currentActive: ''
         }
     },
@@ -98,7 +105,7 @@ export default {
 }
 #NavBar {
     position: fixed;
-    z-index: 1;
+    z-index: 999;
     width: 100%;
     height: 7vh;
     padding: 0px 10px;

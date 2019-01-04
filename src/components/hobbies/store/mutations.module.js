@@ -22,6 +22,34 @@ const mutations = {
         if (!checkHobbyList(state, hobbyList.hobbyName)) return
 
         state[hobbyList.hobbyName].list = hobbyList.list
+    },
+
+    prevSong: (state) => {
+        state.music.currentPlaying--
+    },
+
+    nextSong: (state) => {
+        state.music.currentPlaying++
+    },
+
+    playAudio: (state) => {
+        if (state.audio) {
+            state.audio.play()
+        }
+    },
+
+    pauseAudio: (state) => {
+        if (state.audio) {
+            state.audio.pause()
+        }
+    },
+
+    setCurrentPlaying: (state, currentPlayingIndex) => {
+        state.music.currentPlaying = currentPlayingIndex
+    },
+
+    setIsPlaying: (state, isPlaying) => {
+        state.music.isPlaying = isPlaying
     }
 }
 

@@ -22,7 +22,7 @@ router.beforeEach((to, from, next) => {
     // check if the route requires authentication
     const isAuthRequired = to.meta.hasOwnProperty('authRequired')
         ? to.meta.authRequired
-        : true
+        : false
 
     // continue to page if authentication is not required
     if (!isAuthRequired) return next()

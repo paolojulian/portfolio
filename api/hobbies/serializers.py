@@ -17,10 +17,20 @@ class HobbySerializer(serializers.ModelSerializer):
 
 ### Get recipe ###
 class RecipeSerializer(serializers.ModelSerializer):
+    food_category_name = serializers.CharField(source='food_category.name', read_only=True)
     class Meta:
         model = Recipe
-        fields = ('id', 'name', 'date_created', 'date_modified')
-        read_only_fields = ('date_created', 'date_modified')
+        fields = (
+            'id',
+            'name',
+            'food_category',
+            'food_category_name',
+            'duration_from',
+            'duration_to',
+            'date_created',
+            'date_modified'
+            )
+        read_only_fields = ('id', 'date_created', 'date_modified')
 
 ### Gets recipes with ingredients and sub ingredients ###
 class RecipeWIngredientsSerializer(serializers.ModelSerializer):

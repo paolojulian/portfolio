@@ -7,10 +7,18 @@
             <th>Genre</th>
             <th>Date Added</th>
         </tr>
-        <tr v-for="music in hobbyMusic.list">
+        <tr v-for="(music, index) in hobbyMusic.list"
+            :class="{ 'currentPlaying': currentPlaying === index }">
             <td>
-                <button @click="playAudio">
+                <button
+                    v-if="( ! isPlaying && currentPlaying === index) || currentPlaying !== index"
+                    @click="playAudio(index)">
                     Play
+                </button>
+                <button
+                    v-if="isPlaying && currentPlaying === index"
+                    @click="pauseAudio()">
+                    Pause
                 </button>
             </td>
             <td>{{ music.name }}</td>
@@ -27,7 +35,7 @@
 
 <script text="text/javascript">
 import { $hobbies } from '@/helpers/constants'
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 import SongCard from './SongCard'
 
 export default {
@@ -38,17 +46,26 @@ export default {
 
     computed: {
         ...mapGetters($hobbies, [
-            'hobbyMusic'
+            'hobbyMusic',
+            'currentPlaying',
+            'isPlaying'
         ])
     },
 
     methods: {
+        ...mapMutations($hobbies, [
+            'setCurrentPlaying',
+            'setIsPlaying'
+        ]),
         ...mapActions($hobbies, [
             'getMusicList'
         ]),
-        playAudio () {
-            let audio = new Audio(require('@/assets/audio/Dreamin - Pipz.mp3'))
-            audio.play()
+        playAudio (index) {
+            this.setIsPlaying(true)
+            this.setCurrentPlaying(index)
+        },
+        pauseAudio () {
+            this.setIsPlaying(false)
         }
     },
 
@@ -88,5 +105,9 @@ export default {
 }
 .tbl-genre a:hover {
     text-decoration: underline;
+}
+.currentPlaying {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: black;
 }
 </style>

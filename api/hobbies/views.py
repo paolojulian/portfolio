@@ -46,6 +46,32 @@ class CreateRecipe(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save()
 
+class RecipeDetails(APIView):
+    def get(self, request):
+        sortBy = request.GET.get('sortBy', 'favorite')
+        # SWITCH CASE
+        def asian():
+            return Recipe.objects.filter(food_category_id=1)
+        def european():
+            return Recipe.objects.filter(food_category_id=2)
+        def american():
+            return Recipe.objects.filter(food_category_id=3)
+        def indian():
+            return Recipe.objects.filter(food_category_id=4)
+        def favorite():
+            return Recipe.objects.filter(favorite=1)
+        switch = {
+            'favorite': favorite,
+            'asian': asian,
+            'european': european,
+            'american': american,
+            'indian': indian
+        }
+        recipes = switch[sortBy]()
+
+        recipe_serialized = RecipeSerializer(recipes, many=True).data
+        return Response(recipe_serialized)
+
 class RecipeView(APIView):
     def get(self, request, pk):
         ## GET INGREDIENTS AND SUB-INGREDIENTS ##
@@ -68,8 +94,12 @@ class RecipeView(APIView):
         recipe['procedures'] = procedures_serialized
         return Response(recipe)
 
-    def put(self):
-        pass
+    def put(self, request, pk):
+        recipe = get_object_or_404(Recipe, ip=pk)
+        recipe_serialized = RecipeSerializer(recipe).data
+        return Response(recipe_serialized)
+
+# class EditRecipe(APIView)
 
 class CreateIngredient(generics.ListCreateAPIView):
     queryset = Ingredient.objects.all()

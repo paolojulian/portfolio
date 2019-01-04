@@ -1,7 +1,12 @@
 <template lang="html">
 <VModal id="viewRecipe">
     <div slot="header">
-        {{ recipeName }}
+        <span>{{ recipeName }}</span>
+        <div class="close-modal"
+            @click="$emit('close')">
+            <font-awesome-icon
+                icon="times"/>
+        </div>
     </div>
     <div slot="body">
         <VLoader v-if="isLoading"/>
@@ -32,21 +37,15 @@
             </div>
         </div>
     </div>
-    <div slot="footer">
-        <VButton
-            class="modal-default-button"
-            button-color="#f7da2c"
-            text-color="##fff4e6"
-            @click="$emit('close')">
-            Close
-        </VButton>
-    </div>
 </VModal>
 </template>
 
 <script type="text/javascript">
 import { mapActions } from 'vuex'
 import { $hobbies } from '@/helpers/constants'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
+library.add(faTimes)
 export default {
     props: {
         recipeId: {
@@ -109,7 +108,4 @@ export default {
 </script>
 
 <style scoped>
-#viewRecipe {
-
-}
 </style>

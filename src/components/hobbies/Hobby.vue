@@ -56,7 +56,7 @@ export default {
                 cooking: 'HobbyCooking',
                 music: 'HobbyMusic',
                 sports: false,
-                coding: false
+                coding: 'HobbyCoding'
             },
             cards: 4
         }
