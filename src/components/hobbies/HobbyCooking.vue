@@ -18,7 +18,7 @@
 </div>
 </template>
 
-<script type="text/javscript">
+<script type="text/javascript">
 import { $hobbies } from '@/helpers/constants'
 import { mapGetters, mapActions, mapMutations } from 'vuex'
 export default {

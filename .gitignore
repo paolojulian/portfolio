@@ -11,3 +11,11 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
+.eslintrc.js
+package.json
+package-lock.json
+.vscode/launch.json
+api/api/__init__.pyc
+api/api/settings.pyc
+api/hobbies/__init__.pyc
+config/index.js
