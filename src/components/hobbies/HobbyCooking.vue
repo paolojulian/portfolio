@@ -2,7 +2,7 @@
 <div id="HobbyCooking">
     <cooking-dashboard/>
     <transition name="fade" mode="out-in">
-        <router-view/>
+        <router-view :key="$route.fullPath"/>
     </transition>
 </div>
 </template>

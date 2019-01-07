@@ -44,16 +44,16 @@ const actions = {
     },
 
     getHobbyCooking: ({ commit }, sortBy = 'favorite') => {
-        commit($pageLoader + '/pageLoading', {}, { root: true })
+        commit('load')
         apiHobby.getRecipes(null, sortBy)
             .then(list => {
-                commit($pageLoader + '/pagePost', {}, { root: true })
+                commit('post')
                 let hobbyList = new HobbyList('cooking', list)
                 commit('setHobbyList', hobbyList)
             })
             .catch(error => {
                 console.log(error)
-                commit($pageLoader + '/pageError', {}, { root: true })
+                commit('error')
             })
     },
 
