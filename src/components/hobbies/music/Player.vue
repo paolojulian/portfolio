@@ -31,16 +31,16 @@
             >
             Prev
         </button>
-        <button class="play theme"
+
+        <div class="playButton"
             @click="togglePlayPause"
-            v-if=" ! isPlaying">
-            Play
-        </button>
-        <button class="pause theme"
+            v-show=" ! isPlaying"
+            />
+        <div class="pauseButton"
             @click="togglePlayPause"
-            v-if="isPlaying">
-            Pause
-        </button>
+            v-show="isPlaying"
+            />
+
         <button class="next theme"
             @click="next">
             Next
@@ -58,7 +58,11 @@ export default {
         return {
             musicSlider: 0,
             position: '0%',
-            localCurrentPlaying: 0
+            localCurrentPlaying: 0,
+
+            // Images
+            playButton: require('@/assets/img/music/Play_500px_yellow.png'),
+            playButtonDark: require('@/assets/img/music/Play_500px_yellow_dark.png')
         }
     },
 
@@ -325,5 +329,29 @@ class Song {
 
 #Player__controls button {
     padding: 1rem;
+}
+.playButton {
+    display: inline-block;
+    background-image: url('../../../assets/img/music/Play_500px_yellow_dark.png');
+    background-size: 100px 100px;
+    width: 100px;
+    height: 100px;
+    transition: all 100ms ease-in-out;
+    cursor: pointer;
+}
+.playButton:hover {
+    background-image: url('../../../assets/img/music/Play_500px_yellow.png')
+}
+.pauseButton {
+    display: inline-block;
+    background-image: url('../../../assets/img/music/Pause_500px_yellow_dark.png');
+    background-size: 100px 100px;
+    width: 100px;
+    height: 100px;
+    transition: all 100ms ease-in-out;
+    cursor: pointer;
+}
+.pauseButton:hover {
+    background-image: url('../../../assets/img/music/Pause_500px_yellow.png')
 }
 </style>

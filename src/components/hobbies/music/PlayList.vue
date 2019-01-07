@@ -10,15 +10,15 @@
         <tr v-for="(music, index) in hobbyMusic.list"
             :class="{ 'currentPlaying': currentPlaying === index }">
             <td>
-                <button
-                    v-if="( ! isPlaying && currentPlaying === index) || currentPlaying !== index"
-                    @click="playAudio(index)">
-                    Play
-                </button>
-                <button
-                    v-if="isPlaying && currentPlaying === index"
-                    @click="pauseAudio()">
-                    Pause
+                <div class="playButton"
+                    @click="playAudio(index)"
+                    v-show=" ! isPlaying && currentPlaying === index || currentPlaying !== index"
+                    />
+
+                <div class="pauseButton"
+                    @click="pauseAudio()"
+                    v-show="isPlaying && currentPlaying === index"
+                    />
                 </button>
             </td>
             <td>{{ music.name }}</td>
@@ -107,7 +107,29 @@ export default {
     text-decoration: underline;
 }
 .currentPlaying {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.2);
     color: black;
+}
+.playButton {
+    background-image: url('../../../assets/img/music/Play_500px_yellow_dark.png');
+    background-size: 30px 30px;
+    width: 30px;
+    height: 30px;
+    transition: all 100ms ease-in-out;
+    cursor: pointer;
+}
+.playButton:hover {
+    background-image: url('../../../assets/img/music/Play_500px_yellow.png')
+}
+.pauseButton {
+    background-image: url('../../../assets/img/music/Pause_500px_yellow_dark.png');
+    background-size: 30px 30px;
+    width: 30px;
+    height: 30px;
+    transition: all 100ms ease-in-out;
+    cursor: pointer;
+}
+.pauseButton:hover {
+    background-image: url('../../../assets/img/music/Pause_500px_yellow.png')
 }
 </style>

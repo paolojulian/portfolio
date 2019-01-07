@@ -1,4 +1,4 @@
-export const API_URL = '/api'
+export const API_URL = process.env.API
 // normal
 export const mangoTheme = {
     primary: '#f7da2c',

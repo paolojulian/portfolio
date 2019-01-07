@@ -11,7 +11,7 @@
 export default {
     name: 'HobbyCooking',
     components: {
-        cookingDashboard: () => import('./utils/CookingDashboard')
+        cookingDashboard: () => import('./cooking/CookingDashboard')
     }
 }
 </script>
