@@ -57,9 +57,21 @@ const hobbyMusic = {
     }
 }
 
+const hobbyCoding = {
+    path: '/hobby/coding',
+    name: 'HobbyCoding',
+    component: () => import('@/components/hobbies/HobbyCoding'),
+    meta: { en_title: hobbiesHeader.en.coding },
+    beforeEnter (to, from, next) {
+        registerStore($hobbies, hobbiesStore)
+        next()
+    }
+}
+
 export default [
     hobbies,
     hobbyList,
     hobbyCooking,
-    hobbyMusic
+    hobbyMusic,
+    hobbyCoding
 ]
