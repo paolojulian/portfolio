@@ -4,7 +4,7 @@ import actions from './actions.module'
 
 import language from './language'
 
-import { Page } from '@/helpers/libraries'
+import { PageLoader } from '@/helpers/libraries'
 
 const state = {
     language,
@@ -20,7 +20,7 @@ const state = {
         header: 'Cooking',
         list: [],
         categories: [],
-        page: new Page()
+        pageLoader: new PageLoader()
     },
     music: {
         header: 'Music',

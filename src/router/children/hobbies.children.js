@@ -40,7 +40,7 @@ const hobbyCooking = {
         {
             path: ':sortBy',
             name: 'HobbyCookingSort',
-            component: () => import('@/components/hobbies/utils/CookingList'),
+            component: () => import('@/components/hobbies/cooking/CookingList'),
             meta: { en_title: hobbiesHeader.en.cooking }
         }
     ]

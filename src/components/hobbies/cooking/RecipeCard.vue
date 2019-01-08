@@ -13,20 +13,18 @@
         <div class="RecipeCard__name">
             {{ recipeName }}
         </div>
-        <!-- <div class="RecipeCard__buttons">
-            <VButton variant="light"
-                button-color="#000000"
-                text-color="#ffffff"
-                @click="$emit('view-recipe')"
-                >
-                View Recipe
-            </VButton>
-        </div> -->
+        <div class="RecipeCard__duration">
+            <font-awesome-icon icon="clock" />
+            {{ durationFrom | duration(durationTo) }}
+        </div>
     </div>
 </div>
 </template>
 
 <script type="text/javascript">
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faClock } from '@fortawesome/free-solid-svg-icons'
+library.add(faClock)
 export default {
     name: 'RecipeCard',
     props: {
@@ -38,6 +36,14 @@ export default {
             type: String,
             required: true
         },
+        durationFrom: {
+            type: Number,
+            required: true
+        },
+        durationTo: {
+            type: Number,
+            required: true
+        },
         dateCreated: {
             type: String,
             required: true
@@ -47,6 +53,21 @@ export default {
             required: true
         }
     },
+
+    filters: {
+        duration: function (from, to) {
+            if (from <= 0 && to <= 0) {
+                return ''
+            }
+
+            if (from >= to) {
+                return `${from}m`
+            }
+
+            return `${from}m - ${to}m`
+        }
+    },
+
     computed: {
         recipeImg () {
             return `background-image: url('${require('@/assets/img/cooking/' + this.recipeId + '.png')}')`
@@ -59,7 +80,8 @@ export default {
 .RecipeCard {
     cursor: pointer;
     position: relative;
-    display: inline-table;
+    display: inline-block;
+    margin: 0 auto;
     background-color: #fff;
     transition: transform 300ms ease-in-out, box-shadow 200ms linear;
     overflow: hidden;
@@ -80,12 +102,21 @@ export default {
 }
 .RecipeCard__content {
     position: absolute;
+    height: 30%;
+    width: 100%;
     top: 70%;
-    padding: 0.5em;
+    text-align: left;
 }
 .RecipeCard__name {
+    padding: 0.5rem;
     font-weight: 600;
     height: 15%;
+}
+.RecipeCard__duration {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 0.5rem;
 }
 .RecipeCard__buttons {
     position: absolute;

@@ -79,6 +79,9 @@ main {
 .bold {
     font-weight: bold;
 }
+.hide {
+    display: none !important;
+}
 
 .fade-enter-active,
 .fade-leave-active {

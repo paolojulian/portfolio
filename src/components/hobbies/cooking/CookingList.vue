@@ -2,20 +2,24 @@
 <div id="CookingList">
     <div id="CookingList__list">
         <div
-            v-if="hobbyCooking.list.length === 0"
+            v-if="hobbyCooking.list.length === 0 && hobbyCooking.pageLoader.post"
             class="no-recipe">
             No Recipe
         </div>
-        <VLoader v-if="hobbyCooking.page.loading"/>
-        <recipe-card
-            v-for="recipe in hobbyCooking.list"
-            :key="'recipe_id_' + recipe.id"
-            :recipe-id="recipe.id"
-            :recipe-name="recipe.name"
-            :date-created="recipe.date_created"
-            :date-modified="recipe.date_modified"
-            @view-recipe="openModal('viewRecipe', recipe)"
-        />
+        <VLoader v-if="hobbyCooking.pageLoader.loading"/>
+        <div v-if="hobbyCooking.pageLoader.post">
+            <recipe-card
+                v-for="recipe in hobbyCooking.list"
+                :key="'recipe_id_' + recipe.id"
+                :recipe-id="recipe.id"
+                :recipe-name="recipe.name"
+                :duration-from="Number(recipe.duration_from)"
+                :duration-to="Number(recipe.duration_to)"
+                :date-created="recipe.date_created"
+                :date-modified="recipe.date_modified"
+                @view-recipe="openModal('viewRecipe', recipe)"
+            />
+        </div>
         <div class="clearfix"/>
     </div>
     <view-recipe
@@ -98,7 +102,9 @@ export default {
 <style scoped>
 #CookingList__list {
     position: relative;
+    text-align: center;
 }
+
 @media screen and (min-width: 600px){
     #CookingList__list {
         padding: 1rem;

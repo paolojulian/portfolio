@@ -6,8 +6,8 @@
 </template>
 
 <script type="text/javascript">
-import PlayList from './utils/PlayList'
-import Player from './utils/Player'
+import PlayList from './music/PlayList'
+import Player from './music/Player'
 export default {
     name: 'HobbyMusic',
     components: {

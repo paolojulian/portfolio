@@ -27,21 +27,21 @@
                     <li>
                         Fast Learner -
                         My key to learning faster is to
-                        understand the basics first and understand each
-                        detail
+                        master the basics and understand the
+                        meaning
                     </li>
                     <li>
                         Team Player -
-                        I played a lot of computed games during my
-                        college days and I developed chemistry and
-                        communication with my teammates
+                        A team should play as a team, not as individuals.
+                        Comminucate, and understand one another.
                     </li>
                     <li>
-                        Good Behavior -
+                        Passionate -
+                        I always want to continue developing myself and learning
+                        new things
                     </li>
                     <li>
                         Friendly -
-                        I have been involved in a fight before,
                         I forgive others easily and don't hold grudges
                     </li>
                 </ul>
@@ -74,10 +74,16 @@
             <div class="CV__section_content">
                 <table>
                     <tr>
-                        <td>Junior Web Developer</td>
+                        <td>
+                            <label>
+                                Beijing Bangnishou
+                            </label>
+                            <br />
+                            Junior Web Developer
+                        </td>
                         <td>
                             Primarily worked with the School System, Payroll System, and Teacher System,
-                            mainly used VueJS for front-end and Codeigniter for Back-end.
+                            mainly used HTML, CSS, VueJS and JQuery for front-end and Codeigniter for Back-end.
                             usually worked on schedule management and the main back bone logics
                             of the school system.
                         </td>
@@ -93,7 +99,7 @@
             <table>
                 <tbody>
                     <tr>
-                        <td>{{ strings.tertiary }}</td>
+                        <td class="educational-header">{{ strings.tertiary }}</td>
                         <td>
                             <div>University of the Cordilleras</div>
                             <div>Baguio City</div>
@@ -108,7 +114,7 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td>{{ strings.secondary }}</td>
+                        <td class="educational-header">{{ strings.secondary }}</td>
                         <td>
                             <div>Saint Louis University Laboratory High School</div>
                             <div>Navy Base, Baguio City</div>
@@ -117,7 +123,7 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td>{{ strings.primary }}</td>
+                        <td class="educational-header">{{ strings.primary }}</td>
                         <td>
                             <div>John Hay Elementary School</div>
                             <div>Scout Barrio, Baguio City</div>
@@ -152,16 +158,24 @@ export default {
 
 <style scoped>
 #CV {
-    padding: 2rem;
-    padding-left: 20rem;
-    padding-right: 20rem;
     height: 100%;
-    overflow: hidden;
+    position: relative;
 }
 
-/* #CV__header {
-    display: flex;
-} */
+#CV__card {
+    width: 50rem;
+    box-shadow: 0 5px 10px #131313;
+
+    padding: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+
+    margin-bottom: 10rem;
+
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
 
 #CV__photo {
     float: right;
@@ -188,8 +202,8 @@ export default {
     font-style: italic;
 }
 
-#CV__educational_attainment {
-
+#CV__educational_attainment table tr{
+    border-bottom: 1px solid #131313;
 }
 
 .CV__section_header {
@@ -205,5 +219,16 @@ export default {
 }
 .CV__skill_label {
     font-size: 1.2rem;
+}
+
+tr td:first-child {
+    width: 15rem;
+}
+table label {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+.educational-header {
+    vertical-align: top;
 }
 </style>

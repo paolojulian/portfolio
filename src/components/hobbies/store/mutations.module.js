@@ -24,6 +24,18 @@ const mutations = {
         state[hobbyList.hobbyName].list = hobbyList.list
     },
 
+    load (state) {
+        state.cooking.pageLoader.onLoad()
+    },
+
+    error (state) {
+        state.cooking.pageLoader.onError()
+    },
+
+    post (state) {
+        state.cooking.pageLoader.onPost()
+    },
+
     prevSong: (state) => {
         state.music.currentPlaying--
     },
