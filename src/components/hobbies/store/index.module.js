@@ -25,7 +25,7 @@ const state = {
     music: {
         header: 'Music',
         categories: [],
-        currentPlaying: 0,
+        currentPlaying: null,
         isPlaying: false,
         list: []
     },

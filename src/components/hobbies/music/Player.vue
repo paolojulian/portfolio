@@ -1,5 +1,5 @@
 <template lang="html">
-<div id="Player">
+<div id="Player" v-if="currentPlaying !== null">
     <div id="Player__thumbnail"/>
 
     <div id="Player__title">
@@ -18,6 +18,7 @@
             class="slider theme"
             @change="seek"
             v-model="musicSlider"
+            :style="sliderCss"
             min="0"
             max="100"/>
         <!-- <div class="handle theme"
@@ -26,25 +27,19 @@
     </div>
 
     <div id="Player__controls">
-        <button class="prev theme"
-            @click="prev"
-            >
-            Prev
-        </button>
+
+        <div class="prevButton" @click="prev"/>
 
         <div class="playButton"
             @click="togglePlayPause"
-            v-show=" ! isPlaying"
-            />
+            v-show=" ! isPlaying"/>
+
         <div class="pauseButton"
             @click="togglePlayPause"
-            v-show="isPlaying"
-            />
+            v-show="isPlaying"/>
 
-        <button class="next theme"
-            @click="next">
-            Next
-        </button>
+        <div class="nextButton" @click="next"/>
+
     </div>
 
 </div>
@@ -58,16 +53,14 @@ export default {
         return {
             musicSlider: 0,
             position: '0%',
-            localCurrentPlaying: 0,
-
-            // Images
-            playButton: require('@/assets/img/music/Play_500px_yellow.png'),
-            playButtonDark: require('@/assets/img/music/Play_500px_yellow_dark.png')
+            localCurrentPlaying: null
         }
     },
 
     watch: {
         isPlaying (value) {
+            if (!this.audio) return
+
             if (value) {
                 this.audio.play()
             } else {
@@ -81,6 +74,13 @@ export default {
             this.stopAudio()
             this.setAudio(value)
             this.resetAudio()
+        },
+
+        musicSlider (value) {
+            if (!value) return
+            if (value < 100) return
+
+            this.next()
         }
     },
 
@@ -109,16 +109,26 @@ export default {
         audio: {
             get () {
                 if (!this.hasAudio) return null
-
-                if (this.musicList[this.localCurrentPlaying] === void 0) {
-                    return null
-                }
+                if (this.musicList[this.localCurrentPlaying] === void 0) return null
 
                 let audioPath = this.musicList[this.localCurrentPlaying].audio_path
                 let song = require('@/assets/audio/' + audioPath)
                 return new Audio(song)
             },
             set (value) {
+            }
+        },
+
+        sliderCss () {
+            let position = this.musicSlider / 100
+            return {
+                backgroundImage: `-webkit-gradient(
+                    linear,
+                    left top,
+                    right top,
+                    color-stop(${position}, rgb(255, 251, 0)),
+                    color-stop(${position}, #ffffff)
+                )`
             }
         }
     },
@@ -198,8 +208,13 @@ export default {
 
         timeUpdate () {
             let position = this.audio.currentTime / this.audio.duration * 100
-            this.musicSlider = position
-            this.position = position + '%'
+            if (Number.isNaN(position)) {
+                this.musicSlider = 0
+                this.position = '0%'
+            } else {
+                this.musicSlider = position
+                this.position = position + '%'
+            }
         },
 
         seek () {
@@ -231,6 +246,7 @@ class Song {
     width: 40%;
     color: #ffffff;
     background-color: rgba(0, 0, 0, 0.70);
+    box-shadow: -10px 0px 10px -5px rgba(0, 0, 0, 0.60);
     font-size: 1rem;
 }
 
@@ -278,7 +294,7 @@ class Song {
 #Player__seekbar .slider {
     -webkit-appearance: none; /* used to disable default look of slider */
     outline: none;
-    height: 1px;
+    height: 5px;
     border-radius: 20px;
     background: #ffffff;
     margin: unset;
@@ -342,6 +358,32 @@ class Song {
 .playButton:hover {
     background-image: url('../../../assets/img/music/Play_500px_yellow.png')
 }
+.prevButton {
+    display: inline-block;
+    background-image: url('../../../assets/img/music/Prev_500px_yellow_dark.png');
+    background-size: 70px 70px;
+    margin-bottom: 10px !important;
+    width: 70px;
+    height: 70px;
+    transition: all 100ms ease-in-out;
+    cursor: pointer;
+}
+.prevButton:hover {
+    background-image: url('../../../assets/img/music/Prev_500px_yellow.png')
+}
+.nextButton {
+    display: inline-block;
+    background-image: url('../../../assets/img/music/Next_500px_yellow_dark.png');
+    background-size: 70px 70px;
+    margin-bottom: 10px !important;
+    width: 70px;
+    height: 70px;
+    transition: all 100ms ease-in-out;
+    cursor: pointer;
+}
+.nextButton:hover {
+    background-image: url('../../../assets/img/music/Next_500px_yellow.png')
+}
 .pauseButton {
     display: inline-block;
     background-image: url('../../../assets/img/music/Pause_500px_yellow_dark.png');
@@ -352,6 +394,6 @@ class Song {
     cursor: pointer;
 }
 .pauseButton:hover {
-    background-image: url('../../../assets/img/music/Pause_500px_yellow.png')
+    background-image: url('../../../assets/img/music/Pause_500px_yellow.png');
 }
 </style>

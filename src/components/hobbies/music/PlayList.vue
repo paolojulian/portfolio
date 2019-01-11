@@ -77,10 +77,9 @@ export default {
 
 <style scoped>
 #MyCovers {
-    width: 60%;
+    width: 100%;
     padding: 1.5rem;
     background-color: rgba(0, 0, 0, 0.60);
-    box-shadow: inset 0px 0px 50px 2px rgba(0, 0, 0, 0.60);
     color: #ffffff;
 }
 #MyCovers table {

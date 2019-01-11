@@ -1,7 +1,9 @@
 <template lang="html">
 <div id="HobbyMusic">
     <PlayList/>
-    <Player/>
+    <transition name="slide" mode="in-out">
+        <Player/>
+    </transition>
 </div>
 </template>
 
