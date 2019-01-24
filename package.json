@@ -6,6 +6,9 @@
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
+    "api-serve": "python3 api/manage.py runserver",
+    "migrate": "python3 api/manage.py migrate",
+    "makemigrations": "python3 api/manage.py makemigrations",
     "start": "node build/dev-server.js",
     "build": "node build/build.js",
     "lint": "eslint --ext .js,.vue src"
@@ -19,7 +22,7 @@
     "i": "^0.3.6",
     "moment": "^2.23.0",
     "npm": "^6.4.1",
-    "vue": "^2.5.2",
+    "vue": "^2.5.22",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
@@ -66,7 +69,7 @@
     "url-loader": "^0.6.2",
     "vue-loader": "^13.3.0",
     "vue-style-loader": "^3.0.3",
-    "vue-template-compiler": "^2.5.2",
+    "vue-template-compiler": "^2.5.22",
     "webpack": "^3.7.1",
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-middleware": "^1.12.0",
