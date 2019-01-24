@@ -22,11 +22,13 @@ class FoodCategory(models.Model):
 
 class Recipe(models.Model):
     name = models.CharField(max_length=100, blank=False, unique=True)
-    duration_from = models.PositiveIntegerField(blank=True, default=0)
-    duration_to = models.PositiveIntegerField(blank=True, default=0)
     food_category = models.ForeignKey(FoodCategory, on_delete=models.CASCADE)
     # FAVORITE : 0 = Not Favorite, 1 = Favorite
     favorite = models.PositiveIntegerField(blank=False, default=0)
+
+    duration_from = models.PositiveIntegerField(blank=True, default=0)
+    duration_to = models.PositiveIntegerField(blank=True, default=0)
+
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
 
@@ -64,7 +66,7 @@ class SubIngredients(models.Model):
 
 class Procedure(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
-    description = models.TextField(default='')
+    description = models.TextField(default=' ')
     order = models.PositiveIntegerField(validators=[MaxValueValidator(100)], default=1)
     date_created = models.DateTimeField(auto_now_add=True)
 
