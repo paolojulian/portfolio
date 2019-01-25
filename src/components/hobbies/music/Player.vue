@@ -313,7 +313,7 @@ class Song {
 #Player__seekbar .slider::-moz-range-thumb {
     width: 25px;
     height: 25px;
-    background-color: rgb(255, 251, 0);
+    background-color: var(--my-yellow);
     border-radius: 50%;
     cursor: pointer;
 }

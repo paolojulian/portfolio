@@ -1,9 +1,7 @@
 
 <template lang="html">
 <div id="HobbyCoding">
-    <div id="coding-sidebar">
-        <codingSidebar></codingSidebar>
-    </div>
+    <codingSkills/>
 </div>
 </template>
 
@@ -11,7 +9,8 @@
 export default {
     name: 'HobbyCoding',
     components: {
-        codingSidebar: () => import('./utils/CodingSidebar.vue')
+        codingSidebar: () => import('./utils/CodingSidebar.vue'),
+        codingSkills: () => import('./coding/CodingSkills.vue')
     }
 }
 </script>
@@ -21,10 +20,5 @@ export default {
     position: relative;
     height: 93vh;
     display: flex;
-}
-#coding-sidebar {
-    position: relative;
-    left: 70%;
-    width: 30%;
 }
 </style>

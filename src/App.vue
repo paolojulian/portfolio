@@ -27,6 +27,10 @@ export default {
 </script>
 
 <style>
+* {
+    margin: 0;
+    padding: 0;
+}
 html {
     min-height: 100%;
 }
@@ -95,4 +99,26 @@ main {
   opacity: 0
 }
 
+.float-left {
+    float: left
+}
+
+.float-right {
+    float: right
+}
+
+/** COLORS */
+:root {
+
+    --my-dark-green:#234d20;
+    --my-semidark-green: #36802d;
+
+    --my-light-blue: #04C2C9;
+    --my-dark-blue: #00A1A7;
+    --my-yellow: rgb(255, 251, 0);
+    --my-green: rgba(105, 242, 132, 0.9);
+
+    --my-transparent-dark: rgba(0, 0, 0, 0.75);
+    --my-dark: #333;
+}
 </style>

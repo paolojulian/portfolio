@@ -95,8 +95,8 @@ export default {
 }
 #MyCovers th {
     text-align: left;
-    border-bottom: 1.5px solid rgba(105, 242, 132, 0.9);
-    color: rgba(105, 242, 132, 0.9);
+    border-bottom: 1.5px solid var(--my-green);
+    color: var(--my-green);
 }
 .tbl-genre a {
     color: inherit;
