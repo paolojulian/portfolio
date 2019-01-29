@@ -1,7 +1,13 @@
 
 <template lang="html">
 <div id="HobbyCoding">
-    <codingSkills/>
+    <div class="clearfix coding-skills">
+        <codingSkills/>
+    </div>
+    <div class="clearfix">
+        <codingProjects/>
+    </div>
+        
 </div>
 </template>
 
@@ -9,8 +15,8 @@
 export default {
     name: 'HobbyCoding',
     components: {
-        codingSidebar: () => import('./utils/CodingSidebar.vue'),
-        codingSkills: () => import('./coding/CodingSkills.vue')
+        codingSkills: () => import('./coding/CodingSkills.vue'),
+        codingProjects: () => import('./coding/CodingProjects.vue')
     }
 }
 </script>
@@ -19,6 +25,8 @@ export default {
 #HobbyCoding {
     position: relative;
     height: 93vh;
-    display: flex;
+}
+.coding-skills {
+    margin-bottom: 10rem;
 }
 </style>

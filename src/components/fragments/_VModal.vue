@@ -21,13 +21,13 @@
 
                 <div class="modal-footer">
                     <slot name="footer">
-                        <!-- <VButton
+                        <VButton
                             class="modal-default-button"
                             variant="primary"
                             text-color="#000000"
                             @click="$emit('close')">
                             Kwa
-                        </VButton> -->
+                        </VButton>
                     </slot>
                 </div>
             </div>

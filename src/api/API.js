@@ -24,6 +24,15 @@ export class MyAPI {
                 .catch(message => { reject(message) })
         })
     }
+
+    xhrGetAll (urls) {
+        let promises = []
+        for (let i = 0, l = urls.length; i < l; i++) {
+            promises.push(this.xhrGet(urls[i]))
+        }
+        let allPromise = Promise.all(promises)
+        return allPromise
+    }
 }
 
 export function APIValidate ({ resolve, reject }, response) {
