@@ -55,7 +55,7 @@ export default {
             links: {
                 cooking: 'HobbyCooking',
                 music: 'HobbyMusic',
-                sports: false,
+                sports: 'HobbySports',
                 coding: 'HobbyCoding'
             },
             cards: 4

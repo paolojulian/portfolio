@@ -2,7 +2,7 @@
 <div id="CodingSkills">
     <div id="CodingSkills__languages">
         Programming Languages
-        <CodingLevel
+        <ProgressBar
             v-for="(skill, i) in skills"
             :key="`programming_languages_${i}`"
             :name="skill.name"
@@ -12,7 +12,7 @@
     </div>
     <div id="CodingSkills__frameworks">
         Others
-        <CodingLevel
+        <ProgressBar
             v-for="(skill, i) in frameworks"
             :key="`frameworks_${i}`"
             :name="skill.name"
@@ -63,7 +63,7 @@ export default {
         }
     },
     components: {
-        CodingLevel: () => import('./CodingLevel.vue')
+        ProgressBar: () => import('../../fragments/ProgressBar.vue')
     }
 }
 </script>

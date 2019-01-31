@@ -18,8 +18,10 @@ const URL = {
         recipeList: API_URL + '/cooking/recipe'
     },
     coding: {
-        companyProjects: 'http://localhost:3000/company_projects',
-        personalProjects: 'http://localhost:3000/personal_projects'
+        languages: 'http://localhost:3004/coding/skills/languages',
+        frameworks: 'http://localhost:3004/coding/skills/frameworks',
+        companyProjects: 'http://localhost:3004/company_projects',
+        personalProjects: 'http://localhost:3004/personal_projects'
     }
 }
 // const recipeIngredientsAPI = `${cookingAPI}/recipe-ingredients`
@@ -46,6 +48,13 @@ export class APIHobby extends MyAPI {
         return super.xhrGetAll([
             URL.coding.companyProjects,
             URL.coding.personalProjects
+        ])
+    }
+
+    getCodingSkills () {
+        return super.xhrGetAll([
+            URL.coding.languages,
+            URL.coding.frameworks
         ])
     }
 }

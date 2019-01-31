@@ -1,0 +1,5 @@
+{
+    "/api/*": "/$1",
+    "/coding/skills/frameworks/:id": "/frameworks?id=:id",
+    "/coding/skills/languages/:id": "/languages?id=:id"
+  }

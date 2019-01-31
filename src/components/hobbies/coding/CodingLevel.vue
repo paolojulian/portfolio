@@ -1,5 +1,5 @@
 <template lang="html">
-<div class="CodingLevel">
+<div class="CodingLevel" :class="{ 'small': size === 'small', 'medium': size === 'medium' }">
     <div class="CodingLevel__name" :style="nameStyle">
         <h4>{{ name }}</h4>
     </div>
@@ -26,6 +26,10 @@ export default {
         theme: {
             type: String,
             required: true
+        },
+        size: {
+            type: String,
+            default: 'medium'
         }
     },
 
@@ -50,13 +54,13 @@ export default {
 .CodingLevel {
     display: flex;
 }
-.CodingLevel__name {
+.CodingLevel.medium .CodingLevel__name {
     flex: 2;
     height: 2rem;
     text-align: center;
     position: relative;
 }
-.CodingLevel__name h4{
+.CodingLevel.medium .CodingLevel__name h4 {
     display: inline-block;
     color: #ffffff;
     position: absolute;
@@ -64,7 +68,25 @@ export default {
     top: 50%;
     transform: translate(-50%, -50%);
 }
-.CodingLevel__progress {
+.CodingLevel.medium .CodingLevel__progress {
+    flex-grow: 8;
+}
+/** SMALL **/
+.CodingLevel.small .CodingLevel__name{
+    flex: 2;
+    height: 1.5rem;
+    text-align: center;
+    position: relative;
+}
+.CodingLevel.small .CodingLevel__name h4 {
+    display: inline-block;
+    color: #ffffff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.CodingLevel.small .CodingLevel__progress {
     flex-grow: 8;
 }
 </style>

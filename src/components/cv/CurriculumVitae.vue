@@ -48,21 +48,24 @@
 
                 <label class="CV__skill_label">Programming Languages</label>
                 <ul>
-                    <li>PHP (8/10)</li>
-                    <li>Python (6/10)</li>
-                    <li>Java (6/10)</li>
-                    <li>Javascript (8.5/10)</li>
-                    <li>HTML && CSS (7/10)</li>
+                    <ProgressBar
+                        v-for="(skill, i) in skills.languages"
+                        :key="`languages_${i}`"
+                        :name="skill.name"
+                        :percent="skill.percent"
+                        :theme="skill.theme"
+                        size="small"/>
                 </ul>
 
-                <label class="CV__skill_label">Programming Frameworks</label>
+                <label class="CV__skill_label">Others</label>
                 <ul>
-                    <li>Vue JS (8.5/10)</li>
-                    <li>JQuery (8/10)</li>
-                    <li>Codeigniter (8.5/10)</li>
-                    <li>Django REST (6/10)</li>
-                    <li>Laravel (6/10)</li>
-                    <li>Maven (5/10)</li>
+                    <ProgressBar
+                        v-for="(skill, i) in skills.frameworks"
+                        :key="`frameworks_${i}`"
+                        :name="skill.name"
+                        :percent="skill.percent"
+                        :theme="skill.theme"
+                        size="small"/>
                 </ul>
             </div>
         </div>
@@ -146,25 +149,57 @@
 
 <script type="text/javascript">
 import strings from './store/language.js'
+import { APIHobby } from '../../api/APIHobby.js'
+const apiHobby = new APIHobby()
+
 export default {
     name: 'CV',
+    data () {
+        return {
+            skills: {
+                languages: [],
+                frameworks: []
+            }
+        }
+    },
     computed: {
         strings () {
             return strings.en
         }
+    },
+    components: {
+        ProgressBar: () => import('../fragments/ProgressBar.vue')
+    },
+    methods: {
+        getCodingSkills () {
+            apiHobby.getCodingSkills()
+                .then(skills => {
+                    this.skills.languages = skills[0]
+                    this.skills.frameworks = skills[1]
+                })
+        }
+    },
+    created () {
+        this.getCodingSkills()
     }
 }
 </script>
 
 <style scoped>
 #CV {
-    height: 100%;
     position: relative;
+}
+
+@media only screen
+{    
+    #CV__card {
+        box-shadow: 0 5px 10px #131313;
+    }
 }
 
 #CV__card {
     width: 50rem;
-    box-shadow: 0 5px 10px #131313;
+    background-color: white;
 
     padding: 1rem;
     padding-left: 2rem;
@@ -179,8 +214,8 @@ export default {
 
 #CV__photo {
     float: right;
-    width: 250px;
-    height: 250px;
+    width: 15rem;
+    height: 15rem;
     background-color: rgba(0, 0, 0, 0.25);
 }
 
@@ -212,10 +247,12 @@ export default {
     font-weight: bold;
     font-size: 1.5rem;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.50);
-    color: #ffffff;
+    background-color: var(--my-dark);
+    color: var(--my-yellow);
 }
-#CV__skills_list {
+#CV__skills_list ul {
+    list-style: none;
+    padding: 1rem;
 }
 .CV__skill_label {
     font-size: 1.2rem;

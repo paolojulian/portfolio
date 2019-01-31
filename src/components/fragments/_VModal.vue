@@ -11,7 +11,7 @@
                     </slot>
                 </div>
 
-                <div class="modal-body">
+                <div>
                     <slot name="body">
                         <p class="modal__body">
                             Ikatten ta atoyen?
@@ -73,7 +73,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 .close-modal {
     cursor: pointer;
@@ -126,13 +126,6 @@ export default {
     color: #ffffff;
 }
 
-.modal-body {
-    margin: 10px 10px;
-    padding: 10px;
-}
-.modal-footer {
-    padding: 10px;
-}
 .modal__body {
     text-align: center;
     overflow-y: auto;

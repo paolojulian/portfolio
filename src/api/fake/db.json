@@ -51,6 +51,26 @@
             "tool": "React JS"
         }
     ],
+    "languages": [
+        { "id": 1, "name": "HTML", "percent": 60, "theme": "default" },
+        { "id": 2, "name": "CSS", "percent": 50, "theme": "default" },
+        { "id": 3, "name": "Javascript", "percent": 80, "theme": "default" },
+        { "id": 4, "name": "PHP", "percent": 80, "theme": "default" },
+        { "id": 5, "name": "Python", "percent": 55, "theme": "default" },
+        { "id": 6, "name": "Java", "percent": 50, "theme": "default" }
+    ],
+    "frameworks": [
+        { "id": 1, "name": "Node", "percent": 60, "theme": "blue" },
+        { "id": 2, "name": "Vue", "percent": 50, "theme": "blue" },
+        { "id": 3, "name": "Vuex", "percent": 80, "theme": "blue" },
+        { "id": 4, "name": "React", "percent": 80, "theme": "blue" },
+        { "id": 5, "name": "CodeIgniter", "percent": 75, "theme": "blue" },
+        { "id": 6, "name": "Laravel", "percent": 40, "theme": "blue" },
+        { "id": 7, "name": "Django", "percent": 50, "theme": "blue" },
+        { "id": 8, "name": "Maven", "percent": 50, "theme": "blue" }
+    ],
+    "coding": {
+    },
     "comments": [
       { "id": 1, "body": "some comment", "postId": 1 }
     ],

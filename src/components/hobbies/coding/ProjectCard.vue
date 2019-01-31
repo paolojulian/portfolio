@@ -44,7 +44,11 @@ export default {
     },
     methods: {
         openProject () {
-            this.$emit('openProject', this.id)
+            let load = {
+                projectID: this.id,
+                projectDescription: this.description
+            }
+            this.$emit('openProject', load)
         }
     }
 }

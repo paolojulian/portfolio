@@ -1,5 +1,8 @@
 <template lang="html">
-<div class="ProgressBar">
+<div class="ProgressBar" :class="{ 'small': size === 'small', 'medium': size === 'medium' }">
+    <div class="ProgressBar__name" :style="nameStyle">
+        <h4>{{ name }}</h4>
+    </div>
     <div class="ProgressBar__line"
         :style="style"
     >
@@ -13,6 +16,10 @@
 <script type="text/javascript">
 export default {
     props: {
+        name: {
+            type: String,
+            required: true
+        },
         percent: {
             type: Number,
             required: true
@@ -21,9 +28,21 @@ export default {
             type: String,
             required: false,
             default: 'default'
+        },
+        size: {
+            type: String,
+            default: 'medium'
         }
     },
     computed: {
+        nameStyle () {
+            switch (this.theme) {
+            case 'blue':
+                return {background: `var(--my-light-blue)`}
+            default:
+                return {background: `var(--my-semidark-green)`}
+            }
+        },
         style () {
             let style = {}
             switch (this.theme) {
@@ -48,15 +67,42 @@ export default {
 
 <style scoped>
 .ProgressBar {
+    display: flex;
+}
+.ProgressBar.small {
+    --bar-height: 1.5rem;
+    --bar-font-size: 0.9rem;
+    --bar-font-weight: 300;
+}
+.ProgressBar.medium {
     --bar-height: 2rem;
+    --bar-font-size: 1rem;
+    --bar-font-weight: 400;
+}
+.ProgressBar__name {
+    flex: 2;
+    height: var(--bar-height);
+    font-size: var(--bar-font-size);
+    font-weight: var(--bar-font-weight);
+    text-align: center;
+    position: relative;
+}
+.ProgressBar__name h4 {
+    display: inline-block;
+    color: #ffffff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 .ProgressBar__line {
+    flex-grow: 8;
     position: relative;
 
     height: var(--bar-height);
     margin: 0 auto;
     line-height: 25px;
-    font-size: 14px;
+    font-size: var(--bar-font-size);
     color: #ffffff;
     margin-bottom: 1rem;
 }

@@ -35,11 +35,8 @@ html {
     min-height: 100%;
 }
 body {
-	margin: 0;
-    background: -webkit-linear-gradient(#e8e8e8, #ececec); 
-    background: -o-linear-gradient(#e8e8e8, #ececec); 
-    background: -moz-linear-gradient(#e8e8e8, #ececec); 
-    background: linear-gradient(#e8e8e8, #ececec); 
+    margin: 0;
+    background-color: #ececec;
 }
 
 #app {
@@ -66,6 +63,13 @@ main {
 @media screen and (max-width: 1000px) {
     .lg-only {
         display: none;
+    }
+}
+@media print
+{    
+    .no-print, .no-print *
+    {
+        display: none !important;
     }
 }
 .clearfix::after {

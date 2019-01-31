@@ -26,6 +26,7 @@
         v-if="modal.projects.toggle"
         @close="modal.projects.setToggle(false)"
         :id="Number(modal.projects.data.projectID)"
+        :description="modal.projects.data.projectDescription"
     />
 </div>
 </template>
@@ -61,8 +62,8 @@ export default {
                     this.personalProjects = projects[1]
                 })
         },
-        openProject (projectID) {
-            this.modal.projects.setData({ projectID })
+        openProject ({ projectID, projectDescription }) {
+            this.modal.projects.setData({ projectID, projectDescription })
             this.modal.projects.setToggle(true)
         }
     },

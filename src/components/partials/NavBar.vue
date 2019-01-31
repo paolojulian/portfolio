@@ -1,5 +1,6 @@
 <template lang="html">
     <header id="NavBar"
+        class="no-print"
         :class="{'dark': isDark}">
         <div id="NavBar__icon">
             <span class="NavBar__icon__text">

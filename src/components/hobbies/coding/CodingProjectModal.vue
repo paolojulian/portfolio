@@ -3,7 +3,7 @@
         @close="$emit('close')"
         >
         <div slot="body">
-            <Carousel>
+            <Carousel class="CodingProjectModal__carousel">
                 <slide>
                     {{ id }}
                 </slide>
@@ -14,6 +14,9 @@
                     {{ id }}
                 </slide>
             </Carousel>
+            <div class="CodingProjectModal__description">
+                {{ description }}
+            </div>
         </div>
     </VModal>
 </template>
@@ -25,6 +28,10 @@ export default {
         id: {
             type: Number,
             required: true
+        },
+        description: {
+            type: String,
+            required: true
         }
     },
     components: {
@@ -35,5 +42,16 @@ export default {
 </script>
 
 <style scoped>
-
+.CodingProjectModal__carousel img{
+    height: 18rem;
+    width: 100%;
+}
+.CodingProjectModal__carousel {
+    height: 20rem;
+    width: 100%;
+}
+.CodingProjectModal__description {
+    max-height: 15rem;
+    overflow-y: auto;
+}
 </style>
