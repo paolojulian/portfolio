@@ -37,10 +37,10 @@ html {
 body {
     margin: 0;
     background-color: #ececec;
+	font-family: "Lato", sans-serif;
 }
 
 #app {
-	font-family: 'Avenir', Helvetica, Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	color: #2c3e50;
@@ -110,6 +110,9 @@ main {
 .float-right {
     float: right
 }
+.bottom-0 {
+    bottom: 0;
+}
 
 /** COLORS */
 :root {
@@ -123,6 +126,6 @@ main {
     --my-green: rgba(105, 242, 132, 0.9);
 
     --my-transparent-dark: rgba(0, 0, 0, 0.75);
-    --my-dark: #333;
+    --my-dark: #282e34;
 }
 </style>

@@ -120,7 +120,7 @@ export default {
     transition: background-color 500ms ease-in-out;
 }
 #NavBar.dark {
-    background-color: var(--my-transparent-dark)
+    background-color: var(--my-dark)
 }
 #NavBar__title {
     position: absolute;

@@ -1,92 +1,149 @@
 <template lang="html">
 <div id="Basketball">
-    <div id="Basketball__header">
-        <div id="Basketball__header__text">
-            <div>
-                <h1>BASKETBALL</h1>
-                <h3>NEVER</h3>
-                <h3>STOPS</h3>
-            </div>
-
-            <div>
-                <h3>
-                    <p>Every second</p>
-                    <p>Every minute</p>
-                    <p>Every quarter</p>
-                    <p>Every game</p>
-                    <p>There's a winner</p>
-                </h3>
-            </div>
-
-            <div>
-                <h3>
-                    <p>Where the moment</p>
-                    <p>you give up</p>
-                    <p>is the moment</p>
-                    <p>you let</p>
-                    <p>"SOMEONE" win</p>
-                </h3>
+    <div class="Basketball__img sports-img">
+        <div class="Basketball__header">
+            <span class="Basketball__header__text">
+                The moment you give up
+                <br />
+                is the moment
+                <br />
+                you let someone else win
+            </span>
+        </div>
+        <div class="Basketball__favorites">
+            <div class="Basketball__images">
+                <div class="Basketball__favorites__img pg"/>
+                <div class="Basketball__favorites__img sg"/>
+                <div class="Basketball__favorites__img sf"/>
+                <div class="Basketball__favorites__img pf"/>
+                <div class="Basketball__favorites__img c"/>
             </div>
         </div>
     </div>
-    <!-- <div id="Basketball__gallery">
-        Gallery
-    </div> -->
+    <section class="section section-dark">
+        <h2>Basketball</h2>
+        <p>I loved basketball ever since i saw the duo of Steve Nash and Amare Stoudemire, those beautiful execution of pick and rolls were just amazing.
+            Back in highschool, they use to call me "Birdman" because before, I loved blocking shots, defending the low post, similar to the playstyle of the infamous Chris "Birdman" Andersen.
+            Today, I use to play basketball once a week with my highschool friends and I still enjoy playing it even though
+            the stamina is not there.
+        </p>
+    </section>
 </div>
 </template>
 
 <script type="text/javascript">
+import { Carousel, Slide } from 'vue-carousel'
 export default {
-
+    components: {
+        Carousel,
+        Slide
+    }
 }
 </script>
 
 <style scoped>
-#Basketball__header {
-    perspective: 1px;
-    transform-style: preserve-3d;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-#Basketball__header__text h1{
-    letter-spacing: 1rem;
-}
-#Basketball__header__text h3 {
-    letter-spacing: 0.5rem;
-}
-#Basketball__header__text div{
-    margin-bottom: 20rem;
-}
-#Basketball__header__text {
-    color: #cccccb;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 2rem;
-
-    position: relative;
-    transform-style: inherit;
-    box-sizing: border-box;
-    padding: 20vw 2vw 5vw;
-    min-height: 93vh;
-    width: 100vw;
-}
-#Basketball__header__text, #Basketball__header__text::before {
-    background: 50% 50% / cover;
-}
-#Basketball__header__text::before {
-    display: block;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    content: '';
-    background-image: url('../../../assets/img/hobbies/basketball_wallpaper.png');
+.Basketball__img {
+    background-image: url('../../../assets/img/sports/basketball-background.png');
+    overflow: hidden;
+    height: 77vh;
     background-size: cover;
-    transform-origin: center center 0;
-    transform: translateZ(-3px) scale(4);
-    z-index: -1;
-    min-height: 100vh;
+    background-repeat: no-repeat;
 }
-#Basketball__gallery {
+.Basketball__header {
+    position: absolute;
+    top: 20%;
+    left: 45vw;
+
+    letter-spacing: 0.5rem;
+    text-transform: uppercase;
+}
+.Basketball__header__text {
+    font-size: 2rem;
+}
+.Basketball__favorites {
+    position: absolute;
+    top: 30%;
+    left: 35vw;
+    width: 65vw;
+    height: 70%;
+
+    letter-spacing: 0.5rem;
+    text-transform: uppercase;
+}
+.Basketball__images {
+    display: flex;
+}
+.Basketball__favorites__img{
+    display: inline-block;
+    position: absolute;
+    bottom: 0%;
+
+
+    width: 25vw;
+    height: 25vw;
+
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.Basketball__favorites__img.pg{
+    left: 13%;
+    background-image: url('../../../assets/img/sports/basketball/nash.png');
+    animation-name: slideInFromLeft;
+    animation-duration: 1200ms;
+}
+.Basketball__favorites__img.sf{
+    left: 22%;
+    background-image: url('../../../assets/img/sports/basketball/melo.png');
+    animation-name: slideInFromLeft;
+    animation-duration: 700ms;
+}
+.Basketball__favorites__img.c{
+    left: 30%;
+    background-image: url('../../../assets/img/sports/basketball/birdman.png');
+    z-index: 10;
+    animation-name: slideInFromBottom;
+    animation-duration: 600ms;
+}
+.Basketball__favorites__img.sg{
+    left: 38%;
+    background-image: url('../../../assets/img/sports/basketball/kobe.png');
+    z-index: 9;
+    animation-name: slideInFromRight;
+    animation-duration: 900ms;
+}
+.Basketball__favorites__img.pf{
+    background-image: url('../../../assets/img/sports/basketball/garnett.png');
+    left: 48%;
+    z-index: 8;
+    animation-name: slideInFromRight;
+    animation-duration: 1500ms;
+}
+.Basketball__favorites {
+    margin-top: 2rem;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-200%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(200%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 </style>
