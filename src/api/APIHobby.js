@@ -1,5 +1,5 @@
 import { MyAPI } from '@/api/API'
-import { API_URL } from '@/helpers/constants'
+import { API_URL, API_FAKE } from '@/helpers/constants'
 
 // const hobbyApi = API_URL + '/hobby'
 // const APICooking = API_URL + '/cooking'
@@ -9,6 +9,11 @@ import { API_URL } from '@/helpers/constants'
 // const APIMusicList = `${APIMusic}/list`
 
 const URL = {
+    sports: {
+        hiking: {
+            gallery: `${API_FAKE}/sports/hiking/gallery`
+        }
+    },
     music: {
         main: API_URL + '/music',
         list: API_URL + '/music/list'
@@ -18,10 +23,10 @@ const URL = {
         recipeList: API_URL + '/cooking/recipe'
     },
     coding: {
-        languages: 'http://localhost:3004/coding/skills/languages',
-        frameworks: 'http://localhost:3004/coding/skills/frameworks',
-        companyProjects: 'http://localhost:3004/company_projects',
-        personalProjects: 'http://localhost:3004/personal_projects'
+        languages: `${API_FAKE}/coding/skills/languages`,
+        frameworks: `${API_FAKE}/coding/skills/frameworks`,
+        companyProjects: `${API_FAKE}/company_projects`,
+        personalProjects: `${API_FAKE}/personal_projects`
     }
 }
 // const recipeIngredientsAPI = `${cookingAPI}/recipe-ingredients`
