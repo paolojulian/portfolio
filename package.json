@@ -10,6 +10,7 @@
     "api-windows-serve": "py api/manage.py runserver",
     "migrate": "python3 api/manage.py migrate",
     "makemigrations": "python3 api/manage.py makemigrations",
+    "json-serve": "json-server --watch src/api/fake/db.json --route src/api/fake/routes.json --port 3004",
     "start": "node build/dev-server.js",
     "build": "node build/build.js",
     "lint": "eslint --ext .js,.vue src"
