@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "node build/dev-server.js",
     "api-serve": "python3 api/manage.py runserver",
+    "api-windows-serve": "py api/manage.py runserver",
     "migrate": "python3 api/manage.py migrate",
     "makemigrations": "python3 api/manage.py makemigrations",
     "start": "node build/dev-server.js",
