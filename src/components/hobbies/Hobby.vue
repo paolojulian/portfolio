@@ -12,32 +12,32 @@
         </div>
         <div id="Hobby__music"
             class="Hobby__box"
-            @click="toggleActive('music')"
         >
             <hobby-content
                 :hobby-header="hobbyMusic.header"
                 :hobby-categories="hobbyMusic.categories"
                 hobby-image="hobby_music.png"
+                @click.native="toggleActive('music')"
                 class="Hobby__content"/>
         </div>
         <div id="Hobby__sports"
             class="Hobby__box"
-            @click="toggleActive('sports')"
         >
             <hobby-content
                 :hobby-header="hobbySports.header"
                 :hobby-categories="hobbySports.categories"
                 hobby-image="hobby_sports.png"
+                @click.native="toggleActive('sports')"
                 class="Hobby__content"/>
         </div>
         <div id="Hobby__coding"
             class="Hobby__box"
-            @click="toggleActive('coding')"
         >
             <hobby-content
                 :hobby-header="hobbyCoding.header"
                 :hobby-categories="hobbyCoding.categories"
                 hobby-image="hobby_coding.png"
+                @click.native="toggleActive('coding')"
                 class="Hobby__content"/>
         </div>
     </div>
@@ -94,17 +94,11 @@ export default {
     position: relative;
     text-align: center;
     height: 93vh;
-    /* overflow: hidden; */
-}
-.Hobby__box:not(.active) {
-    overflow: hidden;
-    position: relative;
-    float: left;
 }
 @media only screen and (min-width: 600px){
     .Hobby__box {
         height: 50%;
-        width: 50%;
+        width: 40%;
         padding: 2rem;
     }
 }
@@ -114,44 +108,9 @@ export default {
         width: 100%;
     }
 }
-.Hobby__card {
-    position: absolute;
-    z-index: 10;
-    width: 100%;
-    height: 100%;
-    transition: all 200ms ease-in-out
+.Hobby__box {
+    display: inline-table;
+    overflow: hidden;
+    position: relative;
 }
-
-/* COOKING */
-#Hobby__cooking__img {
-    background-image: url('../../assets/img/hobbies/hobby_cooking.png');
-    background-size: cover;
-    background-position: center;
-}
-/* END COOKING */
-
-/* SPORTS */
-#Hobby__sports__img {
-    background-image: url('../../assets/img/hobbies/hobby_sports.png');
-    background-size: cover;
-    background-position: center;
-}
-/* END SPORTS */
-
-/* MUSIC */
-#Hobby__music__img {
-    background-image: url('../../assets/img/hobbies/hobby_music.png');
-    background-size: cover;
-    background-position: center;
-}
-/* END MUSIC */
-
-/* CODING */
-#Hobby__coding__img {
-    background-image: url('../../assets/img/hobbies/hobby_coding.png');
-    background-size: cover;
-    background-position: center;
-}
-
-/* END CODING */
 </style>
