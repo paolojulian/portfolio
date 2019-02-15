@@ -4,7 +4,9 @@
             <div class="img-responsive"/>
         </div><div class="Dashboard__text">
             <div class="center-absolute">
-                <div class="Dashboard__header shake-start">HELLO THERE!<br />PAOLO HERE</div>
+                <div class="Dashboard__header shake-start shake-hover">
+                    <span>HELLO THERE!<br />PAOLO HERE</span>
+                </div>
                 <div class="Dashboard__description">Hi, I am a Software Application Developer. I also have
 a lot of hobbies. I love cooking good food from different
 cuisines. I also love playing computer games with my
@@ -50,7 +52,6 @@ export default {
     width: 90%;
 }
 .Dashboard__button {
-    width: 10rem;
     padding: 0.8rem;
 
     font-weight: 500;
@@ -61,6 +62,11 @@ export default {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
     cursor: pointer;
+
+    transition: all 100ms ease-in-out;
+}
+.Dashboard__button:hover{
+    background-color: var(--my-dark-blue);
 }
 
 @media screen and (min-width: 600px){
