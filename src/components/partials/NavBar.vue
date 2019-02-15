@@ -20,7 +20,6 @@
                     :link="route.link"
                     :name="route.name"
                     :icon="route.icon"
-                    :active="currentActive"
                     :key="index"
                 />
             </li>
