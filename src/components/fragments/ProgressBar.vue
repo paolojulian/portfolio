@@ -4,9 +4,9 @@
         <h4>{{ name }}</h4>
     </div>
     <div class="ProgressBar__line"
-        :style="style"
+        :style="progressStyle"
     >
-        <div class="ProgressBar__percent float-right">
+        <div class="ProgressBar__percent" :style="percentStyle">
             {{ `${percent}%` }}
         </div>
     </div>
@@ -37,17 +37,19 @@ export default {
     computed: {
         nameStyle () {
             switch (this.theme) {
+            case 'alternate-green':
+                return {background: `var(--my-dark-green)`}
             case 'blue':
                 return {background: `var(--my-light-blue)`}
             default:
                 return {background: `var(--my-semidark-green)`}
             }
         },
-        style () {
+        progressStyle () {
             let style = {}
             switch (this.theme) {
-            case 'yellow':
-                style['--line-theme'] = `rgb(237, 212, 0)`
+            case 'alternate-green':
+                style['--line-theme'] = `var(--my-semidark-green)`
                 break
             case 'blue':
                 style['--line-theme'] = `var(--my-dark-blue)`
@@ -59,6 +61,12 @@ export default {
 
             style['--percent-width'] = `${this.percent}%`
 
+            return style
+        },
+
+        percentStyle () {
+            let style = {}
+            style['left'] = `${this.percent - 10}%`
             return style
         }
     }
@@ -132,7 +140,8 @@ export default {
 }
 
 .ProgressBar__percent {
-    color: var(--my-dark);
+    position: absolute;
+    color: var(--my-light);
     padding-right: 0.5rem;
 }
 @keyframes animate {

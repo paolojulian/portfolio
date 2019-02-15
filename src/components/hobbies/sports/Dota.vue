@@ -7,17 +7,26 @@
             </span>
         </div>
     </div>
-    <div class="Dota__profile">
+    <div class="Dota__favorite__player">
+        <img :src="require('../../../assets/img/sports/dota/dendi2.png')" class="img-responsive" width="844" height="700"/>
+    </div>
+    <div class="Dota__profile shadow-light">
         <div class="Dota__profile__img"/>
         <div class="Dota__profile__link">
-            <a href="https://steamcommunity.com/id/frenchKisss/">View Profile</a>
+            <a target="_blank" href="https://steamcommunity.com/id/frenchKisss/">View Profile</a>
+        </div>
+        <div class="Dota__position">
+            (3rd) Offlaner / (1st) Core
         </div>
         <div class="Dota__profile__playstyle">
             <ul>
-                <li>Fighting</li>
-                <li>Pushing</li>
-                <li>Supporting</li>
-                <li>Versatility</li>
+                <ProgressBar
+                    v-for="(style, i) in playingStyles"
+                    :key="`DotaPlayingStyle_${i}`"
+                    :name="style.name"
+                    :percent="style.percent"
+                    theme="alternate-green"
+                    size="small"/>
             </ul>
         </div>
     </div>
@@ -36,13 +45,27 @@
 </template>
 
 <script type="text/javascript">
+import { DotaPlayingStyle } from '@/classes/sports.js'
 export default {
-
+    data () {
+        return {
+            playingStyles: [
+                new DotaPlayingStyle('Pushing', 50, 'default'),
+                new DotaPlayingStyle('Fighting', 90, 'default'),
+                new DotaPlayingStyle('Farming', 80, 'default'),
+                new DotaPlayingStyle('Support', 30, 'default')
+            ]
+        }
+    },
+    components: {
+        ProgressBar: () => import('../../fragments/ProgressBar.vue')
+    }
 }
 </script>
 
 <style scoped>
 #Dota {
+    color: #ffffff;
     position: relative;
     height: 100vh;
 }
@@ -56,6 +79,11 @@ export default {
     background-position: center;
     background-repeat: no-repeat;
 }
+.Dota__favorite__player {
+    position: absolute;
+    left: 5%;
+    bottom: 0%;
+}
 .Dota__header__text {
     position: absolute;
     bottom: 5%;
@@ -67,6 +95,10 @@ export default {
     text-transform: uppercase;
 }
 .Dota__profile {
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.10);
+    width: 20vw;
+    padding: 1rem;
     position: absolute;
     top: 30%;
     left: 70%;
