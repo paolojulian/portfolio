@@ -32,4 +32,4 @@ export default {
 </style>
 <style src='./styles/app.css'></style>
 <style src='./styles/transition.css'></style>
-<style src='./styles/colors.css'></style>
+<style src='./styles/constants.css'></style>

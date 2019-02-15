@@ -13,13 +13,14 @@
             {{ headerTitle }}
         </div>
         <ul class="NavBar__clearfix">
-            <li v-for="(route, index) in routes">
+            <li v-for="(route, index) in routes"
+                :class="{ 'active': $route.path === route.link }"
+            >
                 <nav-bar-routes 
                     :link="route.link"
                     :name="route.name"
                     :icon="route.icon"
                     :active="currentActive"
-                    @click="switchActive"
                     :key="index"
                 />
             </li>
@@ -50,8 +51,7 @@ export default {
                 new NavbarRoute('Hobby', '/hobby', 'gamepad'),
                 new NavbarRoute('CurriculumVitae', '/curriculum-vitae', 'newspaper')
             ],
-            isDark: true,
-            currentActive: ''
+            isDark: true
         }
     },
     computed: {
@@ -78,9 +78,6 @@ export default {
             } else {
                 this.isDark = false
             }
-        },
-        switchActive (path) {
-            this.currentActive = path
         }
     },
     destroyed () {
@@ -107,7 +104,7 @@ export default {
 #NavBar {
     position: fixed;
     z-index: 999;
-    width: 100%;
+    width: 100vw;
     height: 7vh;
     padding: 0px 10px;
     box-sizing: border-box;
@@ -117,9 +114,6 @@ export default {
     color: #ffffff;
     font-weight: 500;
 
-    transition: background-color 500ms ease-in-out;
-}
-#NavBar.dark {
     background-color: var(--my-dark)
 }
 #NavBar__title {
@@ -127,5 +121,14 @@ export default {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+#NavBar li * {
+    cursor: pointer;
+}
+#NavBar ul li.active{
+    background: #fffb00;
+}
+#NavBar ul li.active a {
+    color: #333333;
 }
 </style>

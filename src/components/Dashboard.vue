@@ -1,7 +1,19 @@
 <template lang="html">
-    <div id="Dashboard"
-        :style="'background-image: url(' + require('@/assets/img/main3.jpg') + ');'"
-    >
+    <div id="Dashboard">
+        <div class="Dashboard__image">
+            <div class="img-responsive"/>
+        </div>
+        <div class="Dashboard__text">
+            <div class="center-absolute">
+                <div class="Dashboard__header shake-start">HELLO THERE!<br />PAOLO HERE</div>
+                <div class="Dashboard__description">Hi, I am a Software Application Developer. I also have
+a lot of hobbies. I love cooking good food from different
+cuisines. I also love playing computer games with my
+friends. I also love playing basketball and hiking and
+more importantly, I LOVE programming.</div>
+                <router-link to="/hobby" class="Dashboard__button">CHECK ME</router-link>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -16,9 +28,102 @@ export default {
     text-align: center;
     position: absolute;
     top: 0;
-    width: 100%;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #ffffff;
+}
+.Dashboard__image div{
+    background-image: url('../assets/img/pipz.png');
+    background-repeat: no-repeat;
+    background-size: contain;
     height: 100%;
-    display: block;
-    background-size: cover;
+    width: 100%;
+}
+.Dashboard__text {
+    position: relative;
+    letter-spacing: 0.05em;
+    text-align: center;
+}
+.Dashboard__text div.center-absolute{
+    width: 90%;
+}
+.Dashboard__button {
+    width: 10rem;
+    padding: 0.8rem;
+
+    font-weight: 500;
+    font-size: 1.2rem;
+
+    color: #ffffff;
+    background-color: var(--my-blue);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 600px){
+    #Dashboard {
+        display: flex;
+    }
+    .Dashboard__image {
+        display: inline-block;
+        width: 50vw;
+    }
+    .Dashboard__image div{
+        position: absolute;
+        bottom: 0;
+        left: 5%;
+    }
+    .Dashboard__text {
+        display: inline-block;
+        width: 50vw;
+    }
+    .Dashboard__text {
+        position: relative;
+        display: inline-block;
+        width: 50vw;
+
+        letter-spacing: 0.05em;
+        text-align: center;
+
+        color: #000000;
+    }
+    .Dashboard__text div.center-absolute div{
+        margin-bottom: 2rem;
+    }
+    .Dashboard__header {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+    .Dashboard__description {
+        margin: 0 auto;
+        width: 80%;
+        font-weight: 300;
+    }
+
+}
+@media screen and (max-width: 600px){
+    .Dashboard__image {
+        height: calc(var(--my-display-height) / 2);
+        width: 100%;
+        background-color: #d3d3d3;
+    }
+    .Dashboard__text {
+        height: calc(var(--my-display-height) / 2);
+        width: 100%;
+    }
+    .Dashboard__header {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    .Dashboard__description {
+        font-weight: 300;
+        font-size: 0.8rem;
+    }
+    .Dashboard__text div.center-absolute div{
+        margin-bottom: 2rem;
+    }
 }
 </style>

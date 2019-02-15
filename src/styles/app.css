@@ -15,7 +15,7 @@ html {
 body {
     margin: 0;
     background-color: #ececec;
-	font-family: "Lato", sans-serif;
+	font-family: "Roboto", Roboto, "Lato", sans-serif;
 }
 
 #app {
@@ -82,4 +82,7 @@ body {
 
 .text-center {
     text-align: center;
+}
+.pointer {
+    cursor: pointer;
 }

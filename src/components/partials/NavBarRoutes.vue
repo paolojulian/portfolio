@@ -1,6 +1,6 @@
 <template lang="html">
     <router-link
-        :class="{ 'active': active === link }"
+        :class="{ 'active': $route.path === link }"
         :to="link"
         @click.native="$emit('click', link)"
     >
@@ -61,9 +61,6 @@ export default {
     .li__text {
         display: none;
     }
-    #NavBar ul li a.active {
-        color: #fffb00;
-    }
     #NavBar ul {
         position:absolute;
         left: 50%;
@@ -76,12 +73,6 @@ export default {
     }
     .li__text {
         display: inline-block;
-    }
-    #NavBar ul li a.active {
-        padding: 5px 10px;
-        border-radius: 5px;
-        background: #fffb00;
-        color: #000000;
     }
     #NavBar ul {
         float: right;
@@ -105,11 +96,6 @@ export default {
     list-style: none;
     padding: 0 15px;
     transition: transform, color 100ms;
-}
-#NavBar ul li:hover{
-    -ms-transform: scale(1.1); /* IE 9 */
-    -webkit-transform: scale(1.1); /* Safari */
-    transform: scale(1.1);
 }
 #NavBar ul li a {
     line-height: 7vh;
