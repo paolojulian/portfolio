@@ -102,7 +102,6 @@ export default {
     color: #ffffff;
     text-decoration: none;
     text-transform: uppercase;
-    font-weight: 600;
     outline: none;
     cursor: default;
 }

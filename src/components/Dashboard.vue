@@ -2,14 +2,14 @@
     <div id="Dashboard">
         <div class="Dashboard__image">
             <div class="img-responsive"/>
-        </div>
-        <div class="Dashboard__text">
+        </div><div class="Dashboard__text">
             <div class="center-absolute">
                 <div class="Dashboard__header shake-start">HELLO THERE!<br />PAOLO HERE</div>
                 <div class="Dashboard__description">Hi, I am a Software Application Developer. I also have
 a lot of hobbies. I love cooking good food from different
 cuisines. I also love playing computer games with my
-friends. I also love playing basketball and hiking and
+friends, I love singing and playing the guitar to my
+loved ones, I also love playing basketball and hiking and
 more importantly, I LOVE programming.</div>
                 <router-link to="/hobby" class="Dashboard__button">CHECK ME</router-link>
             </div>
@@ -64,12 +64,10 @@ export default {
 }
 
 @media screen and (min-width: 600px){
-    #Dashboard {
-        display: flex;
-    }
     .Dashboard__image {
         display: inline-block;
-        width: 50vw;
+        width: 50%;
+        height: 100vh;
     }
     .Dashboard__image div{
         position: absolute;
@@ -77,18 +75,10 @@ export default {
         left: 5%;
     }
     .Dashboard__text {
-        display: inline-block;
-        width: 50vw;
-    }
-    .Dashboard__text {
         position: relative;
         display: inline-block;
-        width: 50vw;
-
-        letter-spacing: 0.05em;
-        text-align: center;
-
-        color: #000000;
+        width: 50%;
+        height: 100vh;
     }
     .Dashboard__text div.center-absolute div{
         margin-bottom: 2rem;
