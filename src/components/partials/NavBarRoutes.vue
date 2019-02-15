@@ -36,11 +36,6 @@ export default {
         icon: {
             type: String,
             required: true
-        },
-        // the active link
-        active: {
-            type: String,
-            required: true
         }
     },
     components: {
