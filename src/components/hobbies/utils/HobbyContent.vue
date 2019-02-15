@@ -6,7 +6,7 @@
     </div>
     <div class="HobbyContent__text">
         <div class="HobbyContent__header">
-            {{ hobbyHeader }}
+            - {{ hobbyHeader }} -
         </div>
         <div class="HobbyContent__body">
             <div class="center-absolute">
@@ -117,7 +117,7 @@ cursor: pointer;
     transform: scale(1.2);
 }
 .HobbyContent:hover {
-    opacity: 0.7;
+    opacity: 0.8;
 }
 .HobbyContent:hover .HobbyContent__view {
     z-index: 1;
