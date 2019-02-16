@@ -125,9 +125,9 @@ export default {
     cursor: pointer;
 }
 #NavBar ul li.active{
-    background: #fffb00;
+    background: rgba(255, 255, 255, 0.1);
 }
-#NavBar ul li.active a {
+/* #NavBar ul li.active a {
     color: #333333;
-}
+} */
 </style>

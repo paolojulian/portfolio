@@ -1,11 +1,9 @@
 <template lang="html">
 <div class="ProjectCard" @click="openProject">
-    <div class="ProjectCard__img">
-        IMG
-    </div>
+    <div class="ProjectCard__img" :style="imageStyle"/>
     <div class="ProjectCard__text">
         <div class="ProjectCard__name">
-            {{ name }}
+            <span>{{ name }}</span>
         </div>
         <div class="ProjectCard__description" @click="openProject">
             {{ description }}
@@ -37,9 +35,21 @@ export default {
             type: String,
             required: true
         },
+        imageName: {
+            type: String,
+            default: 'portfolio.png'
+        },
         tool: {
             type: String,
             required: true
+        }
+    },
+    computed: {
+        imageStyle () {
+            let style = {}
+            let image = require(`../../../assets/img/coding/projects/${this.imageName}`)
+            style['backgroundImage'] = `url('${image}')`
+            return style
         }
     },
     methods: {
@@ -65,34 +75,59 @@ export default {
 
     margin-bottom: 1rem;
     margin-left: 0.25rem;
-    margin-right: 0.25rem;
+    /* margin-right: 0.25rem; */
 
     border-radius: 0.05rem;
     overflow: hidden;
     color: white;
     cursor: pointer;
+    transition: all 200ms ease-in-out;
 }
-.ProjectCard:hover .ProjectCard__text{
-    height: 20rem;
-    transform: translateY(-18rem);
-}
+/* .ProjectCard:hover{
+    opacity: 1;
+} */
+/* .ProjectCard:hover .ProjectCard__text{
+    height: 100%;
+} */
+/* .ProjectCard:hover .ProjectCard__img{
+    transform: scale(1.2);
+} */
 .ProjectCard__img {
-    height: 18rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100%;
     width: 100%;
-    background: white;
+    
+    transition: all 300ms ease-in-out;
 }
 
 .ProjectCard__text {
-    padding: 0.25rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
     height: 2rem;
-    transition: all 400ms ease-in-out;
-    background-color: var(--my-dark);
+    padding: 0.25rem;
+
+    transition: all 100ms ease-in-out;
+    background-color: rgba(0, 0, 0, 0.50);
 }
 
 .ProjectCard__name {
-    font-size: 1.1rem;
-    font-weight: 400;
+    display: flex;
+    height: 2rem;
+    font-weight: 300;
     margin-bottom: 0.25rem;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    text-align: center;
+}
+.ProjectCard__name span{
+    margin: auto;
 }
 .ProjectCard__description, .ProjectCard__madewith {
     font-size: 0.9rem;
