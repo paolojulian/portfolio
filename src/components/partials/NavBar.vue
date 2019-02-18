@@ -113,7 +113,7 @@ export default {
     color: #ffffff;
     font-weight: 500;
 
-    background-color: var(--my-dark)
+    background-color: var(--my-transparent-dark)
 }
 #NavBar__title {
     position: absolute;
