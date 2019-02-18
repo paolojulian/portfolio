@@ -6,7 +6,7 @@
     </div>
     <div class="HobbyContent__text">
         <div class="HobbyContent__header">
-            - {{ hobbyHeader }} -
+            {{ hobbyHeader }}
         </div>
         <div class="HobbyContent__body">
             <div class="center-absolute">
@@ -87,7 +87,7 @@ cursor: pointer;
 }
 .HobbyContent__header {
     font-size: 2rem;
-    letter-spacing: 0.5rem;
+    letter-spacing: 0.3rem;
     text-transform: uppercase;
 }
 

@@ -1,27 +1,31 @@
 <template lang="html">
 <div id="CodingProjects">
-    <div>
-        CodingProjects
+    <div class="CodingProjects__background"/>
+    <div class="CodingProjects__header">
+        <span>CodingProjects</span>
     </div>
     <br/>
-    <ProjectCard
-        v-for="(project, i) in companyProjects"
-        :key="`companyProjects_${i}`"
-        :id="Number(project.id)"
-        :name="project.name"
-        :description="project.description"
-        :tool="project.tool"
-        @openProject="openProject"
-    />
-    <ProjectCard
-        v-for="(project, i) in personalProjects"
-        :key="`personalProjects_${i}`"
-        :id="Number(project.id)"
-        :name="project.name"
-        :description="project.description"
-        :tool="project.tool"
-        @openProject="openProject"
-    />
+    <div class="CodingProjects__list">
+        <ProjectCard
+            v-for="(project, i) in companyProjects"
+            :key="`companyProjects_${i}`"
+            :id="Number(project.id)"
+            :name="project.name"
+            :description="project.description"
+            :tool="project.tool"
+            :image-name="project.imageName"
+            @openProject="openProject"
+        /><ProjectCard
+            v-for="(project, i) in personalProjects"
+            :key="`personalProjects_${i}`"
+            :id="Number(project.id)"
+            :name="project.name"
+            :description="project.description"
+            :tool="project.tool"
+            :image-name="project.imageName"
+            @openProject="openProject"
+        />
+    </div>
     <CodingProjectModal
         v-if="modal.projects.toggle"
         @close="modal.projects.setToggle(false)"
@@ -76,8 +80,49 @@ export default {
 
 <style scoped>
 #CodingProjects {
-    width: 90%;
+    position: relative;
+    width: 100%;
+    padding: 5rem;
     text-align: center;
     margin: 0 auto;
+    background-color: #000000;
+}
+
+.CodingProjects__header {
+    display: flex;
+    width: 90%;
+
+    text-transform: uppercase;
+    color: #ffffff;
+    letter-spacing: 0.1rem;
+    font-size: 2rem;
+    font-weight: 300;
+}
+.CodingProjects__header span{
+    margin: auto;
+}
+
+.CodingProjects__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+    background-image: url('../../../assets/img/coding/projects/background.png');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.CodingProjects__list {
+    width: 90%;
+}
+.CodingProjects__list:hover >>> .ProjectCard{
+    opacity: 0.5;
+}
+.CodingProjects__list >>> .ProjectCard:hover{
+    opacity: 1;
 }
 </style>

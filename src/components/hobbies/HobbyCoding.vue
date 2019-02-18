@@ -25,6 +25,7 @@ export default {
 #HobbyCoding {
     position: relative;
     height: 93vh;
+    overflow-x: hidden;
 }
 .coding-skills {
     margin-bottom: 10rem;

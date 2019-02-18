@@ -113,7 +113,7 @@ export default {
     color: #ffffff;
     font-weight: 500;
 
-    background-color: var(--my-dark)
+    background-color: var(--my-transparent-dark)
 }
 #NavBar__title {
     position: absolute;
@@ -125,9 +125,9 @@ export default {
     cursor: pointer;
 }
 #NavBar ul li.active{
-    background: #fffb00;
+    background: rgba(255, 255, 255, 0.1);
 }
-#NavBar ul li.active a {
+/* #NavBar ul li.active a {
     color: #333333;
-}
+} */
 </style>

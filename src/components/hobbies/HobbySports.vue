@@ -22,7 +22,7 @@ export default {
 <style scoped>
 #HobbySports {
     margin-top: 7vh;
-    color: #666666;
+    color: #333333;
     text-align: center;
 }
 #HobbySports >>> .section h2{
@@ -49,7 +49,6 @@ export default {
 }
 #HobbySports >>> .sports-img {
     position: relative;
-    opacity: 0.70;
 
     background-attachment: fixed;
 }

@@ -105,6 +105,9 @@ export default {
         width: 100%;
         background-color: #d3d3d3;
     }
+    .Dashboard__image div{
+        margin-left: 15%;
+    }
     .Dashboard__text {
         height: calc(var(--my-display-height) / 2);
         width: 100%;
@@ -115,7 +118,7 @@ export default {
     }
     .Dashboard__description {
         font-weight: 300;
-        font-size: 0.8rem;
+        /* font-size: rem; */
     }
     .Dashboard__text div.center-absolute div{
         margin-bottom: 2rem;
