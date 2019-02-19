@@ -7,7 +7,6 @@
             <br />
             is the moment you let someone else win
         </div>
-        <VSpacer :space="2" />
         <div class="basketball-header-light">
             Nash, Melo, Birdman, KG and Kobe are my favorite players
             to play the game of basketball, they have inspired me in many ways
@@ -64,13 +63,13 @@ export default {
 }
 .basketball-header-bold {
     font-weight: bold;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     letter-spacing: 0.1rem;
     text-transform: uppercase;
 }
 .basketball-header-light {
     font-weight: 300;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 .Basketball__favorites {
     position: absolute;

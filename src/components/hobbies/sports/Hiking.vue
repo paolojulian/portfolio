@@ -9,6 +9,9 @@
                 IT’S THE DISCIPLINE TO CLIMB
             </div>
             <div class="hiking-header-light">
+                I always like long hikes, the thrill of
+sleeping in the cold, eating nuts, burritos,
+that low amount of water, and the climb.
             </div>
         </div>
         <div class="Hiking__gallery">
@@ -44,6 +47,7 @@ export default {
     left: 0;
 }
 .Hiking__header__text {
+    vertical-align: middle;
     display: inline-block;
     width: 40%;
     height: 100%;
@@ -51,13 +55,13 @@ export default {
 }
 .hiking-header-bold {
     font-weight: bold;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     letter-spacing: 0.1rem;
     text-transform: uppercase;
 }
 .hiking-header-light {
     font-weight: 300;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 .Hiking__gallery {
     display: inline-block;
