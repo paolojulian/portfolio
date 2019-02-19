@@ -8,11 +8,10 @@
                     <span>HELLO THERE!<br />PAOLO HERE</span>
                 </div>
                 <div class="Dashboard__description">Hi, I am a Software Application Developer. I also have
-a lot of hobbies. I love cooking good food from different
-cuisines. I also love playing computer games with my
-friends, I love singing and playing the guitar to my
-loved ones, I also love playing basketball and hiking and
-more importantly, I LOVE programming.</div>
+a lot of hobbies. I love cooking good (sometimes bad) food from different
+cuisines, to sing with my best buddy (guitar), to play (and lose some) highly competitive games with my
+friends, to train physically by playing basketball, hiking and
+more importantly, to play with that keyboard God knows what bugs might come out (Programming).</div>
                 <router-link to="/hobby" class="Dashboard__button">CHECK ME</router-link>
             </div>
         </div>
