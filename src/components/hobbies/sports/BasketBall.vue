@@ -126,7 +126,7 @@ export default {
     left: 48%;
     z-index: 9;
     animation-name: slideInFromRight;
-    animation-duration: 900;
+    animation-duration: 900ms;
 }
 .Basketball__favorites__img.sg{
     left: 55%;

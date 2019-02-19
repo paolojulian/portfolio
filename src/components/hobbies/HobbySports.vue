@@ -2,8 +2,7 @@
 <div id="HobbySports">
     <Basketball/>
     <Hiking />
-    <Dota />
-    <CSGO />
+    <ESports />
 </div>
 </template>
 
@@ -12,9 +11,7 @@ export default {
     components: {
         Basketball: () => import('./sports/BasketBall.vue'),
         Hiking: () => import('./sports/Hiking.vue'),
-        Dota: () => import('./sports/Dota.vue'),
-        CSGO: () => import('./sports/CSGO.vue'),
-        RainbowSixSiege: () => import('./sports/RainbowSixSiege.vue')
+        ESports: () => import('./sports/ESports.vue')
     }
 }
 </script>
