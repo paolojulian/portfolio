@@ -3,7 +3,7 @@
     <div class="Hiking__img sports-img"/>
     <div class="Hiking__header">
         <div class="Hiking__header__text">
-            <div class="hiking-header-bold">
+            <div class="hiking-header-bold text-shadow-light">
                 IT’S NOT THE CLIMB,
                 <br />
                 IT’S THE DISCIPLINE TO CLIMB
@@ -28,13 +28,16 @@ export default {
 <style scoped>
 #Hiking {
     position: relative;
-    height: var(--my-display-height);
+    height: 110vh;
+
+    perspective: 1px;
+    transform-style: preserve-3d;
 }
 .Hiking__img {
     height: 100%;
     background-image: url('../../../assets/img/sports/hiking-background.png');
     background-size: cover;
-    background-position: center;
+    background-position: bottom;
     background-repeat: no-repeat;
 }
 .Hiking__header {

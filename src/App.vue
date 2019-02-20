@@ -6,6 +6,9 @@
                 <router-view/>
             </page-loader>
 		</main>
+        <transition name="slide" mode="in-out">
+            <Player/>
+        </transition>
 	</div>
 </template>
 
@@ -14,7 +17,8 @@ export default {
     name: 'app',
     components: {
         Navbar: () => import('./components/partials/NavBar'),
-        PageLoader: () => import('@/components/partials/PageLoader')
+        PageLoader: () => import('@/components/partials/PageLoader'),
+        Player: () => import('./components/hobbies/music/Player.vue')
     },
     computed: {
         hasNavbar () {

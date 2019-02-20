@@ -1,34 +1,41 @@
 <template lang="html">
 <div id="ESports">
-    <EsportsCard
-        class="dota"
-        :name="dota.name"
-        :hero="dota.hero"
-        :role="dota.role"
-        :rank="dota.rank"
-        :player="dota.player"
-        :team="dota.team"
-        image-layout="top"
-        color="yellow"
-    /><EsportsCard
-        class="csgo"
-        :name="csgo.name"
-        :gun="csgo.gun"
-        :role="csgo.role"
-        :rank="csgo.rank"
-        :player="csgo.player"
-        :team="csgo.team"
-        image-layout="bottom"
-        color="yellow"
-    /><EsportsCard
-        class="apex"
-        :name="apex.name"
-        :hero="apex.hero"
-        :gun="apex.gun"
-        :player="apex.player"
-        image-layout="top"
-        color="blue"
-    />
+    <div class="ESports_header">
+        <span class="text-shadow-dark">
+            E-SPORTS
+        </span>
+    </div>
+    <div class="ESports_games">
+        <EsportsCard
+            class="dota"
+            :name="dota.name"
+            :hero="dota.hero"
+            :role="dota.role"
+            :rank="dota.rank"
+            :player="dota.player"
+            :team="dota.team"
+            image-name="dota-background.png"
+            color="yellow"
+        /><EsportsCard
+            class="csgo"
+            :name="csgo.name"
+            :gun="csgo.gun"
+            :role="csgo.role"
+            :rank="csgo.rank"
+            :player="csgo.player"
+            :team="csgo.team"
+            image-name="csgo-background.png"
+            color="yellow"
+        /><EsportsCard
+            class="apex"
+            :name="apex.name"
+            :hero="apex.hero"
+            :gun="apex.gun"
+            :player="apex.player"
+            image-name="apex-background.png"
+            color="blue"
+        />
+    </div>
 </div>
 </template>
 
@@ -66,23 +73,23 @@ export default {
 
 <style scoped>
 #ESports {
+    height: 130vh;
+}
+.ESports_header {
+    height: 37vh;
+    background-color: #111111;
+    color: #d3d3d3;
+    letter-spacing: 0.3rem;
+    font-size: 5rem;
+    font-style: italic;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ESports_games {
     position: relative;
     display: flex;
-    height: 93vh;
+    height: var(--my-display-height);
 }
-
-.dota, .csgo, .apex {
-    position: relative;
-    flex: 1;
-    height: 100%;
-}
-/* .dota {
-    background-color: #333333;
-}
-.csgo {
-    background-color: #d3d3d3;
-}
-.apex {
-    background-color: #33aa11;
-} */
 </style>

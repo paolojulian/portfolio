@@ -2,7 +2,7 @@
 <div id="Basketball">
     <div class="Basketball__img sports-img"/>
     <div class="Basketball__header">
-        <div class="basketball-header-bold">
+        <div class="basketball-header-bold text-shadow-light">
             The moment you give up
             <br />
             is the moment you let someone else win

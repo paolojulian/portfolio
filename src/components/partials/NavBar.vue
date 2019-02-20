@@ -109,11 +109,13 @@ export default {
     box-sizing: border-box;
     transition: 300ms;
 
-    opacity: 20%;
-    color: #ffffff;
     font-weight: 500;
+    color: #d3d3d3;
+    font-weight: 300;
+    letter-spacing: 0.2rem;
 
-    background-color: var(--my-transparent-dark)
+    opacity: 20%;
+    background-color: var(--my-transparent-dark);
 }
 #NavBar__title {
     position: absolute;

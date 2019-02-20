@@ -5,7 +5,7 @@
         <span class="center-absolute"><font-awesome-icon icon="eye" /></span>
     </div>
     <div class="HobbyContent__text">
-        <div class="HobbyContent__header">
+        <div class="HobbyContent__header text-shadow-dark">
             {{ hobbyHeader }}
         </div>
         <div class="HobbyContent__body">
@@ -75,26 +75,30 @@ cursor: pointer;
     position: absolute;
     top: 70%;
     width: 100%;
-    height: 25%;
+    height: 30%;
 
     background-color: rgba(0, 0, 0, 0.40);
     font-weight: bold;
 
     transition: transform 300ms ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 .HobbyContent__text div {
     height: 50%;
 }
 .HobbyContent__header {
     font-size: 2rem;
-    letter-spacing: 0.3rem;
+    letter-spacing: 0.15rem;
     text-transform: uppercase;
 }
 
 .HobbyContent__body{
     position: relative;
     width: 100%;
-    letter-spacing: 0.1rem;
+    letter-spacing: 0.05rem;
 }
 .HobbyContent__body div{
     width: 90%;

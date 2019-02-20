@@ -1,40 +1,41 @@
 <template lang="html">
-<div class="EsportsCard">
-    <div class="EsportsCard-img" v-if="imageLayout === 'top'"/>
-    <div class="EsportsCard-text">
-        <div class="EsportsCard-name">
-            {{ name }}
-        </div>
-        <div class="EsportsCard-description">
-            <div class="EsportsCard-description-hero" v-if="hero">
-                <span class="EsportsCard_tag">Favorite Hero:</span>
-                <span class="EsportsCard_thin">{{ hero }}</span>
+<div class="EsportsGame">
+    <div class="EsportsCard">
+        <div class="EsportsCard-img" :style="imgStyle"/>
+        <div class="EsportsCard-text">
+            <div class="EsportsCard-name text-shadow-light">
+                {{ name }}
             </div>
-            <div class="EsportsCard-description-rank" v-if="gun">
-                <span class="EsportsCard_tag">Favorite Gun: </span>
-                <span class="EsportsCard_thin">{{ gun }}</span>
+            <div class="EsportsCard-description">
+                <div class="EsportsCard-description-hero" v-if="hero">
+                    <span class="EsportsCard_tag">Favorite Hero:</span>
+                    <span class="EsportsCard_thin">{{ hero }}</span>
+                </div>
+                <div class="EsportsCard-description-rank" v-if="gun">
+                    <span class="EsportsCard_tag">Favorite Gun: </span>
+                    <span class="EsportsCard_thin">{{ gun }}</span>
+                </div>
+                <div class="EsportsCard-description-role" v-if="role">
+                    <span class="EsportsCard_tag">Role: </span>
+                    <span class="EsportsCard_thin">{{ role }}</span>
+                </div>
+                <div class="EsportsCard-description-rank" v-if="rank">
+                    <span class="EsportsCard_tag">Rank: </span>
+                    <span class="EsportsCard_thin">{{ rank }}</span>
+                </div>
             </div>
-            <div class="EsportsCard-description-role" v-if="role">
-                <span class="EsportsCard_tag">Role: </span>
-                <span class="EsportsCard_thin">{{ role }}</span>
-            </div>
-            <div class="EsportsCard-description-rank" v-if="rank">
-                <span class="EsportsCard_tag">Rank: </span>
-                <span class="EsportsCard_thin">{{ rank }}</span>
-            </div>
-        </div>
-        <div class="EsportsCard-idols" :style="idolsStyle">
-            <div class="EsportsCard-idols-player" v-if="player">
-                <span class="EsportsCard_tag">Favorite Player: </span>
-                <span class="EsportsCard_thin">{{ player }}</span>
-            </div>
-            <div class="EsportsCard-idols-team" v-if="team">
-                <span class="EsportsCard_tag">Favorite Team: </span>
-                <span class="EsportsCard_thin">{{ team }}</span>
+            <div class="EsportsCard-idols" :style="idolsStyle">
+                <div class="EsportsCard-idols-player" v-if="player">
+                    <span class="EsportsCard_tag">Favorite Player: </span>
+                    <span class="EsportsCard_thin">{{ player }}</span>
+                </div>
+                <div class="EsportsCard-idols-team" v-if="team">
+                    <span class="EsportsCard_tag">Favorite Team: </span>
+                    <span class="EsportsCard_thin">{{ team }}</span>
+                </div>
             </div>
         </div>
     </div>
-    <div class="EsportsCard-img" v-if="imageLayout === 'bottom'"/>
 </div>
 </template>
 
@@ -63,13 +64,9 @@ export default {
         team: {
             type: String
         },
-
-        /**
-         * IF BACKGROUND WILL BE TOP OR BOTTOM
-         */
-        imageLayout: {
-            type: String, // top || bottom
-            required: true
+        imageName: {
+            type: String,
+            default: 'dota-background.png'
         },
         color: {
             type: String, // yellow || blue
@@ -92,12 +89,30 @@ export default {
                 break
             }
             return style
+        },
+        imgStyle () {
+            let style = {}
+            // let esportsPath = '../../../assets/img/sports/esports/'
+            style['backgroundImage'] = `url(` + require('../../../assets/img/sports/esports/' + this.imageName) + `)`
+            return style
         }
     }
 }
 </script>
 
 <style scoped>
+.EsportsGame {
+    position: relative;
+    height: 100%;
+    flex: 1;
+    box-sizing: border-box;
+    padding: 5rem;
+}
+.EsportsCard {
+    height: 100%;
+    position: relative;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
+}
 .EsportsCard-name {
     font-weight: bold;
     font-size: 1.5rem;
@@ -110,7 +125,15 @@ export default {
 }
 .EsportsCard-name, .EsportsCard-description, .EsportsCard-idols {
     flex: 1;
-    margin: auto auto;
+    margin: auto 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.EsportsCard-description {
+    background-color: #111111;
+    color: #d3d3d3;
 }
 .EsportsCard-name {
     vertical-align: bottom;
@@ -118,7 +141,9 @@ export default {
 .EsportsCard-img {
     width: 100%;
     height: 50%;
-    background-color: var(--my-yellow);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 .EsportsCard_tag {
     font-weight: 500;

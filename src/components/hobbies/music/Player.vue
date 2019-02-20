@@ -1,44 +1,38 @@
 <template lang="html">
 <div id="Player" v-if="currentPlaying !== null">
-    <div id="Player__thumbnail"/>
-
-    <div id="Player__title">
-        {{ current.name }}
-    </div>
-
-    <div id="Player__description">
-        {{ current.genreName }}
-    </div>
-
-    <div id="Player__seekbar">
-        <!-- <div class="fill theme"
-            ref="fill"
-            :style="`width: ${position}`"/> -->
-        <input type="range"
-            class="slider theme"
-            @change="seek"
-            v-model="musicSlider"
-            :style="sliderCss"
-            min="0"
-            max="100"/>
-        <!-- <div class="handle theme"
-            /> -->
-        
+    <div id="Player__description" class="text-shadow-dark">
+        <span id="Player__title">
+            {{ current.name }}
+        </span>
+        <span id="Player__genre">
+            {{ current.genreName }}
+        </span>
     </div>
 
     <div id="Player__controls">
+        <div id="Player__actions">
+            <div class="prevButton" @click="prev"/>
+            <div class="playButton"
+                @click="togglePlayPause"
+                v-show=" ! isPlaying"/>
+            <div class="pauseButton"
+                @click="togglePlayPause"
+                v-show="isPlaying"/>
+            <div class="nextButton" @click="next"/>
+        </div>
 
-        <div class="prevButton" @click="prev"/>
+        <div id="Player__seekbar">
+            <input type="range"
+                class="slider theme"
+                @change="seek"
+                v-model="musicSlider"
+                :style="sliderCss"
+                min="0"
+                max="100"/>
+        </div>
+    </div>
 
-        <div class="playButton"
-            @click="togglePlayPause"
-            v-show=" ! isPlaying"/>
-
-        <div class="pauseButton"
-            @click="togglePlayPause"
-            v-show="isPlaying"/>
-
-        <div class="nextButton" @click="next"/>
+    <div id="Player__others">
 
     </div>
 
@@ -239,55 +233,75 @@ class Song {
 </script>
 
 <style scoped>
-
 #Player {
-    padding: 2rem;
-    padding-top: 4rem;
-    width: 40%;
-    color: #ffffff;
-    background-color: rgba(0, 0, 0, 0.70);
-    box-shadow: -10px 0px 10px -5px rgba(0, 0, 0, 0.60);
+    position: fixed;
+    top: 85vh;
+    left: 0;
+    height: 15vh;
+    width: 100vw;
+
+    color: #d3d3d3;
+    background-color: #111111;
     font-size: 1rem;
-}
 
-#Player .theme, #Player .slider::-webkit-slider-thumb {
-    background-color: rgb(255, 251, 0);
-}
-
-#Player div{
-    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
     text-align: center;
 }
 
-#Player__thumbnail {
-    height: 20rem;
-    width: 20rem;
-
-    background-color: #ffffff;
-    border-radius: 5px; 
+#Player__controls {
+    flex-grow: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
-#Player__title {
-    padding-top: 2rem;
-    padding-bottom: 1rem;
-    text-transform: uppercase;
-    font-weight: 600;
-    font-size: 2rem;
+#Player__actions {
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#Player__description, #Player__others {
+    flex: 1;
+    height: 100%;
+    width: 100%
+}
+
+#Player .theme, #Player .slider::-webkit-slider-thumb {
+    background-color: var(--my-yellow);
 }
 
 #Player__description {
-    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#Player__title {
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 0.2rem;
+    font-size: 2.5rem;
+}
+#Player__genre {
+    font-weight: 300;
+    font-size: 1rem;
 }
 
 #Player__seekbar {
     width: 80%;
-    height: 2px;
-    background-color: #ffffff;
+    margin: auto auto;
+    height: 1px;
+    background-color: #d3d3d3;
     border-radius: 50px;
     display: flex;
     cursor: pointer;
     text-align: left;
-    margin-bottom: 4rem !important;
+    margin-bottom: 2.5rem !important;
     position: relative;
 }
 
@@ -339,32 +353,42 @@ class Song {
     transform: translateY(-50%) scale(1.5);
 }
 
-#Player__controls {
-    bottom: 3rem;
+.playButton, .pauseButton, .prevButton, .nextButton {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-#Player__controls button {
-    padding: 1rem;
-}
 .playButton {
     display: inline-block;
     background-image: url('../../../assets/img/music/Play_500px_yellow_dark.png');
-    background-size: 100px 100px;
-    width: 100px;
-    height: 100px;
+    background-size: 50px 50px;
+    width: 50px;
+    height: 50px;
     transition: all 100ms ease-in-out;
     cursor: pointer;
 }
 .playButton:hover {
     background-image: url('../../../assets/img/music/Play_500px_yellow.png')
 }
+.pauseButton {
+    display: inline-block;
+    background-image: url('../../../assets/img/music/Pause_500px_yellow_dark.png');
+    background-size: 50px 50px;
+    width: 50px;
+    height: 50px;
+    transition: all 100ms ease-in-out;
+    cursor: pointer;
+}
+.pauseButton:hover {
+    background-image: url('../../../assets/img/music/Pause_500px_yellow.png');
+}
 .prevButton {
     display: inline-block;
     background-image: url('../../../assets/img/music/Prev_500px_yellow_dark.png');
-    background-size: 70px 70px;
-    margin-bottom: 10px !important;
-    width: 70px;
-    height: 70px;
+    background-size: 40px 40px;
+    width: 40px;
+    height: 40px;
     transition: all 100ms ease-in-out;
     cursor: pointer;
 }
@@ -374,26 +398,13 @@ class Song {
 .nextButton {
     display: inline-block;
     background-image: url('../../../assets/img/music/Next_500px_yellow_dark.png');
-    background-size: 70px 70px;
-    margin-bottom: 10px !important;
-    width: 70px;
-    height: 70px;
+    background-size: 40px 40px;
+    width: 40px;
+    height: 40px;
     transition: all 100ms ease-in-out;
     cursor: pointer;
 }
 .nextButton:hover {
     background-image: url('../../../assets/img/music/Next_500px_yellow.png')
-}
-.pauseButton {
-    display: inline-block;
-    background-image: url('../../../assets/img/music/Pause_500px_yellow_dark.png');
-    background-size: 100px 100px;
-    width: 100px;
-    height: 100px;
-    transition: all 100ms ease-in-out;
-    cursor: pointer;
-}
-.pauseButton:hover {
-    background-image: url('../../../assets/img/music/Pause_500px_yellow.png');
 }
 </style>
