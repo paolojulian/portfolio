@@ -11,14 +11,11 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.config.productionTip = false
 
-/* eslint-disable no-new */
 new Vue({
-    el: '#app',
-    router,
-    store,
-    template: '<App/>',
-    components: { App }
-})
+  router,
+  store,
+  render: (h) => h(App),
+}).$mount('#app');
 
 Vue.filter('convertDateTime', function (value) {
     let datetime = moment(value)
@@ -28,6 +25,5 @@ Vue.filter('convertDateTime', function (value) {
 })
 
 axios.interceptors.response.use(undefined, error => {
-    console.error(error)
     return Promise.reject(error)
 })

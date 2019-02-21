@@ -1,13 +1,5 @@
 import { MyAPI } from '@/api/API'
 import { API_URL, API_FAKE } from '@/helpers/constants'
-
-// const hobbyApi = API_URL + '/hobby'
-// const APICooking = API_URL + '/cooking'
-// const APIRecipe = `${APICooking}/recipe`
-
-// const APIMusic = API_URL + '/music'
-// const APIMusicList = `${APIMusic}/list`
-
 const URL = {
     sports: {
         hiking: {

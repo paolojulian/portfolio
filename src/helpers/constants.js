@@ -1,5 +1,5 @@
-export const API_URL = process.env.API
-export const API_FAKE = process.env.API_FAKE
+export const API_URL = process.env.VUE_APP_API
+export const API_FAKE = process.env.VUE_APP_API_FAKE
 // normal
 export const mangoTheme = {
     primary: '#f7da2c',

@@ -1,24 +1,21 @@
 .DS_Store
-node_modules/
-/dist/
+node_modules
+/dist
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
 # Editor directories and files
 .idea
+.vscode
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
-.eslintrc.js
-package.json
-package-lock.json
-.vscode/launch.json
-api/api/__init__.pyc
-api/api/settings.pyc
-api/hobbies/__init__.pyc
-config/index.js
-api/api/settings.py
-package.json
-api/api/settings.py
+*.sw*
