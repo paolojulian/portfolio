@@ -77,7 +77,6 @@ export default {
     left: 0;
     width: 100vw;
     height: 60vh;
-    mix-blend-mode: luminosity;
 
     letter-spacing: 0.5rem;
     text-transform: uppercase;
