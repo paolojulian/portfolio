@@ -59,7 +59,6 @@ const mutations = {
 function checkHobbyModal (state, modalName) {
     if (!modalName) return false
     if (!state.modal.hasOwnProperty(modalName)) {
-        console.warn('Hobby modal has no index of ' + modalName)
         return false
     }
     return true
@@ -68,7 +67,6 @@ function checkHobbyModal (state, modalName) {
 function checkHobbyList (state, hobbyName) {
     if (!hobbyName) return false
     if (!state.hasOwnProperty(hobbyName)) {
-        console.warn('Hobby has no index of ' + hobbyName)
         return false
     }
     return true
