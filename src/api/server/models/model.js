@@ -12,9 +12,9 @@ class Model {
         })
     }
     multipleQueries (queries) {
-        if (typeof queries !== 'Array') return Promise.reject()
+        if ( ! queries) return Promise.reject('Invalid type queries')
 
-        return new Promise.all(queries)
+        return Promise.all(queries)
     }
 }
 

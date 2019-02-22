@@ -1,4 +1,4 @@
-const API_URL = process.env.VUE_APP_API || '/api'
+const API_URL = '/api'
 const URL = {
     sports: {
         hiking: {
@@ -17,8 +17,8 @@ const URL = {
     coding: {
         languages: API_URL + `/coding/skills/languages`,
         frameworks: API_URL + `/coding/skills/frameworks`,
-        companyProjects: API_URL + `/coding/company_projects`,
-        personalProjects: API_URL + `/coding/personal_projects`
+        companyProjects: API_URL + `/coding/projects/company`,
+        personalProjects: API_URL + `/coding/projects/personal`
     }
 }
 
