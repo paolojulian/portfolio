@@ -8,7 +8,9 @@
     "json-serve": "json-server --watch src/api/fake/db.json --route src/api/fake/routes.json --port 3004",
     "serve": "vue-cli-service serve --mode development",
     "build": "vue-cli-service build --mode production",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "postinstall": "npm run build",
+    "start": "node server.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.15",
@@ -28,6 +30,7 @@
     "babel-eslint": "^10.0.1",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
+    "serve-static": "^1.13.2",
     "vue-template-compiler": "^2.5.21"
   },
   "eslintConfig": {
