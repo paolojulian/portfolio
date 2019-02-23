@@ -1,10 +1,12 @@
 const serveStatic = require('serve-static');
 const http = require('http')
-const app = require('./src/api/server/app')
+const express = require('express')
+const app = express()
+// const app = require('./src/api/server/app')
 const port = process.env.PORT || 5000;
-const fs = require('fs');
-const server = http.createServer(app);
-const fileLocation = __dirname + "/dist";
+// const fs = require('fs');
+// const server = http.createServer(app);
+// const fileLocation = __dirname + "/dist";
 
 app.use(serveStatic(fileLocation));
 app.use((req, res) => {
