@@ -3,18 +3,18 @@ const mysql = require('mysql')
 
 /** MYSQL */
 // Connection
-// const db = mysql.createConnection({
-//     host: 'us-cdbr-iron-east-03.cleardb.net',
-//     user: 'ba30a4bf0efd95',
-//     password: '621f9c8c',
-//     database: 'heroku_d9838c7ffb34abb'
-// });
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'portfolio'
+    host: 'us-cdbr-iron-east-03.cleardb.net',
+    user: 'ba30a4bf0efd95',
+    password: '621f9c8c',
+    database: 'heroku_d9838c7ffb34abb'
 });
+// const db = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: '',
+//     database: 'portfolio'
+// });
 // Connect DB
 db.connect((err) => {
     if (err) {
