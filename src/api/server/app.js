@@ -1,7 +1,6 @@
 const express = require('express')
 const serveStatic = require('serve-static');
 const app = express()
-const fs = require('fs')
 
 /** ROUTES */
 // const hobbyRoutes = require('./routes/hobbies')
