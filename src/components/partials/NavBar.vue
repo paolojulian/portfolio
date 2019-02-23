@@ -60,7 +60,7 @@ export default {
         }
     },
     watch: {
-        '$route' (to, from) {
+        '$route' (to) {
             this.currentActive = to.path
             if (to.meta.hasOwnProperty('navbarAnimate') && to.meta.navbarAnimate) {
                 this.isDark = false
