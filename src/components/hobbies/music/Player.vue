@@ -35,11 +35,17 @@
     <div id="Player__others">
 
     </div>
-
+    <div class="Player__fab__close" @click="closePlayer">
+        <font-awesome-icon icon="times-circle" />
+    </div>
 </div>
 </template>
 
 <script type="text/javascript">
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
+library.add(faTimesCircle)
+
 import { $hobbies } from '@/helpers/constants'
 import { mapGetters, mapMutations } from 'vuex'
 export default {
@@ -108,8 +114,6 @@ export default {
                 let audioPath = this.musicList[this.localCurrentPlaying].audio_path
                 let song = require('@/assets/audio/' + audioPath)
                 return new Audio(song)
-            },
-            set (value) {
             }
         },
 
@@ -130,7 +134,8 @@ export default {
     methods: {
         ...mapMutations($hobbies, [
             'setCurrentPlaying',
-            'setIsPlaying'
+            'setIsPlaying',
+            'stopPlayer'
         ]),
 
         togglePlayPause () {
@@ -213,6 +218,11 @@ export default {
 
         seek () {
             this.audio.currentTime = (this.musicSlider / 100) * this.audio.duration
+        },
+
+        closePlayer () {
+            this.removeAudioListener()
+            this.stopPlayer()
         }
     },
     created () {
@@ -285,7 +295,7 @@ class Song {
     text-transform: uppercase;
     font-weight: 500;
     letter-spacing: 0.2rem;
-    font-size: 2.5rem;
+    font-size: 1.5rem;
 }
 #Player__genre {
     font-weight: 300;
@@ -406,5 +416,17 @@ class Song {
 }
 .nextButton:hover {
     background-image: url('../../../assets/img/music/Next_500px_yellow.png')
+}
+.Player__fab__close {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 1rem;
+
+    cursor: pointer;
+    font-size: 2rem;
+}
+.Player__fab__close:hover {
+    color: var(--my-yellow);
 }
 </style>

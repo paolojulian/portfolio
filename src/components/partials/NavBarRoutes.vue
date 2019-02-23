@@ -14,7 +14,6 @@
 </template>
 
 <script>
-import NavBarIcons from './NavBarIcons'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faHome, faGamepad, faNewspaper } from '@fortawesome/free-solid-svg-icons'
 library.add(faHome, faGamepad, faNewspaper)
@@ -37,9 +36,6 @@ export default {
             type: String,
             required: true
         }
-    },
-    components: {
-        NavBarIcons
     }
 }
 </script>

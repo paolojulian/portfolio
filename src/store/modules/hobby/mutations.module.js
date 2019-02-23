@@ -56,6 +56,10 @@ const mutations = {
         }
     },
 
+    stopPlayer: (state) => {
+        state.music.currentPlaying = null
+    },
+
     setCurrentPlaying: (state, currentPlayingIndex) => {
         state.music.currentPlaying = currentPlayingIndex
     },
