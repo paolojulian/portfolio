@@ -41,7 +41,7 @@ router.get(URL.cooking.recipeList, (req, res) => {
     let db = req.db
     db.query(query, (error, recipeList) => {
         if (error) {
-            res.status(503)
+            return res.status(503)
         }
 
         return res.status(200).json(new JsonResponse(true, recipeList))
