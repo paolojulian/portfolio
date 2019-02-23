@@ -1,5 +1,5 @@
 {
-  "name": "portfolio",
+  "name": "Chefpipz",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,14 +8,18 @@
     "json-serve": "json-server --watch src/api/fake/db.json --route src/api/fake/routes.json --port 3004",
     "serve": "vue-cli-service serve --mode development",
     "build": "vue-cli-service build --mode production",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "postinstall": "npm run build",
+    "start": "node server.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.15",
     "@fortawesome/free-solid-svg-icons": "^5.7.2",
     "@fortawesome/vue-fontawesome": "^0.1.5",
     "axios": "^0.18.0",
+    "express": "^4.16.4",
     "moment": "^2.24.0",
+    "mysql": "^2.16.0",
     "vue": "^2.6.6",
     "vue-carousel": "^0.18.0-alpha",
     "vue-router": "^3.0.2",
@@ -34,6 +38,7 @@
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^5.0.0",
+    "serve-static": "^1.13.2",
     "vue-template-compiler": "^2.5.21"
   },
   "eslintConfig": {

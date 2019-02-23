@@ -1,3 +1,4 @@
+const API_URL = '/api'
 const URL = {
     sports: {
         hiking: {
@@ -5,19 +6,19 @@ const URL = {
         }
     },
     music: {
-        main: '/music',
-        list: '/music/list'
+        main: API_URL + '/music',
+        list: API_URL + '/music/list'
     },
     cooking: {
-        main: '/cooking',
-        recipe: '/cooking/recipe/:recipeID',
-        recipeList: '/cooking/recipe'
+        main: API_URL + '/cooking',
+        recipe: API_URL + '/cooking/recipe/:recipeID',
+        recipeList: API_URL + '/cooking/recipe'
     },
     coding: {
-        languages: `/coding/skills/languages`,
-        frameworks: `/coding/skills/frameworks`,
-        companyProjects: `/company_projects`,
-        personalProjects: `/personal_projects`
+        languages: API_URL + `/coding/skills/languages`,
+        frameworks: API_URL + `/coding/skills/frameworks`,
+        companyProjects: API_URL + `/coding/projects/company`,
+        personalProjects: API_URL + `/coding/projects/personal`
     }
 }
 

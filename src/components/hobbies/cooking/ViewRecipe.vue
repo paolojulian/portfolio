@@ -78,7 +78,6 @@ export default {
                     this.pagePost()
                 })
                 .catch(message => {
-                    console.log(message)
                     this.pageError()
                 })
         },

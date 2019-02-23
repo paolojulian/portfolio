@@ -17,9 +17,7 @@ export const mutations = {
 export const actions = {
     validateLogin: () => {
         return new Promise((resolve, reject) => {
-            console.log('validating_user')
             setTimeout(function () {
-                console.log('validation_complete')
                 resolve('pipz')
             }, 200)
         })
@@ -29,9 +27,7 @@ export const actions = {
         if (getters.isLoggedIn) return dispatch('validateLogin')
         // login
         return new Promise((resolve, reject) => {
-            console.log('loggin_in')
             setTimeout(function () {
-                console.log('logged_in')
                 let token = 'pipz'
                 commit('setState', token)
                 resolve(token)

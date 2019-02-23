@@ -1,27 +1,5 @@
 import { MyAPI } from '@/api/API'
-import { API_URL, API_FAKE } from '@/helpers/constants'
-const URL = {
-    sports: {
-        hiking: {
-            gallery: `${API_FAKE}/sports/hiking/gallery`
-        }
-    },
-    music: {
-        main: API_URL + '/music',
-        list: API_URL + '/music/list'
-    },
-    cooking: {
-        main: API_URL + '/cooking',
-        recipeList: API_URL + '/cooking/recipe'
-    },
-    coding: {
-        languages: `${API_FAKE}/coding/skills/languages`,
-        frameworks: `${API_FAKE}/coding/skills/frameworks`,
-        companyProjects: `${API_FAKE}/company_projects`,
-        personalProjects: `${API_FAKE}/personal_projects`
-    }
-}
-// const recipeIngredientsAPI = `${cookingAPI}/recipe-ingredients`
+const URL = require('./APIRoutes')
 
 export class APIHobby extends MyAPI {
     getRecipes (recipeId, sortBy = 'favorite') {
