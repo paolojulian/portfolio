@@ -4,9 +4,9 @@ const express = require('express')
 const app = express()
 // const app = require('./src/api/server/app')
 const port = process.env.PORT || 5000;
-// const fs = require('fs');
+const fs = require('fs');
 // const server = http.createServer(app);
-// const fileLocation = __dirname + "/dist";
+const fileLocation = __dirname + "/dist";
 
 app.use(serveStatic(fileLocation));
 app.use((req, res) => {
@@ -23,6 +23,9 @@ app.use((req, res) => {
     })
 })
 
-server.listen(port, () => {
+app.listen(port, () => {
     console.log('server started '+ port);
 });
+// server.listen(port, () => {
+//     console.log('server started '+ port);
+// });
