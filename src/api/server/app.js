@@ -8,10 +8,11 @@ const cookingRoutes = require('./routes/cooking.route.js')
 const musicRoutes = require('./routes/music.route.js')
 const codingRoutes = require('./routes/coding.route.js')
 
-app.use((req, res, next) => {
-    req.db = connection
-    next()
-})
+app.use(connection)
+// app.use((req, res, next) => {
+//     req.db = connection
+//     next()
+// })
 
 app.use('/', [
     cookingRoutes,
