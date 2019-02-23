@@ -22,8 +22,6 @@ export default {
         ]),
         processLogin () {
             this.login()
-                .then(response => {
-                })
         }
     }
 }

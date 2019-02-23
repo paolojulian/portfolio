@@ -1,5 +1,7 @@
 <template lang="html">
-    
+<div class="VSelect">
+
+</div>
 </template>
 
 <script type="text/javascript">

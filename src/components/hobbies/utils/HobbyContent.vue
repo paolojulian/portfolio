@@ -10,7 +10,9 @@
         </div>
         <div class="HobbyContent__body">
             <div class="center-absolute">
-                <span v-for="type in hobbyCategories">
+                <span v-for="(type, i) in hobbyCategories"
+                    :key="`category_${i}`"
+                >
                     {{ type }}
                 </span>
             </div>

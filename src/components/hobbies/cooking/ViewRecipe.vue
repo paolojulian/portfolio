@@ -17,10 +17,10 @@
             <h4>Ingredients</h4>
             <div v-if="ingredients && ingredients.length > 0">
                 <ol>
-                    <li v-for="ingredient in ingredients">
+                    <li v-for="(ingredient, i) in ingredients" :key="`ingredient_${i}`">
                         {{ ingredient.parent.ingredient_name }}
                         <ul v-if="ingredient.sub_ingredients && ingredient.sub_ingredients.length > 0">
-                            <li v-for="sub_ingredient in ingredient.sub_ingredients">
+                            <li v-for="(sub_ingredient, j) in ingredient.sub_ingredients" :key="`sub_ingredient_${j}`">
                                 {{ sub_ingredient.sub_ingredient_name }}
                             </li>
                         </ul>
@@ -30,7 +30,8 @@
             <div v-if="procedures && procedures.length > 0">
                 <h4>Procedures</h4>
                 <ol>
-                    <li v-for="procedure in procedures">
+                    <li v-for="(procedure, i) in procedures"
+                        :key="`procedure_${i}`">
                         {{ procedure.description }}
                     </li>
                 </ol>
@@ -78,7 +79,7 @@ export default {
                     this.pagePost()
                 })
                 .catch(message => {
-                    this.pageError()
+                    this.pageError(message)
                 })
         },
         pageLoading () {

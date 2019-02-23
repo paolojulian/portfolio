@@ -8,6 +8,7 @@
             <th>Date Added</th>
         </tr>
         <tr v-for="(music, index) in hobbyMusic.list"
+            :key="`music_${index}`"
             :class="{ 'currentPlaying': currentPlaying === index }">
             <td>
                 <div class="playButton"
@@ -19,7 +20,6 @@
                     @click="pauseAudio()"
                     v-show="isPlaying && currentPlaying === index"
                     />
-                </button>
             </td>
             <td>{{ music.name }}</td>
             <td class="tbl-genre">
@@ -36,13 +36,8 @@
 <script text="text/javascript">
 import { $hobbies } from '@/helpers/constants'
 import { mapActions, mapGetters, mapMutations } from 'vuex'
-import SongCard from './SongCard'
 
 export default {
-
-    components: {
-        SongCard
-    },
 
     computed: {
         ...mapGetters($hobbies, [

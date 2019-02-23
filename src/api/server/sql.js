@@ -9,6 +9,12 @@ const db = mysql.createConnection({
     password: '621f9c8c',
     database: 'heroku_d9838c7ffb34abb'
 });
+// const db = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: '',
+//     database: 'portfolio'
+// });
 // Connect DB
 db.connect((err) => {
     if (err) {
