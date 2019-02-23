@@ -1,8 +1,10 @@
-const port = process.env.PORT || 5000;
+const serveStatic = require('serve-static');
 const http = require('http')
 const app = require('./src/api/server/app')
-const fs = require('fs')
+const port = process.env.PORT || 5000;
+// const fs = require('fs')
 const server = http.createServer(app)
+app.use(serveStatic(__dirname + "/dist"));
 // const express = require('express')
 // const app = express()
 // app.use((req, res) => {
