@@ -114,6 +114,7 @@ export default {
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
 }
 .EsportsCard-name {
+    padding: 1rem;
     font-weight: bold;
     font-size: 1.5rem;
     letter-spacing: 0.1rem;

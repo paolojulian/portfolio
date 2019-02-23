@@ -1,18 +1,20 @@
 <template>
-	<div id="app">
+	<div id="app" :class="{ 'has-player': currentPlaying !== null, 'no-player': currentPlaying === null }">
         <navbar v-if="hasNavbar"/>
 		<main class="clearfix">
             <page-loader>
                 <router-view/>
             </page-loader>
 		</main>
-        <transition name="slide" mode="in-out">
+        <transition name="fade" mode="in-out">
             <Player/>
         </transition>
 	</div>
 </template>
 
 <script>
+import { $hobbies } from '@/helpers/constants'
+import { mapGetters } from 'vuex'
 export default {
     name: 'app',
     components: {
@@ -21,6 +23,9 @@ export default {
         Player: () => import('./components/hobbies/music/Player.vue')
     },
     computed: {
+        ...mapGetters($hobbies, [
+            'currentPlaying'
+        ]),
         hasNavbar () {
             return this.$route.meta.hasOwnProperty('navBar')
                 ? this.$route.meta.navBar

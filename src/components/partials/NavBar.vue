@@ -14,6 +14,7 @@
         </div>
         <ul class="NavBar__clearfix">
             <li v-for="(route, index) in routes"
+                :key="`links${index}`"
                 :class="{ 'active': $route.path === route.link }"
             >
                 <nav-bar-routes 
