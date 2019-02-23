@@ -1,59 +1,62 @@
 const URL = require('../../APIRoutes')
 const router = require('./router')
+const JsonResponse = require('./json')
 
-/** MODELS */
-const Coding = require('../models/coding.model')
-
-router.get('/api/coding/create-table', (req, res) => {
-    Coding.createTables()
-        .then(() => {
-            res.status(200)
-                .json({ message: 'Creation Success' })
-        })
-        .catch(error => {
-            res.status(503)
-                .json({ error })
-        })
-})
 /**
  * /coding/skills/languages
  */
 router.get(URL.coding.languages, (req, res) => {
-    Coding.getLanguages()
-        .then((languages) => {
-            res.status(200).json(languages)
-        })
-        .catch(() => res.status(503))
+    let db = req.db
+
+    let query = "SELECT * FROM coding WHERE codingType = 1"
+    db.query(query, (error, languages) => {
+        if (error) {
+            return res.status(503)
+        }
+        return res.status(200).json(new JsonResponse(true, languages))
+    })
 })
 /**
  * /coding/skills/frameworks
  */
 router.get(URL.coding.frameworks, (req, res) => {
-    Coding.getFrameworks()
-        .then((frameworks) => {
-            res.status(200).json(frameworks)
-        })
-        .catch(() => res.status(503))
+    let db = req.db
+
+    let query = "SELECT * FROM coding WHERE codingType = 2"
+    db.query(query, (error, frameworks) => {
+        if (error) {
+            return res.status(503)
+        }
+        return res.status(200).json(new JsonResponse(true, frameworks))
+    })
 })
 /**
  * /coding/projects/company
  */
 router.get(URL.coding.companyProjects, (req, res) => {
-    Coding.getCompanyProjects()
-        .then((companyProjects) => {
-            res.status(200).json(companyProjects)
-        })
-        .catch(() => res.status(503))
+    let db = req.db
+
+    let query = "SELECT * FROM coding_projects WHERE projectType = 1"
+    db.query(query, (error, companyProjects) => {
+        if (error) {
+            return res.status(503)
+        }
+        return res.status(200).json(new JsonResponse(true, companyProjects))
+    })
 })
 /**
  * /coding/projects/personal
  */
 router.get(URL.coding.personalProjects, (req, res) => {
-    Coding.getPersonalProjects()
-        .then((personalProjects) => {
-            res.status(200).json(personalProjects)
-        })
-        .catch(() => res.status(503))
+    let db = req.db
+
+    let query = "SELECT * FROM coding_projects WHERE projectType = 2"
+    db.query(query, (error, personalProjects) => {
+        if (error) {
+            return res.status(503)
+        }
+        return res.status(200).json(new JsonResponse(true, personalProjects))
+    })
 })
 
 module.exports = router

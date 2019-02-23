@@ -51,7 +51,7 @@ const actions = {
                 let hobbyList = new HobbyList('cooking', list)
                 commit('setHobbyList', hobbyList)
             })
-            .catch(error => {
+            .catch(()=> {
                 commit('error')
             })
     },
@@ -68,7 +68,7 @@ const actions = {
                 let hobbyList = new HobbyList('music', list)
                 commit('setHobbyList', hobbyList)
             })
-            .catch(error => {
+            .catch(() => {
                 commit($pageLoader + '/pageError', {}, { root: true })
             })
     }

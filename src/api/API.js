@@ -20,7 +20,9 @@ export class MyAPI {
                 : () => Axios.get(url)
 
             apiAxios()
-                .then(response => { APIValidate({ resolve, reject }, response) })
+                .then(response => {
+                    APIValidate({ resolve, reject }, response)
+                })
                 .catch(message => { reject(message) })
         })
     }
@@ -37,6 +39,8 @@ export class MyAPI {
 
 export function APIValidate ({ resolve, reject }, response) {
     if (response.status !== 200) reject()
+    if (typeof response.data.status === 'undefined') reject()
+    if ( ! response.data.status) reject()
 
-    resolve(response.data)
+    resolve(response.data.data)
 }

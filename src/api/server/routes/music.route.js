@@ -1,8 +1,6 @@
 const URL = require('../../APIRoutes')
 const router = require('./router')
-
-/** MODELS */
-const Music = require('../models/music.model')
+const JsonResponse = require('./json')
 
 /**
  * /music
@@ -14,13 +12,15 @@ const Music = require('../models/music.model')
  * /music/list
  */
 router.get(URL.music.list, (req, res) => {
-    Music.getMusicList()
-        .then((musicList) => {
-            res.status(200).json(musicList)
-        })
-        .catch((error) => {
-            console.error(error)
-        })
+    let db = req.db
+
+    let query = "SELECT * FROM music_music"
+    db.query(query, (error, musicList) => {
+        if (error) {
+            return res.status(503)
+        }
+        return res.status(200).json(new JsonResponse(true, musicList))
+    })
 })
 
 module.exports = router
