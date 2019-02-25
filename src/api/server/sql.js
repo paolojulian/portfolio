@@ -11,6 +11,14 @@ const db = {
     database: 'heroku_d9838c7ffb34abb'
 };
 // const db = {
+//     host: process.env.VUE_APP_DB_HOST,
+//     user: process.env.VUE_APP_DB_USER,
+//     password: process.env.VUE_APP_DB_USER,
+//     database: process.env.VUE_APP_DB_DATABASE
+// };
+// console.log(db)
+// console.log(process.env.NODE_ENV)
+// const db = {
 //     host: 'localhost',
 //     user: 'root',
 //     password: '',
