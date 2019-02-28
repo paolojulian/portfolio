@@ -5,7 +5,6 @@ class Model {
         return new Promise((resolve, reject) => {
             db.query(query, (error, response) => {
                 if (error) {
-                    console.error(error)
                     return reject(error)
                 }
                 return resolve(response)

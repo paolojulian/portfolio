@@ -33,7 +33,6 @@ class CookingModel extends Model {
             default:
                 break;
         }
-        console.log(query)
         return super.query(query)
     }
 }

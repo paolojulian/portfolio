@@ -16,7 +16,7 @@ export const mutations = {
 
 export const actions = {
     validateLogin: () => {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             setTimeout(function () {
                 resolve('pipz')
             }, 200)
@@ -26,7 +26,7 @@ export const actions = {
         // if has login token, validate if token is valid
         if (getters.isLoggedIn) return dispatch('validateLogin')
         // login
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             setTimeout(function () {
                 let token = 'pipz'
                 commit('setState', token)
@@ -50,7 +50,7 @@ function saveState (key, state) {
     window.localStorage.setItem(key, JSON.stringify(state))
 }
 
-function setDefaultAuthHeaders (state) {
+function setDefaultAuthHeaders () {
     // axios.defaults.headers.common.Authorization = state.isLoggedIn
     //     ? state.isLoggedIn
     //     : ''

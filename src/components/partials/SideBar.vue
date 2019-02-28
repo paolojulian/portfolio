@@ -1,5 +1,7 @@
 <template lang="html">
-    
+<div id="SideBar">
+
+</div>
 </template>
 
 <script type="text/javascript">
