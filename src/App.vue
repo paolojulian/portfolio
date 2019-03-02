@@ -1,7 +1,14 @@
 <template>
-	<div id="app" :class="{ 'has-player': currentPlaying !== null, 'no-player': currentPlaying === null }">
-        <navbar v-if="hasNavbar"/>
-		<main class="clearfix">
+	<div id="app"
+        :class="{
+            'has-player': currentPlaying !== null,
+            'no-player': currentPlaying === null,
+            'dark-theme': theme === 'dark',
+            'light-theme': theme === 'light'
+        }"
+    >
+        <header v-if="hasHeader" />
+		<main class="Main clearfix">
             <page-loader>
                 <router-view/>
             </page-loader>
@@ -9,6 +16,7 @@
         <transition name="fade" mode="in-out">
             <Player/>
         </transition>
+        <navbar v-if="hasNavbar" />
 	</div>
 </template>
 
@@ -30,6 +38,16 @@ export default {
             return this.$route.meta.hasOwnProperty('navBar')
                 ? this.$route.meta.navBar
                 : true
+        },
+        hasHeader () {
+            return this.$route.meta.hasOwnProperty('header')
+                ? this.$route.meta.header
+                : false
+        },
+        theme () {
+            return this.$route.meta.hasOwnProperty('theme')
+                ? this.$route.meta.theme
+                : false
         }
     }
 }

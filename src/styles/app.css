@@ -9,9 +9,9 @@ a {
 ul {
     list-style: none;
 }
-html {
+/* html {
     min-height: 100%;
-}
+} */
 body {
     margin: 0;
     background-color: #ececec;
@@ -21,16 +21,12 @@ body {
 #app {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	color: #2c3e50;
+    color: #2c3e50;
 }
+
 @media screen and (min-width: 600px){
     main {
         margin-top: 7vh;
-    }
-}
-@media screen and (max-width: 600px){
-    main {
-        margin-bottom: 7vh;
     }
 }
 @media screen and (max-width: 1000px) {

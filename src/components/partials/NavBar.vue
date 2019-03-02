@@ -87,36 +87,32 @@ export default {
 </script>
 
 <style>
+/* MOBILE */
+#NavBar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: var(--my-navbar-height);
+
+    z-index: 999;
+    padding: 0px 10px;
+    box-sizing: border-box;
+
+    font-weight: 500;
+    color: #d3d3d3;
+    font-weight: 300;
+
+    opacity: 20%;
+    background-color: var(--my-transparent-dark);
+}
 @media screen and (min-width: 600px){
     #NavBar {
         top: 0;
         left: 0;
         margin-bottom: 6.5vh;
+        letter-spacing: 0.2rem;
+        transition: 300ms;
     }
-}
-@media screen and (max-width: 600px){
-    #NavBar {
-        bottom: 0;
-        left: 0;
-        margin-top: 6.5vh;
-    }
-}
-#NavBar {
-    position: fixed;
-    z-index: 999;
-    width: 100vw;
-    height: 7vh;
-    padding: 0px 10px;
-    box-sizing: border-box;
-    transition: 300ms;
-
-    font-weight: 500;
-    color: #d3d3d3;
-    font-weight: 300;
-    letter-spacing: 0.2rem;
-
-    opacity: 20%;
-    background-color: var(--my-transparent-dark);
 }
 #NavBar__title {
     position: absolute;

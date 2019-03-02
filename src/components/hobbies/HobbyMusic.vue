@@ -17,7 +17,7 @@ export default {
 <style scoped>
 #HobbyMusic {
     position: relative;
-    height: 93vh;
+    min-height: var(--my-display-height);
     display: flex;
 }
 </style>

@@ -53,15 +53,11 @@ export default {
 </script>
 
 <style scoped>
+/* MOBILE */
 .HobbyContent {
-cursor: pointer;
     position: relative;
     width: 100%;
     height: 100%;
-
-    overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 5px 10px 4px rgba(0, 0, 0, 0.5);
     color: #ffffff;
 }
 .HobbyContent__view {
@@ -75,18 +71,13 @@ cursor: pointer;
 
 .HobbyContent__text {
     position: absolute;
-    top: 70%;
+    top: 50%;
+    transform: translateY(-50%);
     width: 100%;
-    height: 30%;
+    height: 25%;
 
     background-color: rgba(0, 0, 0, 0.40);
     font-weight: bold;
-
-    transition: transform 300ms ease-in-out;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
 }
 .HobbyContent__text div {
     height: 50%;
@@ -98,12 +89,7 @@ cursor: pointer;
 }
 
 .HobbyContent__body{
-    position: relative;
-    width: 100%;
-    letter-spacing: 0.05rem;
-}
-.HobbyContent__body div{
-    width: 90%;
+    display: none;
 }
 
 .HobbyContent__img {
@@ -115,17 +101,48 @@ cursor: pointer;
     height: 100%;
     background-size: cover;
     background-position: center;
-
-    transition: all 300ms ease-in-out;
 }
 
-.HobbyContent:hover .HobbyContent__img {
-    transform: scale(1.2);
-}
-.HobbyContent:hover {
-    opacity: 0.8;
-}
-.HobbyContent:hover .HobbyContent__view {
-    z-index: 1;
+@media only screen and (min-width: 600px){
+    .HobbyContent {
+        cursor: pointer;
+
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 5px 10px 4px rgba(0, 0, 0, 0.5);
+    }
+    .HobbyContent__text {
+        top: 70%;
+        width: 100%;
+        height: 30%;
+        transform: none;
+
+        transition: transform 300ms ease-in-out;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .HobbyContent__body{
+        display: block;
+        position: relative;
+        width: 100%;
+        letter-spacing: 0.05rem;
+    }
+    .HobbyContent__body div{
+        width: 90%;
+    }
+    .HobbyContent__img {
+        transition: all 300ms ease-in-out;
+    }
+    .HobbyContent:hover .HobbyContent__img {
+        transform: scale(1.2);
+    }
+    .HobbyContent:hover {
+        opacity: 0.8;
+    }
+    .HobbyContent:hover .HobbyContent__view {
+        z-index: 1;
+    }
 }
 </style>

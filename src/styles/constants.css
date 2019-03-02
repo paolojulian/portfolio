@@ -14,5 +14,23 @@
 
     /** PROPORTIONS */
     --my-navbar-height: 7vh;
+    --my-header-height: 7vh;
     --my-display-height: 93vh;
+
+    --my-height-w-header: 86vh;
+}
+
+.dark-theme {
+    --pipz-dark: #000000;
+    --pipz-primary-dark: #212121;
+    --pipz-primary: #303030;
+    --pipz-secondary: #424242;
+    --pipz-font: #ffffff;
+}
+.light-theme {
+    --pipz-dark: #757575;
+    --pipz-primary-dark: #e0e0e0;
+    --pipz-primary: #eeeeee;
+    --pipz-secondary: #fafafa;
+    --pipz-font: rgba(0, 0, 0, 0.87);
 }

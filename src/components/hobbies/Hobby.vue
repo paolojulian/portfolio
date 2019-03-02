@@ -90,27 +90,32 @@ export default {
 }
 </script>
 <style scoped>
+/* MOBILE */
 #Hobby {
     position: relative;
     text-align: center;
-    height: 93vh;
-}
-@media only screen and (min-width: 600px){
-    .Hobby__box {
-        height: 50%;
-        width: 40%;
-        padding: 2rem;
-    }
-}
-@media screen and (max-width: 600px){
-    .Hobby__box {
-        height: 25%;
-        width: 100%;
-    }
+    height: calc(var(--my-display-height) - 1.5vh);
 }
 .Hobby__box {
-    display: inline-table;
-    overflow: hidden;
     position: relative;
+    overflow: hidden;
+
+    height: 25%;
+    width: 100%;
+    margin-bottom: 0.5vh;
+}
+/* WEB */
+@media only screen and (min-width: 600px){
+    #Hobby {
+        height: var(--my-display-height);
+    }
+    .Hobby__box {
+        height: 50%;
+        width: 45%;
+        margin-bottom: 0;
+
+        padding: 2rem;
+        display: inline-table;
+    }
 }
 </style>

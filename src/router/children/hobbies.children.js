@@ -21,13 +21,21 @@ const hobbyCooking = {
     name: 'HobbyCooking',
     redirect: '/hobby/cooking/favorite',
     component: () => import('@/components/hobbies/HobbyCooking'),
-    meta: { en_title: hobbiesHeader.en.cooking },
+    meta: {
+        en_title: hobbiesHeader.en.cooking,
+        header: true,
+        theme: 'dark'
+    },
     children: [
         {
             path: ':sortBy',
             name: 'HobbyCookingSort',
             component: () => import('@/components/hobbies/cooking/CookingList'),
-            meta: { en_title: hobbiesHeader.en.cooking }
+            meta: {
+                en_title: hobbiesHeader.en.cooking,
+                header: true,
+                theme: 'dark'
+            }
         }
     ]
 }
@@ -36,21 +44,33 @@ const hobbyMusic = {
     path: '/hobby/music',
     name: 'HobbyMusic',
     component: () => import('@/components/hobbies/HobbyMusic'),
-    meta: { en_title: hobbiesHeader.en.music },
+    meta: {
+        en_title: hobbiesHeader.en.music,
+        header: true,
+        theme: 'dark'
+    },
 }
 
 const hobbyCoding = {
     path: '/hobby/coding',
     name: 'HobbyCoding',
     component: () => import('@/components/hobbies/HobbyCoding'),
-    meta: { en_title: hobbiesHeader.en.coding },
+    meta: {
+        en_title: hobbiesHeader.en.coding,
+        header: true,
+        theme: 'light'
+    },
 }
 
 const hobbySports = {
     path: '/hobby/sports',
     name: 'HobbySports',
     component: () => import('@/components/hobbies/HobbySports'),
-    meta: { en_title: hobbiesHeader.en.sports },
+    meta: {
+        en_title: hobbiesHeader.en.sports,
+        header: true,
+        theme: 'light'
+    },
 }
 
 export default [
