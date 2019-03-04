@@ -3,11 +3,12 @@
         :class="{
             'has-player': currentPlaying !== null,
             'no-player': currentPlaying === null,
+            'has-header': hasHeader,
             'dark-theme': theme === 'dark',
             'light-theme': theme === 'light'
         }"
     >
-        <header v-if="hasHeader" />
+        <MyHeader v-if="hasHeader" />
 		<main class="Main clearfix">
             <page-loader>
                 <router-view/>
@@ -27,6 +28,7 @@ export default {
     name: 'app',
     components: {
         Navbar: () => import('./components/partials/NavBar'),
+        MyHeader: () => import('./components/partials/MyHeader'),
         PageLoader: () => import('@/components/partials/PageLoader'),
         Player: () => import('./components/hobbies/music/Player.vue')
     },

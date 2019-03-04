@@ -26,6 +26,8 @@
     --pipz-primary: #303030;
     --pipz-secondary: #424242;
     --pipz-font: #ffffff;
+
+    background-color: var(--pipz-primary);
 }
 .light-theme {
     --pipz-dark: #757575;
@@ -33,4 +35,6 @@
     --pipz-primary: #eeeeee;
     --pipz-secondary: #fafafa;
     --pipz-font: rgba(0, 0, 0, 0.87);
+
+    background-color: var(--pipz-primary);
 }

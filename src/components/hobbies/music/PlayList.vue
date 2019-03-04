@@ -74,7 +74,6 @@ export default {
 #MyCovers {
     width: 100%;
     padding: 1.5rem;
-    background-color: rgba(0, 0, 0, 0.60);
     color: #ffffff;
 }
 #MyCovers table {
