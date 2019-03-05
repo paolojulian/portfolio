@@ -258,7 +258,7 @@ class Song {
     width: 100vw;
 
     color: #d3d3d3;
-    background-color: var(--pipz-dark);
+    background-color: #000000;
 }
 .Player__relative {
     position: relative;
@@ -402,7 +402,7 @@ class Song {
 }
 
 /* WEB */
-@media screen and (min-width: 600px){
+@media screen and (min-width: 1000px){
     #Player {
         top: 85vh;
         left: 0;

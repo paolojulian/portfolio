@@ -105,15 +105,6 @@ export default {
     opacity: 20%;
     background-color: var(--my-transparent-dark);
 }
-@media screen and (min-width: 600px){
-    #NavBar {
-        top: 0;
-        left: 0;
-        margin-bottom: 6.5vh;
-        letter-spacing: 0.2rem;
-        transition: 300ms;
-    }
-}
 #NavBar__title {
     position: absolute;
     top: 50%;
@@ -129,4 +120,13 @@ export default {
 /* #NavBar ul li.active a {
     color: #333333;
 } */
+@media screen and (min-width: 1000x){
+    #NavBar {
+        top: 0;
+        left: 0;
+        margin-bottom: 6.5vh;
+        letter-spacing: 0.2rem;
+        transition: 300ms;
+    }
+}
 </style>
