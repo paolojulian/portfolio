@@ -23,6 +23,7 @@ const hobbyCooking = {
     component: () => import('@/components/hobbies/HobbyCooking'),
     meta: {
         en_title: hobbiesHeader.en.cooking,
+        back_link: 'Hobby',
         header: true,
         theme: 'dark'
     },
@@ -33,6 +34,7 @@ const hobbyCooking = {
             component: () => import('@/components/hobbies/cooking/CookingList'),
             meta: {
                 en_title: hobbiesHeader.en.cooking,
+                back_link: 'Hobby',
                 header: true,
                 theme: 'dark'
             }
@@ -46,6 +48,7 @@ const hobbyMusic = {
     component: () => import('@/components/hobbies/HobbyMusic'),
     meta: {
         en_title: hobbiesHeader.en.music,
+        back_link: 'Hobby',
         header: true,
         theme: 'dark'
     },
@@ -57,6 +60,7 @@ const hobbyCoding = {
     component: () => import('@/components/hobbies/HobbyCoding'),
     meta: {
         en_title: hobbiesHeader.en.coding,
+        back_link: 'Hobby',
         header: true,
         theme: 'light'
     },
@@ -68,6 +72,7 @@ const hobbySports = {
     component: () => import('@/components/hobbies/HobbySports'),
     meta: {
         en_title: hobbiesHeader.en.sports,
+        back_link: 'Hobby',
         header: true,
         theme: 'light'
     },

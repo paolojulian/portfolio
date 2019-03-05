@@ -33,9 +33,9 @@ export const headers = {
 
 export const hobbiesHeader = {
     en: {
-        cooking: 'Cooking',
-        music: 'Music',
-        sports: 'Sports',
+        cooking: 'My Recipes',
+        music: 'My Music',
+        sports: 'My Sports',
         coding: 'Coding'
     }
 }

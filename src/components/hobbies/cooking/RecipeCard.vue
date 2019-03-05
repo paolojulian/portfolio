@@ -47,10 +47,6 @@ export default {
         dateCreated: {
             type: String,
             required: true
-        },
-        dateModified: {
-            type: String,
-            required: true
         }
     },
 

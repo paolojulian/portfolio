@@ -15,8 +15,7 @@
                 :recipe-name="recipe.name"
                 :duration-from="Number(recipe.duration_from)"
                 :duration-to="Number(recipe.duration_to)"
-                :date-created="recipe.date_created"
-                :date-modified="recipe.date_modified"
+                :date-created="recipe.dateCreated"
                 @view-recipe="openModal('viewRecipe', recipe)"
             />
         </div>
