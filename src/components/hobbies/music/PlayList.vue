@@ -1,12 +1,7 @@
 <template lang="html">
 <div id="MyCovers">
+    <div class="Playlist__background"/>
     <table>
-        <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Genre</th>
-            <th>Date Added</th>
-        </tr>
         <tr v-for="(music, index) in hobbyMusic.list"
             :key="`music_${index}`"
             :class="{ 'currentPlaying': currentPlaying === index }">
@@ -22,12 +17,6 @@
                     />
             </td>
             <td>{{ music.name }}</td>
-            <td class="tbl-genre">
-                <router-link to="/hobby">
-                    {{ music.genre_name }}
-                </router-link>
-            </td>
-            <td>{{ music.date_created | convertDateTime }}</td>
         </tr>
     </table>
 </div>
@@ -73,8 +62,11 @@ export default {
 <style scoped>
 #MyCovers {
     width: 100%;
-    padding: 1.5rem;
     color: #ffffff;
+    background-image: url('../../../assets/img/music/background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 #MyCovers table {
     width: 100%;

@@ -11,13 +11,16 @@
 
     --my-transparent-dark: rgba(0, 0, 0, 0.90);
     --my-dark: #282e34;
+    --color-dark: #212121;
 
     /** PROPORTIONS */
     --my-navbar-height: 7vh;
     --my-header-height: 7vh;
+    --my-player-height: 7vh;
     --my-display-height: 93vh;
 
     --my-height-w-header: 86vh;
+
 }
 
 .dark-theme {
