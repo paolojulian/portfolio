@@ -9,7 +9,9 @@
         }"
     >
         <MyHeader v-if="hasHeader" />
-		<main class="Main clearfix">
+		<main class="Main clearfix"
+            :class="{ 'main-has-navbar': hasNavbar }"
+        >
             <page-loader>
                 <router-view/>
             </page-loader>
