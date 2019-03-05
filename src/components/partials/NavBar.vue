@@ -120,7 +120,7 @@ export default {
 /* #NavBar ul li.active a {
     color: #333333;
 } */
-@media screen and (min-width: 1000x){
+@media screen and (min-width: 1000px){
     #NavBar {
         top: 0;
         left: 0;
