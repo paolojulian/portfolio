@@ -10,13 +10,13 @@ const Login = {
         navBar: false,
         authRequired: false
     },
-    // beforeEnter (to, from, next) {
-        // if (store.getters[$auth + '/isLoggedIn']) {
-        //     next('/')
-        // } else {
-        //     next()
-        // }
-    // }
+    beforeEnter (to, from, next) {
+        if (store.getters[$auth + '/isLoggedIn']) {
+            next('/admin')
+        } else {
+            next()
+        }
+    }
 }
 
 const Admin = {
@@ -29,11 +29,9 @@ const Admin = {
         authRequired: false
     },
     beforeEnter (to, from, next) {
-        if (store.getters[$auth + '/isLoggedIn']) {
-            next('/')
-        } else {
-            next()
-        }
+        store.dispatch(`${$auth}/validateLogin`)
+            .then(() => next())
+            .catch(() => next('/pipz'))
     }
 }
 

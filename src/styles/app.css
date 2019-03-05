@@ -102,3 +102,8 @@ body {
 .pointer {
     cursor: pointer;
 }
+
+
+.empty-input {
+    border: 1px solid red !important;
+}
