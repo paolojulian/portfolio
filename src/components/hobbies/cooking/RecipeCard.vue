@@ -8,8 +8,7 @@
         <!-- <div class="RecipeCard__img" /> -->
         <img
             class="RecipeCard__img"
-            v-attr="{ 'src': '../../../assets/img/cooking/2.png' }"
-            @error="test"
+            :src="imagePath"
         />
     </div>
     <div class="RecipeCard__content">
@@ -50,10 +49,6 @@ export default {
         dateCreated: {
             type: String,
             required: true
-        },
-        imagePath: {
-            type: String,
-            required: true
         }
     },
 
@@ -73,13 +68,20 @@ export default {
 
     data () {
         return {
+            test: '',
             defaultImg: require('../../../assets/img/cooking/default.png')
         }
     },
      
-    methods: {
-        test () {
-            console.log('test')
+    computed: {
+        imagePath () {
+            var path
+            try {
+                path = require('../../../assets/img/cooking/' + this.recipeId + '.png')
+            } catch (err) {
+                path = this.defaultImg
+            }
+            return path
         }
     }
 }
