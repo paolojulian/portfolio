@@ -16,6 +16,7 @@
                 :duration-from="Number(recipe.duration_from)"
                 :duration-to="Number(recipe.duration_to)"
                 :date-created="recipe.dateCreated"
+                :image-path="'../../../assets/img/cooking/' + recipe.id + '.png'"
                 @view-recipe="openModal('viewRecipe', recipe)"
             />
         </div>

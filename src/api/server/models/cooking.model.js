@@ -1,40 +1,55 @@
 const Model = require('./model')
+// class Procedures extends Model {
+//     addProcedures() {
 
-class CookingModel extends Model {
-    constructor () {
-        super()
-        this.foodCategories = {
-            asian: 1,
-            european: 2,
-            american: 3,
-            indian: 4
-        }
+//     }
+// }
+class Recipe extends Model {
+    constructor (name, favorite, duration_from, duration_to, ingredients, procedures, food_category_id) {
+        super ()
+        this.form = {}
+        this.form.name = name.trim()
+        this.form.favorite = favorite
+        this.form.duration_from = duration_from
+        this.form.duration_to = duration_to
+        this.form.ingredients = ingredients
+        this.form.procedures = procedures
+        this.form.food_category_id = food_category_id
+
+        this.table = {}
+        this.table.recipe = 'hobbies_recipe'
     }
 
-    getRecipeList (sortBy) {
-        var query = 'SELECT * FROM hobbies_recipe'
+    /**
+     * CHECK EMPTY VALUES
+     *  it should be already checked on the front end
+     * only additional validation before entering database
+     */
+    validateEmpty () {
+        if (this.form.name.length <= 0) return false
+        if (this.form.ingredients.length <= 0) return false
+        if (this.form.procedures.length <= 0) return false
 
-        switch (sortBy) {
-            case 'asian':
-                query += ` WHERE food_category_id = ${this.foodCategories.asian}`
-                break;
-            case 'european':
-                query += ` WHERE food_category_id = ${this.foodCategories.european}`
-                break;
-            case 'american':
-                query += ` WHERE food_category_id = ${this.foodCategories.american}`
-                break;
-            case 'indian':
-                query += ` WHERE food_category_id = ${this.foodCategories.indian}`
-                break;
-            case 'favorite':
-                query += " WHERE favorite = 1"
-                break;
-            default:
-                break;
+        return true
+    }
+
+    /**
+     * Handles submit and adding of recipe
+     * @param { Database } db - database connection
+     */
+    addRecipe (db) {
+        let recipe = {
+            name: this.form.name,
+            favorite: this.form.favorite,
+            duration_from: this.form.duration_from,
+            duration_to: this.form.duration_to,
+            food_category_id: this.form.food_category_id
         }
-        return super.query(query)
+        // Insert to recipe
+        return super.insert(this.table.recipe, recipe, db)
     }
 }
 
-module.exports = new CookingModel()
+module.exports = {
+    Recipe
+}

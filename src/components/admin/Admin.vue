@@ -1,30 +1,39 @@
 <template>
 <div class="Admin">
-    ADMIN
-    <button @click="logout">
-        Logout
-    </button>
+    <admin-navbar/>
+    <div class="AdminMain">
+        <transition name="fade">
+            <router-view/>
+        </transition>
+    </div>
 </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
-import { $auth } from '@/helpers/constants'
-export default {
-    computed: {
-        ...mapGetters($auth, [
-            'isLoggedIn'
-        ])
-    },
 
-    methods: {
-        ...mapActions($auth, [
-            'logout'
-        ])
+export default {
+    components: {
+        AdminNavbar: () => import('./AdminNavbar.vue')
     }
 }
 </script>
 
-<style scoped>
-
+<style>
+.Admin {
+    --navbar-height: 50px;
+}
+.AdminMain {
+    position: relative;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    min-height: calc(100vh - var(--navbar-height));
+}
+.AdminMain input,
+.AdminMain textarea
+{
+    border: 0;
+    padding: 5px 10px;
+    border-radius: 30px;
+}
 </style>
