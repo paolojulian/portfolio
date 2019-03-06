@@ -1,12 +1,16 @@
 <template lang="html">
 <div class="RecipeCard"
-    :style="RecipeCardStyle"
     @click="$emit('view-recipe')">
     <div class="RecipeCard__box">
         <div class="RecipeCard__view_recipe">
             <span>View Recipe</span>
         </div>
-        <div class="RecipeCard__img" />
+        <!-- <div class="RecipeCard__img" /> -->
+        <img
+            class="RecipeCard__img"
+            v-attr="{ 'src': '../../../assets/img/cooking/2.png' }"
+            @error="test"
+        />
     </div>
     <div class="RecipeCard__content">
         <div class="RecipeCard__name">
@@ -46,6 +50,10 @@ export default {
         dateCreated: {
             type: String,
             required: true
+        },
+        imagePath: {
+            type: String,
+            required: true
         }
     },
 
@@ -68,11 +76,10 @@ export default {
             defaultImg: require('../../../assets/img/cooking/default.png')
         }
     },
-    computed: {
-        RecipeCardStyle () {
-            return {
-                '--recipe-card-img': `url('../../../assets/img/cooking/${this.recipeId}.png')`
-            }
+     
+    methods: {
+        test () {
+            console.log('test')
         }
     }
 }
@@ -101,9 +108,8 @@ export default {
     background-position: center;
     width: 100%;
     height: 100%;
-    background-image: var(--recipe-card-img);
 }
-.RecipeCard__img:before {
+/* .RecipeCard__img:before {
     content: ' ';
     display: block;
     position: absolute;
@@ -112,7 +118,7 @@ export default {
     background-image: url('../../../assets/img/cooking/default.png');
     background-position: center;
     background-size: cover
-}
+} */
 .RecipeCard__content {
     position: absolute;
     height: 30%;
