@@ -12,7 +12,8 @@ const URL = {
     cooking: {
         main: API_URL + '/cooking',
         recipe: API_URL + '/cooking/recipe/:recipeID',
-        recipeList: API_URL + '/cooking/recipe'
+        recipeList: API_URL + '/cooking/recipe',
+        addRecipe: API_URL + '/cooking/recipe/add'
     },
     coding: {
         languages: API_URL + `/coding/skills/languages`,

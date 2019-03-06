@@ -1,6 +1,7 @@
 const URL = require('../../APIRoutes')
 const router = require('./router')
 const JsonResponse = require('./json')
+const CookingModel = require('../models/cooking.model')
 
 const foodCategories = {
     asian: 1,
@@ -63,4 +64,40 @@ router.get(URL.cooking.recipe, (req, res) => {
     res.status(200).json(new JsonResponse(true, recipeID))
 })
 
-module.exports = router
+/**
+ * ADD RECIPE
+ * @param { String } recipeName - Name of the recipe
+ * @param { Number } favorite - 0 : not, 1 : favorite
+ * @param { Number } durationFrom - Minimum finish in Minutes
+ * @param { Number } durationTo - Max finish in Minutes
+ * @param { Array } ingredients - Ingredients used for the recipe
+ * @param { Array } procedures - Procedures for cooking the recipe
+ * @param { String } foodCategoryID - food category
+ * 
+ * @return { json }
+ */
+router.post(URL.cooking.addRecipe, (req, res) => {
+    var recipe = new CookingModel.Recipe(
+        req.body.name,
+        req.body.favorite,
+        req.body.durationFrom,
+        req.body.durationTo,
+        req.body.ingredients,
+        req.body.procedures,
+        req.body.foodCategoryID
+    )
+
+    if ( ! recipe.validateEmpty()) {
+        return res.status(422).json('Incomplete Parameters')
+    }
+
+    req.getConnection((connectionErr, db) => {
+        recipe.addRecipe(db)
+            .then(() => {
+                res.status(200).json(new JsonResponse(true))
+            })
+            .catch(() => res.status(502))
+    })
+});
+
+module.exports = router;

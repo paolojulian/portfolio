@@ -1,13 +1,12 @@
 <template lang="html">
 <div class="RecipeCard"
+    :style="RecipeCardStyle"
     @click="$emit('view-recipe')">
     <div class="RecipeCard__box">
         <div class="RecipeCard__view_recipe">
             <span>View Recipe</span>
         </div>
-        <div class="RecipeCard__img"
-            :style="recipeImg"
-            />
+        <div class="RecipeCard__img" />
     </div>
     <div class="RecipeCard__content">
         <div class="RecipeCard__name">
@@ -64,9 +63,16 @@ export default {
         }
     },
 
+    data () {
+        return {
+            defaultImg: require('../../../assets/img/cooking/default.png')
+        }
+    },
     computed: {
-        recipeImg () {
-            return `background-image: url('${require('@/assets/img/cooking/' + this.recipeId + '.png')}')`
+        RecipeCardStyle () {
+            return {
+                '--recipe-card-img': `url('../../../assets/img/cooking/${this.recipeId}.png')`
+            }
         }
     }
 }
@@ -95,6 +101,17 @@ export default {
     background-position: center;
     width: 100%;
     height: 100%;
+    background-image: var(--recipe-card-img);
+}
+.RecipeCard__img:before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: url('../../../assets/img/cooking/default.png');
+    background-position: center;
+    background-size: cover
 }
 .RecipeCard__content {
     position: absolute;
