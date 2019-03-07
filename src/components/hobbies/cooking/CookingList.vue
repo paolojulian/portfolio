@@ -101,17 +101,20 @@ export default {
 <style scoped>
 #CookingList__list {
     position: relative;
+    top: 2rem;
     text-align: center;
-}
-
-@media screen and (min-width: 600px){
-    #CookingList__list {
-        padding: 1rem;
-    }
+    margin-bottom: 3vh;
 }
 .no-recipe {
     text-align: center;
     font-size: 2rem;
     padding: 1rem;
+}
+@media screen and (min-width: 600px){
+    #CookingList__list {
+        padding: 1rem;
+        top: 0;
+        margin-bottom: 0;
+    }
 }
 </style>

@@ -4,12 +4,12 @@ const myConnection = require('express-myconnection')
 
 /** MYSQL */
 // Connection
-const db = {
-    host: 'us-cdbr-iron-east-03.cleardb.net',
-    user: 'ba30a4bf0efd95',
-    password: '621f9c8c',
-    database: 'heroku_d9838c7ffb34abb'
-};
+// const db = {
+//     host: 'us-cdbr-iron-east-03.cleardb.net',
+//     user: 'ba30a4bf0efd95',
+//     password: '621f9c8c',
+//     database: 'heroku_d9838c7ffb34abb'
+// };
 // const db = {
 //     host: process.env.VUE_APP_DB_HOST,
 //     user: process.env.VUE_APP_DB_USER,
@@ -18,12 +18,12 @@ const db = {
 // };
 // console.log(db)
 // console.log(process.env.NODE_ENV)
-// const db = {
-//     host: 'localhost',
-//     user: 'root',
-//     password: '',
-//     database: 'portfolio'
-// };
+const db = {
+    host: 'localhost',
+    user: 'root',
+    password: 'Sadface2',
+    database: 'portfolio'
+};
 const connection = myConnection(mysql, db, 'single')
 // Connect DB
 // var connection;

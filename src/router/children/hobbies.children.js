@@ -25,7 +25,7 @@ const hobbyCooking = {
         en_title: hobbiesHeader.en.cooking,
         back_link: 'Hobby',
         header: true,
-        theme: 'dark'
+        theme: 'light'
     },
     children: [
         {
@@ -36,7 +36,7 @@ const hobbyCooking = {
                 en_title: hobbiesHeader.en.cooking,
                 back_link: 'Hobby',
                 header: true,
-                theme: 'dark'
+                theme: 'light'
             }
         }
     ]

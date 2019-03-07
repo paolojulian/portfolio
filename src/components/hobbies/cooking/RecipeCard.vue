@@ -89,18 +89,17 @@ export default {
 
 <style scoped>
 .RecipeCard {
-    cursor: pointer;
     position: relative;
-    display: inline-block;
-    margin: 0 auto;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    height: 250px;
     background-color: #fff;
-    transition: transform 300ms ease-in-out, box-shadow 200ms linear;
     overflow: hidden;
 }
 .RecipeCard__box {
     position: relative;
     overflow: hidden;
-    height: 70%;
+    height: 100%;
 }
 .RecipeCard__img {
     position: absolute;
@@ -111,27 +110,19 @@ export default {
     width: 100%;
     height: 100%;
 }
-/* .RecipeCard__img:before {
-    content: ' ';
-    display: block;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background-image: url('../../../assets/img/cooking/default.png');
-    background-position: center;
-    background-size: cover
-} */
 .RecipeCard__content {
     position: absolute;
-    height: 30%;
+    height: 25%;
     width: 100%;
-    top: 70%;
+    top: 75%;
     text-align: left;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #ffffff;
 }
 .RecipeCard__name {
-    padding: 0.5rem;
     font-weight: 600;
     height: 15%;
+    padding: 0.5rem;
 }
 .RecipeCard__duration {
     position: absolute;
@@ -145,33 +136,45 @@ export default {
     bottom: 5px;
     transform: translateX(-50%);
 }
-@media screen and (max-width: 600px){
-    .RecipeCard{
-        margin-bottom: 0.5rem;
-        width: 100%;
-        height: 500px;
-    }
-    .RecipeCard__name {
-        padding-left: 2em;
-        padding-right: 2em;
-        padding-top: 1em;
-    }
-}
 @media screen and (min-width: 600px){
-    .RecipeCard{
+    .RecipeCard {
+        cursor: pointer;
+        display: inline-block;
+        background-color: #fff;
+        overflow: hidden;
         margin: 0.5rem;
         box-shadow: 0 5px 10px #131313;
         width: 20.3rem;
         height: 300px;
         border-radius: 5px;
+        transition: transform 300ms ease-in-out, box-shadow 200ms linear;
     }
     .RecipeCard:hover{
         transform: scale(1.05);
         box-shadow: 0 10px 15px #131313;
     }
 
+    .RecipeCard__box {
+        height: 70%;
+    }
+
     .RecipeCard__img{
         transition: transform 300ms ease-in-out;
+    }
+
+    .RecipeCard__content {
+        height: 30%;
+        top: 70%;
+        text-align: left;
+
+        background-color: unset;
+        color: unset;
+    }
+
+    .RecipeCard__name {
+        font-weight: 600;
+        height: 15%;
+        padding: 0.5rem;
     }
 
     .RecipeCard__view_recipe {
