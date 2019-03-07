@@ -28,7 +28,7 @@ export default {
 <style scoped>
 #Hiking {
     position: relative;
-    height: 110vh;
+    height: 100vh;
 
     perspective: 1px;
     transform-style: preserve-3d;
@@ -41,7 +41,7 @@ export default {
     background-repeat: no-repeat;
 }
 .Hiking__header {
-    height: 70%;
+    height: 60%;
     width: 100%;
     background-color: #ffffff;
 
@@ -50,29 +50,69 @@ export default {
     left: 0;
 }
 .Hiking__header__text {
-    vertical-align: middle;
-    display: inline-block;
-    width: 40%;
-    height: 100%;
+    position: absolute;
+    top: 70%;
+    left: 0;
+    width: 100%;
+    height: 30%;
     color: var(--my-dark);
+
+    padding: 5% 0;
 }
 .hiking-header-bold {
+    margin: auto;
     font-weight: bold;
-    font-size: 1.4rem;
+    font-size: 1rem;
     letter-spacing: 0.1rem;
     text-transform: uppercase;
 }
 .hiking-header-light {
+    margin: auto;
     font-weight: 300;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
 }
 .Hiking__gallery {
-    display: inline-block;
-    height: 100%;
-    width: 40%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 70%;
+    width: 100%;
     background-image: url('../../../assets/img/sports/hiking/hike.png');
-    background-size: cover;
+    background-size: contain;
     background-position: center;
-    transform: scale(0.8);
+    background-repeat: no-repeat;
+}
+@media screen and (min-width: 600px) {
+    #Hiking {
+        height: 110vh;
+    }
+    .Hiking__header {
+        height: 70%;
+    }
+    .Hiking__header__text {
+        position: static;
+        top: 0;
+        left: 0;
+
+        vertical-align: middle;
+        display: inline-block;
+        width: 40%;
+        height: 100%;
+    }
+    .hiking-header-bold {
+        font-size: 1.4rem;
+    }
+    .hiking-header-light {
+        font-size: 1.1rem;
+    }
+    .Hiking__gallery {
+        position: static;
+        display: inline-block;
+        height: 100%;
+        width: 40%;
+        background-image: url('../../../assets/img/sports/hiking/hike.png');
+        background-size: cover;
+        transform: scale(0.8);
+    }
 }
 </style>
