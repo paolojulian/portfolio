@@ -103,26 +103,29 @@ export default {
 <style scoped>
 .EsportsGame {
     position: relative;
-    height: 100%;
+    height: calc(100% / 3);
     flex: 1;
     box-sizing: border-box;
-    padding: 5rem;
 }
 .EsportsCard {
-    height: 100%;
+    height: 95%;
     position: relative;
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
 }
-.EsportsCard-name {
-    padding: 1rem;
-    font-weight: bold;
-    font-size: 1.5rem;
-    letter-spacing: 0.1rem;
+.EsportsCard-img {
+    float: left;
+    width: 50%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 .EsportsCard-text {
+    float: right;
+    width: 50%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    height: 50%;
 }
 .EsportsCard-name, .EsportsCard-description, .EsportsCard-idols {
     flex: 1;
@@ -132,27 +135,70 @@ export default {
     align-items: center;
     justify-content: center;
 }
+.EsportsCard-name {
+    padding: 0.5rem;
+    font-weight: bold;
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+    vertical-align: bottom;
+}
 .EsportsCard-description {
     background-color: #111111;
     color: #d3d3d3;
-}
-.EsportsCard-name {
-    vertical-align: bottom;
-}
-.EsportsCard-img {
-    width: 100%;
-    height: 50%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    font-size: 0.9rem;
 }
 .EsportsCard_tag {
     font-weight: 500;
-    font-size: 1.2rem;
+    font-size: 0.9rem;
     letter-spacing: 0.05rem;
 }
 .EsportsCard_thin {
     font-weight: 300;
-    font-size: 1.1rem;
+    font-size: 0.75rem;
+}
+@media screen and (min-width: 600px){
+    .EsportsGame {
+        height: 100%;
+        padding: 10px;
+    }
+    .EsportsCard {
+        height: 100%;
+    }
+    .EsportsCard-img {
+        float: none;
+        width: 100%;
+        height: 50%;
+    }
+    .EsportsCard-text {
+        float: none;
+        height: 50%;
+        width: 100%;
+    }
+    .EsportsCard-name {
+        padding: 1rem;
+        font-weight: bold;
+        font-size: 1.5rem;
+        letter-spacing: 0.1rem;
+        vertical-align: bottom;
+    }
+    .EsportsCard-description {
+        background-color: #111111;
+        color: #d3d3d3;
+    }
+    .EsportsCard_tag {
+        font-weight: 500;
+        font-size: 1.2rem;
+        letter-spacing: 0.05rem;
+    }
+}
+@media screen and (min-width: 800px){
+    .EsportsGame {
+        padding: 10px;
+    }
+}
+@media screen and (min-width: 1000px){
+    .EsportsGame {
+        padding: 4rem;
+    }
 }
 </style>

@@ -72,15 +72,12 @@ export default {
 </script>
 
 <style scoped>
-#ESports {
-    height: 130vh;
-}
 .ESports_header {
-    height: 37vh;
+    height: 15vh;
     background-color: #111111;
     color: #d3d3d3;
     letter-spacing: 0.3rem;
-    font-size: 5rem;
+    font-size: 2rem;
     font-style: italic;
     font-weight: bold;
     display: flex;
@@ -90,6 +87,29 @@ export default {
 .ESports_games {
     position: relative;
     display: flex;
-    height: var(--my-display-height);
+    flex-direction: column;
+    height: calc(var(--my-display-height) - var(--my-header-height));
+}
+@media screen and (min-width: 800px){
+    #ESports {
+        height: 130vh;
+    }
+    .ESports_header {
+        height: 37vh;
+        background-color: #111111;
+        color: #d3d3d3;
+        letter-spacing: 0.3rem;
+        font-size: 5rem;
+        font-style: italic;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .ESports_games {
+        position: relative;
+        flex-direction: row;
+        height: var(--my-display-height);
+    }
 }
 </style>
