@@ -74,15 +74,28 @@ export default {
     width: 100%;
 }
 #CodingSkills__languages, #CodingSkills__frameworks {
-    float: left;
-    width: 44%;
+    width: 100%;
+    box-sizing: border-box;
 }
 #CodingSkills__languages {
-    padding-left: 4%;
-    padding-right: 2%;
+    padding: 0 10px;
 }
 #CodingSkills__frameworks {
-    padding-left: 2%;
-    padding-right: 4%;
+    padding: 0 10px;
+}
+@media screen and (min-width: 600px) {
+    #CodingSkills__languages, #CodingSkills__frameworks {
+        float: left;
+        width: 44%;
+        box-sizing: unset;
+    }
+    #CodingSkills__languages {
+        padding-left: 4%;
+        padding-right: 2%;
+    }
+    #CodingSkills__frameworks {
+        padding-left: 2%;
+        padding-right: 4%;
+    }
 }
 </style>

@@ -66,7 +66,7 @@ export default {
 
         percentStyle () {
             let style = {}
-            style['left'] = `${this.percent - 10}%`
+            // style['left'] = `${this.percent - 10}%`
             return style
         }
     }
@@ -94,6 +94,9 @@ export default {
     font-weight: var(--bar-font-weight);
     text-align: center;
     position: relative;
+
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
 }
 .ProgressBar__name h4 {
     display: inline-block;
@@ -104,12 +107,12 @@ export default {
     transform: translate(-50%, -50%);
 }
 .ProgressBar__line {
-    flex-grow: 8;
+    flex-grow: 4;
     position: relative;
 
     height: var(--bar-height);
     margin: 0 auto;
-    line-height: 25px;
+    line-height: 32px;
     font-size: var(--bar-font-size);
     color: #ffffff;
     margin-bottom: 1rem;
@@ -122,7 +125,9 @@ export default {
     top: 0;
     height: var(--bar-height);
     background: #d2d2d2;
-    z-index: -2;
+    z-index: 1;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
 }
 .ProgressBar__line::after {
     content: '';
@@ -132,17 +137,35 @@ export default {
     transition: 800ms;
     animation: animate 1.2s;
     width: var(--percent-width);
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
     
     position: absolute;
     top: 0;
     left: 0;
-    z-index: -1;
+    z-index: 1;
 }
 
 .ProgressBar__percent {
     position: absolute;
+    top: 50%;
+    left: calc(var(--percent-width) - 50px);
+    transform: translateY(-50%);
+
+    transition: 800ms;
+    animation: leftToRight 1.2s;
+
     color: var(--my-light);
     padding-right: 0.5rem;
+    z-index: 2;
+}
+@media screen and (min-width: 600px) {
+    .ProgressBar__percent {
+        left: calc(var(--percent-width) - 10%);
+    }
+    .ProgressBar__line {
+        flex-grow: 8;
+    }
 }
 @keyframes animate {
     0% {
@@ -150,6 +173,14 @@ export default {
     }
     100% {
         width: 100;
+    }
+}
+@keyframes leftToRight {
+    0% {
+        left: 0;
+    }
+    100% {
+        left: 100;
     }
 }
 </style>
