@@ -18,7 +18,6 @@ export default {
 
 <style scoped>
 #HobbySports {
-    margin-top: 7vh;
     color: #333333;
     text-align: center;
 }
@@ -48,5 +47,10 @@ export default {
     position: relative;
 
     background-attachment: fixed;
+}
+@media screen and (min-width: 600px){
+    #HobbySports {
+        margin-top: 7vh;
+    }
 }
 </style>
