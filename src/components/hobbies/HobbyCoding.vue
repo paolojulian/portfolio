@@ -28,6 +28,6 @@ export default {
     overflow-x: hidden;
 }
 .coding-skills {
-    margin-bottom: 10rem;
+    margin-bottom: 2rem;
 }
 </style>
