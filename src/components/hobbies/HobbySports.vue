@@ -47,6 +47,7 @@ export default {
     position: relative;
 
     background-attachment: fixed;
+    opacity: 0.9;
 }
 @media screen and (min-width: 600px){
     #HobbySports {

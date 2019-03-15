@@ -1,7 +1,9 @@
 <template lang="html">
 <div id="ESports">
     <div class="ESports_header">
-        <span class="text-shadow-dark">
+        <span class="text-shadow-dark"
+            data-aos="fade-right"
+        >
             E-SPORTS
         </span>
     </div>
@@ -60,8 +62,8 @@ export default {
             ),
             apex: new Apex(
                 'Shroud',
-                'Bloodhound/Bangalore',
-                'Wingman/R-99 SMG'
+                'Mirage',
+                'Wingman/R-301'
             )
         }
     },
