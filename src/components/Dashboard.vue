@@ -13,12 +13,18 @@
                 </div>
 
                 <router-link to="/hobby" class="Dashboard__button">CHECK ME</router-link>
+                <div class="social_media_accounts">
+                    <font-awesome-icon icon="home"/>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
-<script type="text/javascript">
+<script>
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons'
+library.add( faFacebook )
 export default {
     name: 'Dashboard'
 }
@@ -85,6 +91,9 @@ export default {
     background-color: var(--my-blue);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
+}
+.social_media_accounts {
+
 }
 /* TAB */
 @media screen and (min-width: 600px){
