@@ -1,4 +1,5 @@
 import { headers } from '@/helpers/constants'
+import AsyncComponent from '../AsyncComponent.js'
 
 const NotFound = {
     path: '/404',
@@ -10,7 +11,7 @@ const NotFound = {
 const Dashboard = {
     path: '/',
     name: 'Dashboard',
-    component: () => import('@/components/Dashboard'),
+    component: () => AsyncComponent(import('@/components/Dashboard')),
     meta: {
         en_title: headers.en.dashboard,
         navbarAnimate: true

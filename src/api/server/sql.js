@@ -21,7 +21,7 @@ const db = {
 // const db = {
 //     host: 'localhost',
 //     user: 'root',
-//     password: 'Sadface2',
+//     password: '',
 //     database: 'portfolio'
 // };
 const connection = myConnection(mysql, db, 'single')

@@ -81,11 +81,11 @@ export default {
         }
     },
     created () {
-        this.$store.commit($pageLoader + '/pageLoading')
+        this.pageLoading()
         this.getHobbyList()
     },
     mounted () {
-        this.$store.commit($pageLoader + '/pagePost')
+        this.pagePost()
     }
 }
 </script>

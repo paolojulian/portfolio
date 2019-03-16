@@ -3,29 +3,89 @@
     <div id="CodingSkills__languages">
         <div class="coding-header">
             <div class="coding-title">
-                My Coding Creed
+                <div data-aos="fade-right">
+                    My Coding Creed
+                </div>
             </div>
             <div class="coding-creed">
-                This is my code.
-                <br />There are many like it but this one is mine.
-                <br />My code is my best friend.
-                <br />It is my life.
-                <br />I must master it as I must master my life.
-                <br />Without me, my code is useless.
-                <br />Without my code I am useless.
-                <br />I must set my standards true.
-                <br />I must be strict too avoid my bugs,
-                <br />who is trying to kill me.
-                <br />I must shoot him before he shoots me.
-                <br />I will.
-                <br />Before God I swear this creed:
-                <br />my code and myself are defenders of my projects,
-                <br />we are the masters of my enemy,
-                <br />we are the saviors of my life.
-                <br />So be it,
-                <br />until there is no bugs,
-                <br />but peace.
-                <br />Amen.
+                <div data-aos="fade-right" data-aos-delay="100">
+                    This is my code.
+                </div>
+                <div data-aos="fade-right" data-aos-delay="200">
+                    There are many like it but this one is mine.
+                </div>
+
+                <div data-aos="fade-right" data-aos-delay="300">
+                    My code is my best friend.
+                </div>
+
+                <div data-aos="fade-right" data-aos-delay="400">
+                    It is my life.
+                </div>
+
+                <div data-aos="fade-right" data-aos-delay="500">
+                    I must master it as I must master my life.
+                </div>
+
+                <div data-aos="fade-right" data-aos-delay="600">
+                    Without me, my code is useless.
+                </div>
+
+                <div data-aos="fade-right" data-aos-delay="400">
+                    Without my code I am useless.
+                </div>
+
+                <div data-aos="fade-right" data-aos-delay="300">
+                    I must set my standards true.
+                </div>
+
+                <div data-aos="fade-right" data-aos-delay="200">
+                    I must be strict too avoid my bugs,
+                </div>
+
+                <div data-aos="fade-right" data-aos-delay="600">
+                    who is trying to kill me.
+                </div>
+
+                <div data-aos="fade-right" data-aos-delay="400">
+                    I must shoot him before he shoots me.
+                </div>
+
+                <div data-aos="fade-right" data-aos-delay="500">
+                    I will.
+                </div>
+
+                <div data-aos="fade-right" data-aos-delay="800">
+                    Before God I swear this creed:
+                </div>
+
+                <div data-aos="fade-right" data-aos-delay="400">
+                    my code and myself are defenders of my projects,
+                </div>
+
+                <div data-aos="fade-right" data-aos-delay="800">
+                    we are the masters of my enemy,
+                </div>
+
+                <div data-aos="fade-right" data-aos-delay="700">
+                    we are the saviors of my life.
+                </div>
+
+                <div data-aos="fade-right" data-aos-delay="600">
+                    So be it,
+                </div>
+
+                <div data-aos="fade-right" data-aos-delay="400">
+                    until there is no bugs,
+                </div>
+
+                <div data-aos="fade-right" data-aos-delay="200">
+                    but peace.
+                </div>
+
+                <div data-aos="zoom" data-aos-delay="1000">
+                    Amen.
+                </div>
             </div>
         </div>
         <div class="coding-bars">
@@ -129,6 +189,9 @@ export default {
 }
 .coding-creed {
     font-size: 0.95rem;
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    padding-bottom: 1rem;
     margin-bottom: 1rem;
 }
 .coding-lg {

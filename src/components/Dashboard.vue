@@ -101,11 +101,8 @@ export default {
     .Dashboard__text div.center-absolute div{
         margin-bottom: 1.5rem;
     }
-    .Dashboard__header {
-        font-size: 2rem;
-    }
     .Dashboard__description {
-        font-size: 1.2rem;
+        font-size: 1rem;
         margin-bottom: 1rem;
     }
 }
@@ -128,7 +125,11 @@ export default {
         width: 50%;
         height: 100vh;
     }
+    .Dashboard__header {
+        font-size: 2rem;
+    }
     .Dashboard__description {
+        font-size: 1.2rem;
         margin: 0 auto;
         width: 80%;
     }

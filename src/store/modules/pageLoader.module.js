@@ -12,22 +12,19 @@ export const mutations = {
     pageLoading: (state) => {
         if (state.loading !== true) {
             state.loading = true
-            state.post = false
-            state.error = false
+            state.post = state.error = false
         }
     },
     pagePost: (state) => {
         if (state.post !== true) {
-            state.loading = false
             state.post = true
-            state.error = false
+            state.loading = state.error = false
         }
     },
     pageError: (state) => {
         if (state.error !== true) {
-            state.loading = false
-            state.post = false
             state.error = true
+            state.loading = state.post = false
         }
     }
 }
