@@ -15,6 +15,28 @@ class Model {
         return Promise.all(queries)
     }
     /**
+     * GET A ROW BY ID
+     * @param { String } table 
+     * @param { Number } id - PRIMARY KEY
+     * @param { String } fields - Fields to get
+     * @return { Promise }
+     */
+    getByID (db, table, id, fields = "*") {
+        return new Promise((resolve, reject) => {
+            let sql = `
+                SELECT ${fields}
+                FROM ${TABLE}
+                WHERE id = ${id}
+            `
+            db.query(sql, (error) => {
+                console.log(error, response)
+                if (error) return reject(error);
+
+                return resolve(response)
+            })
+        })
+    }
+    /**
      * INSERT QUERY MYSQL
      * @param { String } table 
      * @param { Object } form - form to insert, key should match table columns, value will be the one to be inserted
@@ -51,6 +73,17 @@ class Model {
         db.query(sql, (error, lastID) => {
             if (error) throw error;
             return lastID
+        })
+    }
+
+    delete (db, table, id) {
+        let sql = `DELETE FROM ${table} WHERE id = ${id}`
+        return new Promise((resolve, reject) => {
+            db.query(sql, (error, lastID) => {
+                if (error) return reject(error)
+
+                return resolve()
+            })
         })
     }
 }

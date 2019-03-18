@@ -1,15 +1,32 @@
 const Model = require('./model')
 
 class Music extends Model{
-    constructor (name, artist, file) {
+    constructor () {
         super ()
-        this.name = name.trim()
-        this.artist = artist.trim()
-        this.file = file
 
         this.table = {}
         this.table.music = 'music_music'
     }
+
+    setID (id) {
+        this.id = id
+    }
+
+    setMusic (name, artist, file) {
+        this.name = name.trim()
+        this.artist = artist.trim()
+        this.file = file
+    }
+
+    getByID (db, fields) {
+        super.getbyID(
+            db,
+            this.table.music,
+            this.id,
+            fields
+        )
+    }
+
     getMusicList () {
         let query = "SELECT * FROM music_music"
         return super.query(query)
@@ -32,6 +49,26 @@ class Music extends Model{
     	if ( ! this.file) return false;
 
     	return true;
+    }
+
+    delete (db) {
+        // Require File System Module for deletion of data
+        const fs = require('fs')
+        const deleteMusic = () => super.delete(db, this.table.music, this.id)
+        return new Promise((resolve, reject) => {
+            this.getByID(db)
+            .then(music => {
+                fs.unlink(`src/assets/audio/${music.audio_path}`,   (err) => {
+                    if (err) {
+                        return reject(err)
+                    }
+                    return deleteMusic()
+                        .then(() => resolve())
+                        .catch(error => reject(error))
+                })
+            })
+            .catch(error => reject(error))
+        })
     }
 }
 
