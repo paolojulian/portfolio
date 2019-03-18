@@ -1,5 +1,6 @@
 <template lang="html">
     <div id="Dashboard">
+        <social-media-accounts/>
         <div class="Dashboard__image">
             <div class="img-responsive"/>
         </div><div class="Dashboard__text">
@@ -13,8 +14,6 @@
                 </div>
 
                 <router-link to="/hobby" class="Dashboard__button">CHECK ME</router-link>
-
-                <social-media-accounts/>
             </div>
         </div>
     </div>
@@ -48,7 +47,7 @@ export default {
     width: 100%;
     background-color: #d3d3d3;
 }
-.Dashboard__image div{
+.Dashboard__image div.img-responsive{
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -63,6 +62,7 @@ export default {
     position: relative;
     letter-spacing: 0.05em;
     text-align: center;
+    overflow-y: auto;
 
     height: calc(var(--my-display-height) * 0.55);
     width: 100%;
@@ -83,7 +83,7 @@ export default {
     font-size: 0.8rem;
 }
 .Dashboard__button {
-    padding: 0.8rem 1.5rem;
+    padding: 0.5rem 3rem;
 
     font-weight: 500;
     font-size: 1.2rem;
@@ -91,11 +91,11 @@ export default {
     color: #ffffff;
     background-color: var(--my-blue);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 5px;
+    border-radius: 30px;
 }
 /* TAB */
 @media screen and (min-width: 600px){
-    .Dashboard__image div{
+    .Dashboard__image div.img-responsive{
         transform: translateX(-20%);
     }
     .Dashboard__text div.center-absolute div{
@@ -115,7 +115,7 @@ export default {
         height: 100vh;
         background-color: unset;
     }
-    .Dashboard__image div{
+    .Dashboard__image div.img-responsive{
         left: 5%;
         transform: none;
     }

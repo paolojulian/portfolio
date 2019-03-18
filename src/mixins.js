@@ -10,6 +10,15 @@ const GLOBAL_MIXINS = {
 			}
 		}
 	},
+
+	computed: {
+		'IMAGES.loaded': function () {
+			if (this.IMAGES.counter !== this.IMAGES.length) return false;
+
+			return true
+		}
+	},
+
 	methods: {
 		...mapMutations($pageLoader, [
 			'pageLoading',
@@ -18,6 +27,7 @@ const GLOBAL_MIXINS = {
 		]),
 
 		TEST (msg) {
+			// eslint-disable-next-line
 			console.log(msg)
 		},
 
@@ -26,15 +36,12 @@ const GLOBAL_MIXINS = {
 			this.IMAGES.length = images.length;
 
 			[].forEach.call(images, (img) => {
-			    img.addEventListener('load', () => this.incrementCounter(), false);
+				img.addEventListener('load', () => this.incrementCounter(), false)
 			});
 		},
 
-		incrementCounter() {
-		    counter++;
-		    if (counter === this.IMAGES.length) {
-		        console.log( 'All images loaded!' );
-		    }
+		incrementCounter () {
+			this.IMAGES.counter ++
 		}
 	}
 }
