@@ -8,7 +8,7 @@ let musicPath = 'src/assets/audio'
 let storage = multer.diskStorage({
     destination: musicPath,
     filename: function (req, file, cb) {
-        cb(null, file.filename + '-' + Date.now() + '.mp3')
+        cb(null, file.originalname + '-' + Date.now() + '.mp3')
     }
 })
 

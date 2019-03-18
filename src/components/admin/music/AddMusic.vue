@@ -46,6 +46,7 @@ export default {
 
     methods: {
         submitForm () {
+            return this.resetForm()
             this.error = false
             let form = new FormData()
             form.append('name', this.form.name)
@@ -76,8 +77,10 @@ export default {
         },
 
         resetForm () {
+            this.$refs.musicFile.value = null
             this.form = new MusicForm()
         },
+        
         handleFileUpload (event) {
             this.form.file = event.target.files[0]
             if (this.form.name.trim() === '') {
