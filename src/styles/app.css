@@ -19,7 +19,7 @@ html {
 body {
     margin: 0;
     background-color: #ececec;
-	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Roboto', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 #app {
@@ -93,6 +93,15 @@ body {
     .no-print, .no-print *
     {
         display: none !important;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .dim {
+        opacity: 0.5;
+    }
+    .dim:hover {
+        opacity: 1;
     }
 }
 

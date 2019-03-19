@@ -2,7 +2,7 @@
 <div id="CodingProjects">
     <div class="CodingProjects__background"/>
     <div class="CodingProjects__header">
-        <span>CodingProjects</span>
+        <span>Projects</span>
     </div>
     <br/>
     <div class="CodingProjects__list">
@@ -85,7 +85,8 @@ export default {
     padding: 5rem;
     text-align: center;
     margin: 0 auto;
-    background-color: #000000;
+    background-color: #d3d3d3;
+    border-top: 1px solid #131313;
 }
 
 .CodingProjects__header {
@@ -93,10 +94,12 @@ export default {
     width: 90%;
 
     text-transform: uppercase;
-    color: #ffffff;
+    color: #131313;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
     letter-spacing: 0.1rem;
     font-size: 2rem;
     font-weight: 300;
+    font-family: 'Proxima Nova Soft', 'Helvetica Neue', sans-serif;
 }
 .CodingProjects__header span{
     margin: auto;
@@ -110,19 +113,21 @@ export default {
     width: 100%;
     height: 100%;
     opacity: 0.3;
-    background-image: url('../../../assets/img/coding/projects/background.png');
-    background-attachment: fixed;
+    /* background-image: url('../../../assets/img/coding/projects/background.png'); */
+    /* background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; */
 }
 .CodingProjects__list {
     width: 90%;
 }
-.CodingProjects__list:hover >>> .ProjectCard{
-    opacity: 0.5;
-}
-.CodingProjects__list >>> .ProjectCard:hover{
-    opacity: 1;
+@media screen and (min-width: 600px) {
+    .CodingProjects__list:hover >>> .ProjectCard{
+        opacity: 0.5;
+    }
+    .CodingProjects__list >>> .ProjectCard:hover{
+        opacity: 1;
+    }
 }
 </style>

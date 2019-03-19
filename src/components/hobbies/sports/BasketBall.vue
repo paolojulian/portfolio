@@ -2,12 +2,17 @@
 <div id="Basketball">
     <div class="Basketball__img sports-img"/>
     <div class="Basketball__header">
-        <div class="basketball-header-bold text-shadow-light">
+        <div class="basketball-header-bold text-shadow-light"
+            data-aos="fade-right"
+        >
             The moment you give up
             <br />
             is the moment you let someone else win
         </div>
-        <div class="basketball-header-light">
+        <div class="basketball-header-light"
+            data-aos="fade-right"
+            data-aos-delay="400"
+        >
             Nash, Melo, Birdman, KG and Kobe are my favorite players
             to play the game of basketball, they have inspired me in many ways
             not just in the game but also in everyday life.
@@ -82,18 +87,19 @@ export default {
 .Basketball__images {
     display: flex;
     height: 100%;
-    width: 100%;
+    width: 100vw;
 }
 .Basketball__favorites__img{
     display: inline-block;
     position: absolute;
     bottom: 0;
 
-    width: 90%;
     height: 90%;
+    width: 130px;
 
     background-repeat: no-repeat;
     background-size: contain;
+    background-position: bottom;
 }
 /* .Basketball__favorites__img.pg:hover{
     z-index: 20;
@@ -106,28 +112,28 @@ export default {
     animation-duration: 1200ms;
 }
 .Basketball__favorites__img.sf{
-    left: 13%;
+    left: 17%;
     z-index: 9;
     background-image: url('../../../assets/img/sports/basketball/melo.png');
     animation-name: slideInFromLeft;
     animation-duration: 700ms;
 }
 .Basketball__favorites__img.c{
-    left: 27%;
+    left: 35%;
     background-image: url('../../../assets/img/sports/basketball/birdman.png');
     z-index: 10;
     animation-name: slideInFromBottom;
     animation-duration: 600ms;
 }
 .Basketball__favorites__img.pf{
+    right: 13%;
     background-image: url('../../../assets/img/sports/basketball/garnett.png');
-    left: 38%;
     z-index: 9;
     animation-name: slideInFromRight;
     animation-duration: 900ms;
 }
 .Basketball__favorites__img.sg{
-    left: 55%;
+    right: -3%;
     background-image: url('../../../assets/img/sports/basketball/kobe.png');
     z-index: 8;
     animation-name: slideInFromRight;

@@ -1,5 +1,8 @@
 <template lang="html">
-<div class="EsportsGame">
+<div class="EsportsGame"
+    data-aos="slide-right"
+    data-aos-delay="300"
+>
     <div class="EsportsCard">
         <div class="EsportsCard-img" :style="imgStyle"/>
         <div class="EsportsCard-text">

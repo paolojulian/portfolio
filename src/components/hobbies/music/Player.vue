@@ -1,5 +1,7 @@
 <template lang="html">
-<div id="Player" v-if="currentPlaying !== null">
+<div id="Player"
+    :class="{ 'dim': $route.name !== 'HobbyMusic' }"
+    v-if="currentPlaying !== null">
     <div class="Player__relative">
         <div id="Player__seekbar">
             <input type="range"
@@ -251,6 +253,7 @@ class Song {
 <style scoped>
 /* MOBILE */
 #Player {
+    z-index: 90;
     position: fixed;
     left: 0;
     bottom: var(--my-player-height);

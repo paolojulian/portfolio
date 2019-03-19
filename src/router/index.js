@@ -18,6 +18,12 @@ const router = new Router({
     }
 })
 
+router.beforeResolve((to, from, next) => {
+    if (to.name) {
+    }
+    next()
+})
+
 router.beforeEach((to, from, next) => {
     // check if the route requires authentication
     const isAuthRequired = to.meta.hasOwnProperty('authRequired')

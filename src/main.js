@@ -6,16 +6,26 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 import moment from 'moment'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 import './helpers/globals'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+import GLOBAL_MIXINS from './mixins'
+
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.config.productionTip = false
 
 new Vue({
   router,
   store,
+  created () {
+  	AOS.init()
+  },
   render: (h) => h(App),
 }).$mount('#app');
+
+Vue.mixin(GLOBAL_MIXINS)
 
 Vue.filter('convertDateTime', function (value) {
     let datetime = moment(value)

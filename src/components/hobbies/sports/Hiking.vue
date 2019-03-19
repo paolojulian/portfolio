@@ -3,18 +3,26 @@
     <div class="Hiking__img sports-img"/>
     <div class="Hiking__header">
         <div class="Hiking__header__text">
-            <div class="hiking-header-bold text-shadow-light">
+            <div class="hiking-header-bold text-shadow-light"
+                data-aos="fade-right"
+            >
                 IT’S NOT THE CLIMB,
                 <br />
                 IT’S THE DISCIPLINE TO CLIMB
             </div>
-            <div class="hiking-header-light">
+            <div class="hiking-header-light"
+                data-aos="fade-left"
+                data-aos-delay="100"
+            >
                 I always like long hikes, the thrill of
 sleeping in the cold, eating nuts, burritos,
 that low amount of water, and the climb.
             </div>
         </div>
-        <div class="Hiking__gallery">
+        <div class="Hiking__gallery"
+            data-aos="fade-up"
+            data-aos-delay="100"
+        >
         </div>
     </div>
 </div>
@@ -22,6 +30,7 @@ that low amount of water, and the climb.
 
 <script type="text/javascript">
 export default {
+    name: 'Hiking'
 }
 </script>
 

@@ -1,5 +1,6 @@
 <template lang="html">
     <div id="Dashboard">
+        <social-media-accounts/>
         <div class="Dashboard__image">
             <div class="img-responsive"/>
         </div><div class="Dashboard__text">
@@ -18,9 +19,13 @@
     </div>
 </template>
 
-<script type="text/javascript">
+<script>
+
 export default {
-    name: 'Dashboard'
+    name: 'Dashboard',
+    components: {
+        SocialMediaAccounts: () => import('./SocialMediaAccounts')
+    }
 }
 </script>
 
@@ -38,11 +43,11 @@ export default {
 }
 .Dashboard__image {
     position: relative;
-    height: calc(var(--my-display-height) / 2);
+    height: calc(var(--my-display-height) * 0.45);
     width: 100%;
     background-color: #d3d3d3;
 }
-.Dashboard__image div{
+.Dashboard__image div.img-responsive{
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -57,12 +62,17 @@ export default {
     position: relative;
     letter-spacing: 0.05em;
     text-align: center;
+    overflow-y: auto;
 
-    height: calc(var(--my-display-height) / 2);
+    height: calc(var(--my-display-height) * 0.55);
     width: 100%;
 }
 .Dashboard__text div.center-absolute{
     width: 90%;
+}
+.Dashboard__header,
+.Dashboard__description {
+    margin-bottom: 1rem;
 }
 .Dashboard__header {
     font-size: 1.5rem;
@@ -72,11 +82,8 @@ export default {
     font-weight: 300;
     font-size: 0.8rem;
 }
-.Dashboard__text div.center-absolute div{
-    margin-bottom: 1rem;
-}
 .Dashboard__button {
-    padding: 0.8rem;
+    padding: 0.5rem 3rem;
 
     font-weight: 500;
     font-size: 1.2rem;
@@ -84,21 +91,18 @@ export default {
     color: #ffffff;
     background-color: var(--my-blue);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 5px;
+    border-radius: 30px;
 }
 /* TAB */
 @media screen and (min-width: 600px){
-    .Dashboard__image div{
+    .Dashboard__image div.img-responsive{
         transform: translateX(-20%);
     }
     .Dashboard__text div.center-absolute div{
         margin-bottom: 1.5rem;
     }
-    .Dashboard__header {
-        font-size: 2rem;
-    }
     .Dashboard__description {
-        font-size: 1.2rem;
+        font-size: 1rem;
         margin-bottom: 1rem;
     }
 }
@@ -111,7 +115,7 @@ export default {
         height: 100vh;
         background-color: unset;
     }
-    .Dashboard__image div{
+    .Dashboard__image div.img-responsive{
         left: 5%;
         transform: none;
     }
@@ -121,7 +125,11 @@ export default {
         width: 50%;
         height: 100vh;
     }
+    .Dashboard__header {
+        font-size: 2rem;
+    }
     .Dashboard__description {
+        font-size: 1.2rem;
         margin: 0 auto;
         width: 80%;
     }
