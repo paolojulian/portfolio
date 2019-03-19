@@ -107,3 +107,6 @@ body {
 .empty-input {
     border: 1px solid red !important;
 }
+.indent {
+    text-indent: 1rem;
+}
