@@ -54,10 +54,12 @@ class Music extends Model{
         
         // Require File System Module for deletion of data
         const fs = require('fs');
+        const resolveSrc = require('../../../../aliases.config')
         const deleteFromDB = () => super.deleteByID(this.table.music, this.id);
         const deleteFile = (audio_path) => {
             return new Promise((resolve, reject) => {
-                fs.unlink(`src/assets/audio/${audio_path}`, (err) => {
+                audio_path = resolveSrc(`src/assets/audio/${audio_path}`)
+                fs.unlink(audio_path, (err) => {
                     if (err) return reject(err);
 
                     return resolve();

@@ -2,9 +2,10 @@ const URL = require('../../APIRoutes')
 const router = require('./router')
 const JsonResponse = require('./json')
 const MusicModel = require('../models/music.model.js')
-
+const resolveSrc = require('../../../../aliases.config')
 let multer = require('multer');
-let musicPath = 'src/assets/audio'
+
+let musicPath = resolveSrc(`/src/assets/audio`)
 let storage = multer.diskStorage({
     destination: musicPath,
     filename: function (req, file, cb) {
