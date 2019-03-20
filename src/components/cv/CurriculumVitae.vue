@@ -24,24 +24,24 @@
 
                 <label class="CV__skill_label">Personal</label>
                 <ul>
+                    <label>-Fast Learner</label>
                     <li>
-                        Fast Learner -
                         My key to learning faster is to
                         master the basics and understand the
                         meaning
                     </li>
+                    <label>-Team Player</label>
                     <li>
-                        Team Player -
                         A team should play as a team, not as individuals.
                         Comminucate, and understand one another.
                     </li>
+                    <label>-Passionate</label> 
                     <li>
-                        Passionate -
                         I always want to continue developing myself and learning
-                        new things
+                        new things because programming is life
                     </li>
+                    <label>-Friendly</label> 
                     <li>
-                        Friendly -
                         I forgive others easily and don't hold grudges
                     </li>
                 </ul>
@@ -85,8 +85,8 @@
                             Junior Web Developer
                         </td>
                         <td>
-                            Primarily worked with the School System, Payroll System, and Teacher System,
-                            mainly used HTML, CSS, VueJS and JQuery for front-end and Codeigniter for Back-end.
+                            Primarily worked with the <b>School System</b>, <b>Payroll System</b>, and <b>Teacher System</b>,
+                            mainly used <b>HTML</b>, <b>CSS</b>, <b>VueJS</b> and <b>JQuery</b> for front-end and <b>Codeigniter</b> for Back-end.
                             usually worked on schedule management and the main back bone logics
                             of the school system.
                         </td>
@@ -187,40 +187,32 @@ export default {
 
 <style scoped>
 #CV {
+    width: 100vw;
+    min-height: 100vh;
     position: relative;
+    font-weight: 300;
 }
-
-@media only screen
-{    
-    #CV__card {
-        box-shadow: 0 5px 10px #131313;
-    }
-}
-
 #CV__card {
-    width: 50rem;
+    box-sizing: border-box;
+    width: 100%;
     background-color: white;
 
-    padding: 1rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-
-    margin-bottom: 10rem;
-
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    padding: 0.5rem;
 }
 
 #CV__photo {
     float: right;
-    width: 15rem;
-    height: 15rem;
+    width: calc(50vw - 1rem);
+    height: calc(50vw - 1rem);
     background-color: rgba(0, 0, 0, 0.25);
 }
 
 #CV__details {
     position: relative;
+    width: calc(50vw - 1rem);
+    font-size: 0.9rem;
+    padding-right: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 
 #CV__details div {
@@ -229,7 +221,7 @@ export default {
 
 #CV__details__fullname {
     font-weight: bold;
-    font-size: 2.5rem;
+    font-size: 1.2rem;
 }
 
 #CV__details__quote {
@@ -242,24 +234,30 @@ export default {
 }
 
 .CV__section_header {
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    font-weight: bold;
+    margin: 0.5rem -0.5rem;
+    font-weight: 400;
     font-size: 1.5rem;
+    padding: 0.5rem 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
     text-align: center;
     background-color: var(--my-dark);
     color: var(--my-yellow);
 }
 #CV__skills_list ul {
-    list-style: none;
     padding: 1rem;
+}
+
+#CV__skills_list ul li{
+    text-indent: 1rem;
+    margin-bottom: 0.5rem;
 }
 .CV__skill_label {
     font-size: 1.2rem;
 }
 
 tr td:first-child {
-    width: 15rem;
+    width: 10rem;
 }
 table label {
     font-size: 1.2rem;
@@ -267,5 +265,50 @@ table label {
 }
 .educational-header {
     vertical-align: top;
+}
+@media screen and (min-width: 600px) {
+    #CV {
+        font-weight: 400;
+    }
+    #CV__card {
+        width: 50rem;
+
+        padding: 1rem 2rem;
+
+        margin-bottom: 10rem;
+
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+
+        box-shadow: 0 5px 10px #131313;
+    }
+    #CV__photo {
+        width: 15rem;
+        height: 15rem;
+    }
+    #CV__details {
+        position: relative;
+        width: calc(50vw - 1rem);
+        font-size: 1rem;
+        font-weight: unset;
+        padding-right: unset;
+        padding-bottom: unset;
+    }
+    #CV__details__fullname {
+        font-size: 2.5rem;
+    }
+
+    #CV__details__quote {
+        margin-top: 1rem;
+        font-style: italic;
+    }
+    .CV__section_header {
+        margin: 0.5rem 0;
+        font-size: 1.5rem;
+    }
+    tr td:first-child {
+        width: 15rem;
+    }
 }
 </style>
