@@ -1,4 +1,8 @@
 class Model {
+    constructor (db) {
+        this.db = db
+    }
+
     query (query) {
         return new Promise((resolve, reject) => {
             this.db.query(query, (error, response) => {
@@ -21,7 +25,7 @@ class Model {
      * @param { String } fields - Fields to get
      * @return { Promise }
      */
-    getByID (db, table, id, fields = "*") {
+    getByID (table, id, fields = "*") {
         return new Promise((resolve, reject) => {
             let sql = `
                 SELECT ${fields}
@@ -31,7 +35,7 @@ class Model {
 
             // eslint-disable-next-line
             console.log(sql)
-            db.query(sql, (error, response) => {
+            this.db.query(sql, (error, response) => {
                 // eslint-disable-next-line
                 if (error) return reject(error);
                 if ( ! response[0]) return reject('No Data')
@@ -47,7 +51,7 @@ class Model {
      * @param { Object } db - db from express
      * @return { Promise }
      */
-    insert (table, form, db) {
+    insert (table, form) {
         let keys = []
         let values = []
         for (let key in form) {
@@ -64,7 +68,7 @@ class Model {
         // eslint-disable-next-line
         console.log(sql)
         return new Promise((resolve, reject) => {
-            db.query(sql, (error) => {
+            this.db.query(sql, (error) => {
                 // eslint-disable-next-line
                 console.log(error)
                 if (error) return reject(error)
@@ -82,15 +86,27 @@ class Model {
         })
     }
 
-    deleteByID (db, table, id) {
+    deleteByID (table, id) {
         let sql = `DELETE FROM ${table} WHERE id = ${id}`
         return new Promise((resolve, reject) => {
-            db.query(sql, (error) => {
+            this.db.query(sql, (error) => {
                 if (error) return reject(error)
 
                 return resolve()
             })
         })
+    }
+
+    beginTransaction (func) {
+        return this.db.beginTransaction(func())
+    }
+
+    commitTransaction (func) {
+        return this.db.commit(func)
+    }
+
+    rollbackTransaction (func) {
+        return this.db.rollback(func)
     }
 }
 

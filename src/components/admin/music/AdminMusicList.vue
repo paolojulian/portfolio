@@ -21,6 +21,7 @@
 import { $hobbies } from '@/helpers/constants'
 import { mapGetters, mapActions } from 'vuex'
 import { APIHobby } from '@/api/APIHobby.js'
+const api = new APIHobby()
 export default {
     name: "AdminMusicList",
     data () {
@@ -48,15 +49,15 @@ export default {
         ]),
 
         editMusic (id) {
-
+            api.editMusic(id)
         },
 
         deleteMusic (id) {
-            const api = new APIHobby()
             api.deleteMusic(id)
                 .then(() => {
                     this.success.status = true
                     this.success.message = 'Successfully deleted'
+                    this.getMusicList()
                 })
                 .catch(err => {
                     // eslint-disable-next-line

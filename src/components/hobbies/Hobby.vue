@@ -44,7 +44,7 @@
 </template>
 
 <script type="text/javascript">
-import { $hobbies, $pageLoader } from '@/helpers/constants'
+import { $hobbies } from '@/helpers/constants'
 import { mapActions, mapGetters } from 'vuex'
 export default {
     components: {

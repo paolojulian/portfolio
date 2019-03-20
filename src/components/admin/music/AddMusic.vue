@@ -35,6 +35,8 @@ class MusicForm {
         this.file = null
     }
 }
+import { $hobbies } from '@/helpers/constants'
+import { mapActions } from 'vuex'
 export default {
     name: 'AddMusic',
     data () {
@@ -45,6 +47,9 @@ export default {
     },
 
     methods: {
+        ...mapActions($hobbies, [
+            'getMusicList'
+        ]),
         submitForm () {
             this.error = false
             let form = new FormData()
@@ -65,8 +70,9 @@ export default {
                 .catch(this.handleError)
         },
 
-        handleSuccess (response) {
+        handleSuccess () {
             this.resetForm()
+            this.getMusicList()
         },
 
         handleError (error) {

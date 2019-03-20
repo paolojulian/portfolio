@@ -1,8 +1,8 @@
 const Model = require('./model')
 
 class Music extends Model{
-    constructor () {
-        super ()
+    constructor (db) {
+        super (db)
 
         this.table = {}
         this.table.music = 'music_music'
@@ -18,21 +18,20 @@ class Music extends Model{
         this.file = file
     }
 
-    getByID (db, fields) {
+    getByID (fields) {
         return super.getByID(
-            db,
             this.table.music,
             this.id,
             fields
         );
     }
 
-    getMusicList () {
-        let query = "SELECT * FROM music_music"
+    getMusicList (fields = '*') {
+        let query = `SELECT ${fields} FROM music_music`
         return super.query(query)
     }
 
-    addMusic (db) {
+    addMusic () {
         let music = {
             name: this.name,
             artist: this.artist,
@@ -40,7 +39,7 @@ class Music extends Model{
             genre_id: 4
         }
 
-        return super.insert(this.table.music, music, db)
+        return super.insert(this.table.music, music)
     }
 
     validateEmpty () {
@@ -51,11 +50,11 @@ class Music extends Model{
         return true;
     }
 
-    deleteMusic (db) {
+    deleteMusic () {
         
         // Require File System Module for deletion of data
         const fs = require('fs');
-        const deleteFromDB = () => super.deleteByID(db, this.table.music, this.id);
+        const deleteFromDB = () => super.deleteByID(this.table.music, this.id);
         const deleteFile = (audio_path) => {
             return new Promise((resolve, reject) => {
                 fs.unlink(`src/assets/audio/${audio_path}`, (err) => {
@@ -67,20 +66,27 @@ class Music extends Model{
         };
 
         return new Promise((resolve, reject) => {
-            db.beginTransaction(async err => {
+            this.beginTransaction(async err => {
                 try {
                     if (err) { throw err }
-                    const audioPath = await this.getByID(db, 'audio_path')
+                    const audioPath = await this.getByID('audio_path')
                         .then(response => response.audio_path)
+                        .catch(err => { throw err })
 
                     const a = deleteFromDB()
                     const b = deleteFile(audioPath)
 
                     await Promise.all([a, b]).catch(err => { throw err })
-                    await db.commit(err => { throw err })
+                    await this.db.commit(err => { 
+                        if (err) throw err;
+                        this.db.release()
+                    })
                     return resolve()
                 } catch (err) {
-                    await db.rollback(err => { reject(err) })
+                    await this.db.rollback(err => {
+                        this.db.release()
+                        return reject(err);
+                    })
                     return reject(err)
                 }
             })
