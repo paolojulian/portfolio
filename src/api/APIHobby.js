@@ -32,4 +32,8 @@ export class APIHobby extends MyAPI {
             URL.coding.frameworks
         ])
     }
+
+    deleteMusic (musicID) {
+        return super.xhrPost(URL.music.delete, { musicID })
+    }
 }

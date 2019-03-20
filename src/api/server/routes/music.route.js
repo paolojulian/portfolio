@@ -39,40 +39,42 @@ router.get(URL.music.list, (req, res) => {
 
 // music/add
 router.post(URL.music.add, upload.single('file'), (req, res) => {
-    var music = new MusicModel.Music()
-    music.setMusic(
-        req.body.name,
-        req.body.artist,
-        req.file
-    )
-
-    if ( ! music.validateEmpty()) {
-        return res.status(422).json('Incomplete Parameters')
-    }
-
     req.getConnection((error, db) => {
+        if (error) return res.status(505);
+
+        var music = new MusicModel.Music()
+        music.setMusic(
+            req.body.name,
+            req.body.artist,
+            req.file
+        )
+
+        if ( ! music.validateEmpty()) {
+            return res.status(422).json('Incomplete Parameters')
+        }
+
+
         music.addMusic(db)
             .then(() => {
                 res.status(200).json(new JsonResponse(true))
             })
-            .catch(() => res.status(502))
+            .catch(() => res.status(502).json(new JsonResponse(false)))
     })
 })
 
 // music/delete
 router.post(URL.music.delete, (req, res) => {
-
-    const musicModel = new MusicModel.Music()
-    musicModel.setID(req.body.musicID)
-
     req.getConnection((error, db) => {
-        musicModel.delete(db)
-            .then(() => {
-                res.status(200)
-                    .json(new JsonResponse(true))
-            })
-            .catch(() => res.status(502))
+        if (error) return res.status(500).json(new JsonResponse(false));
+
+        const musicModel = new MusicModel.Music()
+        musicModel.setID(req.body.musicID)
+
+        musicModel
+            .deleteMusic(db)
+            .then(() => res.status(200).json(new JsonResponse(true)))
+            .catch(() => res.status(500).json(new JsonResponse(false)))
     })
 })
 
-module.exports = router
+module.exports = router;
