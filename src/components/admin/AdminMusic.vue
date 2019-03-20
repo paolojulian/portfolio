@@ -4,6 +4,7 @@
 >
     AdminMusic
     <AddMusic/>
+    <AdminMusicList/>
 </div>
 </template>
 
@@ -12,7 +13,8 @@ export default {
     name: 'AdminMusic',
 
     components: {
-        AddMusic: () => import('./music/AddMusic.vue')
+        AddMusic: () => import('./music/AddMusic.vue'),
+        AdminMusicList: () => import('./music/AdminMusicList.vue')
     }
 }
 </script>

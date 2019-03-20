@@ -25,14 +25,18 @@ class Model {
         return new Promise((resolve, reject) => {
             let sql = `
                 SELECT ${fields}
-                FROM ${TABLE}
+                FROM ${table}
                 WHERE id = ${id}
             `
-            db.query(sql, (error) => {
-                console.log(error, response)
-                if (error) return reject(error);
 
-                return resolve(response)
+            // eslint-disable-next-line
+            console.log(sql)
+            db.query(sql, (error, response) => {
+                // eslint-disable-next-line
+                if (error) return reject(error);
+                if ( ! response[0]) return reject('No Data')
+
+                return resolve(response[0])
             })
         })
     }
@@ -57,9 +61,11 @@ class Model {
         let insertValues = `VALUES ('${values.join("','")}')`
 
         let sql = `INSERT INTO ${table} ${columnNames} ${insertValues}`
+        // eslint-disable-next-line
         console.log(sql)
         return new Promise((resolve, reject) => {
             db.query(sql, (error) => {
+                // eslint-disable-next-line
                 console.log(error)
                 if (error) return reject(error)
 
@@ -76,10 +82,10 @@ class Model {
         })
     }
 
-    delete (db, table, id) {
+    deleteByID (db, table, id) {
         let sql = `DELETE FROM ${table} WHERE id = ${id}`
         return new Promise((resolve, reject) => {
-            db.query(sql, (error, lastID) => {
+            db.query(sql, (error) => {
                 if (error) return reject(error)
 
                 return resolve()
