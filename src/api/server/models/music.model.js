@@ -52,6 +52,7 @@ class Music extends Model{
     }
 
     deleteMusic (db) {
+        
         // Require File System Module for deletion of data
         const fs = require('fs');
         const deleteFromDB = () => super.deleteByID(db, this.table.music, this.id);
@@ -64,21 +65,26 @@ class Music extends Model{
                 });
             });
         };
-        const deleted = async() => {
-            try {
-                const audioPath = await this.getByID(db, 'audio_path')
-                    .then(response => response.audio_path);
 
-                const a = deleteFromDB()
-                const b = deleteFile(audioPath)
+        return new Promise((resolve, reject) => {
+            db.beginTransaction(async err => {
+                try {
+                    if (err) { throw err }
+                    const audioPath = await this.getByID(db, 'audio_path')
+                        .then(response => response.audio_path)
 
-                return await Promise.all([a, b])
-            } catch (err) {
-                throw err
-            }
-        };
+                    const a = deleteFromDB()
+                    const b = deleteFile(audioPath)
 
-        return deleted();
+                    await Promise.all([a, b]).catch(err => { throw err })
+                    await db.commit(err => { throw err })
+                    return resolve()
+                } catch (err) {
+                    await db.rollback(err => { reject(err) })
+                    return reject(err)
+                }
+            })
+        })
     }
 }
 

@@ -73,7 +73,11 @@ router.post(URL.music.delete, (req, res) => {
         musicModel
             .deleteMusic(db)
             .then(() => res.status(200).json(new JsonResponse(true)))
-            .catch(() => res.status(500).json(new JsonResponse(false)))
+            .catch(err => {
+                console.error('route')
+                console.error(err)
+                res.status(500).json(new JsonResponse(false))
+            })
     })
 })
 
