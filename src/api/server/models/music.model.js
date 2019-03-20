@@ -77,16 +77,10 @@ class Music extends Model{
                     const b = deleteFile(audioPath)
 
                     await Promise.all([a, b]).catch(err => { throw err })
-                    await this.db.commit(err => { 
-                        if (err) throw err;
-                        this.db.release()
-                    })
+                    await this.commitTransaction()
                     return resolve()
                 } catch (err) {
-                    await this.db.rollback(err => {
-                        this.db.release()
-                        return reject(err);
-                    })
+                    await this.rollbackTransaction()
                     return reject(err)
                 }
             })

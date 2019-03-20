@@ -101,12 +101,12 @@ class Model {
         return this.db.beginTransaction(func())
     }
 
-    commitTransaction (func) {
-        return this.db.commit(func)
+    commitTransaction () {
+        return this.db.commit()
     }
 
-    rollbackTransaction (func) {
-        return this.db.rollback(func)
+    rollbackTransaction () {
+        return this.db.rollback()
     }
 }
 
