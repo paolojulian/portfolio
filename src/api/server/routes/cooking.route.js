@@ -52,7 +52,6 @@ router.get(URL.cooking.recipeList, (req, res) => {
             query += " WHERE favorite = 1"
             break;
         default:
-            query += " WHERE favorite = 1"
             break;
     }
 
