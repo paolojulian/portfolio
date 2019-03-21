@@ -86,6 +86,36 @@ class Model {
         })
     }
 
+    /**
+     * Edit of row via PRIMARY KEY(id)
+     * @param { String } table - tablename of data to be edited
+     * @param { Number } id - primary key
+     * @param { Object } data - key as column_name, value as new value
+     */
+    update (table, id, data, where = []) {
+        return new Promise((resolve, reject) => {
+                let sql = `
+                    UPDATE ${table}
+                    SET ${Object.keys(data).map((key) => {
+                        return `${key} = '${data[key]}'`
+                    }).join(', ')}
+                    WHERE id = ${id}
+                `
+                if (where) {
+                    sql += this.where(where)
+                }
+
+                this.db.query(sql, (error) => {
+                    if (error) return reject(error);
+
+                    return resolve()
+                })
+        })
+    }
+
+    /**
+     * Deletion of data by PRIMARY KEY(id)
+     */
     deleteByID (table, id) {
         let sql = `DELETE FROM ${table} WHERE id = ${id}`
         return new Promise((resolve, reject) => {
@@ -95,6 +125,19 @@ class Model {
                 return resolve()
             })
         })
+    }
+
+    /**
+     * Where condition parameter
+     * @param { Object } data - key as column_name, and value as value of column
+     * @return { String }
+     */
+    where (data) {
+        if ( ! data) return '';
+        return data
+            .map((value, index) => {
+                return `${index} = ${value}`
+            }).join(' AND ')
     }
 
     beginTransaction (func) {

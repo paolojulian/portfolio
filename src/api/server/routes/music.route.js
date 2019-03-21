@@ -65,6 +65,26 @@ router.post(URL.music.add, upload.single('file'), (req, res) => {
     })
 })
 
+// music/edit
+router.patch(URL.music.edit, (req, res) => {
+    req.getConnection((error, db) => {
+        if (error) return res.status(500).json(new JsonResponse(false));
+
+        const musicModel = new MusicModel.Music(db)
+        musicModel.setID(req.body.musicID)
+
+        musicModel
+            .updateMusic(req.body.data)
+            .then(() => res.status(200).json(new JsonResponse(true)))
+            .catch(err => {
+                // eslint-disable-next-line
+                console.trace(err)
+                res.status(500).json(new JsonResponse(false))
+            })
+    })
+})
+
+
 // music/delete
 router.post(URL.music.delete, (req, res) => {
     req.getConnection((error, db) => {

@@ -9,6 +9,7 @@ const URL = {
         main: API_URL + '/music',
         list: API_URL + '/music/list',
         add: API_URL + '/music/add',
+        edit: API_URL + '/music/edit',
         delete: API_URL + '/music/delete/:musicID'
     },
     cooking: {

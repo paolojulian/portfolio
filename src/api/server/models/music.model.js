@@ -50,8 +50,25 @@ class Music extends Model{
         return true;
     }
 
+    updateMusic (data) {
+        return new Promise((resolve, reject) => {
+            this.beginTransaction(async err => {
+                try {
+                    if (err) return reject(err);
+                    const updateDB = this.update(this.table.music, this.id, data)
+
+                    await Promise.all([updateDB]).catch(err => { throw err })
+                    await this.commitTransaction()
+                    resolve()
+                } catch (err) {
+                    await this.rollbackTransaction()
+                    reject(err)
+                }
+            })
+        })
+    }
+
     deleteMusic () {
-        
         // Require File System Module for deletion of data
         const fs = require('fs');
         const resolveSrc = require('../../../../aliases.config')
@@ -75,10 +92,12 @@ class Music extends Model{
                         .then(response => response.audio_path)
                         .catch(err => { throw err })
 
-                    const a = deleteFromDB()
-                    const b = deleteFile(audioPath)
+                    const promises = [
+                        deleteFromDB(),
+                        deleteFile(audioPath)
+                    ]
 
-                    await Promise.all([a, b]).catch(err => { throw err })
+                    await Promise.all(promises).catch(err => { throw err })
                     await this.commitTransaction()
                     return resolve()
                 } catch (err) {

@@ -33,6 +33,10 @@ export class APIHobby extends MyAPI {
         ])
     }
 
+    updateMusic (musicID, data) {
+        return super.xhrPatch(URL.music.edit, { musicID, data })
+    }
+
     deleteMusic (musicID) {
         return super.xhrPost(URL.music.delete, { musicID })
     }

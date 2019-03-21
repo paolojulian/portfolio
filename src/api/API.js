@@ -13,6 +13,18 @@ export class MyAPI {
         })
     }
 
+    xhrPatch (url, data, config) {
+        var apiAxios = config
+            ? () => Axios.patch(url, data, config)
+            : () => Axios.patch(url, data)
+
+        return new Promise((resolve, reject) => {
+            apiAxios()
+                .then(response => { APIValidate({ resolve, reject }, response) })
+                .catch(message => { reject(message) })
+        })
+    }
+
     xhrGet (url, params) {
         return new Promise((resolve, reject) => {
             var apiAxios = (params)
