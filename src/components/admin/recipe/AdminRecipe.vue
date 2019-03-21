@@ -1,6 +1,5 @@
 <template>
 <div class="AdminRecipe">
-    AdminRecipe
     <AddRecipe/>
 </div>
 </template>
