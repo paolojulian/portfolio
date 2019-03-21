@@ -20,7 +20,7 @@ new Vue({
   router,
   store,
   created () {
-  	AOS.init()
+    AOS.init()
   },
   render: (h) => h(App),
 }).$mount('#app');

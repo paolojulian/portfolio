@@ -2,16 +2,17 @@ const URL = require('../../APIRoutes')
 const router = require('./router')
 const JsonResponse = require('./json')
 const MusicModel = require('../models/music.model.js')
-
+const resolveSrc = require('../../../../aliases.config')
 let multer = require('multer');
-let musicPath = 'src/assets/audio'
+
+let musicPath = resolveSrc(`/src/assets/audio`)
 let storage = multer.diskStorage({
     destination: musicPath,
     filename: function (req, file, cb) {
-        cb(null, file.originalname + '-' + Date.now() + '.mp3')
+        let filename = file.originalname.split('.').slice(0, -1).join('')
+        cb(null, filename + '-' + Date.now() + '.mp3')
     }
 })
-
 let upload = multer({ storage })
 
 /**
@@ -26,14 +27,16 @@ let upload = multer({ storage })
 router.get(URL.music.list, (req, res) => {
     req.getConnection((error, db) => {
         // let db = req.db
-
-        let query = "SELECT * FROM music_music"
-        db.query(query, (error, musicList) => {
-            if (error) {
-                return res.status(503)
-            }
-            return res.status(200).json(new JsonResponse(true, musicList))
-        })
+        let music = new MusicModel.Music(db)
+        music.getMusicList()
+            .then(response => {
+                return res.status(200).json(new JsonResponse(true, response))
+            })
+            .catch(err => {
+                // eslint-disable-next-line
+                console.log(err)
+                res.status(500).json(new JsonResponse(false))
+            })
     })
 })
 
@@ -42,7 +45,7 @@ router.post(URL.music.add, upload.single('file'), (req, res) => {
     req.getConnection((error, db) => {
         if (error) return res.status(505);
 
-        var music = new MusicModel.Music()
+        var music = new MusicModel.Music(db)
         music.setMusic(
             req.body.name,
             req.body.artist,
@@ -54,7 +57,7 @@ router.post(URL.music.add, upload.single('file'), (req, res) => {
         }
 
 
-        music.addMusic(db)
+        music.addMusic()
             .then(() => {
                 res.status(200).json(new JsonResponse(true))
             })
@@ -62,20 +65,40 @@ router.post(URL.music.add, upload.single('file'), (req, res) => {
     })
 })
 
+// music/edit
+router.patch(URL.music.edit, (req, res) => {
+    req.getConnection((error, db) => {
+        if (error) return res.status(500).json(new JsonResponse(false));
+
+        const musicModel = new MusicModel.Music(db)
+        musicModel.setID(req.body.musicID)
+
+        musicModel
+            .updateMusic(req.body.data)
+            .then(() => res.status(200).json(new JsonResponse(true)))
+            .catch(err => {
+                // eslint-disable-next-line
+                console.trace(err)
+                res.status(500).json(new JsonResponse(false))
+            })
+    })
+})
+
+
 // music/delete
 router.post(URL.music.delete, (req, res) => {
     req.getConnection((error, db) => {
         if (error) return res.status(500).json(new JsonResponse(false));
 
-        const musicModel = new MusicModel.Music()
+        const musicModel = new MusicModel.Music(db)
         musicModel.setID(req.body.musicID)
 
         musicModel
-            .deleteMusic(db)
+            .deleteMusic()
             .then(() => res.status(200).json(new JsonResponse(true)))
             .catch(err => {
-                console.error('route')
-                console.error(err)
+                // eslint-disable-next-line
+                console.trace(err)
                 res.status(500).json(new JsonResponse(false))
             })
     })

@@ -6,6 +6,16 @@
         <input type="text" v-model="recipe.name"/>
     </div>
 
+    <div class="recipe-img">
+        <label>Image: </label>
+        <input data-test="cooking add-recipe image"
+            type="file"
+            ref="imageFile"
+            @change="handleFileUpload"
+        />
+    </div>
+
+
     <div class="recipe-ingredients">
         <label>Ingredients: </label>
         <br />
@@ -28,7 +38,7 @@
             :key="`procedure_${key}`"
         >
             {{ key + 1 }}. 
-            <textarea v-model="procedure.name"></textarea>
+            <textarea v-model="recipe.procedures[key]"></textarea>
         </div>
         <button @click="addProcedure">
             <font-awesome-icon icon="plus"/>
@@ -59,35 +69,57 @@ export default {
                 favorite: 0,
                 durationFrom: 5,
                 durationTo: 10,
+                file: null,
                 ingredients: [
                     new Ingredient('')
                 ],
-                procedures: [
-                    new Procedure('')
-                ],
+                procedures: [''],
                 foodCategoryID: 1
             }
         }
     },
     methods: {
+
         addProcedure () {
-            this.recipe.procedures.push(new Procedure(''))
+            this.recipe.procedures.push('')
         },
+
         removeProcedure () {
             if (this.recipe.procedures.length > 1) {
                 this.recipe.procedures.splice(-1,1)
             }
         },
+
         submit () {
-            axios.post(URL.cooking.addRecipe, this.recipe)
+            let form = new FormData()
+            Object.keys(this.recipe).map((key) => {
+                let value = this.recipe[key]
+                form.append(key, value)
+            })
+            let config = {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }
+            axios.post(URL.cooking.addRecipe, form, config)
                 .then(this.handleSuccess)
                 .catch(this.handleError)
         },
+
         handleSuccess () {
-            alert('Success')
+            // alert('Success')
         },
+
         handleError () {
-            alert('Error')
+            // alert('Error')
+        },
+
+        handleFileUpload (event) {
+            this.recipe.file = event.target.files[0]
+            if (this.recipe.name.trim() === '') {
+                this.recipe.name = this.recipe.file.name
+            }
+            return true
         }
     }
 }

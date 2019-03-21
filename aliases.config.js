@@ -15,3 +15,5 @@ for (const alias in aliases) {
   module.exports.jest['^' + alias + '/(.*)$'] =
     '<rootDir>/' + aliases[alias] + '/$1'
 }
+
+module.exports = resolveSrc

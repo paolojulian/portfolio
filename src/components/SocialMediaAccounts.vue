@@ -1,6 +1,7 @@
 <template>
 	<div class="SocialMediaAccounts">
 		<a v-for="(icon, i) in icons"
+			:key="i"
 			:href="links[i]"
 			target="_blank"
 		>
