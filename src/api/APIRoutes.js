@@ -13,6 +13,9 @@ const URL = {
         delete: API_URL + '/music/delete/:musicID'
     },
     cooking: {
+        create: {
+            procedure: API_URL + '/cooking/create/procedure'
+        },
         main: API_URL + '/cooking',
         recipe: API_URL + '/cooking/recipe/:recipeID',
         recipeList: API_URL + '/cooking/recipe',

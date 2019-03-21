@@ -1,9 +1,27 @@
 const Model = require('./model')
-// class Procedures extends Model {
-//     addProcedures() {
+class Procedures extends Model {
+    constructor (db) {
+        super (db)
 
-//     }
-// }
+        this.tableName = 'hobbies_procedure'
+    }
+
+    createTable () {
+        let sql = `CREATE TABLE \`${this.tableName}\` (
+            \`id\` int(11) NOT NULL AUTO_INCREMENT,
+            \`description\` longtext NOT NULL,
+            \`order\` int(10) unsigned NOT NULL,
+            \`dateCreated\` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            \`recipe_id\` int(11) NOT NULL,
+            PRIMARY KEY (\`id\`),
+            UNIQUE KEY \`hobbies_procedure_recipe_id_order_5cbc87a6_uniq\` (\`recipe_id\`,\`order\`),
+            CONSTRAINT \`hobbies_procedure_recipe_id_beeb89a5_fk_hobbies_recipe_id\` FOREIGN KEY (\`recipe_id\`) REFERENCES \`hobbies_recipe\` (\`id\`)
+        ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+        `
+
+        return this.query(sql)
+    }
+}
 class Recipe extends Model {
     constructor (db, name, favorite, duration_from, duration_to, ingredients, procedures, food_category_id, file) {
         super (db)
@@ -22,6 +40,35 @@ class Recipe extends Model {
         this.table = {}
         this.table.recipe = 'hobbies_recipe'
         this.table.procedure = 'hobbies_procedure'
+    }
+
+    createTable (table) {
+        let sql = ''
+        let tables = {
+            procedure: 'hobbies_procedure'
+        }
+
+        switch (table) {
+            case tables[table]:
+                sql = `CREATE TABLE \`${tables[table]}\` (
+                    \`id\` int(11) NOT NULL AUTO_INCREMENT,
+                    \`description\` longtext NOT NULL,
+                    \`order\` int(10) unsigned NOT NULL,
+                    \`dateCreated\` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                    \`recipe_id\` int(11) NOT NULL,
+                    PRIMARY KEY (\`id\`),
+                    UNIQUE KEY \`hobbies_procedure_recipe_id_order_5cbc87a6_uniq\` (\`recipe_id\`,\`order\`),
+                    CONSTRAINT \`hobbies_procedure_recipe_id_beeb89a5_fk_hobbies_recipe_id\` FOREIGN KEY (\`recipe_id\`) REFERENCES \`hobbies_recipe\` (\`id\`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+                `
+                break;
+            default:
+                return console.log('Invalid table')
+        }
+
+        console.log(sql)
+
+        return this.query(sql)
     }
 
     /**
@@ -61,12 +108,12 @@ class Recipe extends Model {
                     ]
                 })
             }
-            // eslint-disable-next-line
             this.beginTransaction(async err => {
                 try {
                     if (err) return reject(err);
-                    await this.insert(this.table.recipe, recipe)
-                    const recipeID = await this.insertID()
+
+                    await this.insert(this.table.recipe, recipe).catch(err => { throw err })
+                    const recipeID = await this.insertID().catch(err => { throw err })
 
                     const promises = [
                         this.insertBatch(
@@ -92,5 +139,6 @@ class Recipe extends Model {
 }
 
 module.exports = {
-    Recipe
+    Recipe,
+    Procedures
 }

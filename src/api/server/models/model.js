@@ -81,7 +81,7 @@ class Model {
     /** INSERT BATCH MYSQL
      * @param { String } table - TABLE NAME
      * @param { Array } columnNames - column names to be inserted
-     * @param { Object } data - 
+     * @param { Array } data - datas to be inserted, usually array of arrays
      */
     insertBatch (table, columnNames, insertValues) {
         columnNames = '(`' + columnNames.join('`, `') + '`)'

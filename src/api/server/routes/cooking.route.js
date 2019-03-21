@@ -11,6 +11,20 @@ const foodCategories = {
     american: 3,
     indian: 4
 }
+
+/**
+ * /cooking/create/procedure
+ */
+router.get(URL.cooking.create.procedure, (req, res) => {
+    req.getConnection((err, db) => {
+        if (err) return res.status(500).json('No Connection');
+
+        let ProcedureModel = new CookingModel.Procedures(db)
+        ProcedureModel.createTable()
+            .then(() => res.status(200).json('Successfully created table hobbies_procedure'))
+            .catch(err => res.status(500).json(err))
+    })
+})
 /**
  * /cooking/recipe
  * query
