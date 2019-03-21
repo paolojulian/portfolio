@@ -60,7 +60,7 @@ class Model {
             keys.push(key)
             values.push(form[key])
         }
-        let columnNames = '(' + keys.join(', ') + ')'
+        let columnNames = '(`' + keys.join('`, `') + '`)'
 
         let insertValues = `VALUES ('${values.join("','")}')`
 
@@ -78,11 +78,39 @@ class Model {
         })
     }
 
-    insertID (db) {
-        let sql = 'SELECT LAST_INSERT_ID()'
-        db.query(sql, (error, lastID) => {
-            if (error) throw error;
-            return lastID
+    /** INSERT BATCH MYSQL
+     * @param { String } table - TABLE NAME
+     * @param { Array } columnNames - column names to be inserted
+     * @param { Object } data - 
+     */
+    insertBatch (table, columnNames, insertValues) {
+        columnNames = '(`' + columnNames.join('`, `') + '`)'
+        insertValues = insertValues.map(value => `('${value.join("', '")}')`).join(',')
+        let sql = `INSERT INTO ${table} ${columnNames} VALUES ${insertValues}`
+        // eslint-disable-next-line
+        console.log(sql)
+        return new Promise((resolve, reject) => {
+            this.db.query(sql, err => {
+                // eslint-disable-next-line
+                console.log(err)
+                if (err) return reject(err);
+
+                resolve()
+            })
+        })
+    }
+    /**
+     * GETS THE LAST INSERTED ID
+     */
+    insertID () {
+        let sql = 'SELECT LAST_INSERT_ID() as insertID'
+        return new Promise((resolve, reject) => {
+            this.db.query(sql, (error, res) => {
+                if (error) return reject(error);
+                if ( ! res[0]) return reject('No Data')
+
+                return resolve(res[0].insertID)
+            })
         })
     }
 

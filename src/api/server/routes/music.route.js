@@ -9,10 +9,10 @@ let musicPath = resolveSrc(`/src/assets/audio`)
 let storage = multer.diskStorage({
     destination: musicPath,
     filename: function (req, file, cb) {
-        cb(null, file.originalname + '-' + Date.now() + '.mp3')
+        let filename = file.originalname.split('.').slice(0, -1).join('')
+        cb(null, filename + '-' + Date.now() + '.mp3')
     }
 })
-
 let upload = multer({ storage })
 
 /**

@@ -2,6 +2,8 @@ const URL = require('../../APIRoutes')
 const router = require('./router')
 const JsonResponse = require('./json')
 const CookingModel = require('../models/cooking.model')
+const multer = require('multer');
+const resolveSrc = require('../../../../aliases.config')
 
 const foodCategories = {
     asian: 1,
@@ -76,27 +78,40 @@ router.get(URL.cooking.recipe, (req, res) => {
  * 
  * @return { json }
  */
-router.post(URL.cooking.addRecipe, (req, res) => {
-    var recipe = new CookingModel.Recipe(
-        req.body.name,
-        req.body.favorite,
-        req.body.durationFrom,
-        req.body.durationTo,
-        req.body.ingredients,
-        req.body.procedures,
-        req.body.foodCategoryID
-    )
 
-    if ( ! recipe.validateEmpty()) {
-        return res.status(422).json('Incomplete Parameters')
+let musicPath = resolveSrc(`/src/assets/img/cooking`)
+let storage = multer.diskStorage({
+    destination: musicPath,
+    filename: function (req, file, cb) {
+        let filename = file.originalname.split('.').slice(0, -1).join('')
+        cb(null, filename + '-' + Date.now() + '.png')
     }
+})
+let upload = multer({ storage })
 
+router.post(URL.cooking.addRecipe, upload.single('file'), (req, res) => {
     req.getConnection((connectionErr, db) => {
-        recipe.addRecipe(db)
-            .then(() => {
-                res.status(200).json(new JsonResponse(true))
-            })
-            .catch(() => res.status(502))
+        if (connectionErr) return res.status(500).json('No Connection');
+
+        var recipe = new CookingModel.Recipe(
+            db,
+            req.body.name,
+            req.body.favorite,
+            req.body.durationFrom,
+            req.body.durationTo,
+            req.body.ingredients,
+            req.body.procedures.split(','),
+            req.body.foodCategoryID,
+            req.file
+        )
+
+        if ( ! recipe.validateEmpty()) {
+            return res.status(422).json('Incomplete Parameters')
+        }
+
+        recipe.addRecipe()
+            .then(() => res.status(200).json(new JsonResponse(true)))
+            .catch(err => res.status(500).json(err))
     })
 });
 
