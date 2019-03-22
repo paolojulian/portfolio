@@ -43,7 +43,7 @@ const actions = {
         commit('setHobbyCategories', coding)
     },
 
-    getHobbyCooking: ({ commit }, sortBy = 'favorite') => {
+    getHobbyCooking: ({ commit }, sortBy = 'all') => {
         commit('load')
         apiHobby.getRecipes(null, sortBy)
             .then(list => {

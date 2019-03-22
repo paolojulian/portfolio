@@ -3,7 +3,10 @@
     Add Recipe
     <div class="recipe-name">
         <label>Name: </label>
-        <input type="text" v-model="recipe.name"/>
+        <input type="text"
+            v-model="recipe.name"
+            placeholder="Recipe Name"
+            />
     </div>
 
     <div class="recipe-img">
@@ -19,37 +22,60 @@
     <div class="recipe-ingredients">
         <label>Ingredients: </label>
         <br />
-        <div v-for="(ingredient, key) in recipe.ingredients"
+        <div v-for="(ingredient, key) in ingredients"
             :key="`ingredient_${key}`"
         >
+            <input type="text"
+                placeholder="Quantity"
+                v-model="ingredient.quantity"
+                />
+            <br />
+            <input type="text"
+                placeholder="Description"
+                v-model="ingredient.description"
+                />
+            <br />
             <select v-model="ingredient.id">
-                <option disabled value="">Please select one</option>
-                <option value="1">Test</option>
+                <option disabled :value="null">Please select one</option>
+                <option value="8">TEst8</option>
+                <option value="9">test9</option>
+                <option value="10">Test10</option>
+                <option value="11">Test11</option>
             </select>
             <br />
         </div>
-        <font-awesome-icon icon="plus"/>
+        <button @click="addIngredient">
+            <font-awesome-icon icon="plus"/>
+        </button>
+        <button @click="removeIngredient"
+            v-if="ingredients.length > 1"
+        >
+            <font-awesome-icon icon="minus"/>
+        </button>
     </div>
 
     <div class="recipe-procedures">
         <label>Procedures:</label>
         <br />
-        <div v-for="(procedure, key) in recipe.procedures"
+        <div v-for="(procedure, key) in procedures"
             :key="`procedure_${key}`"
         >
             {{ key + 1 }}. 
-            <textarea v-model="recipe.procedures[key]"></textarea>
+            <textarea v-model="procedures[key]"></textarea>
         </div>
         <button @click="addProcedure">
             <font-awesome-icon icon="plus"/>
         </button>
         <button @click="removeProcedure"
-            v-if="recipe.procedures.length > 1"
+            v-if="procedures.length > 1"
         >
             <font-awesome-icon icon="minus"/>
         </button>
     </div>
     <div class="submit-add-recipe">
+        <button @click="resetForm">
+            RESET
+        </button>
         <button @click="submit">
             SUBMIT
         </button>
@@ -60,33 +86,49 @@
 <script>
 import axios from 'axios'
 const URL = require('../../../api/APIRoutes.js')
+class Ingredient {
+    constructor () {
+        this.id = null
+        this.quantity = '' 
+        this.description = ''
+    }
+}
+const recipe = {
+    name: '',
+    favorite: 0,
+    durationFrom: 5,
+    durationTo: 10,
+    file: null,
+    foodCategoryID: 1
+}
 export default {
     name: 'AddRecipe',
     data () {
         return {
-            recipe: {
-                name: '',
-                favorite: 0,
-                durationFrom: 5,
-                durationTo: 10,
-                file: null,
-                ingredients: [
-                    new Ingredient('')
-                ],
-                procedures: [''],
-                foodCategoryID: 1
-            }
+            recipe: { ...recipe },
+            ingredients: [new Ingredient()],
+            procedures: ['']
         }
     },
     methods: {
 
         addProcedure () {
-            this.recipe.procedures.push('')
+            this.procedures.push('')
         },
 
         removeProcedure () {
-            if (this.recipe.procedures.length > 1) {
-                this.recipe.procedures.splice(-1,1)
+            if (this.procedures.length > 1) {
+                this.procedures.splice(-1,1)
+            }
+        },
+
+        addIngredient () {
+            this.ingredients.push(new Ingredient())
+        },
+
+        removeIngredient () {
+            if (this.ingredients.length > 1) {
+                this.ingredients.splice(-1,1)
             }
         },
 
@@ -96,6 +138,8 @@ export default {
                 let value = this.recipe[key]
                 form.append(key, value)
             })
+            form.append('ingredients', JSON.stringify(this.ingredients))
+            form.append('procedures', JSON.stringify(this.procedures))
             let config = {
                 headers: {
                     'Content-Type': 'multipart/form-data'
@@ -106,12 +150,19 @@ export default {
                 .catch(this.handleError)
         },
 
+        resetForm () {
+            this.recipe = { ...recipe }
+            this.ingredients = [new Ingredient()]
+            this.procedures = ['']
+            this.$refs.imageFile.value = null
+        },
+
         handleSuccess () {
-            // alert('Success')
+            alert('Success')
         },
 
         handleError () {
-            // alert('Error')
+            alert('Error')
         },
 
         handleFileUpload (event) {
@@ -123,18 +174,20 @@ export default {
         }
     }
 }
-class Ingredient {
-    constructor (id) {
-        this.id = id
-    }
-}
-class Procedure {
-    constructor (name) {
-        this.name = name
-    }
-}
 </script>
 
 <style scoped>
-
+.AddRecipe {
+    text-align: left;
+    padding: 1rem;
+}
+@media screen and (min-width: 600px) {
+    .AddRecipe {
+        width: 50%;
+        margin: auto;
+    }
+}
+@media screen and (min-width: 1000px) {
+    
+}
 </style>

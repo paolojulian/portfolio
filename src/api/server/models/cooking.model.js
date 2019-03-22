@@ -1,11 +1,75 @@
 const Model = require('./model')
-// class Procedures extends Model {
-//     addProcedures() {
+class Ingredient extends Model {
+    constructor (db) {
+        super (db)
+        this.tableName = 'hobbies_ingredient'
+    }
+}
 
-//     }
-// }
+class RecipeIngredient extends Model {
+    constructor (db) {
+        super (db)
+        this.tableName = 'hobbies_recipeingredients'
+    }
+
+    addRecipeIngredients (recipeID, ingredients) {
+        const buildRecipeIngredients = () => ingredients.map((ingredient, index) => {
+            return [
+                ingredient.quantity,
+                ingredient.description,
+                index + 1,
+                ingredient.id,
+                recipeID
+            ]
+        })
+        return this.insertBatch(
+            this.tableName,
+            ['quantity', 'description', 'order', 'ingredient_id', 'recipe_id'],
+            buildRecipeIngredients()
+        ).catch(err => { throw err })
+    }
+}
+
+class Procedure extends Model {
+    constructor (db) {
+        super (db)
+
+        this.tableName = 'hobbies_procedure'
+    }
+
+    createTable () {
+        let sql = `CREATE TABLE \`${this.tableName}\` (
+            \`id\` int(11) NOT NULL AUTO_INCREMENT,
+            \`description\` longtext NOT NULL,
+            \`order\` int(10) unsigned NOT NULL,
+            \`dateCreated\` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            \`recipe_id\` int(11) NOT NULL,
+            PRIMARY KEY (\`id\`),
+            UNIQUE KEY \`hobbies_procedure_recipe_id_order_5cbc87a6_uniq\` (\`recipe_id\`,\`order\`),
+            CONSTRAINT \`hobbies_procedure_recipe_id_beeb89a5_fk_hobbies_recipe_id\` FOREIGN KEY (\`recipe_id\`) REFERENCES \`hobbies_recipe\` (\`id\`)
+        ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+        `
+
+        return this.query(sql)
+    }
+
+    addProcedures (recipeID, procedures) {
+        const buildProcedures = () => procedures.map((recipeName, index) => {
+            return [
+                recipeName, // description
+                index + 1, // order
+                recipeID
+            ]
+        })
+        return this.insertBatch(
+            this.tableName,
+            ['description', 'order', 'recipe_id'],
+            buildProcedures()
+        )
+    }
+}
 class Recipe extends Model {
-    constructor (db, name, favorite, duration_from, duration_to, ingredients, procedures, food_category_id, file) {
+    constructor (db, name, favorite, duration_from, duration_to, food_category_id, file) {
         super (db)
 
         this.form = {}
@@ -13,8 +77,6 @@ class Recipe extends Model {
         this.form.favorite = favorite
         this.form.duration_from = duration_from
         this.form.duration_to = duration_to
-        this.form.ingredients = ingredients
-        this.form.procedures = procedures
         this.form.food_category_id = food_category_id
 
         this.file = file
@@ -31,8 +93,6 @@ class Recipe extends Model {
      */
     validateEmpty () {
         if (this.form.name.length <= 0) return false
-        if (this.form.ingredients.length <= 0) return false
-        if (this.form.procedures.length <= 0) return false
 
         return true
     }
@@ -40,9 +100,11 @@ class Recipe extends Model {
     /**
      * Handles submit and adding of recipe
      */
-    addRecipe () {
+    addRecipe (procedures, ingredients) {
         // Insert to recipe
         return new Promise((resolve, reject) => {
+            let _procedure = new Procedure(this.db)
+            let _recipeIngredient = new RecipeIngredient(this.db)
             let recipe = {
                 name: this.form.name,
                 favorite: this.form.favorite,
@@ -52,30 +114,19 @@ class Recipe extends Model {
                 image_path: this.file.filename
             }
 
-            const buildProcedures = recipeID => {
-                return this.form.procedures.map((recipeName, index) => {
-                    return [
-                        recipeName, // description
-                        index + 1, // order
-                        recipeID
-                    ]
-                })
-            }
-            // eslint-disable-next-line
             this.beginTransaction(async err => {
                 try {
                     if (err) return reject(err);
-                    await this.insert(this.table.recipe, recipe)
-                    const recipeID = await this.insertID()
+
+                    // Insert recipe to hobbies_recipe
+                    await this.insert(this.table.recipe, recipe).catch(err => { throw err })
+                    // get inserted ID to be used as foreign key for procedures and recipeingredients
+                    const recipeID = await this.insertID().catch(err => { throw err })
 
                     const promises = [
-                        this.insertBatch(
-                            this.table.procedure,
-                            ['description', 'order', 'recipe_id'],
-                            buildProcedures(recipeID)
-                        )
+                        _procedure.addProcedures(recipeID, procedures),
+                        _recipeIngredient.addRecipeIngredients(recipeID, ingredients)
                     ]
-
                     await Promise.all(promises).catch(err => { throw err })
                     await this.commitTransaction()
                     return resolve()
@@ -92,5 +143,8 @@ class Recipe extends Model {
 }
 
 module.exports = {
-    Recipe
+    Recipe,
+    Procedure,
+    Ingredient,
+    RecipeIngredient
 }

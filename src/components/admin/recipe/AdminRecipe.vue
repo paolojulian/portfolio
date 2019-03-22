@@ -1,7 +1,7 @@
 <template>
 <div class="AdminRecipe">
-    AdminRecipe
-    <AddRecipe/>
+    <AddRecipe />
+    <AdminRecipeList />
 </div>
 </template>
 
@@ -13,7 +13,8 @@ library.add( faPlus, faMinus )
 export default {
     name: 'AdminRecipe',
     components: {
-        AddRecipe: () => import('./AddRecipe.vue')
+        AddRecipe: () => import('./AddRecipe.vue'),
+        AdminRecipeList: () => import('./AdminRecipeList.vue')
     },
 }
 </script>

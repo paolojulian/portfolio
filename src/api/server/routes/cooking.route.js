@@ -11,6 +11,20 @@ const foodCategories = {
     american: 3,
     indian: 4
 }
+
+/**
+ * /cooking/create/procedure
+ */
+router.get(URL.cooking.create.procedure, (req, res) => {
+    req.getConnection((err, db) => {
+        if (err) return res.status(500).json('No Connection');
+
+        let ProcedureModel = new CookingModel.Procedure(db)
+        ProcedureModel.createTable()
+            .then(() => res.status(200).json('Successfully created table hobbies_procedure'))
+            .catch(err => res.status(500).json(err))
+    })
+})
 /**
  * /cooking/recipe
  * query
@@ -38,7 +52,6 @@ router.get(URL.cooking.recipeList, (req, res) => {
             query += " WHERE favorite = 1"
             break;
         default:
-            query += " WHERE favorite = 1"
             break;
     }
 
@@ -93,23 +106,28 @@ router.post(URL.cooking.addRecipe, upload.single('file'), (req, res) => {
     req.getConnection((connectionErr, db) => {
         if (connectionErr) return res.status(500).json('No Connection');
 
+        let procedures = JSON.parse(req.body.procedures)
+        let ingredients = JSON.parse(req.body.ingredients)
         var recipe = new CookingModel.Recipe(
             db,
             req.body.name,
             req.body.favorite,
             req.body.durationFrom,
             req.body.durationTo,
-            req.body.ingredients,
-            req.body.procedures.split(','),
             req.body.foodCategoryID,
             req.file
         )
-
         if ( ! recipe.validateEmpty()) {
             return res.status(422).json('Incomplete Parameters')
         }
+        if (procedures.length === 0) {
+            return res.status(422).json('No Procedures')
+        }
+        if (ingredients.length === 0) {
+            return res.status(422).json('No Ingredients')
+        }
 
-        recipe.addRecipe()
+        recipe.addRecipe(procedures, ingredients)
             .then(() => res.status(200).json(new JsonResponse(true)))
             .catch(err => res.status(500).json(err))
     })
