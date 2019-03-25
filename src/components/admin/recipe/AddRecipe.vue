@@ -85,7 +85,8 @@
 
 <script>
 import axios from 'axios'
-const URL = require('../../../api/APIRoutes.js')
+import { $hobbies } from '@/helpers/constants'
+import { mapActions } from 'vuex'
 class Ingredient {
     constructor () {
         this.id = null
@@ -103,6 +104,7 @@ const recipe = {
 }
 export default {
     name: 'AddRecipe',
+
     data () {
         return {
             recipe: { ...recipe },
@@ -110,7 +112,12 @@ export default {
             procedures: ['']
         }
     },
+
     methods: {
+        ...mapActions($hobbies, [
+            'addRecipe',
+            'getHobbyCooking'
+        ]),
 
         addProcedure () {
             this.procedures.push('')
@@ -140,12 +147,7 @@ export default {
             })
             form.append('ingredients', JSON.stringify(this.ingredients))
             form.append('procedures', JSON.stringify(this.procedures))
-            let config = {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            }
-            axios.post(URL.cooking.addRecipe, form, config)
+            this.addRecipe(form)
                 .then(this.handleSuccess)
                 .catch(this.handleError)
         },
@@ -159,6 +161,7 @@ export default {
 
         handleSuccess () {
             alert('Success')
+            this.getHobbyCooking()
         },
 
         handleError () {

@@ -35,14 +35,19 @@ class Model {
         return Promise.all(queries)
     }
 
-    getQuery (table, fields = '*', where = []) {
+    getQuery (conditions) {
+        let { table, fields = '*', where = [], join = [], sort = [] } = conditions
+
         let sql = `
             SELECT ${fields}
             FROM ${table}
         `
-        if (where) {
-            sql += this.where(where)
-        }
+        sql += this.join(join)
+        sql += this.where(where)
+        sql += this.sort(sort)
+
+        console.log(sql)
+
         return this.query(sql)
     }
     /**
@@ -190,11 +195,30 @@ class Model {
      * @return { String }
      */
     where (data) {
-        if ( ! data) return '';
-        return data
-            .map((value, index) => {
-                return `${index} = ${value}`
+        if ( ! data || Object.keys(data).length <= 0) return ''; 
+ 
+        return 'WHERE ' + Object.keys(data)
+            .map((key) => {
+                return `${key} = ${data[key]} `
             }).join(' AND ')
+    }
+
+    join (data) {
+        if ( ! data || data.length <= 0) return ''
+
+        let { type = 'LEFT', table, on } = data
+        return `${type} JOIN ${table} ON ${on} `
+    }
+
+    /**
+     * Order by condition
+     * @param { Object } data - { column: 'columnName', order: 'ASC | DESC' }
+     */
+    sort (data) {
+        if ( ! data || data.length <= 0) return ''
+
+        let { column, order = 'ASC' } = data
+        return `ORDER BY \`${column}\` ${order} `
     }
 
     beginTransaction (func) {
@@ -208,6 +232,8 @@ class Model {
     rollbackTransaction () {
         return this.db.rollback()
     }
+
+
 }
 
 module.exports = Model

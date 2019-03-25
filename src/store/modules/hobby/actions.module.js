@@ -9,6 +9,7 @@ const cookingList = [
     'American'
 ]
 const actions = {
+
     getHobbyList: ({ commit }) => {
         let cooking = new Hobby('cooking', cookingList)
 
@@ -71,6 +72,10 @@ const actions = {
             .catch(() => {
                 commit($pageLoader + '/pageError', {}, { root: true })
             })
+    },
+
+    addRecipe: (context, payload) => {
+        return apiHobby.addRecipe(payload)
     },
 
     updateRecipeInfo: (context, payload) => {

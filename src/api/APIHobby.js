@@ -2,6 +2,19 @@ import { MyAPI } from '@/api/API'
 const URL = require('./APIRoutes')
 
 export class APIHobby extends MyAPI {
+    addRecipe (form) {
+        let config = {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }
+        return super.xhrPost(
+            URL.cooking.addRecipe,
+            form,
+            config
+        )
+    }
+
     getRecipes (recipeId, sortBy = 'favorite') {
         let url = recipeId
             ? `${URL.cooking.recipeList}/${recipeId}`

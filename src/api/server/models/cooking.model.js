@@ -13,10 +13,26 @@ class RecipeIngredient extends Model {
     }
 
     getByRecipe (recipeID, fields = '*') {
-        this.getQuery(
-            this.tableName,
-            ''
-        )
+        let _ingredient = new Ingredient(this.db)
+        let where = { "recipe_id": recipeID }
+        let join = {
+            type: 'left',
+            table: `${_ingredient.tableName}`,
+            on: `ingredient_id = ${_ingredient.tableName}.id`
+        }
+        let sort = {
+            column: 'order',
+            order: 'ASC'
+        }
+        let condition = {
+            table: this.tableName,
+            fields,
+            where,
+            join,
+            sort
+        }
+
+        return this.getQuery(condition)
     }
 
     addRecipeIngredients (recipeID, ingredients) {
@@ -74,6 +90,22 @@ class Procedure extends Model {
             buildProcedures()
         )
     }
+
+    getByRecipe (recipeID, fields = '*') {
+        let where = { "recipe_id": recipeID }
+        let sort = {
+            column: 'order',
+            order: 'ASC'
+        }
+        let condition = {
+            table: this.tableName,
+            fields,
+            where,
+            sort
+        }
+
+        return this.getQuery(condition)
+    }
 }
 class Recipe extends Model {
     constructor (db) {
@@ -97,8 +129,14 @@ class Recipe extends Model {
     getInfo () {
         let _procedure = new Procedure(this.db)
         let _recipeIngredient = new RecipeIngredient(this.db)
-        return new Promise((resolve, reject) => {
-
+        return new Promise(async(resolve, reject) => {
+            let fields = 'quantity, description, ingredient_id, name'
+            const recipeIngredients = _recipeIngredient.getByRecipe(this.id, fields)
+            fields = 'description'
+            const procedures = _procedure.getByRecipe(this.id, fields)
+            await Promise.all([recipeIngredients, procedures])
+                .then(response => resolve({ recipeIngredients: response[0], procedures: response[1] }))
+                .catch(err => reject(err))
         })
     }
 

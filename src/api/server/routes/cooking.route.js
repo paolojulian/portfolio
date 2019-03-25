@@ -78,7 +78,7 @@ router.get(URL.cooking.recipe, (req, res) => {
         let recipe = new CookingModel.Recipe(db)
         recipe.id = req.params.recipeID
         recipe.getInfo()
-            .then(() => res.JSONsuccess())
+            .then(response => res.JSONsuccess(response))
             .catch(() => res.JSONerror())
     })
 })
