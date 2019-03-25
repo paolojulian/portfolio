@@ -7,6 +7,11 @@ a {
     text-decoration: none;
 }
 button,
+input,
+select,
+button {
+    outline: none;
+}
 input {
     border: 0;
 }

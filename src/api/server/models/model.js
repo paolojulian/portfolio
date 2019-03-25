@@ -60,7 +60,7 @@ class Model {
             keys.push(key)
             values.push(form[key])
         }
-        let columnNames = '(`' + keys.join('`, `') + '`)'
+        let columnNames = `(\`${keys.join('`, `')}\`)`
 
         let insertValues = `VALUES ('${values.join("','")}')`
 

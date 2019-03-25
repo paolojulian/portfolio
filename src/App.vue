@@ -8,6 +8,7 @@
             'light-theme': theme === 'light'
         }"
     >
+        <SplashScreen/>
         <MyHeader v-if="hasHeader" />
 		<main class="Main clearfix"
             :class="{ 'main-has-navbar': hasNavbar }"
@@ -32,7 +33,8 @@ export default {
         Navbar: () => import('./components/partials/NavBar'),
         MyHeader: () => import('./components/partials/MyHeader'),
         PageLoader: () => import('@/components/partials/PageLoader'),
-        Player: () => import('./components/hobbies/music/Player.vue')
+        Player: () => import('./components/hobbies/music/Player.vue'),
+        SplashScreen: () => import('./components/partials/SplashScreen.vue')
     },
     computed: {
         ...mapGetters($hobbies, [
