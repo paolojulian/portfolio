@@ -1,4 +1,8 @@
-import Axios from 'axios'
+import axios from 'axios'
+const API_URL = '/api'
+let Axios = axios.create({
+    baseURL: API_URL
+})
 
 export class MyAPI {
     xhrPost (url, data, config) {
@@ -50,7 +54,8 @@ export class MyAPI {
 }
 
 export function APIValidate ({ resolve, reject }, response) {
-    if (response.status !== 200) reject()
+    let successCodes = [200, 201, 304]
+    if (successCodes.indexOf(response.status) === -1) reject()
     if (typeof response.data.status === 'undefined') reject()
     if ( ! response.data.status) reject()
 

@@ -12,6 +12,13 @@ class RecipeIngredient extends Model {
         this.tableName = 'hobbies_recipeingredients'
     }
 
+    getByRecipe (recipeID, fields = '*') {
+        this.getQuery(
+            this.tableName,
+            ''
+        )
+    }
+
     addRecipeIngredients (recipeID, ingredients) {
         const buildRecipeIngredients = () => ingredients.map((ingredient, index) => {
             return [
@@ -69,21 +76,30 @@ class Procedure extends Model {
     }
 }
 class Recipe extends Model {
-    constructor (db, name, favorite, duration_from, duration_to, food_category_id, file) {
+    constructor (db) {
         super (db)
 
-        this.form = {}
-        this.form.name = name.trim()
-        this.form.favorite = favorite
-        this.form.duration_from = duration_from
-        this.form.duration_to = duration_to
-        this.form.food_category_id = food_category_id
-
-        this.file = file
-
         this.table = {}
-        this.table.recipe = 'hobbies_recipe'
-        this.table.procedure = 'hobbies_procedure'
+        this.tableName = 'hobbies_recipe'
+
+    }
+
+    setRecipe (name, favorite, duration_from, duration_to, food_category_id, file) {
+        this.form = {}
+        this.form.name = name ? name.trim() : ''
+        this.form.favorite = favorite || 0
+        this.form.duration_from = duration_from || 5
+        this.form.duration_to = duration_to || 5
+        this.form.food_category_id = food_category_id || null
+        this.file = file || null
+    }
+
+    getInfo () {
+        let _procedure = new Procedure(this.db)
+        let _recipeIngredient = new RecipeIngredient(this.db)
+        return new Promise((resolve, reject) => {
+
+        })
     }
 
     /**
@@ -119,7 +135,7 @@ class Recipe extends Model {
                     if (err) return reject(err);
 
                     // Insert recipe to hobbies_recipe
-                    await this.insert(this.table.recipe, recipe).catch(err => { throw err })
+                    await this.insert(this.tableName, recipe).catch(err => { throw err })
                     // get inserted ID to be used as foreign key for procedures and recipeingredients
                     const recipeID = await this.insertID().catch(err => { throw err })
 
@@ -138,6 +154,15 @@ class Recipe extends Model {
                     return reject(err)
                 }
             })
+        })
+    }
+    updateRecipeInfo (form) {
+        return this.transaction(async() => {
+            let promises = [
+                this.update(this.tableName, this.id, form)
+            ]
+
+            await Promise.all(promises).catch(err => { throw err })
         })
     }
 }

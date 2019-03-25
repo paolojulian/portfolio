@@ -2,7 +2,7 @@
 <div class="Admin">
     <admin-navbar/>
     <div class="AdminMain">
-        <transition name="fade">
+        <transition name="fade" mode="out-in">
             <router-view/>
         </transition>
     </div>

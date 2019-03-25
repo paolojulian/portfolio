@@ -31,8 +31,15 @@
             <td class="big-screen-only">{{ dateCreated | convertDateTime }}</td>
             <td>
                 <AdminButton
+                    @click="viewRecipe(id)"
+                    type="bookOpen"
+                    :fab="true"
+                    background-color="#ffffff"
+                    color="#131313"
+                />
+                <AdminButton
                     v-if="id === editing.id"
-                    @click="submitEdit()"
+                    @click="submitEditInfo()"
                     type="ok"
                     :fab="true"
                     size="1.5rem"
@@ -64,6 +71,10 @@
             </td>
         </tr>
     </table>
+    <ViewRecipe v-if="modal.viewRecipe.toggle"
+        :recipe-id="modal.viewRecipe.id"
+        @close="closeViewRecipe()"
+    />
 </div>
 </template>
 
@@ -80,9 +91,22 @@ const editing = {
 export default {
     name: 'AdminRecipeList',
 
+    components: {
+        ViewRecipe: () => import('./ViewRecipe.vue')
+    },
+
     data () {
         return {
-            editing: { ...editing }
+            editing: { ...editing },
+            modal: {
+                viewRecipe: {
+                    toggle: false,
+                    id: null
+                }
+            },
+            statusCodes: {
+                editInfo: 2059
+            }
         }
     },
 
@@ -94,8 +118,19 @@ export default {
 
     methods: {
         ...mapActions($hobbies, [
-            'getHobbyCooking'
+            'getHobbyCooking',
+            'updateRecipeInfo'
         ]),
+
+        viewRecipe (id) {
+            this.modal.viewRecipe.id = id
+            this.modal.viewRecipe.toggle = true
+        },
+
+        closeViewRecipe () {
+            this.modal.viewRecipe.id = null
+            this.modal.viewRecipe.toggle = false
+        },
 
         toggleEdit (data = null) {
             if ( ! data) return this.editing = { ...editing };
@@ -107,12 +142,36 @@ export default {
             this.editing.duration_to = duration_to
         },
 
-        submitEdit () {
-
+        submitEditInfo () {
+            this.updateRecipeInfo({ ...this.editing })
+                .then(() => this.handleSuccess(this.statusCodes.editInfo))
+                .catch(() => this.handleError(this.statusCodes.editInfo))
         },
 
         deleteRecipe (id) {
             alert(id)
+        },
+
+        handleSuccess (statusCode) {
+            switch (statusCode) {
+                case this.statusCodes.editInfo:
+                    this.toggleEdit()
+                    this.getHobbyCooking()
+                    alert('Success')
+                    break;
+                default:
+                    break;
+            }
+        },
+
+        handleError (statusCode) {
+            switch (statusCode) {
+                case this.statusCodes.editInfo:
+                    alert('Failed')
+                    break;
+                default:
+                    break;
+            }
         }
     },
 

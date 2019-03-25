@@ -2,6 +2,7 @@ const express = require('express')
 const connection = require('./sql')
 const bodyParser = require('body-parser')
 const app = express()
+const responses = require('./responses')
 
 /** ROUTES */
 // const hobbyRoutes = require('./routes/hobbies')
@@ -9,6 +10,7 @@ const cookingRoutes = require('./routes/cooking.route.js')
 const musicRoutes = require('./routes/music.route.js')
 const codingRoutes = require('./routes/coding.route.js')
 
+app.use(responses)
 app.use(connection)
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
@@ -19,7 +21,7 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 //     next()
 // })
 
-app.use('/', [
+app.use('/api', [
     cookingRoutes,
     musicRoutes,
     codingRoutes

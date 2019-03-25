@@ -10,7 +10,6 @@ import AOS from 'aos'
 import 'aos/dist/aos.css'
 import './helpers/globals'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
 import GLOBAL_MIXINS from './mixins'
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)

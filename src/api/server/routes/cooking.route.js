@@ -1,6 +1,5 @@
 const URL = require('../../APIRoutes')
 const router = require('./router')
-const JsonResponse = require('./json')
 const CookingModel = require('../models/cooking.model')
 const multer = require('multer');
 const resolveSrc = require('../../../../aliases.config')
@@ -57,11 +56,9 @@ router.get(URL.cooking.recipeList, (req, res) => {
 
     req.getConnection((connectionErr, db) => {
         db.query(query, (error, recipeList) => {
-            if (error) {
-                return res.status(503)
-            }
+            if (error) return res.JSONerror()
 
-            return res.status(200).json(new JsonResponse(true, recipeList))
+            return res.JSONsuccess(recipeList)
         })
     })
 })
@@ -75,8 +72,32 @@ router.get(URL.cooking.main, (req, res) => {
 
 /** /cooking/recipe/:recipeID */
 router.get(URL.cooking.recipe, (req, res) => {
-    let recipeID = req.params.recipeID
-    res.status(200).json(new JsonResponse(true, recipeID))
+    req.getConnection((err, db) => {
+        if (err) return res.JSONerror()
+
+        let recipe = new CookingModel.Recipe(db)
+        recipe.id = req.params.recipeID
+        recipe.getInfo()
+            .then(() => res.JSONsuccess())
+            .catch(() => res.JSONerror())
+    })
+})
+
+/** /cooking/recipe/edit */
+router.patch(URL.cooking.edit, (req, res) => {
+    req.getConnection((err, db) => {
+        if (err) return res.JSONerror()
+
+        var recipe = new CookingModel.Recipe(db)
+        recipe.id = req.body.id
+        recipe.updateRecipeInfo({
+            name: req.body.name.trim(),
+            duration_from: req.body.duration_from,
+            duration_to: req.body.duration_to
+        }).then(() => res.JSONsuccess())
+        .catch(() => res.JSONerror())
+
+    })
 })
 
 /**
@@ -108,8 +129,8 @@ router.post(URL.cooking.addRecipe, upload.single('file'), (req, res) => {
 
         let procedures = JSON.parse(req.body.procedures)
         let ingredients = JSON.parse(req.body.ingredients)
-        var recipe = new CookingModel.Recipe(
-            db,
+        var recipe = new CookingModel.Recipe(db)
+        recipe.setRecipe(
             req.body.name,
             req.body.favorite,
             req.body.durationFrom,
@@ -128,8 +149,8 @@ router.post(URL.cooking.addRecipe, upload.single('file'), (req, res) => {
         }
 
         recipe.addRecipe(procedures, ingredients)
-            .then(() => res.status(200).json(new JsonResponse(true)))
-            .catch(err => res.status(500).json(err))
+            .then(() => res.JSONcreated())
+            .catch(() => res.JSONerror())
     })
 });
 
