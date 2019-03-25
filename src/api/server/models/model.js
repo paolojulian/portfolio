@@ -3,6 +3,22 @@ class Model {
         this.db = db
     }
 
+    transaction (func) {
+        return new Promise((resolve, reject) => {
+            this.beginTransaction(async err => {
+                try {
+                    if (err) return reject(err)
+                    func()
+                    await this.commitTransaction()
+                    resolve()
+                } catch (err) {
+                    await this.rollbackTransaction()
+                    reject(err)
+                }
+            })
+        })
+    }
+
     query (query) {
         return new Promise((resolve, reject) => {
             this.db.query(query, (error, response) => {
@@ -17,6 +33,17 @@ class Model {
         if ( ! queries) return Promise.reject('Invalid type queries')
 
         return Promise.all(queries)
+    }
+
+    getQuery (table, fields = '*', where = []) {
+        let sql = `
+            SELECT ${fields}
+            FROM ${table}
+        `
+        if (where) {
+            sql += this.where(where)
+        }
+        return this.query(sql)
     }
     /**
      * GET A ROW BY ID
@@ -132,6 +159,8 @@ class Model {
                 if (where) {
                     sql += this.where(where)
                 }
+                // eslint-disable-next-line
+                console.log(sql)
 
                 this.db.query(sql, (error) => {
                     if (error) return reject(error);

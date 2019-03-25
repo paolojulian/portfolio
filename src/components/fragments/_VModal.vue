@@ -26,7 +26,7 @@
                             variant="primary"
                             text-color="#000000"
                             @click="$emit('close')">
-                            Kwa
+                            Close
                         </VButton>
                     </slot>
                 </div>
@@ -90,36 +90,6 @@ export default {
   display: table;
   transition: opacity .3s ease;
 }
-
-.modal-wrapper {
-  display: table-cell;
-  vertical-align: middle;
-}
-
-@media screen and (min-width: 600px){
-    .modal-container {
-        width: 500px;
-    }
-}
-@media screen and (max-width: 600px){
-    .modal-container {
-        width: 100%;
-        height: 100vh;
-        max-height: 100vh;
-        margin-bottom: 7vh;
-    }
-}
-.modal-container {
-    position: relative;
-    max-height: 80vh;
-    margin: 0px auto;
-    background-color: #fff;
-    border-radius: 2px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
-    transition: all .3s ease;
-    font-family: Helvetica, Arial, sans-serif;
-}
-
 .modal-header {
     padding: 10px;
     background-color: rgba(0, 0, 0, 0.75);
@@ -135,6 +105,34 @@ export default {
     position: absolute;
     right: 5px;
     bottom: 5px;
+}
+
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+.modal-container {
+    position: relative;
+    max-height: 80vh;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+    transition: all .3s ease;
+    font-family: Helvetica, Arial, sans-serif;
+
+    width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    margin-bottom: 7vh;
+}
+
+@media screen and (min-width: 600px){
+    .modal-container {
+        border-radius: 2px;
+        width: 500px;
+        height: unset;
+        max-height: 80vh;
+        margin: 0px auto;
+    }
 }
 
 /*

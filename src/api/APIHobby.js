@@ -40,4 +40,8 @@ export class APIHobby extends MyAPI {
     deleteMusic (musicID) {
         return super.xhrPost(URL.music.delete, { musicID })
     }
+
+    updateRecipeInfo (payload) {
+        return this.xhrPatch(URL.cooking.edit, payload)
+    }
 }

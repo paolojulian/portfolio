@@ -2,7 +2,7 @@
 <div class="Admin">
     <admin-navbar/>
     <div class="AdminMain">
-        <transition name="fade">
+        <transition name="fade" mode="out-in">
             <router-view/>
         </transition>
     </div>
@@ -19,3 +19,4 @@ export default {
 </script>
 
 <style src="./admin.css"></style>
+<style src="./admin.table.css"></style>

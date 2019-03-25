@@ -1,4 +1,3 @@
-const API_URL = '/api'
 const URL = {
     sports: {
         hiking: {
@@ -6,26 +5,27 @@ const URL = {
         }
     },
     music: {
-        main: API_URL + '/music',
-        list: API_URL + '/music/list',
-        add: API_URL + '/music/add',
-        edit: API_URL + '/music/edit',
-        delete: API_URL + '/music/delete/:musicID'
+        main: '/music',
+        list: '/music/list',
+        add: '/music/add',
+        edit: '/music/edit',
+        delete: '/music/delete/:musicID'
     },
     cooking: {
         create: {
-            procedure: API_URL + '/cooking/create/procedure'
+            procedure: '/cooking/create/procedure'
         },
-        main: API_URL + '/cooking',
-        recipe: API_URL + '/cooking/recipe/:recipeID',
-        recipeList: API_URL + '/cooking/recipe',
-        addRecipe: API_URL + '/cooking/recipe/add'
+        main: '/cooking',
+        recipe: '/cooking/recipe/:recipeID',
+        recipeList: '/cooking/recipe',
+        addRecipe: '/cooking/recipe/add',
+        edit: '/cooking/recipe/edit'
     },
     coding: {
-        languages: API_URL + `/coding/skills/languages`,
-        frameworks: API_URL + `/coding/skills/frameworks`,
-        companyProjects: API_URL + `/coding/projects/company`,
-        personalProjects: API_URL + `/coding/projects/personal`
+        languages: `/coding/skills/languages`,
+        frameworks: `/coding/skills/frameworks`,
+        companyProjects: `/coding/projects/company`,
+        personalProjects: `/coding/projects/personal`
     }
 }
 

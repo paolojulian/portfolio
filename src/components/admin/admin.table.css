@@ -1,0 +1,44 @@
+.Admin table {
+    border-collapse: collapse;
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+.Admin table tr:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.Admin table tr:first-child {
+    border-bottom: 1px solid #131313;
+    background-color: #212121;
+    color: #ffffff;
+}
+
+.Admin table td,
+.Admin table th {
+    padding: 0.5rem;
+}
+.Admin table tr td:first-child,
+.Admin table tr th:first-child
+{
+    width: 5%;
+}
+.Admin table tr td:last-child,
+.Admin table tr th:last-child
+{
+    width: 20%;
+}
+@media screen and (min-width: 600px) {
+    .Admin table {
+        width: 90%;
+        border-radius: 10px;
+    }
+}
+@media screen and (min-width: 1000px) {
+    .Admin table {
+        width: 80%;
+    }
+}

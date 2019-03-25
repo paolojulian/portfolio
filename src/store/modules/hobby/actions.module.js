@@ -71,6 +71,10 @@ const actions = {
             .catch(() => {
                 commit($pageLoader + '/pageError', {}, { root: true })
             })
+    },
+
+    updateRecipeInfo: (context, payload) => {
+        return apiHobby.updateRecipeInfo(payload)
     }
 }
 

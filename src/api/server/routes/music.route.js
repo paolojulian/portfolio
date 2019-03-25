@@ -1,6 +1,5 @@
 const URL = require('../../APIRoutes')
 const router = require('./router')
-const JsonResponse = require('./json')
 const MusicModel = require('../models/music.model.js')
 const resolveSrc = require('../../../../aliases.config')
 let multer = require('multer');
@@ -29,13 +28,11 @@ router.get(URL.music.list, (req, res) => {
         // let db = req.db
         let music = new MusicModel.Music(db)
         music.getMusicList()
-            .then(response => {
-                return res.status(200).json(new JsonResponse(true, response))
-            })
+            .then(response => res.JSONsuccess(response))
             .catch(err => {
                 // eslint-disable-next-line
                 console.log(err)
-                res.status(500).json(new JsonResponse(false))
+                return res.JSONerror()
             })
     })
 })
@@ -58,28 +55,26 @@ router.post(URL.music.add, upload.single('file'), (req, res) => {
 
 
         music.addMusic()
-            .then(() => {
-                res.status(200).json(new JsonResponse(true))
-            })
-            .catch(() => res.status(502).json(new JsonResponse(false)))
+            .then(() => res.JSONsuccess())
+            .catch(() => res.JSONerror())
     })
 })
 
 // music/edit
 router.patch(URL.music.edit, (req, res) => {
     req.getConnection((error, db) => {
-        if (error) return res.status(500).json(new JsonResponse(false));
+        if (error) return res.JSONerror()
 
         const musicModel = new MusicModel.Music(db)
         musicModel.setID(req.body.musicID)
 
         musicModel
             .updateMusic(req.body.data)
-            .then(() => res.status(200).json(new JsonResponse(true)))
+            .then(() => res.JSONsuccess())
             .catch(err => {
                 // eslint-disable-next-line
                 console.trace(err)
-                res.status(500).json(new JsonResponse(false))
+                res.JSONerror()
             })
     })
 })
@@ -88,18 +83,18 @@ router.patch(URL.music.edit, (req, res) => {
 // music/delete
 router.post(URL.music.delete, (req, res) => {
     req.getConnection((error, db) => {
-        if (error) return res.status(500).json(new JsonResponse(false));
+        if (error) return res.JSONerror()
 
         const musicModel = new MusicModel.Music(db)
         musicModel.setID(req.body.musicID)
 
         musicModel
             .deleteMusic()
-            .then(() => res.status(200).json(new JsonResponse(true)))
+            .then(() => res.JSONsuccess())
             .catch(err => {
                 // eslint-disable-next-line
                 console.trace(err)
-                res.status(500).json(new JsonResponse(false))
+                res.JSONerror()
             })
     })
 })

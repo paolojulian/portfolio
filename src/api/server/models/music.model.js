@@ -51,20 +51,12 @@ class Music extends Model{
     }
 
     updateMusic (data) {
-        return new Promise((resolve, reject) => {
-            this.beginTransaction(async err => {
-                try {
-                    if (err) return reject(err);
-                    const updateDB = this.update(this.table.music, this.id, data)
+        return this.transaction(async () => {
+            let promises = [
+                this.update(this.table.music, this.id, data)
+            ]
 
-                    await Promise.all([updateDB]).catch(err => { throw err })
-                    await this.commitTransaction()
-                    resolve()
-                } catch (err) {
-                    await this.rollbackTransaction()
-                    reject(err)
-                }
-            })
+            await Promise.all(promises).catch(err => { throw err })
         })
     }
 
@@ -84,27 +76,17 @@ class Music extends Model{
             });
         };
 
-        return new Promise((resolve, reject) => {
-            this.beginTransaction(async err => {
-                try {
-                    if (err) { throw err }
-                    const audioPath = await this.getByID('audio_path')
-                        .then(response => response.audio_path)
-                        .catch(err => { throw err })
+        return this.transaction(async () => {
+            const audioPath = await this.getByID('audio_path')
+                .then(response => response.audio_path)
+                .catch(err => { throw err })
 
-                    const promises = [
-                        deleteFromDB(),
-                        deleteFile(audioPath)
-                    ]
+            const promises = [
+                deleteFromDB(),
+                deleteFile(audioPath)
+            ]
 
-                    await Promise.all(promises).catch(err => { throw err })
-                    await this.commitTransaction()
-                    return resolve()
-                } catch (err) {
-                    await this.rollbackTransaction()
-                    return reject(err)
-                }
-            })
+            await Promise.all(promises).catch(err => { throw err })
         })
     }
 }
