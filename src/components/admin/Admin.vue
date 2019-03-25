@@ -19,3 +19,4 @@ export default {
 </script>
 
 <style src="./admin.css"></style>
+<style src="./admin.table.css"></style>

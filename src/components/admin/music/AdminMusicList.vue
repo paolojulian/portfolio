@@ -1,6 +1,13 @@
 <template>
 <div class="AdminMusicList">
     <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Audio Path</th>
+            <th class="big-screen-only">Date Created</th>
+            <th>Action</th>
+        </tr>
         <tr v-for="({ name, audio_path, dateCreated, id }) in hobbyMusic.list"
             :key="id"
         >
@@ -16,24 +23,39 @@
                 </span>
             </td>
             <td>{{ audio_path }}</td>
-            <td>{{ dateCreated }}</td>
+            <td class="big-screen-only">{{ dateCreated | convertDateTime }}</td>
             <td>
-                <button @click="submitEdit()"
+                <AdminButton
                     v-if="id === editing.id"
-                >
-                    Finish Edit
-                </button>
-                <button @click="toggleEdit()"
+                    @click="submitEdit()"
+                    type="ok"
+                    :fab="true"
+                    size="1.5rem"
+                    background-color="var(--my-parsley)"
+                    color="#ffffff"
+                />
+                <AdminButton
                     v-if="id === editing.id"
-                >
-                    Cancel Edit
-                </button>
-                <button @click="toggleEdit(id, name)"
+                    @click="toggleEdit()"
+                    type="cancel"
+                    :fab="true"
+                    size="1.5rem"
+                    background-color="var(--my-paprika)"
+                    color="#ffffff"
+                />
+                <AdminButton
                     v-else
-                >
-                    Edit
-                </button>
-                <button @click="deleteMusic(id)">DELETE</button>
+                    @click="toggleEdit(id, name)"
+                    type="edit"
+                    :fab="true"
+                    background-color="#212121"
+                    color="#ffffff"
+                />
+                <AdminButton
+                    @click="deleteMusic(id)"
+                    type="delete"
+                    :fab="true"
+                />
             </td>
         </tr>
     </table>
@@ -147,6 +169,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.AdminMusicList {
+    margin: 2rem 0;
+}
 </style>

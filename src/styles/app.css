@@ -31,9 +31,30 @@ body {
     margin-top: var(--my-header-height);
 }
 
+.tab-only,
+.big-screen-only,
+.desktop-only
+{
+    display: none;
+}
 @media screen and (min-width: 600px){
+    .phone-only {
+        display: none;
+    }
+    .tab-only,
+    .big-screen-only {
+        display: block;
+    }
     .main-has-navbar {
         margin-top: 7vh;
+    }
+}
+@media screen and (min-width: 1000px) {
+    .tab-only {
+        display: none;
+    }
+    .desktop-only {
+        display: block;
     }
 }
 @media screen and (max-width: 1000px) {
@@ -48,7 +69,6 @@ body {
         overflow-x: hidden;
     }
 }
-
 .float-left {
     float: left
 }
