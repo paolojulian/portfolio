@@ -44,8 +44,9 @@ export default {
         ]),
         playMusic () {
             if (this.musicList.length > 0) {
+                let rand = this.GET_RANDOM_INT(0, this.musicList.length - 1)
+                this.setCurrentPlaying(rand)
                 this.setIsPlaying(true)
-                this.setCurrentPlaying(0)
             }
         }
     }

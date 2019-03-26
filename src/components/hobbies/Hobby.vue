@@ -104,18 +104,18 @@ export default {
     width: 100%;
     margin-bottom: 0.5vh;
 }
-/* WEB */
 @media only screen and (min-width: 600px){
     #Hobby {
         height: var(--my-display-height);
     }
     .Hobby__box {
         height: 50%;
-        width: 45%;
+        width: 40vw;
         margin-bottom: 0;
 
-        padding: 2rem;
+        padding: 2vw;
         display: inline-table;
     }
 }
+/* WEB */
 </style>

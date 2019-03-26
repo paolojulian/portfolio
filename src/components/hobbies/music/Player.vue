@@ -38,7 +38,7 @@
             <div id="Player__others">
 
             </div>
-            <div class="Player__fab__close" @click="closePlayer">
+            <div class="Player__fab__close" @click="stopPlayer()">
                 <font-awesome-icon icon="times-circle" />
             </div>
         </div>
@@ -56,6 +56,7 @@ import { mapGetters, mapMutations } from 'vuex'
 export default {
     data () {
         return {
+            audio: null,
             musicSlider: 0,
             position: '0%',
             localCurrentPlaying: null
@@ -65,12 +66,9 @@ export default {
     watch: {
         isPlaying (value) {
             if (!this.audio) return
+            if (value) return this.audio.play();
 
-            if (value) {
-                this.audio.play()
-            } else {
-                this.audio.pause()
-            }
+            this.audio.pause()
         },
 
         currentPlaying (value) {
@@ -101,7 +99,7 @@ export default {
         },
 
         current () {
-            if (!this.hasAudio) return new Song()
+            if ( ! this.hasAudio) return new Song()
 
             let audio = this.musicList[this.localCurrentPlaying]
             return new Song(
@@ -109,20 +107,6 @@ export default {
                 audio.genre_name,
                 audio.audio_path
             )
-        },
-
-        audio: {
-            get () {
-                if (!this.hasAudio) return null
-                if (this.musicList[this.localCurrentPlaying] === void 0) return null
-
-                let audioPath = this.musicList[this.localCurrentPlaying].audio_path
-                let song = require('@/assets/audio/' + audioPath)
-                return new Audio(song)
-            },
-            set () {
-
-            }
         },
 
         sliderCss () {
@@ -149,8 +133,7 @@ export default {
         togglePlayPause () {
             if (!this.audio) return
 
-            // toggle is playing
-            this.setIsPlaying(!this.isPlaying)
+            this.setIsPlaying( ! this.isPlaying)
         },
 
         prev () {
@@ -159,7 +142,6 @@ export default {
             if (this.audio.currentTime / this.audio.duration * 100 > 5) {
                 this.audio.currentTime = 0
             } else {
-                this.stopAudio()
                 let currentPlaying = this.localCurrentPlaying <= 0
                     ? this.musicList.length - 1
                     : this.localCurrentPlaying - 1
@@ -168,7 +150,6 @@ export default {
         },
 
         next () {
-            this.stopAudio()
             let currentPlaying = this.localCurrentPlaying >= this.musicList.length - 1
                 ? 0
                 : this.localCurrentPlaying + 1
@@ -209,12 +190,16 @@ export default {
         },
 
         removeAudioListener () {
+            if (this.audio) {
+                this.audio.removeEventListener('timeupdate', this.timeUpdate)
+            }
             this.stopAudio()
-            this.audio.removeEventListener('timeupdate', this.timeUpdate)
         },
 
         timeUpdate () {
-            let position = this.audio.currentTime / this.audio.duration * 100
+            let position = this.audio
+                ? this.audio.currentTime / this.audio.duration * 100
+                : 0
             if (Number.isNaN(position)) {
                 this.musicSlider = 0
                 this.position = '0%'
@@ -226,14 +211,9 @@ export default {
 
         seek () {
             this.audio.currentTime = (this.musicSlider / 100) * this.audio.duration
-        },
-
-        closePlayer () {
-            this.removeAudioListener()
-            this.stopPlayer()
         }
     },
-    created () {
+    mounted () {
         this.listen()
     },
     destroyed () {
@@ -242,7 +222,7 @@ export default {
 }
 
 class Song {
-    constructor (name = 'Title', genreName = 'Genre', audioPath = null) {
+    constructor (name = 'Title', genreName = 'Genre', audioPath = '') {
         this.name = name
         this.genreName = genreName
         this.audioPath = audioPath
@@ -411,7 +391,8 @@ class Song {
         left: 0;
         height: 10vh;
         width: 100vw;
-        transition: all 100ms ease-in-out;
+        transition: all 300ms ease-in-out;
+        transition-delay: 100ms;
     }
     #Player__title {
         font-weight: 500;

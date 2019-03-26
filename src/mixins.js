@@ -31,6 +31,10 @@ const GLOBAL_MIXINS = {
 			console.log(msg)
 		},
 
+		GET_RANDOM_INT(min, max) {
+			return Math.round(Math.random() * (max - min) + min);
+		},
+
 		waitImagesToLoad () {
 			let images = document.images
 			this.IMAGES.length = images.length;

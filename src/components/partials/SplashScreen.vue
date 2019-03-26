@@ -5,18 +5,18 @@
 </template>
 
 <script type="text/javascript">
-document.querySelector('.SplashScreen').style.opacity = '100'
-document.querySelector('.SplashScreen').style.display = 'block'
-setTimeout(() => {
+// document.querySelector('.SplashScreen').style.opacity = '100'
+// document.querySelector('.SplashScreen').style.display = 'block'
+// setTimeout(() => {
 	window.addEventListener('load', () => {
-		setTimeout(() => {
+		// setTimeout(() => {
 			document.querySelector('.SplashScreen').style.opacity = '0'
-		}, 1500)
-		setTimeout(() => {
+		// }, 1500)
+		// setTimeout(() => {
 			document.querySelector('.SplashScreen').style.display = 'none'
-		}, 1800)
+		// }, 1800)
 	})
-}, 2000)
+// }, 2000)
 export default {
 
 }

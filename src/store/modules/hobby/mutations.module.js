@@ -57,6 +57,7 @@ const mutations = {
     },
 
     stopPlayer: (state) => {
+        state.music.isPlaying = false
         state.music.currentPlaying = null
     },
 
