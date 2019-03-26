@@ -26,8 +26,6 @@
 </template>
 
 <script>
-import axios from 'axios'
-const URL = require('../../../api/APIRoutes.js')
 class MusicForm {
     constructor () {
         this.name = ''
@@ -48,7 +46,8 @@ export default {
 
     methods: {
         ...mapActions($hobbies, [
-            'getMusicList'
+            'getMusicList',
+            'addMusic'
         ]),
         submitForm () {
             this.error = false
@@ -56,16 +55,7 @@ export default {
             form.append('name', this.form.name)
             form.append('artist', this.form.artist)
             form.append('file', this.form.file)
-            axios
-                .post(
-                    URL.music.add,
-                    form,
-                    {
-                        headers: {
-                            'Content-Type': 'multipart/form-data'
-                        }
-                    }
-                )
+            this.addMusic(form)
                 .then(this.handleSuccess)
                 .catch(this.handleError)
         },

@@ -31,7 +31,7 @@
             <td class="big-screen-only">{{ dateCreated | convertDateTime }}</td>
             <td>
                 <AdminButton
-                    @click="viewRecipe(id)"
+                    @click="viewRecipe(id, name)"
                     type="bookOpen"
                     :fab="true"
                     background-color="#ffffff"
@@ -73,6 +73,7 @@
     </table>
     <ViewRecipe v-if="modal.viewRecipe.toggle"
         :recipe-id="modal.viewRecipe.id"
+        :recipe-name="modal.viewRecipe.name"
         @close="closeViewRecipe()"
     />
 </div>
@@ -122,13 +123,15 @@ export default {
             'updateRecipeInfo'
         ]),
 
-        viewRecipe (id) {
-            this.modal.viewRecipe.id = id
+        viewRecipe (id, name) {
+            this.modal.viewRecipe.id = Number(id)
+            this.modal.viewRecipe.name = name
             this.modal.viewRecipe.toggle = true
         },
 
         closeViewRecipe () {
             this.modal.viewRecipe.id = null
+            this.modal.viewRecipe.name = ''
             this.modal.viewRecipe.toggle = false
         },
 

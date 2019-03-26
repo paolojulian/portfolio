@@ -50,11 +50,11 @@ body {
     .big-screen-only {
         display: block;
     }
+}
+@media screen and (min-width: 1000px) {
     .main-has-navbar {
         margin-top: 7vh;
     }
-}
-@media screen and (min-width: 1000px) {
     .tab-only {
         display: none;
     }
@@ -114,6 +114,19 @@ body {
 .hide {
     display: none !important;
 }
+
+.text-center {
+    text-align: center;
+}
+.pointer {
+    cursor: pointer;
+}
+.empty-input {
+    border: 1px solid red !important;
+}
+.indent {
+    text-indent: 1rem;
+}
 @media print {    
     .no-print, .no-print *
     {
@@ -128,19 +141,4 @@ body {
     .dim:hover {
         opacity: 1;
     }
-}
-
-.text-center {
-    text-align: center;
-}
-.pointer {
-    cursor: pointer;
-}
-
-
-.empty-input {
-    border: 1px solid red !important;
-}
-.indent {
-    text-indent: 1rem;
 }

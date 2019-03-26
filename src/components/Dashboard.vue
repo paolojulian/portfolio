@@ -50,11 +50,12 @@ export default {
 .Dashboard__image div.img-responsive{
     position: absolute;
     bottom: 0;
-    left: 50%;
+    left: 40%;
     transform: translateX(-36%);
     background-image: url('../assets/img/pipz.png');
     background-repeat: no-repeat;
     background-size: contain;
+    background-position: bottom center;
     height: 100%;
     width: 100%;
 }
@@ -96,6 +97,7 @@ export default {
 /* TAB */
 @media screen and (min-width: 600px){
     .Dashboard__image div.img-responsive{
+        left: 20%;
         transform: translateX(-20%);
     }
     .Dashboard__text div.center-absolute div{

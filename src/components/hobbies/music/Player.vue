@@ -407,10 +407,11 @@ class Song {
 /* WEB */
 @media screen and (min-width: 1000px){
     #Player {
-        top: 85vh;
+        top: 90vh;
         left: 0;
-        height: 15vh;
+        height: 10vh;
         width: 100vw;
+        transition: all 100ms ease-in-out;
     }
     #Player__title {
         font-weight: 500;
@@ -431,11 +432,11 @@ class Song {
         cursor: pointer;
     }
     #Player__seekbar .slider {
-        height: 5px;
+        height: 2px;
     }
 
     #Player__seekbar .slider::-moz-range-progress {
-        height: 5px;
+        height: 2px;
     }
     #Player__seekbar .slider::-webkit-slider-thumb {
         /* -webkit-appearance: none; */

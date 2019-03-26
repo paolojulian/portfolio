@@ -1,31 +1,16 @@
 <template>
-<button :class="{ 'font-awesome-fab': fab }"
+<button class="pipz-fab"
     :style="style"
-    @click="$emit('click')"
+    @click="$emit('click', $event)"
 >
-    <font-awesome-icon :icon="icon"/>
+    <slot>
+    </slot>
 </button>
 </template>
 
 <script>
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faTrashAlt, faEdit, faCheck, faTimes, faBookOpen } from '@fortawesome/free-solid-svg-icons'
-library.add( faTrashAlt, faEdit, faCheck, faTimes, faBookOpen )
-
 export default {
-    name: 'AdminButton',
     props: {
-        // The type of font awesome icon
-        type: {
-            type: String,
-            required: true
-        },
-        // Is Button a FAB or not
-        fab: {
-            type: Boolean,
-            required: false,
-            default: false
-        },
         // Size of FAB
         size: {
             type: String,
@@ -45,25 +30,13 @@ export default {
             default: '#29B6F6'
         }
     },
-    data () {
-        return {
-            icons: {
-                delete: 'trash-alt',
-                edit: 'edit',
-                ok: 'check',
-                cancel: 'times',
-                bookOpen: 'book-open'
-            }
-        }
-    },
-    computed: {
-        icon () {
-            return this.icons.hasOwnProperty(this.type)
-                ? this.icons[this.type]
-                : this.icons.delete
-        },
 
+    computed: {
+        /**
+         * Style of the FAB Button
+         */
         style () {
+            let fontSize = { 'fontSize': `calc(${this.size} * 0.4)` }
             let width = { 'width': this.size }
             let height = { 'height': this.size }
             let backgroundColor = { 'backgroundColor': this.backgroundColor }
@@ -72,7 +45,8 @@ export default {
                 ...width,
                 ...height,
                 ...backgroundColor,
-                ...color
+                ...color,
+                ...fontSize
             }
         }
     }
@@ -80,12 +54,13 @@ export default {
 </script>
 
 <style scoped>
-.font-awesome-fab {
+.pipz-fab {
     border-radius: 50%;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    border: none;
 }
 @media screen and (min-width: 600px){
-    .font-awesome-fab {
+    .pipz-fab {
         cursor: pointer;
         margin: 0 0.1rem;
     }

@@ -57,8 +57,8 @@ const actions = {
             })
     },
 
-    getRecipe: (context, recipeId) => {
-        return apiHobby.getRecipes(recipeId)
+    addMusic: (context, payload) => {
+        return apiHobby.addMusic(payload)
     },
 
     getMusicList: ({ commit }) => {
@@ -72,6 +72,10 @@ const actions = {
             .catch(() => {
                 commit($pageLoader + '/pageError', {}, { root: true })
             })
+    },
+
+    getRecipe: (context, recipeId) => {
+        return apiHobby.getRecipes(recipeId)
     },
 
     addRecipe: (context, payload) => {

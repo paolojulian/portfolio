@@ -26,6 +26,19 @@ export class APIHobby extends MyAPI {
         return super.xhrGet(url, params)
     }
 
+    addMusic (form) {
+        let config = {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }
+        return super.xhrPost(
+            URL.music.add,
+            form,
+            config
+        )
+    }
+
     getMusicList () {
         let url = URL.music.list
 

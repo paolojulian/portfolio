@@ -5,14 +5,18 @@
 </template>
 
 <script type="text/javascript">
-window.addEventListener('load', () => {
-	setTimeout(() => {
-		document.querySelector('.SplashScreen').style.opacity = '0'
-	}, 1500)
-	setTimeout(() => {
-		document.querySelector('.SplashScreen').style.display = 'none'
-	}, 1800)
-})
+document.querySelector('.SplashScreen').style.opacity = '100'
+document.querySelector('.SplashScreen').style.display = 'block'
+setTimeout(() => {
+	window.addEventListener('load', () => {
+		setTimeout(() => {
+			document.querySelector('.SplashScreen').style.opacity = '0'
+		}, 1500)
+		setTimeout(() => {
+			document.querySelector('.SplashScreen').style.display = 'none'
+		}, 1800)
+	})
+}, 2000)
 export default {
 
 }
@@ -20,7 +24,7 @@ export default {
 
 <style scoped>
 .SplashScreen {
-	z-index: 1000;
+	z-index: 1001;
 	position: fixed;
 	left: 0;
 	top: 0;

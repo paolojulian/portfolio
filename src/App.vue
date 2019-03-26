@@ -20,13 +20,14 @@
         <transition name="fade" mode="in-out">
             <Player/>
         </transition>
+        <PlayerFab />
         <navbar v-if="hasNavbar" />
 	</div>
 </template>
 
 <script>
 import { $hobbies } from '@/helpers/constants'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
     name: 'app',
     components: {
@@ -34,7 +35,8 @@ export default {
         MyHeader: () => import('./components/partials/MyHeader'),
         PageLoader: () => import('@/components/partials/PageLoader'),
         Player: () => import('./components/hobbies/music/Player.vue'),
-        SplashScreen: () => import('./components/partials/SplashScreen.vue')
+        SplashScreen: () => import('./components/partials/SplashScreen.vue'),
+        PlayerFab: () => import('./components/partials/PlayerFab.vue')
     },
     computed: {
         ...mapGetters($hobbies, [
@@ -55,6 +57,15 @@ export default {
                 ? this.$route.meta.theme
                 : false
         }
+    },
+    methods: {
+        ...mapActions($hobbies, [
+            'getMusicList'
+        ])
+    },
+
+    created () {
+        this.getMusicList()
     }
 }
 </script>
