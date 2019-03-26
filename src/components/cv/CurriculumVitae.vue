@@ -149,9 +149,9 @@
 
 <script type="text/javascript">
 import strings from './store/language.js'
-import { APIHobby } from '../../api/APIHobby.js'
-const apiHobby = new APIHobby()
 
+import { $hobbies } from '@/helpers/constants'
+import { mapActions } from 'vuex'
 export default {
     name: 'CV',
     data () {
@@ -171,8 +171,13 @@ export default {
         ProgressBar: () => import('../fragments/ProgressBar.vue')
     },
     methods: {
-        getCodingSkills () {
-            apiHobby.getCodingSkills()
+        ...mapActions($hobbies, [
+            'getCodingSkills',
+            'getCodingProjects'
+        ]),
+
+        initData () {
+            this.getCodingSkills()
                 .then(skills => {
                     this.skills.languages = skills[0]
                     this.skills.frameworks = skills[1]
@@ -180,7 +185,7 @@ export default {
         }
     },
     created () {
-        this.getCodingSkills()
+        this.initData()
     }
 }
 </script>
@@ -309,6 +314,11 @@ table label {
     }
     tr td:first-child {
         width: 15rem;
+    }
+}
+@media screen and (min-width: 1000px) {
+    #CV {
+        margin-top: 5rem;
     }
 }
 </style>

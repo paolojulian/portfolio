@@ -84,6 +84,14 @@ const actions = {
 
     updateRecipeInfo: (context, payload) => {
         return apiHobby.updateRecipeInfo(payload)
+    },
+
+    getCodingProjects: () => {
+        return apiHobby.getCodingProjects()
+    },
+
+    getCodingSkills: () => {
+        return apiHobby.getCodingSkills()
     }
 }
 
