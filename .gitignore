@@ -1,7 +1,7 @@
 .DS_Store
 node_modules
 /dist
-/src/assets/audio
+/src/api/server/sqljs
 
 # local env files
 .env.local
