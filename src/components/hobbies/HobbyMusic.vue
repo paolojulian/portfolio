@@ -20,4 +20,9 @@ export default {
     min-height: var(--my-display-height);
     display: flex;
 }
+@media screen and (min-width: 600px){
+    #HobbyMusic {
+        margin-top: 7vh;
+    }
+}
 </style>

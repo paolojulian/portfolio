@@ -20,7 +20,6 @@
         <transition name="fade" mode="in-out">
             <Player/>
         </transition>
-        <PlayerFab />
         <navbar v-if="hasNavbar" />
 	</div>
 </template>
@@ -35,8 +34,7 @@ export default {
         MyHeader: () => import('./components/partials/MyHeader'),
         PageLoader: () => import('@/components/partials/PageLoader'),
         Player: () => import('./components/hobbies/music/Player.vue'),
-        SplashScreen: () => import('./components/partials/SplashScreen.vue'),
-        PlayerFab: () => import('./components/partials/PlayerFab.vue')
+        SplashScreen: () => import('./components/partials/SplashScreen.vue')
     },
     computed: {
         ...mapGetters($hobbies, [

@@ -1,8 +1,12 @@
 <template lang="html">
 <div id="Player"
-    :class="{ 'dim': $route.name !== 'HobbyMusic' }"
-    v-if="currentPlaying !== null">
-    <div class="Player__relative">
+    :class="{ 'in-hobby-music': $route.name === 'HobbyMusic'}"
+>
+    <PlayerFab />
+    <div class="Player__relative"
+        @mouseenter="SHOW_PLAYER"
+        @mouseleave="HIDE_PLAYER"
+        v-if="currentPlaying !== null">
         <div id="Player__seekbar">
             <input type="range"
                 class="slider theme"
@@ -16,9 +20,6 @@
             <div id="Player__description" class="text-shadow-dark">
                 <span id="Player__title">
                     {{ current.name }}
-                </span>
-                <span id="Player__genre">
-                    {{ current.genreName }}
                 </span>
             </div>
 
@@ -38,9 +39,9 @@
             <div id="Player__others">
 
             </div>
-            <div class="Player__fab__close" @click="stopPlayer()">
+            <!-- <div class="Player__fab__close" @click="stopPlayer()">
                 <font-awesome-icon icon="times-circle" />
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
@@ -53,13 +54,22 @@ library.add(faTimesCircle)
 
 import { $hobbies } from '@/helpers/constants'
 import { mapGetters, mapMutations } from 'vuex'
+
+import togglePlayerMixin from './togglePlayer.mixin';
 export default {
+    mixins: [
+        togglePlayerMixin
+    ],
+    components: {
+        PlayerFab: () => import('./PlayerFab.vue')
+    },
     data () {
         return {
             audio: null,
             musicSlider: 0,
             position: '0%',
-            localCurrentPlaying: null
+            localCurrentPlaying: null,
+            toggle: null
         }
     },
 
@@ -104,7 +114,7 @@ export default {
             let audio = this.musicList[this.localCurrentPlaying]
             return new Song(
                 audio.name,
-                audio.genre_name,
+                audio.artist,
                 audio.audio_path
             )
         },
@@ -222,9 +232,9 @@ export default {
 }
 
 class Song {
-    constructor (name = 'Title', genreName = 'Genre', audioPath = '') {
+    constructor (name = 'Title', artist = 'Artist', audioPath = '') {
         this.name = name
-        this.genreName = genreName
+        this.artist = artist
         this.audioPath = audioPath
     }
 }
@@ -232,7 +242,7 @@ class Song {
 
 <style scoped>
 /* MOBILE */
-#Player {
+.Player__relative {
     z-index: 90;
     position: fixed;
     left: 0;
@@ -242,11 +252,6 @@ class Song {
 
     color: #d3d3d3;
     background-color: #000000;
-}
-.Player__relative {
-    position: relative;
-    width: 100%;
-    height: 100%;
 }
 .Player__flex {
     height: 99%;
@@ -260,7 +265,8 @@ class Song {
     text-transform: uppercase;
     font-weight: 300;
     letter-spacing: 0.1rem;
-    font-size: 1rem;
+    font-size: 0.9rem;
+    overflow: auto;
 }
 #Player__controls {
     flex-grow: 1;
@@ -268,7 +274,7 @@ class Song {
     display: flex;
     flex-direction: column;
 }
-#Player__genre {
+#Player__artist {
     display: none;
 }
 
@@ -386,23 +392,28 @@ class Song {
 
 /* WEB */
 @media screen and (min-width: 1000px){
-    #Player {
+    #Player .Player__relative {
         top: 90vh;
-        left: 0;
+        left: 100vw;
         height: 10vh;
         width: 100vw;
         transition: all 300ms ease-in-out;
-        transition-delay: 100ms;
     }
+
+    #Player.in-hobby-music .Player__relative {
+        left: 0;
+    }
+
     #Player__title {
         font-weight: 500;
         letter-spacing: 0.2rem;
-        font-size: 1.5rem;
+        font-size: 1rem;
     }
-    #Player__genre {
+    #Player__artist {
         display: inline;
         font-weight: 300;
-        font-size: 1rem;
+        letter-spacing: 0.1rem;
+        font-size: 0.8rem;
     }
     #Player__controls {
         flex-grow: 2;
@@ -466,6 +477,15 @@ class Song {
     }
     .Player__fab__close:hover {
         color: var(--my-yellow);
+    }
+}
+
+@keyframes removePlayer {
+    0% {
+        left: 0;
+    }
+    100% {
+        left: 100vw;
     }
 }
 </style>

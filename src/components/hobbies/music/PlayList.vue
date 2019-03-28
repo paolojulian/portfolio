@@ -2,6 +2,11 @@
 <div id="MyCovers">
     <div class="Playlist__background"/>
     <table>
+        <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Artist</th>
+        </tr>
         <tr v-for="(music, index) in hobbyMusic.list"
             :key="`music_${index}`"
             :class="{ 'currentPlaying': currentPlaying === index }">
@@ -17,6 +22,7 @@
                     />
             </td>
             <td>{{ music.name }}</td>
+            <td>{{ music.artist }}</td>
         </tr>
     </table>
 </div>

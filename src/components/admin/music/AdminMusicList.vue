@@ -4,11 +4,12 @@
         <tr>
             <th>ID</th>
             <th>Name</th>
+            <th>Artist</th>
             <th>Audio Path</th>
             <th class="big-screen-only">Date Created</th>
             <th>Action</th>
         </tr>
-        <tr v-for="({ name, audio_path, dateCreated, id }) in hobbyMusic.list"
+        <tr v-for="({ name, artist, audio_path, dateCreated, id }) in hobbyMusic.list"
             :key="id"
         >
             <td>{{ id }}</td>
@@ -22,6 +23,7 @@
                     {{ name }}
                 </span>
             </td>
+            <td>{{ artist }}</td>
             <td>{{ audio_path }}</td>
             <td class="big-screen-only">{{ dateCreated | convertDateTime }}</td>
             <td>
@@ -172,5 +174,6 @@ export default {
 <style scoped>
 .AdminMusicList {
     margin: 2rem 0;
+    font-size: 0.8rem;
 }
 </style>

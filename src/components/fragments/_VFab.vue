@@ -2,6 +2,8 @@
 <button class="pipz-fab"
     :style="style"
     @click="$emit('click', $event)"
+    @mouseover="$emit('mouseover', $event)"
+    @mouseout="$emit('mouseout', $event)"
 >
     <slot>
     </slot>
