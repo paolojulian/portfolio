@@ -20,11 +20,26 @@
     </div>
     <div class="Basketball__favorites">
         <div class="Basketball__images">
-            <div class="Basketball__favorites__img pg"/>
-            <div class="Basketball__favorites__img sg"/>
-            <div class="Basketball__favorites__img sf"/>
-            <div class="Basketball__favorites__img pf"/>
-            <div class="Basketball__favorites__img c"/>
+            <img rel="preload"
+                class="Basketball__favorites__img pg"
+                :src="require('../../../assets/img/sports/basketball/nash.png')"
+            />
+            <img rel="preload"
+                class="Basketball__favorites__img sg"
+                :src="require('../../../assets/img/sports/basketball/kobe.png')"
+            />
+            <img rel="preload"
+                class="Basketball__favorites__img sf"
+                :src="require('../../../assets/img/sports/basketball/melo.png')"
+            />
+            <img rel="preload"
+                class="Basketball__favorites__img pf"
+                :src="require('../../../assets/img/sports/basketball/garnett.png')"
+            />
+            <img rel="preload"
+                class="Basketball__favorites__img c"
+                :src="require('../../../assets/img/sports/basketball/birdman.png')"
+            />
         </div>
     </div>
 </div>
@@ -95,7 +110,7 @@ export default {
     bottom: 0;
 
     height: 90%;
-    width: 130px;
+    /* width: 130px; */
 
     background-repeat: no-repeat;
     background-size: contain;
@@ -107,34 +122,34 @@ export default {
 .Basketball__favorites__img.pg{
     left: -3%;
     z-index: 8;
-    background-image: url('../../../assets/img/sports/basketball/nash.png');
+    /* background-image: url('../../../assets/img/sports/basketball/nash.png'); */
     animation-name: slideInFromLeft;
     animation-duration: 1200ms;
 }
 .Basketball__favorites__img.sf{
     left: 17%;
     z-index: 9;
-    background-image: url('../../../assets/img/sports/basketball/melo.png');
+    /* background-image: url('../../../assets/img/sports/basketball/melo.png'); */
     animation-name: slideInFromLeft;
     animation-duration: 700ms;
 }
 .Basketball__favorites__img.c{
-    left: 35%;
-    background-image: url('../../../assets/img/sports/basketball/birdman.png');
+    left: 30%;
+    /* background-image: url('../../../assets/img/sports/basketball/birdman.png'); */
     z-index: 10;
     animation-name: slideInFromBottom;
     animation-duration: 600ms;
 }
 .Basketball__favorites__img.pf{
     right: 13%;
-    background-image: url('../../../assets/img/sports/basketball/garnett.png');
+    /* background-image: url('../../../assets/img/sports/basketball/garnett.png'); */
     z-index: 9;
     animation-name: slideInFromRight;
     animation-duration: 900ms;
 }
 .Basketball__favorites__img.sg{
     right: -3%;
-    background-image: url('../../../assets/img/sports/basketball/kobe.png');
+    /* background-image: url('../../../assets/img/sports/basketball/kobe.png'); */
     z-index: 8;
     animation-name: slideInFromRight;
     animation-duration: 1500ms;
@@ -164,14 +179,17 @@ export default {
     transform: translateX(0);
   }
 }
-
-@media screen and (max-width: 600px){
-    .Basketball__img {
-        background-image: url('../../../assets/img/sports/basketball-background-mobile.png');
-    }
+.Basketball__img {
+    background-image: url('../../../assets/img/sports/basketball-background-mobile.png');
 }
 
 @media screen and (min-width: 600px){
+    .Basketball__img {
+        background-image: url('../../../assets/img/sports/basketball-background.png');
+    }
+}
+
+@media screen and (min-width: 1025px){
     #Basketball {
         height: 93vh;
     }
@@ -212,19 +230,19 @@ export default {
         text-transform: uppercase;
     }
     .Basketball__favorites__img.pg{
-        left: 25%;
+        left: 19%;
     }
     .Basketball__favorites__img.sf{
-        left: 33%;
+        left: 30%;
     }
     .Basketball__favorites__img.c{
-        left: 41%;
+        left: 39%;
     }
     .Basketball__favorites__img.pf{
         left: 46%;
     }
     .Basketball__favorites__img.sg{
-        left: 56%;
+        left: 57%;
     }
 }
 </style>

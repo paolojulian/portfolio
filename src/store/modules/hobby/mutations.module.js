@@ -67,6 +67,13 @@ const mutations = {
 
     setIsPlaying: (state, isPlaying) => {
         state.music.isPlaying = isPlaying
+    },
+
+    setTogglePlayer: (state, func) => {
+        state.music.TOGGLE_PLAYER = func
+    },
+    clearTogglePlayer: (state) => {
+        clearTimeout(state.music.TOGGLE_PLAYER)
     }
 }
 

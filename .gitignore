@@ -1,7 +1,7 @@
 .DS_Store
 node_modules
 /dist
-/src/api/server/sqljs
+/src/api/server/sql.js
 
 # local env files
 .env.local

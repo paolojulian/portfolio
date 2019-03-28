@@ -1,12 +1,19 @@
+import { $hobbies } from '@/helpers/constants'
+import { mapGetters, mapMutations } from "vuex";
+
 const togglePlayerMixin = {
-    data () {
-        return {
-            TOGGLEPLAYER: null
-        }
+    computed: {
+        ...mapGetters($hobbies, [
+            'togglePlayer'
+        ])
     },
     methods: {
+        ...mapMutations($hobbies, [
+            'setTogglePlayer',
+            'clearTogglePlayer'
+        ]),
         SHOW_PLAYER () {
-            clearTimeout(this.TOGGLEPLAYER)
+            this.clearTogglePlayer()
             document
                 .querySelector('#Player:not(.in-hobby-music) .Player__relative')
                 .style
@@ -14,12 +21,12 @@ const togglePlayerMixin = {
         },
 
         HIDE_PLAYER () {
-            this.TOGGLEPLAYER = setTimeout(() => {
+            this.setTogglePlayer(setTimeout(() => {
                 document
                     .querySelector('#Player:not(.in-hobby-music) .Player__relative')
                     .style
                     .transform = 'translateX(0)'
-            }, 1000)
+            }, 1000))
         }
     }
 }

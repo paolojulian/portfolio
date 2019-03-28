@@ -20,6 +20,7 @@ const state = {
         pageLoader: new PageLoader()
     },
     music: {
+        TOGGLE_PLAYER: null,
         header: 'Music',
         categories: [],
         currentPlaying: null,

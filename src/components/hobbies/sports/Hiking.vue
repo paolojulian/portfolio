@@ -5,6 +5,7 @@
         <div class="Hiking__header__text">
             <div class="hiking-header-bold text-shadow-light"
                 data-aos="fade-right"
+                data-aos-anchor-placement="top-center"
             >
                 IT’S NOT THE CLIMB,
                 <br />
@@ -13,6 +14,7 @@
             <div class="hiking-header-light"
                 data-aos="fade-left"
                 data-aos-delay="100"
+                data-aos-anchor-placement="top-center"
             >
                 I always like long hikes, the thrill of
 sleeping in the cold, eating nuts, burritos,
@@ -20,8 +22,9 @@ that low amount of water, and the climb.
             </div>
         </div>
         <div class="Hiking__gallery"
-            data-aos="fade-up"
+            data-aos="zoom-in-left"
             data-aos-delay="100"
+            data-aos-anchor-placement="top-center"
         >
         </div>
     </div>

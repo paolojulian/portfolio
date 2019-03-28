@@ -101,7 +101,7 @@ export default {
         ...mapGetters($hobbies, [
             'musicList',
             'currentPlaying',
-            'isPlaying'
+            'isPlaying',
         ]),
 
         hasAudio () {

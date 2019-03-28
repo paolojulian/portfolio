@@ -3,12 +3,16 @@
     <div class="ESports_header">
         <span class="text-shadow-dark"
             data-aos="fade-right"
+            data-aos-anchor-placement="top-center"
         >
             E-SPORTS
         </span>
     </div>
     <div class="ESports_games">
         <EsportsCard
+            :data-aos="animation"
+            data-aos-delay="300"
+            data-aos-anchor-placement="top-center"
             class="dota"
             :name="dota.name"
             :hero="dota.hero"
@@ -19,6 +23,9 @@
             image-name="dota-background.png"
             color="yellow"
         /><EsportsCard
+            :data-aos="animation"
+            data-aos-delay="600"
+            data-aos-anchor-placement="center-bottom"
             class="csgo"
             :name="csgo.name"
             :gun="csgo.gun"
@@ -29,6 +36,9 @@
             image-name="csgo-background.png"
             color="yellow"
         /><EsportsCard
+            :data-aos="animation"
+            data-aos-delay="800"
+            data-aos-anchor-placement="center-bottom"
             class="apex"
             :name="apex.name"
             :hero="apex.hero"
@@ -65,6 +75,17 @@ export default {
                 'Mirage',
                 'Wingman/R-301'
             )
+        }
+    },
+    computed: {
+        windowWidth () {
+            return window.innerWidth
+        },
+        animation () {
+            if (this.windowWidth < 600) {
+                return 'slide-left'
+            }
+            return 'zoom-in-down'
         }
     },
     components: {
