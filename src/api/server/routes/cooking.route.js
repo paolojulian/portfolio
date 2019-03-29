@@ -67,6 +67,26 @@ router.get(URL.cooking.recipeList, (req, res) => {
     })
 })
 
+/** /ingredients */
+router.get(URL.cooking.ingredients, (req, res) => {
+    req.getConnection((err, db) => {
+        let ingredient = new CookingModel.Ingredient(db)
+        ingredient.getIngredients('id, name')
+            .then(ingredients => res.JSONsuccess(ingredients))
+            .catch(err => res.JSONerror(err))
+    })
+})
+
+/** /food-categories */
+router.get(URL.cooking.foodCategories, (req, res) => {
+    req.getConnection((err, db) => {
+        let foodCategories = new CookingModel.FoodCategories(db)
+        foodCategories.getFoodCategories('id, name')
+            .then(response => res.JSONsuccess(response))
+            .catch(err => res.JSONerror(err))
+    })
+})
+
 /** /cooking */
 router.get(URL.cooking.main, (req, res) => {
     res.status(200).json({

@@ -78,6 +78,14 @@ const actions = {
         return apiHobby.getRecipes(recipeId)
     },
 
+    getIngredients: () => {
+        return apiHobby.getIngredients()
+    },
+
+    getFoodCategories: () => {
+        return apiHobby.getFoodCategories()
+    },
+
     addRecipe: (context, payload) => {
         return apiHobby.addRecipe(payload)
     },
