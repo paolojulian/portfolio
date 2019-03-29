@@ -101,9 +101,9 @@ export default {
 <style scoped>
 #CookingList__list {
     position: relative;
-    top: 2rem;
+    top: 4rem;
     text-align: center;
-    margin-bottom: 3vh;
+    margin-bottom: 4vh;
 }
 .no-recipe {
     text-align: center;

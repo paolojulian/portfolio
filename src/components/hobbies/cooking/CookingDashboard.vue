@@ -1,38 +1,41 @@
 <template lang="html">
 <div id="CookingDashboard">
     <div id="CookingDashboard__gallery">
-        <div>"Cooking is the most beautiful art"</div>
+        <div class="CookingDashboard__logo"/>
+        <div class="CookingDashboard__saying">
+            "Cooking is the most satisfying art to master"
+        </div>
     </div>
     <div id="CookingDashboard__categories">
         <router-link
-            :class="{'selected': $route.params.sortBy === 'asian'}"
-            to="/hobby/cooking/asian"
+            :class="{'selected': $route.params.sortBy === 'hors'}"
+            to="/hobby/cooking/hors"
         >
-            <span>Asian</span>
+            <span>Hors</span>
         </router-link>
         <router-link
-            :class="{'selected': $route.params.sortBy === 'european'}"
-            to="/hobby/cooking/european"
+            :class="{'selected': $route.params.sortBy === 'appetizer'}"
+            to="/hobby/cooking/appetizer"
         >
-            <span>European</span>
+            <span>Appetizer</span>
         </router-link>
         <router-link
-            :class="{'selected': $route.params.sortBy === 'favorite' || !$route.params.sortBy}"
-            to="/hobby/cooking/favorite"
+            :class="{'selected': $route.params.sortBy === 'salad'}"
+            to="/hobby/cooking/salad"
         >
-            <span>Favorites</span>
+            <span>Salad</span>
         </router-link>
         <router-link
-            :class="{'selected': $route.params.sortBy === 'american'}"
-            to="/hobby/cooking/american"
+            :class="{'selected': $route.params.sortBy === 'mainCourse' || !$route.params.sortBy}"
+            to="/hobby/cooking/mainCourse"
         >
-            <span>American</span>
+            <span>Main Course</span>
         </router-link>
         <router-link
-            :class="{'selected': $route.params.sortBy === 'indian'}"
-            to="/hobby/cooking/indian"
+            :class="{'selected': $route.params.sortBy === 'dessert'}"
+            to="/hobby/cooking/dessert"
         >
-            <span>Indian</span>
+            <span>Dessert</span>
         </router-link>
     </div>
 </div>
@@ -58,7 +61,7 @@ export default {
     z-index: 1;
 
     width: 100%;
-    height: 2rem;
+    height: 4rem;
 
     background-color: var(--pipz-primary);
     color: var(--pipz-font);
@@ -84,23 +87,34 @@ export default {
     color: #131313;
     background-color: rgba(255, 251, 0);
 }
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 600px) {
+    .CookingDashboard__logo {
+        background-image: url('../../../assets/img/ChefPipzLogo.png');
+        background-position: left;
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: 100%;
+        width: 30%;
+    }
     #CookingDashboard__gallery {
         display: block;
-        height: 40vh;
+        height: 300px;
         position: relative;
         background-color: #000000;
         text-align: center;
         color: #ffffff;
     }
-    #CookingDashboard__gallery div {
+
+    .CookingDashboard__saying {
         position: absolute;
         top: 50%;
-        transform: translateY(-50%);
-        width: 100%;
-        font-size: 3rem;
+        left: 50%;
+        width: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 2.5rem;
         font-weight: bold;
     }
+
     #CookingDashboard__categories {
         position: relative;
         top: 0;
@@ -112,6 +126,11 @@ export default {
     #CookingDashboard__categories a:hover:not(.selected) {
         background-color: #ffffff;
         color: #131313;
+    }
+}
+@media screen and (min-width: 1000px) {
+    #CookingDashboard__categories {
+        height: 2rem;
     }
 }
 </style>

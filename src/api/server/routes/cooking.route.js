@@ -5,10 +5,11 @@ const multer = require('multer');
 const resolveSrc = require('../../../../aliases.config')
 
 const foodCategories = {
-    asian: 1,
-    european: 2,
-    american: 3,
-    indian: 4
+    hors: 1,
+    appetizer: 2,
+    salad: 3,
+    main: 4,
+    dessert: 5
 }
 
 /**
@@ -35,17 +36,20 @@ router.get(URL.cooking.recipeList, (req, res) => {
 
     let sortBy = req.query.sortBy || 'favorite'
     switch (sortBy) {
-        case 'asian':
-            query += ` WHERE food_category_id = ${foodCategories.asian}`
+        case 'hors':
+            query += ` WHERE food_category_id = ${foodCategories.hors}`
             break;
-        case 'european':
-            query += ` WHERE food_category_id = ${foodCategories.european}`
+        case 'appetizer':
+            query += ` WHERE food_category_id = ${foodCategories.appetizer}`
             break;
-        case 'american':
-            query += ` WHERE food_category_id = ${foodCategories.american}`
+        case 'salad':
+            query += ` WHERE food_category_id = ${foodCategories.salad}`
             break;
-        case 'indian':
-            query += ` WHERE food_category_id = ${foodCategories.indian}`
+        case 'mainCourse':
+            query += ` WHERE food_category_id = ${foodCategories.main}`
+            break;
+        case 'dessert':
+            query += ` WHERE food_category_id = ${foodCategories.dessert}`
             break;
         case 'favorite':
             query += " WHERE favorite = 1"

@@ -19,7 +19,7 @@ const hobbyList = {
 const hobbyCooking = {
     path: '/hobby/cooking',
     name: 'HobbyCooking',
-    redirect: '/hobby/cooking/favorite',
+    redirect: '/hobby/cooking/mainCourse',
     component: () => import('@/components/hobbies/HobbyCooking'),
     meta: {
         en_title: hobbiesHeader.en.cooking,

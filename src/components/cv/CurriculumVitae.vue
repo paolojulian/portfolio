@@ -138,10 +138,10 @@
             </table>
         </div>
 
-        <hr />
+        <!-- <hr /> -->
 
         <div id="CV__footer">
-            Footer
+            <!-- Footer -->
         </div>
     </div>
 </div>
