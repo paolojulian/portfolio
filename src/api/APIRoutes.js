@@ -1,11 +1,17 @@
+const sports = '/sports'
+const music = '/music'
+const cooking = '/cooking'
+const coding = '/coding'
+
 const URL = {
     sports: {
+        main: sports,
         hiking: {
             gallery: `/sports/hiking/gallery`
         }
     },
     music: {
-        main: '/music',
+        main: music,
         list: '/music/list',
         add: '/music/add',
         edit: '/music/edit',
@@ -15,13 +21,16 @@ const URL = {
         create: {
             procedure: '/cooking/create/procedure'
         },
-        main: '/cooking',
+        main: cooking,
         recipe: '/cooking/recipe/:recipeID',
         recipeList: '/cooking/recipe',
-        addRecipe: '/cooking/recipe/add',
-        edit: '/cooking/recipe/edit'
+        addRecipe: `${cooking}/recipe/add`,
+        ingredients: `${cooking}/ingredients`,
+        foodCategories: `${cooking}/food-categories`,
+        edit: `${cooking}/recipe/edit`
     },
     coding: {
+        main: coding,
         languages: `/coding/skills/languages`,
         frameworks: `/coding/skills/frameworks`,
         companyProjects: `/coding/projects/company`,

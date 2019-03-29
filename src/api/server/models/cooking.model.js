@@ -1,8 +1,38 @@
 const Model = require('./model')
+
+class FoodCategories extends Model {
+    constructor (db) {
+        super (db)
+        this.tableName = 'hobbies_foodcategory'
+    }
+
+    getFoodCategories (fields = '*') {
+        let sql = `SELECT ${fields} FROM ${this.tableName}`
+        return new Promise((resolve, reject) => {
+            this.db.query(sql, (err, ingredients) => {
+                if (err) return reject(err)
+
+                return resolve(ingredients)
+            })
+        })
+    }
+}
+
 class Ingredient extends Model {
     constructor (db) {
         super (db)
         this.tableName = 'hobbies_ingredient'
+    }
+
+    getIngredients (fields = '*') {
+        let sql = `SELECT ${fields} FROM ${this.tableName}`
+        return new Promise((resolve, reject) => {
+            this.db.query(sql, (err, ingredients) => {
+                if (err) return reject(err)
+
+                return resolve(ingredients)
+            })
+        })
     }
 }
 
@@ -209,5 +239,6 @@ module.exports = {
     Recipe,
     Procedure,
     Ingredient,
-    RecipeIngredient
+    RecipeIngredient,
+    FoodCategories
 }

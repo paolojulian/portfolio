@@ -26,6 +26,16 @@ export class APIHobby extends MyAPI {
         return super.xhrGet(url, params)
     }
 
+    getIngredients () {
+        let url = URL.cooking.ingredients
+        return super.xhrGet(url)
+    }
+
+    getFoodCategories () {
+        let url = URL.cooking.foodCategories
+        return super.xhrGet(url)
+    }
+
     addMusic (form) {
         let config = {
             headers: {

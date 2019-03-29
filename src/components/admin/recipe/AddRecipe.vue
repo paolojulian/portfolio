@@ -9,6 +9,19 @@
             />
     </div>
 
+    <div class="recipe-category">
+        <label>Category: </label>
+        <select v-model="recipe.foodCategoryID">
+            <option disabled :value="null">Please select one</option>
+            <option v-for="{ id, name } in foodCategories"
+                :value="id"
+                :key="`foodCategory_${id}`"
+            >
+                {{ name }}
+            </option>
+        </select>
+    </div>
+
     <div class="recipe-img">
         <label>Image: </label>
         <input data-test="cooking add-recipe image"
@@ -37,10 +50,13 @@
             <br />
             <select v-model="ingredient.id">
                 <option disabled :value="null">Please select one</option>
-                <option value="8">TEst8</option>
-                <option value="9">test9</option>
-                <option value="10">Test10</option>
-                <option value="11">Test11</option>
+                <option
+                    v-for="{ id, name } in ingredientList"
+                    :key="`ingredient${id}`"
+                    :value="id"
+                >
+                    {{ name }}
+                </option>
             </select>
             <br />
         </div>
@@ -84,7 +100,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import { $hobbies } from '@/helpers/constants'
 import { mapActions } from 'vuex'
 class Ingredient {
@@ -100,24 +115,45 @@ const recipe = {
     durationFrom: 5,
     durationTo: 10,
     file: null,
-    foodCategoryID: 1
+    foodCategoryID: null
 }
 export default {
     name: 'AddRecipe',
 
     data () {
         return {
+            // FOR SUBMITION
             recipe: { ...recipe },
             ingredients: [new Ingredient()],
-            procedures: ['']
+            procedures: [''],
+            // FOR LIST
+            ingredientList: [],
+            foodCategories: []
         }
     },
 
     methods: {
         ...mapActions($hobbies, [
             'addRecipe',
-            'getHobbyCooking'
+            'getHobbyCooking',
+            'getIngredients',
+            'getFoodCategories',
         ]),
+
+        initialData () {
+            let promises = [
+                this.getIngredients(),
+                this.getFoodCategories()
+            ]
+
+            Promise.all(promises)
+                .then(response => {
+                    this.ingredientList = response[0],
+                    this.foodCategories = response[1]
+                })
+                //eslint-disable-next-line
+                .catch(err => console.log(err))
+        },
 
         addProcedure () {
             this.procedures.push('')
@@ -175,6 +211,10 @@ export default {
             }
             return true
         }
+    },
+
+    mounted () {
+        this.initialData()
     }
 }
 </script>
