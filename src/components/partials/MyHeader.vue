@@ -56,4 +56,9 @@ export default {
 .Header__spacer {
     flex: 1
 }
+@media screen and (min-width: 1000px) {
+    .Header {
+        display: none;
+    }
+}
 </style>

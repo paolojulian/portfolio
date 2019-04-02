@@ -81,7 +81,7 @@ router.patch(URL.music.edit, (req, res) => {
 
 
 // music/delete
-router.post(URL.music.delete, (req, res) => {
+router.delete(URL.music.delete, (req, res) => {
     req.getConnection((error, db) => {
         if (error) return res.JSONerror()
 

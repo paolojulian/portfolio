@@ -3,7 +3,7 @@
     <VFab 
         v-if="willShow"
         type="music"
-        size="3rem"
+        size="5vh"
         backgroundColor="var(--my-parsley)"
         color="#ffffff"
         @click="playMusic()"
@@ -16,7 +16,7 @@
         @mouseover="SHOW_PLAYER"
         @mouseenter="SHOW_PLAYER"
         type="music"
-        size="3rem"
+        size="5vh"
         backgroundColor="var(--my-yellow)"
         color="var(--my-dark)"
         @click="stopPlayer()"
@@ -76,7 +76,7 @@ export default {
     position: fixed;
     z-index: 1000;
     right: 1rem;
-    bottom: calc(7vh - 2rem);
+    bottom: calc(7vh + 0.5vh);
 }
 @media screen and (min-width: 600px) {
     .player-fab {

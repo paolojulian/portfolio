@@ -65,6 +65,10 @@ export default {
     .pipz-fab {
         cursor: pointer;
         margin: 0 0.1rem;
+        transition: all ease-in-out 200ms;
+    }
+    .pipz-fab:hover {
+        transform: scale(1.2);
     }
 }
 </style>

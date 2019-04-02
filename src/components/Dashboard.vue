@@ -12,8 +12,6 @@
                         Hi,  I am a software developer.
                         Aside from my job as a programmer which I most love to do, I also do a lot of things I consider as my hobbies such as playing computer games and basketball with friends, cooking good food from diferent cuisines that I definitely share with people close to me. I am passionate about music and that motivates me to sing and play musical instruments like guitar, piano, and flute and I think music gives life to everything we do. 
                 </div>
-
-                <router-link to="/hobby" class="Dashboard__button">MY HOBBIES</router-link>
             </div>
         </div>
     </div>

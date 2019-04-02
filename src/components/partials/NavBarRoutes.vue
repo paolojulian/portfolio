@@ -15,8 +15,8 @@
 
 <script>
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faHome, faGamepad, faNewspaper } from '@fortawesome/free-solid-svg-icons'
-library.add(faHome, faGamepad, faNewspaper)
+import { faHome, faGamepad, faNewspaper, faMusic, faKeyboard, faFire } from '@fortawesome/free-solid-svg-icons'
+library.add(faHome, faGamepad, faNewspaper, faMusic, faKeyboard, faFire)
 
 export default {
     name: 'NavBarRoutes',
@@ -41,42 +41,6 @@ export default {
 </script>
 
 <style>
-@media (max-width: 530px) {
-    #NavBar__icon {
-        display: none;
-    }
-    .li__img {
-        font-size: 30px;
-        flex: 1;
-    }
-    .li__text {
-        display: none;
-    }
-    #NavBar ul {
-        position:absolute;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-}
-@media (min-width: 530px) {
-    .li__img {
-        display: none;
-    }
-    .li__text {
-        display: inline-block;
-    }
-    #NavBar ul {
-        float: right;
-    }
-}
-#NavBar__icon {
-    line-height: 7vh;
-    padding: 0px 10px;
-    font-size: 20px;
-    height: 5vh;
-    float: left;
-    cursor: default;
-}
 #NavBar ul {
     list-style: none;
     margin: 0;
@@ -95,5 +59,36 @@ export default {
     text-transform: uppercase;
     outline: none;
     cursor: default;
+}
+.li__img {
+    font-size: 1.5rem;
+    flex: 1;
+}
+.li__text {
+    display: none;
+}
+#NavBar ul {
+    position:absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+@media screen and (min-width: 600px) {
+    .li__img {
+        display: none;
+    }
+    .li__text {
+        display: inline-block;
+    }
+    #NavBar ul {
+        position: static;
+        left: unset;
+        transform: unset;
+        float: right;
+    }
+}
+@media screen and (min-width: 1000px) {
+    #NavBar ul {
+        padding-right: 5vw;
+    }
 }
 </style>

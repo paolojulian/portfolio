@@ -5,16 +5,20 @@ let Axios = axios.create({
 })
 
 export class MyAPI {
+    xhr (func) {
+        return new Promise((resolve, reject) => {
+            func()
+                .then(response => { APIValidate({ resolve, reject }, response) })
+                .catch(message => { reject(message) })
+        })
+    }
+
     xhrPost (url, data, config) {
         var apiAxios = (config)
             ? () => Axios.post(url, data, config)
             : () => Axios.post(url, data)
 
-        return new Promise((resolve, reject) => {
-            apiAxios()
-                .then(response => { APIValidate({ resolve, reject }, response) })
-                .catch(message => { reject(message) })
-        })
+        return this.xhr(apiAxios)
     }
 
     xhrPatch (url, data, config) {
@@ -22,25 +26,23 @@ export class MyAPI {
             ? () => Axios.patch(url, data, config)
             : () => Axios.patch(url, data)
 
-        return new Promise((resolve, reject) => {
-            apiAxios()
-                .then(response => { APIValidate({ resolve, reject }, response) })
-                .catch(message => { reject(message) })
-        })
+        return this.xhr(apiAxios)
+    }
+
+    xhrDelete (url, config) {
+        var apiAxios = config
+            ? () => Axios.delete(url, config)
+            : () => Axios.delete(url)
+
+        return this.xhr(apiAxios)
     }
 
     xhrGet (url, params) {
-        return new Promise((resolve, reject) => {
-            var apiAxios = (params)
-                ? () => Axios.get(url, { params })
-                : () => Axios.get(url)
+        var apiAxios = (params)
+            ? () => Axios.get(url, { params })
+            : () => Axios.get(url)
 
-            apiAxios()
-                .then(response => {
-                    APIValidate({ resolve, reject }, response)
-                })
-                .catch(message => { reject(message) })
-        })
+        return this.xhr(apiAxios)
     }
 
     xhrGetAll (urls) {

@@ -9,9 +9,9 @@
                 >chef</span>.PIPZ
             </span>
         </div>
-        <div id="NavBar__title" class="lg-only">
+        <!-- <div id="NavBar__title" class="xl-only">
             {{ headerTitle }}
-        </div>
+        </div> -->
         <ul class="NavBar__clearfix">
             <li v-for="(route, index) in routes"
                 :key="`links${index}`"
@@ -48,7 +48,10 @@ export default {
         return {
             routes: [
                 new NavbarRoute('Home', '/', 'home'),
-                new NavbarRoute('Hobby', '/hobby', 'gamepad'),
+                new NavbarRoute('Cooking', '/hobby/cooking/mainCourse', 'fire'),
+                new NavbarRoute('Music', '/hobby/music', 'music'),
+                new NavbarRoute('Sports', '/hobby/sports', 'gamepad'),
+                new NavbarRoute('Programming', '/hobby/coding', 'keyboard'),
                 new NavbarRoute('CurriculumVitae', '/curriculum-vitae', 'newspaper')
             ],
             isDark: true
@@ -117,10 +120,19 @@ export default {
 #NavBar ul li.active{
     background: rgba(255, 255, 255, 0.1);
 }
-/* #NavBar ul li.active a {
-    color: #333333;
-} */
+#NavBar__icon {
+    display: none;
+}
 @media screen and (min-width: 1000px){
+    #NavBar__icon {
+        display: block;
+        line-height: 7vh;
+        padding: 0px 10px;
+        font-size: 20px;
+        height: 5vh;
+        float: left;
+        cursor: default;
+    }
     #NavBar {
         top: 0;
         left: 0;

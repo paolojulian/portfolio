@@ -77,6 +77,11 @@ body {
         overflow-x: hidden;
     }
 }
+@media screen and (max-width: 1800px) {
+    .xl-only {
+        display: none;
+    }
+}
 .float-left {
     float: left
 }
