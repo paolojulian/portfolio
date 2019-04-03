@@ -8,7 +8,7 @@
         <!-- <div class="RecipeCard__img" /> -->
         <img
             class="RecipeCard__img"
-            :src="imagePath"
+            :src="imagePathOrDefault"
         />
     </div>
     <div class="RecipeCard__content">
@@ -35,6 +35,10 @@ export default {
             required: true
         },
         recipeName: {
+            type: String,
+            required: true
+        },
+        imagePath: {
             type: String,
             required: true
         },
@@ -74,10 +78,10 @@ export default {
     },
      
     computed: {
-        imagePath () {
+        imagePathOrDefault () {
             var path
             try {
-                path = require('../../../assets/img/cooking/' + this.recipeId + '.png')
+                path = require(`../../../assets/img/cooking/${this.imagePath}`)
             } catch (err) {
                 path = this.defaultImg
             }
@@ -105,10 +109,8 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
-    background-size: cover;
-    background-position: center;
     width: 100%;
-    height: 100%;
+    margin: auto;
 }
 .RecipeCard__content {
     position: absolute;
@@ -144,7 +146,7 @@ export default {
         overflow: hidden;
         margin: 0.5rem;
         box-shadow: 0 5px 10px #131313;
-        width: 20.3rem;
+        width: 300px;
         height: 300px;
         border-radius: 5px;
         transition: transform 300ms ease-in-out, box-shadow 200ms linear;

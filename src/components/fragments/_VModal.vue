@@ -21,13 +21,15 @@
 
                 <div class="modal-footer">
                     <slot name="footer">
-                        <VButton
-                            class="modal-default-button"
-                            variant="primary"
-                            text-color="#000000"
-                            @click="$emit('close')">
-                            Close
-                        </VButton>
+                        <VFab 
+                            class="modal-close-button"
+                            size="5vh"
+                            backgroundColor="var(--my-paprika)"
+                            color="#ffffff"
+                            @click="$emit('close')"
+                        >
+                            <font-awesome-icon icon="times"/>
+                        </VFab>
                     </slot>
                 </div>
             </div>
@@ -38,6 +40,9 @@
 
 <script type="text/javascript">
 import { mangoTheme, theme } from '@/helpers/constants'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
+library.add( faTimes )
 export default {
     name: 'VModal',
     props: {
@@ -100,8 +105,12 @@ export default {
     text-align: center;
     overflow-y: auto;
 }
+.modal-footer {
+    height: 50px;
+    width: 100%;
+}
 
-.modal-default-button {
+.modal-close-button {
     position: absolute;
     right: 5px;
     bottom: 5px;
