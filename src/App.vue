@@ -38,7 +38,12 @@ export default {
         return {
             // PRELOADED IMAGES HERE
             preloadImages: [
-                require('./assets/img/pipz.png')
+                require('./assets/img/pipz.png'),
+                require('./assets/img/sports/basketball/birdman.png'),
+                require('./assets/img/sports/basketball/melo.png'),
+                require('./assets/img/sports/basketball/garnett.png'),
+                require('./assets/img/sports/basketball/kobe.png'),
+                require('./assets/img/sports/basketball/nash.png'),
             ]
         }
     },
