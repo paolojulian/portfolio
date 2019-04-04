@@ -87,8 +87,7 @@
                             <br />
                             Junior Web Developer
                         </td>
-                        <td>
-                            Primarily worked with the <b>School System</b>, <b>Payroll System</b>, and <b>Teacher System</b>,
+                        <td>Primarily worked with the <b>School System</b>, <b>Payroll System</b>, and <b>Teacher System</b>,
                             mainly used <b>HTML</b>, <b>CSS</b>, <b>VueJS</b> and <b>JQuery</b> for front-end and <b>Codeigniter</b> for Back-end.
                             usually worked on schedule management and the main back bone logics
                             of the school system.
@@ -275,7 +274,7 @@ table label {
 .educational-header {
     vertical-align: top;
 }
-@media screen and (min-width: 600px) {
+@media (min-width: 600px) {
     #CV {
         font-weight: 400;
     }
@@ -307,7 +306,7 @@ table label {
         width: 15rem;
     }
 }
-@media screen and (min-width: 1000px) {
+@media (min-width: 1000px) {
     #CV {
         margin-top: 5rem;
     }
@@ -322,6 +321,31 @@ table label {
         transform: translateX(-50%);
 
         box-shadow: 0 5px 10px #131313;
+    }
+}
+@media print {
+    #CV__photo {
+        width: 250px;
+        height: 250px;
+        margin-right: 10px;
+    }
+    #CV__details__fullname {
+        font-size: 2rem;
+    }
+    #CV__details {
+        width: 100%;
+    }
+    #CV__header {
+        margin-bottom: 20px;
+    }
+    #CV__skills {
+        margin-top: 50px;
+    }
+    #CV__skills_list {
+        padding-top: 30px;
+    }
+    tr td:first-child {
+        width: 15rem;
     }
 }
 </style>
