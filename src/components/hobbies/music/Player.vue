@@ -1,6 +1,7 @@
 <template lang="html">
 <div id="Player"
     :class="{ 'in-hobby-music': $route.name === 'HobbyMusic'}"
+    class="no-print"
 >
     <PlayerFab />
     <div class="Player__relative"
