@@ -9,6 +9,4 @@ const fileFilter = (req, file, cb) => {
     return (null, true);
 }
 
-module.exports = {
-    fileFilter
-}
+module.exports.fileFilter = fileFilter;
