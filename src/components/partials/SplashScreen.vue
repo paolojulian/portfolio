@@ -1,6 +1,6 @@
 <template lang="html">
-<div class="SplashScreen">
-	<div class="SplashScreen__logo">
+<div class="LoadingScreen">
+	<div class="LoadingScreen__logo">
 		<span class="chef">Chef</span>.<span class="pipz">PIPZ</span>
 	</div>
 </div>
@@ -8,12 +8,12 @@
 
 <script type="text/javascript">
 window.addEventListener('load', () => {
-	setTimeout(() => {
-		document.querySelector('.SplashScreen').style.opacity = '0'
-	}, 500)
-	setTimeout(() => {
-		document.querySelector('.SplashScreen').style.display = 'none'
-	}, 800)
+	// setTimeout(() => {
+	// 	document.querySelector('.LoadingScreen').style.opacity = '0'
+	// }, 500)
+	// setTimeout(() => {
+	// 	document.querySelector('.LoadingScreen').style.display = 'none'
+	// }, 800)
 })
 export default {
 
@@ -21,7 +21,7 @@ export default {
 </script>
 
 <style scoped>
-.SplashScreen {
+.LoadingScreen {
 	z-index: 1001;
 	position: fixed;
 	left: 0;
@@ -33,7 +33,7 @@ export default {
 
 	transition: all 300ms ease-in-out;
 }
-.SplashScreen__logo {
+.LoadingScreen__logo {
 	position: absolute;
 	top: 50%;
 	left: 50%;

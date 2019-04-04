@@ -34,19 +34,6 @@ export default {
         PageLoader: () => import('@/components/partials/PageLoader'),
         Player: () => import('./components/hobbies/music/Player.vue')
     },
-    data () {
-        return {
-            // PRELOADED IMAGES HERE
-            preloadImages: [
-                require('./assets/img/pipz.png'),
-                require('./assets/img/sports/basketball/birdman.png'),
-                require('./assets/img/sports/basketball/melo.png'),
-                require('./assets/img/sports/basketball/garnett.png'),
-                require('./assets/img/sports/basketball/kobe.png'),
-                require('./assets/img/sports/basketball/nash.png'),
-            ]
-        }
-    },
     computed: {
         ...mapGetters($hobbies, [
             'currentPlaying'
@@ -71,13 +58,6 @@ export default {
         ...mapActions($hobbies, [
             'getMusicList'
         ])
-    },
-
-    beforeRouteEnter (to, from, next) {
-        Promise.all(this.preloadImages)
-            .then(() => {
-                next()
-            })
     },
 
     created () {

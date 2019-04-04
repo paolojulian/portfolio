@@ -31,6 +31,16 @@ const GLOBAL_MIXINS = {
 			console.log(msg)
 		},
 
+		/**
+		 * PRELOAD IMAGES before entering
+		 * @param { Array } images - images to preload
+		 * @param { Function } func - callback if preloaded
+		 */
+		PRELOAD_IMAGES (images, func) {
+			Promise.all(images)
+				.then(() => func())
+		},
+
 		GET_RANDOM_INT(min, max) {
 			return Math.round(Math.random() * (max - min) + min);
 		},

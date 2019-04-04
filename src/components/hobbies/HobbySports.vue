@@ -6,8 +6,9 @@
 </div>
 </template>
 
-<script type="text/javascript">
+<script>
 export default {
+    name: 'HobbySports',
     components: {
         Basketball: () => import('./sports/BasketBall.vue'),
         Hiking: () => import('./sports/Hiking.vue'),

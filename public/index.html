@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
     <link rel="icon" href="./favicon.ico">
+    <link rel="stylesheet"
+      href="/styles/splashscreen.css"
+      type="text/css">
 
     <title>Chef.PIPZ</title>
   </head>
@@ -12,53 +15,21 @@
     <noscript>
       <strong>We're sorry but chefpipz doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
+    <!-- built files will be auto injected -->
     <div id="app"></div>
     <!-- SPLASH SCREEN -->
     <div class="SplashScreen">
       <div class="SplashScreen__logo">
         <span class="chef">Chef</span>.<span class="pipz">PIPZ</span>
       </div>
+      <div class="SplashScreen__lines">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
-    <script type="text/javascript">
-      window.addEventListener('load', () => {
-        setTimeout(() => {
-          document.querySelector('.SplashScreen').style.opacity = '0'
-        }, 1500)
-        // display none is set because it will overlay everything
-        // the delay should match the transition
-        setTimeout(() => {
-          document.querySelector('.SplashScreen').style.display = 'none'
-        }, 1800)
-      })
-    </script>
-    <style>
-      .SplashScreen {
-        z-index: 1001;
-        position: fixed;
-        left: 0;
-        top: 0;
-        background: white;
-
-        height: 100%;
-        width: 100%;
-
-        transition: all 300ms ease-in-out;
-      }
-      .SplashScreen__logo {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 3rem;
-        font-family: 'Roboto', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-      }
-      .SplashScreen__logo span.chef{
-        color: #7C2D37;
-      }
-      .SplashScreen__logo span.pipz{
-        color: #1F5725;
-      }
-    </style>
-    <!-- built files will be auto injected -->
+    <script type="text/javascript" src="/js/splashscreen.js"></script>
+    <style src="/styles/splashscreen.css"></style>
   </body>
 </html>
