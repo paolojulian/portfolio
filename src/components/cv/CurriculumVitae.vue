@@ -36,12 +36,12 @@
                     <label>-Team Player</label>
                     <li>
                         A team should play as a team, not as individuals.
-                        Comminucate, and understand one another.
+                        Communicate, and understand one another.
                     </li>
                     <label>-Passionate</label> 
                     <li>
                         I always want to continue developing myself and learning
-                        new things because programming is life
+                        new things because programming is my passion
                     </li>
                     <label>-Friendly</label> 
                     <li>

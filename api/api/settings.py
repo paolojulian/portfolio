@@ -85,7 +85,7 @@ DATABASES = {
     # }
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'portfolio',
+        'NAME': 'chefpipz',
         'USER': 'root',
         'PASSWORD': 'Sadface2',
         'HOST': 'localhost',

@@ -146,14 +146,14 @@ class Recipe extends Model {
 
     }
 
-    setRecipe (name, favorite, duration_from, duration_to, food_category_id, file) {
+    setRecipe (name, favorite, duration_from, duration_to, food_category_id, image_path) {
         this.form = {}
         this.form.name = name ? name.trim() : ''
         this.form.favorite = favorite || 0
         this.form.duration_from = duration_from || 5
         this.form.duration_to = duration_to || 5
         this.form.food_category_id = food_category_id || null
-        this.file = file || null
+        this.image_path = image_path
     }
 
     getInfo () {
@@ -195,7 +195,7 @@ class Recipe extends Model {
                 duration_from: this.form.duration_from,
                 duration_to: this.form.duration_to,
                 food_category_id: this.form.food_category_id,
-                image_path: this.file.filename
+                image_path: this.image_path
             }
 
             this.beginTransaction(async err => {

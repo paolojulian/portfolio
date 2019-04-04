@@ -1,8 +1,14 @@
-const URL = require('../../APIRoutes')
-const router = require('./router')
-const CookingModel = require('../models/cooking.model')
 const multer = require('multer');
-const resolveSrc = require('../../../../aliases.config')
+const path = require('path');
+const fs = require('fs');
+const aws = require('./aws')
+const sharp = require('sharp')
+const router = require('./router');
+
+const URL = require('../../APIRoutes');
+const CookingModel = require('../models/cooking.model');
+const resolveSrc = require('../../../../aliases.config');
+const fileFilter = require('../helpers/fileUploadHelper');
 
 const foodCategories = {
     hors: 1,
@@ -137,45 +143,81 @@ router.patch(URL.cooking.edit, (req, res) => {
  * @return { json }
  */
 
+
 let musicPath = resolveSrc(`/src/assets/img/cooking`)
-let storage = multer.diskStorage({
-    destination: musicPath,
+const MAX_SIZE = 10000000;
+const upload = multer({
+    dest: "./uploads",
+    fileFilter,
+    limits: {
+        fileSize: MAX_SIZE
+    },
     filename: function (req, file, cb) {
         let filename = file.originalname.split('.').slice(0, -1).join('')
         cb(null, filename + '-' + Date.now() + '.png')
     }
 })
-let upload = multer({ storage })
 
-router.post(URL.cooking.addRecipe, upload.single('file'), (req, res) => {
-    req.getConnection((connectionErr, db) => {
-        if (connectionErr) return res.status(500).json('No Connection');
+router.post(URL.cooking.addRecipe, upload.single('file'), async (req, res) => {
+    // AMAZON S3 bucket
+    const s3 = new aws.S3();
+    const now = Date.now();
 
-        let procedures = JSON.parse(req.body.procedures)
-        let ingredients = JSON.parse(req.body.ingredients)
-        var recipe = new CookingModel.Recipe(db)
-        recipe.setRecipe(
-            req.body.name,
-            req.body.favorite,
-            req.body.durationFrom,
-            req.body.durationTo,
-            req.body.foodCategoryID,
-            req.file
-        )
-        if ( ! recipe.validateEmpty()) {
-            return res.status(422).json('Incomplete Parameters')
-        }
-        if (procedures.length === 0) {
-            return res.status(422).json('No Procedures')
-        }
-        if (ingredients.length === 0) {
-            return res.status(422).json('No Ingredients')
-        }
 
-        recipe.addRecipe(procedures, ingredients)
-            .then(() => res.JSONcreated())
-            .catch(() => res.JSONerror())
-    })
+    try {
+        // Resize the image and put in buffer
+        const buffer = await sharp(req.file.path)
+            .resize(300)
+            .embed()
+            .toBuffer();
+
+        // Remove the excess extensions from the file
+        const fileNameNoExtensions = req.file.originalname.split('.').slice(0, -1).join('');
+        const fileName = `${fileNameNoExtensions}-${now}.png`;
+        
+        const s3res = await s3.upload({
+            Bucket: "chefpipz",
+            Key: fileName,
+            Body: buffer,
+            ACL: 'public-read'
+        }).promise();
+
+        // Remove from tmp_uploads
+        fs.unlink(req.file.path, () => {
+            res.json({ file: s3res.Location })
+        })
+        // Save the path to the database
+        req.getConnection((connectionErr, db) => {
+            if (connectionErr) return res.status(500).json('No Connection');
+
+            let procedures = JSON.parse(req.body.procedures)
+            let ingredients = JSON.parse(req.body.ingredients)
+            var recipe = new CookingModel.Recipe(db)
+            recipe.setRecipe(
+                req.body.name,
+                req.body.favorite,
+                req.body.durationFrom,
+                req.body.durationTo,
+                req.body.foodCategoryID,
+                s3res.Location
+            )
+            if ( ! recipe.validateEmpty()) {
+                throw new Error("Incomplete Parameters");
+            }
+            if (procedures.length === 0) {
+                throw new Error("No Procedures")
+            }
+            if (ingredients.length === 0) {
+                throw new Error("No Ingredients")
+            }
+
+            recipe.addRecipe(procedures, ingredients)
+                .then(() => res.JSONcreated())
+                .catch(() => res.JSONerror())
+        })
+    } catch (err) {
+        return res.status(422).json({ err })
+    }
 });
 
 module.exports = router;
