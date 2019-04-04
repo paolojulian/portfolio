@@ -13,6 +13,7 @@
                 :key="'recipe_id_' + recipe.id"
                 :recipe-id="recipe.id"
                 :recipe-name="recipe.name"
+                :image-path="recipe.image_path"
                 :duration-from="Number(recipe.duration_from)"
                 :duration-to="Number(recipe.duration_to)"
                 :date-created="recipe.dateCreated"

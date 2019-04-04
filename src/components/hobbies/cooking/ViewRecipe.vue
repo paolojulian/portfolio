@@ -1,40 +1,44 @@
 <template lang="html">
-<VModal id="viewRecipe">
-    <div slot="header">
-        <span>{{ recipeName }}</span>
-        <div class="close-modal"
-            @click="$emit('close')">
-            <font-awesome-icon
-                icon="times"/>
-        </div>
+<VModal class="ViewRecipe"
+    @close="$emit('close')"
+>
+    <div slot="header"
+        class="view-recipe-header"
+    >
+        {{ recipeName }}
     </div>
-    <div slot="body">
-        <VLoader v-if="isLoading"/>
-        <div v-if="isError">
-            --
+    <div slot="body"
+        class="view-recipe-body"
+    >
+        <div class="no-content"
+            v-if="recipeIngredients.length <= 0 && procedures.length <= 0"
+        >
+            No Content
         </div>
-        <div v-if="isPost">
-            <h4>Ingredients</h4>
-            <div v-if="ingredients && ingredients.length > 0">
-                <ol>
-                    <li v-for="(ingredient, i) in ingredients" :key="`ingredient_${i}`">
-                        {{ ingredient.parent.ingredient_name }}
-                        <ul v-if="ingredient.sub_ingredients && ingredient.sub_ingredients.length > 0">
-                            <li v-for="(sub_ingredient, j) in ingredient.sub_ingredients" :key="`sub_ingredient_${j}`">
-                                {{ sub_ingredient.sub_ingredient_name }}
-                            </li>
-                        </ul>
-                    </li>
-                </ol>
+
+        <div class="recipe-ingredients"
+            v-if="recipeIngredients.length > 0"
+        >
+            <label>Ingredients</label>
+            <VSpacer/>
+            <div v-for="(ingredient, i) in recipeIngredients"
+                :key="`recipeIngredient_${i}`"
+            >
+                {{ i + 1 }}.&nbsp;
+                {{ ingredient.name }}
             </div>
-            <div v-if="procedures && procedures.length > 0">
-                <h4>Procedures</h4>
-                <ol>
-                    <li v-for="(procedure, i) in procedures"
-                        :key="`procedure_${i}`">
-                        {{ procedure.description }}
-                    </li>
-                </ol>
+        </div>
+        <VSpacer/>
+        <div class="procedures"
+            v-if="procedures.length > 0"
+        >
+            <label>Procedures</label>
+            <VSpacer/>
+            <div v-for="(procedure, i) in procedures"
+                :key="`procedure_${i}`"
+            >
+                {{ i + 1 }}.&nbsp;
+                {{ procedure.description }}
             </div>
         </div>
     </div>
@@ -44,9 +48,6 @@
 <script type="text/javascript">
 import { mapActions } from 'vuex'
 import { $hobbies } from '@/helpers/constants'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
-library.add(faTimes)
 export default {
     props: {
         recipeId: {
@@ -60,7 +61,7 @@ export default {
     },
     data () {
         return {
-            ingredients: [],
+            recipeIngredients: [],
             procedures: [],
             isLoading: true,
             isPost: false,
@@ -73,11 +74,11 @@ export default {
         ]),
         initialData () {
             this.getRecipe(this.recipeId)
-                .then(recipe => {
-                    this.ingredients = recipe.ingredients
-                    this.procedures = recipe.procedures
-                    this.pagePost()
+                .then(({ recipeIngredients, procedures }) => {
+                    this.recipeIngredients = recipeIngredients
+                    this.procedures = procedures
                 })
+                .then(() => this.pagePost())
                 .catch(message => {
                     this.pageError(message)
                 })
@@ -108,4 +109,13 @@ export default {
 </script>
 
 <style scoped>
+.ViewRecipe label {
+    font-weight: 600;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+.view-recipe-body {
+    padding: 1rem;
+}
 </style>
