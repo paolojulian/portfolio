@@ -34,6 +34,14 @@ export default {
         PageLoader: () => import('@/components/partials/PageLoader'),
         Player: () => import('./components/hobbies/music/Player.vue')
     },
+    data () {
+        return {
+            // PRELOADED IMAGES HERE
+            preloadImages: [
+                require('./assets/img/pipz.png')
+            ]
+        }
+    },
     computed: {
         ...mapGetters($hobbies, [
             'currentPlaying'
@@ -58,6 +66,13 @@ export default {
         ...mapActions($hobbies, [
             'getMusicList'
         ])
+    },
+
+    beforeRouteEnter (to, from, next) {
+        Promise.all(this.preloadImages)
+            .then(() => {
+                next()
+            })
     },
 
     created () {

@@ -312,7 +312,7 @@ table label {
         margin-top: 5rem;
     }
     #CV__card {
-        width: 595px;
+        width: 210mm;
         padding: 1rem 2rem;
 
         margin-bottom: 10rem;
