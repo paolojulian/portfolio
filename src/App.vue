@@ -8,7 +8,6 @@
             'light-theme': theme === 'light'
         }"
     >
-        <SplashScreen/>
         <MyHeader v-if="hasHeader" />
 		<main class="Main clearfix"
             :class="{ 'main-has-navbar': hasNavbar }"
@@ -17,7 +16,7 @@
                 <router-view/>
             </page-loader>
 		</main>
-        <transition name="fade" mode="in-out">
+        <transition name="fade" mode="out-in">
             <Player/>
         </transition>
         <navbar v-if="hasNavbar" />
@@ -33,8 +32,7 @@ export default {
         Navbar: () => import('./components/partials/NavBar'),
         MyHeader: () => import('./components/partials/MyHeader'),
         PageLoader: () => import('@/components/partials/PageLoader'),
-        Player: () => import('./components/hobbies/music/Player.vue'),
-        SplashScreen: () => import('./components/partials/SplashScreen.vue')
+        Player: () => import('./components/hobbies/music/Player.vue')
     },
     computed: {
         ...mapGetters($hobbies, [

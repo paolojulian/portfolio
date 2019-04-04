@@ -10,6 +10,9 @@
                     <div id="CV__details__address">{{ strings.address }}</div>
                     <div id="CV__details__mobile">{{ strings.mobile }}</div>
                     <div id="CV__details__email">{{ strings.emailPrimary }}</div>
+                    <div id="CV__details__portfolio">
+                        <a href="http://chefpipz.herokuapp.com" target="__blank">http://chefpipz.herokuapp.com</a>
+                    </div>
                     <div id="CV__details__quote">{{ strings.quotePrimary }}</div>
                 </div>
             </div>
@@ -108,14 +111,10 @@
                             <div>Baguio City</div>
                             <div>Information Technology - Major in Network and Communications</div>
                             <div>2014 - 2017</div>
-                            <br />
-                            <div>Saint Louis University</div>
-                            <div>Baguio City</div>
-                            <div>Electronics and Communications Engineering - Undergrad</div>
-                            <div>2010 - 2014</div>
                         </td>
                         <td></td>
                     </tr>
+                    <br />
                     <tr>
                         <td class="educational-header">{{ strings.secondary }}</td>
                         <td>
@@ -125,6 +124,7 @@
                         </td>
                         <td></td>
                     </tr>
+                    <br />
                     <tr>
                         <td class="educational-header">{{ strings.primary }}</td>
                         <td>
@@ -207,9 +207,13 @@ export default {
 
 #CV__photo {
     float: right;
-    width: calc(50vw - 1rem);
-    height: calc(50vw - 1rem);
-    background-color: rgba(0, 0, 0, 0.25);
+    width: calc(50vw - 2rem);
+    height: calc(50vw - 2rem);
+    border-radius: 50%;
+    background-image: url('/img/profile1.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 #CV__details {
@@ -275,19 +279,6 @@ table label {
     #CV {
         font-weight: 400;
     }
-    #CV__card {
-        width: 50rem;
-
-        padding: 1rem 2rem;
-
-        margin-bottom: 10rem;
-
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-
-        box-shadow: 0 5px 10px #131313;
-    }
     #CV__photo {
         width: 15rem;
         height: 15rem;
@@ -319,6 +310,18 @@ table label {
 @media screen and (min-width: 1000px) {
     #CV {
         margin-top: 5rem;
+    }
+    #CV__card {
+        width: 595px;
+        padding: 1rem 2rem;
+
+        margin-bottom: 10rem;
+
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+
+        box-shadow: 0 5px 10px #131313;
     }
 }
 </style>

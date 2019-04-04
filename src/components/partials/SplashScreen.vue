@@ -1,22 +1,20 @@
 <template lang="html">
 <div class="SplashScreen">
-	Splash
+	<div class="SplashScreen__logo">
+		<span class="chef">Chef</span>.<span class="pipz">PIPZ</span>
+	</div>
 </div>
 </template>
 
 <script type="text/javascript">
-// document.querySelector('.SplashScreen').style.opacity = '100'
-// document.querySelector('.SplashScreen').style.display = 'block'
-// setTimeout(() => {
-	window.addEventListener('load', () => {
-		// setTimeout(() => {
-			document.querySelector('.SplashScreen').style.opacity = '0'
-		// }, 1500)
-		// setTimeout(() => {
-			document.querySelector('.SplashScreen').style.display = 'none'
-		// }, 1800)
-	})
-// }, 2000)
+window.addEventListener('load', () => {
+	setTimeout(() => {
+		document.querySelector('.SplashScreen').style.opacity = '0'
+	}, 500)
+	setTimeout(() => {
+		document.querySelector('.SplashScreen').style.display = 'none'
+	}, 800)
+})
 export default {
 
 }
@@ -34,5 +32,11 @@ export default {
 	width: 100%;
 
 	transition: all 300ms ease-in-out;
+}
+.SplashScreen__logo {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 </style>
