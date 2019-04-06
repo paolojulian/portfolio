@@ -2,8 +2,13 @@ const sports = '/sports'
 const music = '/music'
 const cooking = '/cooking'
 const coding = '/coding'
+const dropzone = '/dropzone'
 
 const URL = {
+    uploads: {
+        audio: `${dropzone}/audio`,
+        image: `${dropzone}/image`
+    },
     sports: {
         main: sports,
         hiking: {

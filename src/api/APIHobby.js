@@ -3,16 +3,11 @@ const URL = require('./APIRoutes')
 
 export class APIHobby extends MyAPI {
     addRecipe (form) {
-        let config = {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        }
-        return super.xhrPost(
-            URL.cooking.addRecipe,
-            form,
-            config
-        )
+        return super
+                .xhrPost(
+                    URL.cooking.addRecipe,
+                    form
+                )
     }
 
     getRecipes (recipeId, sortBy = 'favorite') {
@@ -37,15 +32,9 @@ export class APIHobby extends MyAPI {
     }
 
     addMusic (form) {
-        let config = {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        }
         return super.xhrPost(
             URL.music.add,
-            form,
-            config
+            form
         )
     }
 
@@ -79,5 +68,20 @@ export class APIHobby extends MyAPI {
 
     updateRecipeInfo (payload) {
         return this.xhrPatch(URL.cooking.edit, payload)
+    }
+
+    /**
+     * Handles all file uploads
+     * @param { Image } imageFile 
+     */
+    uploadImage (imageFile) {
+        const headers = { 'Content-Type': 'multipart/form-data' };
+        const config = { headers }
+        return super
+                .xhrPost(
+                    URL.uploads.image,
+                    imageFile,
+                    config
+                );
     }
 }

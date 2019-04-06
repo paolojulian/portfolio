@@ -81,7 +81,8 @@ export default {
         imagePathOrDefault () {
             var path
             try {
-                path = require(`../../../assets/img/cooking/${this.imagePath}`)
+                // path = require(`../../../assets/img/cooking/${this.imagePath}`)
+                path = this.imagePath
             } catch (err) {
                 path = this.defaultImg
             }

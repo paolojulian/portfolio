@@ -9,6 +9,7 @@ const responses = require('./responses')
 const cookingRoutes = require('./routes/cooking.route.js')
 const musicRoutes = require('./routes/music.route.js')
 const codingRoutes = require('./routes/coding.route.js')
+const uploadRoutes = require('./routes/uploads.route')
 
 app.use(responses)
 app.use(connection)
@@ -16,15 +17,12 @@ app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
       extended: true
 })); 
-// app.use((req, res, next) => {
-//     req.db = connection
-//     next()
-// })
 
 app.use('/api', [
     cookingRoutes,
     musicRoutes,
-    codingRoutes
+    codingRoutes,
+    uploadRoutes
 ])
 
 module.exports = app

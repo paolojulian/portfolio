@@ -57,7 +57,7 @@ export class MyAPI {
 
 export function APIValidate ({ resolve, reject }, response) {
     let successCodes = [200, 201, 304]
-    if (successCodes.indexOf(response.status) === -1) reject()
+    if ( ! successCodes.includes(response.status)) reject();
     if (typeof response.data.status === 'undefined') reject()
     if ( ! response.data.status) reject()
 

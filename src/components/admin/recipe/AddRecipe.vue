@@ -114,8 +114,8 @@ const recipe = {
     favorite: 0,
     durationFrom: 5,
     durationTo: 10,
-    file: null,
-    foodCategoryID: null
+    foodCategoryID: null,
+    imagePath: ''
 }
 export default {
     name: 'AddRecipe',
@@ -124,11 +124,24 @@ export default {
         return {
             // FOR SUBMITION
             recipe: { ...recipe },
+            file: null,
             ingredients: [new Ingredient()],
             procedures: [''],
             // FOR LIST
             ingredientList: [],
-            foodCategories: []
+            foodCategories: [],
+            errors: {
+                unableToUpload: {
+                    code: 321312319,
+                    status: false,
+                    message: ''
+                },
+                unableToAddRecipe: {
+                    code: 321312320,
+                    status: false,
+                    message: ''
+                }
+            }
         }
     },
 
@@ -138,6 +151,7 @@ export default {
             'getHobbyCooking',
             'getIngredients',
             'getFoodCategories',
+            'uploadImage'
         ]),
 
         initialData () {
@@ -175,17 +189,38 @@ export default {
             }
         },
 
-        submit () {
-            let form = new FormData()
-            Object.keys(this.recipe).map((key) => {
-                let value = this.recipe[key]
-                form.append(key, value)
-            })
-            form.append('ingredients', JSON.stringify(this.ingredients))
-            form.append('procedures', JSON.stringify(this.procedures))
-            this.addRecipe(form)
-                .then(this.handleSuccess)
-                .catch(this.handleError)
+        uploadImageAndGetPath () {
+            let form = new FormData();
+            form.append('file', this.file);
+            form.append('name', this.recipe.name);
+
+            return this.uploadImage(form)
+                .then(response => {
+                    this.recipe.imagePath = response.imagePath
+                })
+                .catch(err => { throw err })
+        },
+
+        async submit () {
+            try {
+                // get image path first before saving
+                await this.uploadImageAndGetPath();
+
+                const form = {
+                    ...this.recipe,
+                    ingredients: JSON.stringify(this.ingredients),
+                    procedures: JSON.stringify(this.procedures)
+                }
+                this.addRecipe(form)
+                    .then(this.handleSuccess)
+                    .catch(err => { throw err; })
+
+            } catch (err) {
+                // eslint-disable-next-line
+                console.error(err);
+                this.handleError(this.errors.unableToAddRecipe.code);
+            }
+
         },
 
         resetForm () {
@@ -200,14 +235,42 @@ export default {
             this.getHobbyCooking()
         },
 
-        handleError () {
-            alert('Error')
+        handleError (errorCode = '', errorMessage = '') {
+            switch (errorCode) {
+                // Unable To Upload Image
+                case this.errors.unableToUpload.code:
+                    this.errors.unableToUpload.status = true
+                    if (errorMessage.err && typeof errorMessage.err === 'string') {
+                        this.errors.unableToUpload.message = errorMessage.err
+                    } else {
+                        this.errors.unableToUpload.message = 'Something went wrong in uploading the file'
+                    }
+                    // remove error after 5 seconds
+                    setTimeout(() => {
+                        this.errors.unableToUpload.status = false
+                        this.errors.unableToUpload.message = ''
+                    }, 5000);
+                    break;
+                // Unable to Add Recipe
+                case this.errors.unableToAddRecipe.code:
+                    this.errors.unableToAddRecipe.status = true
+                    this.errors.unableToAddRecipe.message = 'Something went wrong!!'
+                    // remove error after 5 seconds
+                    setTimeout(() => {
+                        this.errors.unableToAddRecipe.status = false
+                        this.errors.unableToAddRecipe.message = ''
+                    }, 5000);
+                    break;
+                default:
+                    alert('Error');
+                    break;
+            }
         },
 
         handleFileUpload (event) {
-            this.recipe.file = event.target.files[0]
+            this.file = event.target.files[0]
             if (this.recipe.name.trim() === '') {
-                this.recipe.name = this.recipe.file.name
+                this.recipe.name = this.file.name
             }
             return true
         }

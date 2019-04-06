@@ -74,6 +74,10 @@ const actions = {
             })
     },
 
+    uploadImage: (context, imageFile) => {
+        return apiHobby.uploadImage(imageFile);
+    },
+
     getRecipe: (context, recipeId) => {
         return apiHobby.getRecipes(recipeId)
     },
