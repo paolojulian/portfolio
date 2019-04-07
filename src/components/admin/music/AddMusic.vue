@@ -60,7 +60,8 @@ export default {
     methods: {
         ...mapActions($hobbies, [
             'getMusicList',
-            'addMusic'
+            'addMusic',
+            'uploadAudio'
         ]),
 
         uploadAudioAndGetPath () {
@@ -68,7 +69,7 @@ export default {
             form.append('file', this.file);
             form.append('name', this.form.name);
 
-            return this.uploadImage(form)
+            return this.uploadAudio(form)
                 .then(response => {
                     this.form.audioPath = response.audioPath
                 })
@@ -80,9 +81,9 @@ export default {
                 // get audio path first before adding to database
                 await this.uploadAudioAndGetPath();
                 // add data to database
-                this.addMusic(this.form)
-                    .then(this.handleSuccess)
-                    .catch(err => { throw err });
+                // this.addMusic(this.form)
+                //     .then(this.handleSuccess)
+                //     .catch(err => { throw err });
             } catch (err) {
                 //eslint-disable-next-line
                 console.error(err);
@@ -112,11 +113,11 @@ export default {
 
             switch (errorCode) {
                 case this.errors.unableToUpload.code:
-                    showError(this.erros.unableToUpload, 'Unable to upload audio file');
+                    showError(this.errors.unableToUpload, 'Unable to upload audio file');
                     break;
                 
                 case this.errors.unableToAddMusic.code:
-                    showError(this.erros.unableToUpload, 'Unable to add music');
+                    showError(this.errors.unableToAddMusic, 'Unable to add music');
                     break;
 
                 default:
