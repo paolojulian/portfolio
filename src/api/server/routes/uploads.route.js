@@ -115,25 +115,18 @@ router.post(URL.uploads.audio, audioUpload.single('file'), async (req, res) => {
     const now = Date.now();
 
     try {
-        const bucketName = "chefpipz-resource-portfolio";
-        const imageName = `${req.body.name}-${now}${path.extname(req.file.originalname)}`;
-        // Resize the image and put in buffer
-        const buffer = await sharp(req.file.path)
-            .resize(300, 210)
-            .toBuffer();
+        const config = {
+            Bucket: "chefpipz-resource-portfolio",
+            Key: `${req.body.name}-${now}${path.extname(req.file.originalname)}`,
+            Body: req.file.path,
+            ACL: 'public-read'
+        };
 
-        const s3res = await s3.upload({
-            Bucket: bucketName,
-            Key: imageName,
-            Body: buffer,
-            ACL: 'public-read' // to enable public viewing
-        }).promise();
-
+        const s3res = await s3.upload(config).promise();
+        const audioPath = s3res.Location
         // Remove from tmp_uploads
         fs.unlink(req.file.path, () => {
-            return res.JSONsuccess({
-                imagePath: s3res.Location
-            });
+            return res.JSONsuccess({ audioPath });
         })
     } catch (err) {
         return res.JSONerror({ err });

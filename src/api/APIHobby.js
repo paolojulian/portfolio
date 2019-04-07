@@ -71,7 +71,21 @@ export class APIHobby extends MyAPI {
     }
 
     /**
-     * Handles all file uploads
+     * Handles all file uploads for audio files
+     * @param { Audioj } audioFile 
+     */
+    uploadAudio (audioFile) {
+        const headers = { 'Content-Type': 'multipart/form-data' };
+        const config = { headers }
+        return super
+                .xhrPost(
+                    URL.uploads.audio,
+                    audioFile,
+                    config
+                );
+    }
+    /**
+     * Handles all file uploads for images
      * @param { Image } imageFile 
      */
     uploadImage (imageFile) {

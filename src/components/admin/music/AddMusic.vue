@@ -30,7 +30,7 @@ class MusicForm {
     constructor () {
         this.name = ''
         this.artist = ''
-        this.file = null
+        this.audioPath = ''
     }
 }
 import { $hobbies } from '@/helpers/constants'
@@ -40,7 +40,20 @@ export default {
     data () {
         return {
             form: new MusicForm(),
-            error: false
+            error: false,
+            audioPath: null,
+            errors: {
+                unableToUpload: {
+                    code: 321312319,
+                    status: false,
+                    message: ''
+                },
+                unableToAddMusic: {
+                    code: 321312320,
+                    status: false,
+                    message: ''
+                }
+            }
         }
     },
 
@@ -49,15 +62,32 @@ export default {
             'getMusicList',
             'addMusic'
         ]),
-        submitForm () {
-            this.error = false
-            let form = new FormData()
-            form.append('name', this.form.name)
-            form.append('artist', this.form.artist)
-            form.append('file', this.form.file)
-            this.addMusic(form)
-                .then(this.handleSuccess)
-                .catch(this.handleError)
+
+        uploadAudioAndGetPath () {
+            let form = new FormData();
+            form.append('file', this.file);
+            form.append('name', this.form.name);
+
+            return this.uploadImage(form)
+                .then(response => {
+                    this.form.audioPath = response.audioPath
+                })
+                .catch(err => { throw err })
+        },
+
+        async submitForm () {
+            try {
+                // get audio path first before adding to database
+                await this.uploadAudioAndGetPath();
+                // add data to database
+                this.addMusic(this.form)
+                    .then(this.handleSuccess)
+                    .catch(err => { throw err });
+            } catch (err) {
+                //eslint-disable-next-line
+                console.error(err);
+                this.handleError(this.errors.unableToAddMusic.code);
+            }
         },
 
         handleSuccess () {
@@ -65,10 +95,34 @@ export default {
             this.getMusicList()
         },
 
-        handleError (error) {
-            // eslint-disable-next-line
-            console.error(error)
-            this.error = true
+        handleError (errorCode) {
+            // showError
+            let showError = (index, message) => {
+                this.error = true
+                index.status = true;
+                index.message = message;
+
+                const ERROR_DURATION = 5000; // 5 seconds
+                setTimeout(() => {
+                    this.error = false
+                    index.status = false;
+                    index.message = '';
+                }, ERROR_DURATION);
+            }
+
+            switch (errorCode) {
+                case this.errors.unableToUpload.code:
+                    showError(this.erros.unableToUpload, 'Unable to upload audio file');
+                    break;
+                
+                case this.errors.unableToAddMusic.code:
+                    showError(this.erros.unableToUpload, 'Unable to add music');
+                    break;
+
+                default:
+                    alert('Error');
+                    break;
+            }
         },
 
         resetForm () {
@@ -77,9 +131,9 @@ export default {
         },
 
         handleFileUpload (event) {
-            this.form.file = event.target.files[0]
+            this.file = event.target.files[0]
             if (this.form.name.trim() === '') {
-                this.form.name = this.form.file.name
+                this.form.name = this.file.name
             }
             return true
         }

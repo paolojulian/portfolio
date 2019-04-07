@@ -74,10 +74,6 @@ const actions = {
             })
     },
 
-    uploadImage: (context, imageFile) => {
-        return apiHobby.uploadImage(imageFile);
-    },
-
     getRecipe: (context, recipeId) => {
         return apiHobby.getRecipes(recipeId)
     },
@@ -104,6 +100,17 @@ const actions = {
 
     getCodingSkills: () => {
         return apiHobby.getCodingSkills()
+    },
+
+    /**
+     * FILE UPLOADS
+     */
+
+    uploadAudio: (context, audioFile) => {
+        return apiHobby.uploadAudio(audioFile);
+    },
+    uploadImage: (context, imageFile) => {
+        return apiHobby.uploadImage(imageFile);
     }
 }
 
