@@ -92,8 +92,9 @@ export default {
         },
 
         handleSuccess () {
-            this.resetForm()
-            this.getMusicList()
+            alert('Success');
+            this.resetForm();
+            this.getMusicList();
         },
 
         handleError (errorCode) {

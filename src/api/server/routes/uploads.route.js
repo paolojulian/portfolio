@@ -6,18 +6,24 @@ const aws = require('../aws')
 const path = require('path');
 const sharp = require('sharp')
 
-const MAX_SIZE = 10000000;
+const s3 = new aws.S3();
+
+const MAX_SIZE = {
+    audio: 20000000, // 20 mb
+    image: 10000000 // 10 mb
+}
 const DESTINATIONS = {
     audio: 'tmp/uploads/audio',
     image: 'tmp/uploads/img'
 }
 const ALLOWED_FILETYPES = {
-    audio: ['audio/mpeg', 'audio/mp3', 'audio/mp4', 'audio/vnd.wav'],
-    img: ['image/jpeg', 'image/png', 'image/gif']
+    audio: ['audio/mpeg', 'audio/mp3', 'audio/mp4', 'audio/vnd.wav', 'audio/x-m4a'],
+    image: ['image/jpeg', 'image/png', 'image/gif']
 }
 
 const checkMimeType = (allowedFiles, mimetype, callback) => {
     //eslint-disable-next-line
+    console.log(mimetype);
     if ( ! allowedFiles.includes(mimetype)) {
         const error = new Error("Wrong file type");
         error.code = "LIMIT_FILE_TYPES";
@@ -30,7 +36,7 @@ const checkMimeType = (allowedFiles, mimetype, callback) => {
  */
 const imageFileFilter = (req, file, callback) => {
     return checkMimeType(
-        ALLOWED_FILETYPES.img,
+        ALLOWED_FILETYPES.image,
         file.mimetype,
         callback
     );
@@ -45,7 +51,8 @@ const audioFileFilter = (req, file, callback) => {
 
 const filename = (req, file, cb) => {
     // Remove the excess extensions from the file
-    const baseName = path.basename(file.originalname);
+    // const baseName = path.basename(file.originalname);
+    const baseName = file.originalname.split('.')[0];
     const extentionName = path.extname(file.originalname);
     // ex. Foo-14213203213211.png
     const fileName = `${baseName}-${Date.now()}${extentionName}`;
@@ -75,52 +82,46 @@ const imageUpload = multer({
     storage: imageStorage,
     fileFilter: imageFileFilter,
     limits: {
-        fileSize: MAX_SIZE
+        fileSize: MAX_SIZE.image
     }
 })
 const audioUpload = multer({
-    dest: DESTINATIONS.audio,
     storage: audioStorage,
     fileFilter: audioFileFilter,
     limits: {
-        fileSize: MAX_SIZE
+        fileSize: MAX_SIZE.audio
     }
 })
 
+
+const uploadFile = (buffer, name, mime) => {
+    const s3params = {
+        Bucket: "chefpipz-resource-portfolio",
+        Body: buffer,
+        Key: name,
+        ContentType: mime,
+        ACL: 'public-read'
+    }
+    return s3.upload(s3params).promise();
+}
+
 router.post(URL.uploads.audio, audioUpload.single('file'), async (req, res) => {
-    // AMAZON S3 bucket
-    const s3 = new aws.S3({
-        Bucket: "chefpipz-resource-portfolio"
-    });
     const now = Date.now();
 
     try {
-        const data = await fs.readFileSync(req.file.path);
-        const s3params = {
-            Bucket: "chefpipz-resource-portfolio",
-            Key: `${req.body.name}-${now}${path.extname(req.file.originalname)}`,
-            Body: data,
-            ACL: 'public-read'
-        }
-        // const s3res = await s3.upload(s3params).promise();
-        s3.createBucket(err => {
-            console.log(err);
-            if (err) throw err;
-            s3.upload(s3params, (err, data) => {
-                console.log(data);
-                if (err) throw err;
+        const buffer = fs.readFileSync(req.file.path);
+        const name = `${req.body.name}-${now}${path.extname(req.file.originalname)}`;
+        const mimetype = req.file.mimetype;
 
-                console.log(data);
-            })
-        })
-        //eslint-disable-next-line
-        console.log(s3res);
-        const audioPath = s3res.Location
-        // Remove from tmp_uploads
+        const s3response = await uploadFile(buffer, name, mimetype);
+        const audioPath = s3response.Location;
+
         fs.unlink(req.file.path, () => {
             return res.JSONsuccess({ audioPath });
         })
     } catch (err) {
+        // eslint-disable-next-line
+        console.log(err)
         fs.unlink(req.file.path, () => {
             return res.JSONerror({ err });
         })
@@ -128,30 +129,22 @@ router.post(URL.uploads.audio, audioUpload.single('file'), async (req, res) => {
 });
 
 router.post(URL.uploads.image, imageUpload.single('file'), async (req, res) => {
-    // AMAZON S3 bucket
-    const s3 = new aws.S3();
     const now = Date.now();
 
     try {
-        const bucketName = "chefpipz-resource-portfolio";
-        const imageName = `${req.body.name}-${now}${path.extname(req.file.originalname)}`;
         // Resize the image and put in buffer
         const buffer = await sharp(req.file.path)
             .resize(300, 210)
             .toBuffer();
+        const imageName = `${req.body.name}-${now}${path.extname(req.file.originalname)}`;
+        const mime = req.file.mimetype;
 
-        const s3res = await s3.upload({
-            Bucket: bucketName,
-            Key: imageName,
-            Body: buffer,
-            ACL: 'public-read'
-        }).promise();
+        const s3response = await uploadFile(buffer, imageName, mime);
+        const imagePath = s3response.Location;
 
         // Remove from tmp_uploads
         fs.unlink(req.file.path, () => {
-            return res.JSONsuccess({
-                imagePath: s3res.Location
-            });
+            return res.JSONsuccess({ imagePath });
         })
     } catch (err) {
         fs.unlink(req.file.path, () => {

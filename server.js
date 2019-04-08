@@ -31,4 +31,4 @@ app.use((req, res) => {
 server.listen(port, () => {
     console.log('server started '+ port);
 });
-server.timeout = 10000
+server.timeout = 10000; // 10 seconds
