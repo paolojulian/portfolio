@@ -48,7 +48,7 @@ export class APIHobby extends MyAPI {
         return super.xhrGetAll([
             URL.coding.companyProjects,
             URL.coding.personalProjects
-        ])
+        ]);
     }
 
     getCodingSkills () {
@@ -75,27 +75,13 @@ export class APIHobby extends MyAPI {
      * @param { Audioj } audioFile 
      */
     uploadAudio (audioFile) {
-        const headers = { 'Content-Type': 'multipart/form-data' };
-        const config = { headers }
-        return super
-                .xhrPost(
-                    URL.uploads.audio,
-                    audioFile,
-                    config
-                );
+        return super.xhrUpload(URL.uploads.image, audioFile);
     }
     /**
      * Handles all file uploads for images
      * @param { Image } imageFile 
      */
     uploadImage (imageFile) {
-        const headers = { 'Content-Type': 'multipart/form-data' };
-        const config = { headers }
-        return super
-                .xhrPost(
-                    URL.uploads.image,
-                    imageFile,
-                    config
-                );
+        return super.xhrUpload(URL.uploads.image, imageFile);
     }
 }

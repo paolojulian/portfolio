@@ -62,8 +62,8 @@ export default {
         getList () {
             apiHobby.getCodingProjects()
                 .then((projects) => {
-                    this.companyProjects = projects[0]
-                    this.personalProjects = projects[1]
+                    this.companyProjects = projects[0];
+                    this.personalProjects = projects[1];
                 })
         },
         openProject ({ projectID, projectDescription }) {

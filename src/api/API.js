@@ -53,6 +53,12 @@ export class MyAPI {
         let allPromise = Promise.all(promises)
         return allPromise
     }
+
+    xhrUpload (url, payload) {
+        const headers = { 'Content-Type': 'multipart/form-data' };
+        const config = { headers }
+        return this.xhrPost(url, payload, config);
+    }
 }
 
 export function APIValidate ({ resolve, reject }, response) {
