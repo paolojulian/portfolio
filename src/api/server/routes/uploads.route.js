@@ -96,7 +96,7 @@ const audioUpload = multer({
 
 const uploadFile = (buffer, name, mime) => {
     const s3params = {
-        Bucket: "chefpipz-resource-portfolio",
+        Bucket: "chefpipz",
         Body: buffer,
         Key: name,
         ContentType: mime,
