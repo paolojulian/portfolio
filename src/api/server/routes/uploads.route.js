@@ -1,6 +1,7 @@
 const router = require('./router');
 const URL = require('../../APIRoutes');
 const multer = require('multer');
+const multerS3 = require('multer-s3')
 const fs = require('fs');
 const aws = require('../aws')
 const path = require('path');
@@ -63,9 +64,13 @@ const filename = (req, file, cb) => {
  * DESTINATION OF UPLOADED FILES
  */
 
-const imageStorage = multer.diskStorage({
-    destination: DESTINATIONS.image,
-    filename: filename
+const imageStorage = multerS3({
+    s3: s3,
+    bucket: 'chefpipz/images',
+    metadata: function (req, file, cb) {
+        cb(null, {fieldName: file.fieldname});
+    },
+    key: filename // The filename to be saved
 });
 
 const audioStorage = multer.diskStorage({
@@ -78,7 +83,6 @@ const audioStorage = multer.diskStorage({
  */
 
 const imageUpload = multer({
-    dest: DESTINATIONS.image,
     storage: imageStorage,
     fileFilter: imageFileFilter,
     limits: {
@@ -105,6 +109,7 @@ const uploadFile = (buffer, name, mime) => {
     return s3.upload(s3params).promise();
 }
 
+// dropzone/audio
 router.post(URL.uploads.audio, audioUpload.single('file'), async (req, res) => {
     const now = Date.now();
 
@@ -128,29 +133,21 @@ router.post(URL.uploads.audio, audioUpload.single('file'), async (req, res) => {
     }
 });
 
-router.post(URL.uploads.image, imageUpload.single('file'), async (req, res) => {
-    const now = Date.now();
-
+// dropzone/image
+router.post(URL.uploads.image, imageUpload.single('file'), (req, res) => {
     try {
-        // Resize the image and put in buffer
-        const buffer = await sharp(req.file.path)
-            .resize(300, 210)
-            .toBuffer();
-        const imageName = `${req.body.name}-${now}${path.extname(req.file.originalname)}`;
-        const mime = req.file.mimetype;
-
-        const s3response = await uploadFile(buffer, imageName, mime);
-        const imagePath = s3response.Location;
-
-        // Remove from tmp_uploads
-        fs.unlink(req.file.path, () => {
-            return res.JSONsuccess({ imagePath });
-        })
+        const imagePath = req.file.location
+        return res.JSONsuccess({ imagePath })
     } catch (err) {
-        fs.unlink(req.file.path, () => {
-            return res.JSONerror({ err });
-        })
+        // eslint-disable-next-line
+        console.log(err)
+        return res.JSONerror({ err });
     }
 });
+
+// dropzone/image
+router.get(URL.uploads.image, imageUpload.single('file'), (req, res) => {
+
+})
 
 module.exports = router;
