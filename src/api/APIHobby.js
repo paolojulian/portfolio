@@ -1,5 +1,5 @@
 import { MyAPI } from '@/api/API'
-const URL = require('./APIRoutes')
+import URL from './APIRoutes.frontend'
 
 export class APIHobby extends MyAPI {
     addRecipe (form) {
@@ -69,6 +69,24 @@ export class APIHobby extends MyAPI {
     updateRecipeInfo (payload) {
         return this.xhrPatch(URL.cooking.edit, payload)
     }
+    /**
+     * Handles the deletion of the whole recipe
+     * including it's recipe-ingredients and procedures
+     * and the image from s3 bucket
+     * @param { Number } recipeID - pk
+     * @param { String } key - key of the image in s3 bucket
+     */
+    deleteRecipe (recipeID, key) {
+        return new Promise((resolve, reject) => {
+            const promises = [
+                super.xhrDelete(URL.cooking.recipe(recipeID)),
+                this.deleteImage(key)
+            ]
+            Promise.all(promises)
+                .then(() => resolve())
+                .catch(err => reject(err))
+        })
+    }
 
     /**
      * Handles all file uploads for audio files
@@ -83,5 +101,12 @@ export class APIHobby extends MyAPI {
      */
     uploadImage (imageFile) {
         return super.xhrUpload(URL.uploads.image, imageFile);
+    }
+    /**
+     * Handles all file deletion for images
+     * @param { String } key - the key of the image in s3 bucket
+     */
+    deleteImage (key) {
+        return super.xhrDelete(URL.uploads.image, { data: { key } })
     }
 }

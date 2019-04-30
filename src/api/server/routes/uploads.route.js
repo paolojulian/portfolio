@@ -3,11 +3,11 @@ const URL = require('../../APIRoutes');
 const multer = require('multer');
 const multerS3 = require('multer-s3')
 const fs = require('fs');
-const aws = require('../aws')
+const s3 = require('../aws')
 const path = require('path');
-const sharp = require('sharp')
 
-const s3 = new aws.S3();
+const config = require('../config.json')
+const imageBucket = `${config.aws.bucket}/images`
 
 const MAX_SIZE = {
     audio: 20000000, // 20 mb
@@ -64,14 +64,6 @@ const filename = (req, file, cb) => {
  * DESTINATION OF UPLOADED FILES
  */
 
-const imageStorage = multerS3({
-    s3: s3,
-    bucket: 'chefpipz/images',
-    metadata: function (req, file, cb) {
-        cb(null, {fieldName: file.fieldname});
-    },
-    key: filename // The filename to be saved
-});
 
 const audioStorage = multer.diskStorage({
     destination: DESTINATIONS.audio,
@@ -81,7 +73,15 @@ const audioStorage = multer.diskStorage({
 /**
  * CONFIGURATIONS OF UPLOAD
  */
-
+const imageStorage = multerS3({
+    s3: s3,
+    acl: 'public-read',
+    bucket: imageBucket,
+    metadata: function (req, file, cb) {
+        cb(null, {fieldName: file.fieldname});
+    },
+    key: filename // The filename to be saved
+});
 const imageUpload = multer({
     storage: imageStorage,
     fileFilter: imageFileFilter,
@@ -146,8 +146,17 @@ router.post(URL.uploads.image, imageUpload.single('file'), (req, res) => {
 });
 
 // dropzone/image
-router.get(URL.uploads.image, imageUpload.single('file'), (req, res) => {
-
+router.delete(URL.uploads.image, (req, res) => {
+    const item = req.body
+    const Bucket = imageBucket
+    const Key = item.key
+    const params = { Bucket, Key }
+    s3.deleteObject(params, (err, data) => {
+        if (err) {
+            return res.JSONerror({ err })
+        }
+        return res.JSONsuccess({ data })
+    })
 })
 
 module.exports = router;

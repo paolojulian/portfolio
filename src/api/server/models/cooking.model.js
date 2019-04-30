@@ -81,6 +81,13 @@ class RecipeIngredient extends Model {
             buildRecipeIngredients()
         ).catch(err => { throw err })
     }
+
+    deleteByRecipe(recipeID) {
+        const params = {
+            'recipe_id': recipeID
+        }
+        return this.delete(this.tableName, params)
+    }
 }
 
 class Procedure extends Model {
@@ -135,6 +142,13 @@ class Procedure extends Model {
         }
 
         return this.getQuery(condition)
+    }
+
+    deleteByRecipe(recipeID) {
+        const params = {
+            'recipe_id': recipeID
+        }
+        return this.delete(this.tableName, params)
     }
 }
 class Recipe extends Model {
@@ -231,6 +245,28 @@ class Recipe extends Model {
             ]
 
             await Promise.all(promises).catch(err => { throw err })
+        })
+    }
+
+    /**
+     * Delete a recipe
+     * @param { Number } recipeID 
+     */
+    async delete (recipeID) {
+        return this.transaction(async() => {
+            const recipeIngredient = new RecipeIngredient(this.db)
+            const procedure = new Procedure(this.db)
+            try {
+                let promises = [
+                    recipeIngredient.deleteByRecipe(recipeID),
+                    procedure.deleteByRecipe(recipeID)
+                ]
+                await Promise.all(promises).catch(err => { throw err })
+                await this.deleteByID(this.tableName, recipeID).catch(err => { throw err })
+            } catch (err) {
+                return Promise.reject(err)
+            }
+
         })
     }
 }

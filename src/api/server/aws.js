@@ -1,15 +1,18 @@
-const aws = require('aws-sdk')
-// aws.config.update({
-//     accessKeyId: "AKIAJ4F7IKX2O4745I3Q",
-//     secretAccessKey: "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"
-// })
-// aws.config.update({
-//     accessKeyId: "AKIAQI2XYJA7GC4ZYJGR",
-//     secretAccessKey: "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",
-// })
-aws.config.update({
-    accessKeyId: "AKIA3PVWU23B42VYGMYE",
-    secretAccessKey: "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",
-})
+const AWS = require('aws-sdk')
+const config = require('./config.json')
 
-module.exports = aws
+const AWSconfig = async () => {
+    try {
+        AWS.config.update({
+            accessKeyId: config.aws.accessKeyId,
+            secretAccessKey: config.aws.secretAccessKey
+        });
+    } catch (e) {
+        // eslint-disable-next-line
+        console.error(e);
+    }
+}
+
+AWSconfig();
+
+module.exports = new AWS.S3();

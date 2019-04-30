@@ -1,0 +1,8 @@
+{
+    "sample": {
+        "name": "ISecure",
+        "description": "A distress call emergency app that responds to recorded voice commands, If triggered, it will send a distress call to the nearest police station and it will lock the phone for an hour. Location will be constantly updated and be sent to the authorized personnel.",
+        "tool": "Java",
+        "existing": true
+    }
+}

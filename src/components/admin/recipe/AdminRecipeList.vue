@@ -8,7 +8,7 @@
             <th class="big-screen-only">Date Created</th>
             <th>Actions</th>
         </tr>
-        <tr v-for="{ id, name, duration_from, duration_to, dateCreated } in hobbyCooking.list"
+        <tr v-for="{ id, name, duration_from, duration_to, dateCreated, image_path } in hobbyCooking.list"
             :key="id"
         >
             <td>{{ id }}</td>
@@ -64,7 +64,7 @@
                     color="#ffffff"
                 />
                 <AdminButton
-                    @click="deleteRecipe(id)"
+                    @click="deleteRecipeAndRemoveImage(id, image_path)"
                     type="delete"
                     :fab="true"
                 />
@@ -106,7 +106,8 @@ export default {
                 }
             },
             statusCodes: {
-                editInfo: 2059
+                editInfo: 2059,
+                deleteRecipe: 209,
             }
         }
     },
@@ -120,7 +121,8 @@ export default {
     methods: {
         ...mapActions($hobbies, [
             'getHobbyCooking',
-            'updateRecipeInfo'
+            'updateRecipeInfo',
+            'deleteRecipe'
         ]),
 
         viewRecipe (id, name) {
@@ -151,8 +153,14 @@ export default {
                 .catch(() => this.handleError(this.statusCodes.editInfo))
         },
 
-        deleteRecipe (id) {
-            alert(id)
+        deleteRecipeAndRemoveImage (recipeID, image_path) {
+            // Get the key of the image
+            const image_path_arr = image_path.split('/')
+            const key = image_path_arr[image_path_arr.length - 1]
+
+            this.deleteRecipe({ recipeID, key })
+                .then(() => this.handleSuccess(this.statusCodes.deleteRecipe))
+                .catch(err => this.handleError(this.statusCodes.deleteRecipe, err))
         },
 
         handleSuccess (statusCode) {
@@ -162,17 +170,26 @@ export default {
                     this.getHobbyCooking()
                     alert('Success')
                     break;
+                case this.statusCodes.deleteRecipe:
+                    this.getHobbyCooking()
+                    alert('Success')
+                    break;
                 default:
                     break;
             }
         },
 
-        handleError (statusCode) {
+        handleError (statusCode, err = '') {
+            if (err) {
+                // eslint-disable-next-line
+                console.error(err)
+            }
             switch (statusCode) {
                 case this.statusCodes.editInfo:
                     alert('Failed')
                     break;
                 default:
+                    alert('Failed')
                     break;
             }
         }

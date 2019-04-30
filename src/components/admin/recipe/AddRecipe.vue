@@ -189,7 +189,13 @@ export default {
             }
         },
 
-        uploadImageAndGetPath () {
+        async uploadImageAndGetPath () {
+            // const sharp = require('sharp')
+            // const buffer = await sharp(this.file)
+            //                         .resize(200)
+            //                         .toBuffer()
+            //                         .png();
+
             let form = new FormData();
             form.append('file', this.file);
             form.append('name', this.recipe.name);

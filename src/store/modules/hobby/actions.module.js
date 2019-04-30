@@ -90,6 +90,10 @@ const actions = {
         return apiHobby.addRecipe(payload)
     },
 
+    deleteRecipe: (context, { recipeID, key }) => {
+        return apiHobby.deleteRecipe(recipeID, key)
+    },
+
     updateRecipeInfo: (context, payload) => {
         return apiHobby.updateRecipeInfo(payload)
     },
@@ -111,6 +115,9 @@ const actions = {
     },
     uploadImage: (context, imageFile) => {
         return apiHobby.uploadImage(imageFile);
+    },
+    deleteImage: (context, imageKey) => {
+        return apiHobby.deleteImage(imageKey);
     }
 }
 

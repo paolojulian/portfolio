@@ -34,7 +34,7 @@ class Ingredient(models.Model):
     def __str__(self):
         return "{}".format(self.name)
 
-class RecipeIngredients(models.Model):
+class RecipeIngredient(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
     quantity = models.CharField(max_length=100, default='')
@@ -57,16 +57,3 @@ class Procedure(models.Model):
     class Meta:
         unique_together = ('recipe', 'order')
         ordering = ['order']
-
-###################################
-# CODING
-###################################
-
-class CodingSkill(models.Model):
-    name = models.CharField(max_length=10, blank=False, unique=True)
-    percentage = models.PositiveIntegerField(validators=[MaxValueValidator(100)], default=1)
-    # 1 - Language, 2 - Framework
-    coding_type = models.PositiveIntegerField(validators=[MaxValueValidator(10)], default=1)
-    date_created = models.DateTimeField(auto_now_add=True)
-    date_modified = models.DateTimeField(auto_now=True)
-

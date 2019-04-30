@@ -137,6 +137,7 @@ router.patch(URL.cooking.edit, (req, res) => {
  * @return { json }
  */
 
+// cooking/recipe
 router.post(URL.cooking.addRecipe, (req, res) => {
     try {
         // Save the path to the database
@@ -172,5 +173,23 @@ router.post(URL.cooking.addRecipe, (req, res) => {
         return res.status(422).json({ err })
     }
 });
+
+// cooking/recipe/:recipeID
+router.delete(URL.cooking.recipe, (req, res) => {
+    const recipeID = req.params.recipeID
+    // Get db connection
+    req.getConnection(async (error, db) => {
+        if (error) return res.JSONerror();
+
+        const recipeModel = new CookingModel.Recipe(db)
+        recipeModel.delete(recipeID)
+                    .then(() => res.JSONsuccess())
+                    .catch(err => {
+                        // eslint-disable-next-line
+                        console.trace(err)
+                        res.JSONerror()
+                    })
+    })
+})
 
 module.exports = router;

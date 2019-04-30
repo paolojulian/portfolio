@@ -8,7 +8,8 @@
         <!-- <div class="RecipeCard__img" /> -->
         <img
             class="RecipeCard__img"
-            :src="imagePathOrDefault"
+            :src="imagePath"
+            @error="imageLoadError($event)"
         />
     </div>
     <div class="RecipeCard__content">
@@ -72,21 +73,15 @@ export default {
 
     data () {
         return {
-            test: '',
             defaultImg: require('../../../assets/img/cooking/default.png')
         }
     },
-     
-    computed: {
-        imagePathOrDefault () {
-            var path
-            try {
-                // path = require(`../../../assets/img/cooking/${this.imagePath}`)
-                path = this.imagePath
-            } catch (err) {
-                path = this.defaultImg
-            }
-            return path
+    
+    methods: {
+        imageLoadError (event) {
+            // Change the image of the recipe card to the default image
+            event.error = null
+            event.target.src = this.defaultImg
         }
     }
 }

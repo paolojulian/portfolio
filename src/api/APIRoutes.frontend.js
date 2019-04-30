@@ -27,7 +27,7 @@ const URL = {
             procedure: '/cooking/create/procedure'
         },
         main: cooking,
-        recipe: '/cooking/recipe/:recipeID',
+        recipe: recipeID => `/cooking/recipe/${recipeID}`,
         recipeList: '/cooking/recipe',
         addRecipe: `${cooking}/recipe/add`,
         ingredients: `${cooking}/ingredients`,

@@ -190,6 +190,23 @@ class Model {
     }
 
     /**
+     * Deletion of data with conditions
+     * @param { String } table - table_name
+     * @param { Object } where - key as column_name and value as the value of column
+     */
+    delete (table, where) {
+        let sql = `DELETE FROM ${table} `
+        sql += this.where(where)
+        return new Promise((resolve, reject) => {
+            this.db.query(sql, (err) => {
+                if (err) return reject(err);
+
+                return resolve()
+            })
+        })
+    }
+
+    /**
      * Where condition parameter
      * @param { Object } data - key as column_name, and value as value of column
      * @return { String }
