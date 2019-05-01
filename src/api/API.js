@@ -62,10 +62,11 @@ export class MyAPI {
 }
 
 export function APIValidate ({ resolve, reject }, response) {
-    let successCodes = [200, 201, 304]
+    const successCodes = [200, 201, 304, 204]
+    // Check if response status_code is a success code
     if ( ! successCodes.includes(response.status)) reject();
-    if (typeof response.data.status === 'undefined') reject()
-    if ( ! response.data.status) reject()
+    // IF has status and it's false
+    if (response.data.hasOwnProperty('status') && !response.data.status) reject()
 
     resolve(response.data.data)
 }
