@@ -3,12 +3,18 @@ describe('delete_a_project', () => {
         cy.fixture("projects").as("projects")
     })
 
-    it ('complete_form', function () {
+    it ('delete_the_last_row', function () {
         // Visit Site
         cy.visit('/admin/projects')
 
-        // Select a Project
-        // Delete it
-        // Check if contains successfully deleted
+        // Delete the last project
+        cy
+            .get('button[data-test="project table delete"]')
+            .last()
+            .click()
+        
+        cy
+            .get('div[data-test="project list"]')
+            .contains('Project was successfully deleted!')
     })
 })

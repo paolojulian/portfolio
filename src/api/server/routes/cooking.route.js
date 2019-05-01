@@ -174,7 +174,10 @@ router.post(URL.cooking.addRecipe, (req, res) => {
     }
 });
 
-// cooking/recipe/:recipeID
+/**
+ * DELETES the whole recipe
+ * cooking/recipe/:recipeID
+ */
 router.delete(URL.cooking.recipe, (req, res) => {
     const recipeID = req.params.recipeID
     // Get db connection

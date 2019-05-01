@@ -73,7 +73,10 @@ router.get(URL.coding.projects, (req, res) => {
     })
 })
 
-// coding/projects
+/**
+ * ADD A PROJECT
+ * coding/projects
+ */
 router.post(URL.coding.projects, (req, res) => {
     const item = req.body
     req.getConnection((connectionErr, db) => {
@@ -83,18 +86,40 @@ router.post(URL.coding.projects, (req, res) => {
             name: item.name,
             description: item.description,
             tool: item.tool,
-            imageName: item.imageName,
-            existing: item.existing,
+            imagePath: item.imagePath,
+            existing: item.existing == 'true' ? 1: 0,
             projectType: item.projectType,
         }
         codingModel.addProject(project)
-            .then(() => res.JSONsuccess())
+            .then(() => res.JSONcreated())
             .catch(err => {
                 // eslint-disable-next-line
                 console.error(err)
                 return res.JSONerror(err)
              })
     })
+})
+
+/**
+ * DELETE A PROJECT
+ * coding/projects/:projectID
+ */
+router.delete(URL.coding.projectDetails, (req, res) => {
+    const projectID = req.params.projectID
+    // Get db connection
+    req.getConnection(async (error, db) => {
+        if (error) return res.JSONerror();
+
+        const projectModel = new CodingModel.Project(db)
+        projectModel.deleteProject(projectID)
+                    .then(() => res.JSONdeleted())
+                    .catch(err => {
+                        // eslint-disable-next-line
+                        console.trace(err)
+                        res.JSONerror()
+                    })
+    })
+
 })
 
 module.exports = router

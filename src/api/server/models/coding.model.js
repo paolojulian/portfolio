@@ -71,12 +71,16 @@ class Project extends Model {
     }
 
     getProjects () {
-        let query = "SELECT id, name, description, tool, imageName, existing, projectType FROM coding_projects"
+        let query = "SELECT id, name, description, tool, imagePath, existing, projectType FROM coding_projects"
         return super.query(query)
     }
 
     addProject (project) {
         return super.insert(this.tableName, project)
+    }
+
+    deleteProject (projectID) {
+        return super.deleteByID(this.tableName, projectID)
     }
 }
 

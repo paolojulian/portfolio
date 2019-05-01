@@ -40,7 +40,8 @@ const URL = {
         frameworks: `/coding/skills/frameworks`,
         companyProjects: `/coding/projects/company`,
         personalProjects: `/coding/projects/personal`,
-        projects: `/coding/projects`
+        projects: `/coding/projects`,
+        projectDetails: `/coding/projects/:projectID`
     }
 }
 

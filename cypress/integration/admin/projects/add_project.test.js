@@ -60,8 +60,11 @@ describe('add_projects', () => {
             .should('have.value', '')
         cy.get('input[data-test="project form existing"]')
             .should('have.value', 'on')
+        cy.get('select[data-test="project form projectType"]')
+            .should('have.value', '')
         
         // SHOULD BE ON THE LIST
+        cy.wait(2000)
         cy
             .get('table[data-test="project table"]')
             .contains(name)

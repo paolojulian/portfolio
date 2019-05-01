@@ -52,6 +52,19 @@ export class APIHobby extends MyAPI {
         return super.xhrGet(URL.coding.projects)
     }
 
+    deleteProject (projectID, key) {
+        return new Promise((resolve, reject) => {
+            const promises = [
+                super.xhrDelete(URL.coding.projectDetails(projectID)),
+                this.deleteImage(key)
+            ]
+            Promise
+                .all(promises)
+                .then(() => resolve())
+                .catch(err => reject(err))
+        })
+    }
+
     getCodingProjects () {
         return super.xhrGetAll([
             URL.coding.companyProjects,

@@ -1,6 +1,8 @@
 const JsonResponse = require('./routes/json')
 
 const responses = (req, res, next) => {
+    res.JSONdeleted = data => res.status(204)
+
     res.JSONsuccess = data => res.status(200).json(new JsonResponse(true, data))
     res.JSONcreated = data => res.status(201).json(new JsonResponse(true, data))
 

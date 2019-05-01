@@ -45,6 +45,16 @@ const GLOBAL_MIXINS = {
 			return Math.round(Math.random() * (max - min) + min);
 		},
 
+		/**
+		 * Gets the KEY from the given link
+		 * @param { String } link 
+		 */
+		CONVERT_S3_LINK_TO_KEY (link) {
+            // Get the key of the image
+            const link_arr = link.split('/')
+            return link_arr[link_arr.length - 1]
+		},
+
 		waitImagesToLoad () {
 			let images = document.images
 			this.IMAGES.length = images.length;

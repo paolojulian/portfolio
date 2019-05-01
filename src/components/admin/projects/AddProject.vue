@@ -98,7 +98,7 @@ export default {
                 tool: '',
                 existing: false,
                 projectType: null,
-                imageName: ''
+                imagePath: ''
             }
         }
     },
@@ -115,6 +115,7 @@ export default {
             this.form.description = ''
             this.form.tool = ''
             this.form.existing = false
+            this.form.projectType = null
             this.$refs.imageFile.value = null
         },
 
@@ -201,12 +202,13 @@ export default {
         setStatus (type, msg) {
             if (!this.status.hasOwnProperty(type)) {
                 // eslint-disable-next-line
-                console.error('Programmer error Wrong type given: ' + type + '\nShould equal to [success or error] only')
+                console.error('TYPEERROR Wrong type given: ' + type + '\nShould equal to [success or error] only')
             }
             this.status[type] = true
             this.status.msg = msg
             setTimeout(() => {
                 this.status[type] = false
+                this.status.msg = ''
             }, 5000)
         }
     }
