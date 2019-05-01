@@ -8,6 +8,16 @@
     </div>
     <br />
     <form @submit.prevent="handleSubmit">
+        <div class="project_image">
+            <label>Image: </label>
+            <input
+                type="file"
+                ref="imageFile"
+                @change="handleFileUpload"
+                data-test="project form image"
+                />
+        </div>
+
         <div class="project_name">
             <label>Name: </label>
             <input
@@ -34,12 +44,25 @@
                 data-test="project form tool"
                 />
         </div>
+
         <div class="project_existing">
             <label>Does exist: </label>
             <input type="checkbox"
                 v-model="form.existing"
                 data-test="project form existing"
             />
+        </div>
+
+        <div class="project_type">
+            <label>Project Type: </label>
+            <select
+                v-model="form.projectType"
+                data-test="project form projectType"
+            >
+                <option :value="null">Choose one</option>
+                <option value="1">Personal</option>
+                <option value="2">Company</option>
+            </select>
         </div>
         
         <button
@@ -53,6 +76,8 @@
 </template>
 
 <script>
+import { $hobbies } from '@/helpers/constants'
+import { mapActions } from 'vuex';
 export default {
     name: 'AddProject',
     data () {
@@ -62,47 +87,102 @@ export default {
                 success: false,
                 msg: '',
                 codes: {
-                    addProject: 3219
+                    addProject: 3219,
+                    incompleteForm: 321
                 }
             },
+            image: null,
             form: {
                 name: '',
                 description: '',
                 tool: '',
-                existing: false
+                existing: false,
+                projectType: null
             }
         }
     },
     
     methods: {
+        ...mapActions($hobbies, [
+            'addProject',
+            'getProjects'
+        ]),
+
         resetForm () {
             this.form.name = ''
             this.form.description = ''
             this.form.tool = ''
             this.form.existing = false
         },
+
         handleSubmit () {
-            this.handleSuccess(this.status.codes.addProject)
+            this.addProject(this.form)
+                .then(() => this.handleSuccess(this.status.codes.addProject))
+                .catch(err => this.handleError(this.status.codes.addProject, err))
         },
         /**
          * Handles the success function for all actions
          */
         handleSuccess (statusCode) {
-            const setStatus = msg => {
-                this.status.success = true
-                this.status.msg = msg
-                setTimeout(() => {
-                    this.status.success = false
-                }, 5000)
+            switch (statusCode) {
+                case this.status.codes.addProject:
+                    this.setStatus('success', 'Project Added Successfully')
+                    // Reset the form
+                    this.resetForm()
+                    // Gets all projects again
+                    this.getProjects()
+                    break;
+                default:
+                    break;
+            }
+        },
+        /**
+         * Handles the errors for all actions
+         * @param { Number } statusCode - the code of the action
+         * @param { Object }
+         */
+        handleError (statusCode, err = {}) {
+            if (err) {
+                // eslint-disable-next-line
+                console.error(err)
             }
             switch (statusCode) {
                 case this.status.codes.addProject:
-                    setStatus('Project Added Successfully')
-                    this.resetForm()
+                    this.setStatus('error', 'Unable to add project')
+                    break;
+                
+                case this.status.codes.incompleteForm:
+                    this.setStatus('error', 'Please fill in the missing fields')
                     break;
                 default:
-
+                    this.setStatus('error', 'Oops! Something went wrong. Please try again later')
+                    break;
             }
+        },
+        /**
+         * Handles the file upload
+         * @param { Event } event - event from html
+         */
+        handleFileUpload (event) {
+            this.file = event.target.files[0]
+            if (this.form.name.trim() === '') {
+                this.form.name = this.file.name
+            }
+            return true
+        },
+        /**
+         * The type of status [success, error]
+         */
+        setStatus (type, msg) {
+            if (!this.status.hasOwnProperty(type)) {
+                // eslint-disable-next-line
+                console.error('Programmer error Wrong type given: ' + type + '\nShould equal to [success or error] only')
+            }
+            this.status[type] = true
+            this.status.msg = msg
+            setTimeout(() => {
+                this.status[type] = false
+            }, 5000)
         }
     }
 }

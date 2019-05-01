@@ -21,3 +21,4 @@ yarn-error.log*
 *.sln
 *.sw*
 src/api/server/sql.js
+src/api/server/config.json

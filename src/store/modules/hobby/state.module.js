@@ -33,7 +33,8 @@ const state = {
     },
     coding: {
         header: 'Coding',
-        categories: []
+        categories: [],
+        list: []
     }
 }
 

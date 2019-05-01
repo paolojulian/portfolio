@@ -13,7 +13,9 @@ const getters = {
     togglePlayer: state => state.music.TOGGLE_PLAYER,
 
     hobbySports: state => state.sports,
-    hobbyCoding: state => state.coding
+    hobbyCoding: state => state.coding,
+    /* CODING */
+    projectList: state => state.coding.list
 }
 
 export default getters

@@ -39,7 +39,10 @@ const URL = {
         languages: `/coding/skills/languages`,
         frameworks: `/coding/skills/frameworks`,
         companyProjects: `/coding/projects/company`,
-        personalProjects: `/coding/projects/personal`
+        personalProjects: `/coding/projects/personal`,
+
+        projects: `/coding/projects`,
+        projectDetails: projectID => `/coding/projects/${projectID}`
     }
 }
 

@@ -27,8 +27,7 @@
         <input data-test="cooking add-recipe image"
             type="file"
             ref="imageFile"
-            @change="handleFileUpload"
-        />
+            @change="handleFileUpload"/>
     </div>
 
 
@@ -190,12 +189,6 @@ export default {
         },
 
         async uploadImageAndGetPath () {
-            // const sharp = require('sharp')
-            // const buffer = await sharp(this.file)
-            //                         .resize(200)
-            //                         .toBuffer()
-            //                         .png();
-
             let form = new FormData();
             form.append('file', this.file);
             form.append('name', this.recipe.name);

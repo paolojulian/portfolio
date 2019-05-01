@@ -1,5 +1,6 @@
 const URL = require('../../APIRoutes')
 const router = require('./router')
+const CodingModel = require('../models/coding.model')
 
 /**
  * /coding/skills/languages
@@ -55,6 +56,44 @@ router.get(URL.coding.personalProjects, (req, res) => {
             }
             return res.JSONsuccess(personalProjects)
         })
+    })
+})
+
+// coding/projects
+router.get(URL.coding.projects, (req, res) => {
+    req.getConnection((connectionErr, db) => {
+        const codingModel = new CodingModel.Project(db)
+        codingModel.getProjects()
+            .then(data => res.JSONsuccess(data))
+            .catch(err => {
+                // eslint-disable-next-line
+                console.error(err)
+                res.JSONerror(err)
+            })
+    })
+})
+
+// coding/projects
+router.post(URL.coding.projects, (req, res) => {
+    const item = req.body
+    req.getConnection((connectionErr, db) => {
+        if (connectionErr) return res.JSONerror(connectionErr);
+        const codingModel = new CodingModel.Project(db)
+        const project = {
+            name: item.name,
+            description: item.description,
+            tool: item.tool,
+            imageName: item.imageName,
+            existing: item.existing,
+            projectType: item.projectType,
+        }
+        codingModel.addProject(project)
+            .then(() => res.JSONsuccess())
+            .catch(err => {
+                // eslint-disable-next-line
+                console.error(err)
+                return res.JSONerror(err)
+             })
     })
 })
 

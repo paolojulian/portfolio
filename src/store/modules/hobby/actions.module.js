@@ -98,6 +98,23 @@ const actions = {
         return apiHobby.updateRecipeInfo(payload)
     },
 
+    addProject: (context, payload) => {
+        return apiHobby.addProject(payload)
+    },
+
+    getProjects: ({ commit }) => {
+        commit($pageLoader + '/pageLoading', {}, { root: true })
+        apiHobby.getProjects()
+            .then(list => {
+                commit($pageLoader + '/pagePost', {}, { root: true })
+                let hobbyList = new HobbyList('coding', list)
+                commit('setHobbyList', hobbyList)
+            })
+            .catch(() => {
+                commit($pageLoader + '/pageError', {}, { root: true })
+            })
+    },
+
     getCodingProjects: () => {
         return apiHobby.getCodingProjects()
     },

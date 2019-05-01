@@ -44,6 +44,14 @@ export class APIHobby extends MyAPI {
         return super.xhrGet(url)
     }
 
+    addProject (data) {
+        return super.xhrPost(URL.coding.projects, data)
+    }
+
+    getProjects () {
+        return super.xhrGet(URL.coding.projects)
+    }
+
     getCodingProjects () {
         return super.xhrGetAll([
             URL.coding.companyProjects,

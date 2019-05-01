@@ -1,6 +1,6 @@
 const Model = require('./model')
 
-class CodingModel extends Model{
+class Coding extends Model{
     constructor () {
         super ()
     }
@@ -64,4 +64,23 @@ class CodingModel extends Model{
     }
 }
 
-module.exports = new CodingModel()
+class Project extends Model {
+    constructor (db) {
+        super (db)
+        this.tableName = 'coding_projects'
+    }
+
+    getProjects () {
+        let query = "SELECT id, name, description, tool, imageName, existing, projectType FROM coding_projects"
+        return super.query(query)
+    }
+
+    addProject (project) {
+        return super.insert(this.tableName, project)
+    }
+}
+
+module.exports = {
+    Coding,
+    Project
+}
