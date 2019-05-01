@@ -91,13 +91,14 @@ export default {
                     incompleteForm: 321
                 }
             },
-            image: null,
+            file: null,
             form: {
                 name: '',
                 description: '',
                 tool: '',
                 existing: false,
-                projectType: null
+                projectType: null,
+                imageName: ''
             }
         }
     },
@@ -105,7 +106,8 @@ export default {
     methods: {
         ...mapActions($hobbies, [
             'addProject',
-            'getProjects'
+            'getProjects',
+            'uploadImage'
         ]),
 
         resetForm () {
@@ -113,12 +115,35 @@ export default {
             this.form.description = ''
             this.form.tool = ''
             this.form.existing = false
+            this.$refs.imageFile.value = null
         },
 
-        handleSubmit () {
-            this.addProject(this.form)
-                .then(() => this.handleSuccess(this.status.codes.addProject))
-                .catch(err => this.handleError(this.status.codes.addProject, err))
+        uploadImageAndGetPath () {
+            const form = new FormData();
+            form.append('file', this.file);
+            form.append('name', this.form.name);
+
+            return this.uploadImage(form)
+                .then(response => response.imagePath)
+                .then(imagePath => {
+                    this.form.imagePath = imagePath
+                })
+                .catch(err => { throw err })
+        },
+
+        async handleSubmit () {
+            try {
+                // get image path first before saving
+                await this.uploadImageAndGetPath();
+
+                this.addProject(this.form)
+                    .then(() => this.handleSuccess(this.status.codes.addProject))
+                    .catch(err => { throw err })
+
+            } catch (err) {
+                this.handleError(this.status.codes.addProject, err);
+            }
+
         },
         /**
          * Handles the success function for all actions

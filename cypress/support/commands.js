@@ -23,3 +23,42 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+/**
+ * Handles all file uploads
+ */
+// Cypress.Commands.add(
+//   'upload_file',
+//   { prevSubject: 'element' },
+//   (subject, fileName) => {
+//     return cy
+//       .fixture(fileName, 'base64')
+//       .then(Cypress.Blob.base64StringToBlob)
+//       .then(blob => {
+//         // instantiate File from `application` window, not cypress window
+//         return cy.window().then(win => {
+//           const file = new win.File([blob], fileName)
+//           const dataTransfer = new win.DataTransfer()
+//           dataTransfer.items.add(file)
+
+//           return cy.wrap(subject).trigger('drop', {
+//             dataTransfer,
+//           })
+//         })
+//       })
+//   }
+// )
+Cypress.Commands.add('upload_file', (fileName, selector, type = 'image/png') => {
+    return cy.get(selector).then(subject => {
+        return cy.fixture(fileName, 'base64')
+        .then(Cypress.Blob.base64StringToBlob)
+        .then(blob => {
+            const el = subject[0]
+            const testFile = new File([blob], fileName, { type })
+            const dataTransfer = new DataTransfer()
+            dataTransfer.items.add(testFile)
+            el.files = dataTransfer.files
+            return subject;
+        })
+    })
+})

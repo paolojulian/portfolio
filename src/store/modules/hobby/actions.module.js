@@ -98,8 +98,8 @@ const actions = {
         return apiHobby.updateRecipeInfo(payload)
     },
 
-    addProject: (context, payload) => {
-        return apiHobby.addProject(payload)
+    addProject: (context, form) => {
+        return apiHobby.addProject(form)
     },
 
     getProjects: ({ commit }) => {

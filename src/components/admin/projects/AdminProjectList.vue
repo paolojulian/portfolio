@@ -16,7 +16,7 @@
         <tr v-for="({ id, name, description, tool, imageName, existing, projectType }) in projectList"
             :key="id"
         >
-            <td>{{ id }}</td>
+            <td data-test="project list id">{{ id }}</td>
             <td>{{ name }}</td>
             <td>{{ description | filterDescription }}</td>
             <td>{{ tool }}</td>

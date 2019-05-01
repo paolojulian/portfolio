@@ -9,22 +9,14 @@ describe('add_projects', () => {
         cy.visit('/admin/projects')
 
         // IMAGE
-        cy.fixture('images/sample_image.png').as('sample_image')
-
-        cy.get('input[data-test="project form image"]')
-            .then(function(el) {
-                // convert the logo base64 string to a blob
-                return Cypress.Blob
-                    .base64StringToBlob(this.sample_image, 'image/png')
-                    .then((blob) => {
-                        el[0].files[0] = blob
-                        el[0].dispatchEvent(new Event('change', {bubbles: true}))
-            })
-        })
+        cy
+            .upload_file('images/sample_image.png', 'input[data-test="project form image"]')
+            .trigger('change')
 
         // NAME
         cy
             .get('input[data-test="project form name"]')
+            .clear()
             .type(name)
             .should('have.value', name)
         
@@ -75,3 +67,7 @@ describe('add_projects', () => {
             .contains(name)
     })
 })
+
+// describe('add_invalid_project')
+// describe('add_invalid_image')
+// describe('add_blank_fields_and_submit')
