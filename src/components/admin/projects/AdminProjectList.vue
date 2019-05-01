@@ -22,10 +22,10 @@
         </tr>
 
         <tr v-for="({ id, name, description, tool, imagePath, existing, projectType }) in projectList"
-            data-test="project table data"
+            :data-test="`project table row-${id}`"
             :key="id"
         >
-            <td>{{ id }}</td>
+            <td data-test="project table id">{{ id }}</td>
             <td>{{ name }}</td>
             <td>{{ description | filterDescription }}</td>
             <td>{{ tool }}</td>

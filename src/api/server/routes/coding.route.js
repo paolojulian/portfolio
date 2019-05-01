@@ -111,12 +111,13 @@ router.delete(URL.coding.projectDetails, (req, res) => {
         if (error) return res.JSONerror();
 
         const projectModel = new CodingModel.Project(db)
+
         projectModel.deleteProject(projectID)
                     .then(() => res.JSONdeleted())
                     .catch(err => {
                         // eslint-disable-next-line
                         console.trace(err)
-                        res.JSONerror()
+                        return res.JSONerror()
                     })
     })
 

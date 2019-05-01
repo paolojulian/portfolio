@@ -155,7 +155,7 @@ router.delete(URL.uploads.image, (req, res) => {
         if (err) {
             return res.JSONerror({ err })
         }
-        return res.JSONsuccess({ data })
+        return res.JSONdeleted({ data })
     })
 })
 
