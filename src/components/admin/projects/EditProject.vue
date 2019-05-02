@@ -73,6 +73,7 @@
 <script>
 import { $hobbies } from '@/helpers/constants'
 import { mapActions } from 'vuex';
+import { BlankFieldException } from './exceptions/formExceptions'
 export default {
     name: 'EditProject',
     props: {
@@ -160,7 +161,23 @@ export default {
          * Checks for errors in the form inside edit project
          */
         validateForm () {
-            this.handleError(this.status.codes.blankFields)
+            try {
+                this.checkBlankFields()
+            } catch (err) {
+                if (err.name == 'BlankFieldException') {
+                    this.handleError(this.status.codes.blankFields, err)
+                }
+                this.handleError()
+            }
+        },
+        checkBlankFields () {
+            let blankFields = []
+            if (this.form.name.trim() === '') {
+                blankFields = this.form.name
+            }
+            if (blankFields.length > 0) {
+                throw new BlankFieldException(blankFields)
+            }
         },
         /**
          * Handles the successful actions
@@ -172,10 +189,19 @@ export default {
                     break;
             }
         },
-        handleError (statusCode, err = {}) {
+        handleError (statusCode = 0, err = {}) {
             if (err) {
                 // eslint-disable-next-line
                 console.error(err)
+            }
+
+            switch(statusCode) {
+                case this.status.codes.blankFields:
+                    alert(err.message);
+                    break;
+                default:
+                    alert('Oops!, Something went wrong')
+                    break;
             }
 
         }
