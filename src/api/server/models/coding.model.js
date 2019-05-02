@@ -82,6 +82,9 @@ class Project extends Model {
     deleteProject (projectID) {
         return super.deleteByID(this.tableName, projectID)
     }
+    editProject (projectID, data) {
+        return super.update(this.tableName, projectID, data)
+    }
 }
 
 module.exports = {

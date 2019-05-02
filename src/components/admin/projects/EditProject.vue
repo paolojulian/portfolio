@@ -73,7 +73,7 @@
 <script>
 import { $hobbies } from '@/helpers/constants'
 import { mapActions } from 'vuex';
-import { BlankFieldException } from './exceptions/formExceptions'
+import { BlankFieldException } from '@/exceptions/formExceptions.js'
 export default {
     name: 'EditProject',
     props: {
@@ -153,7 +153,11 @@ export default {
         handleSubmit () {
             this.validateForm()
 
-            this.editProject(this.form)
+            const payload = {
+                projectID: this.id,
+                data: this.form
+            }
+            this.editProject(payload)
                 .then(() => this.handleSuccess(this.status.codes.editProjectSuccess))
                 .catch(err => this.handleError(this.status.codes.editProjectError, err))
         },
@@ -185,6 +189,11 @@ export default {
          */
         handleSuccess (statusCode) {
             switch(statusCode) {
+                case this.status.codes.editProjectSuccess:
+                    this.SET_STATUS('success', `Successfully updated the project ${this.form.name}`)
+                    this.getProjects()
+                    this.$emit('close')
+                    break;
                 default:
                     break;
             }

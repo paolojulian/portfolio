@@ -101,13 +101,12 @@ describe('add_update_then_remove_project', () => {
         // Close modal after update
         cy
             .get('[data-test="modal close"]')
-            .click()
-            .wait(200)
+            .should('not.exist')
         
         // Table list should contain new description
         cy
             .get(`[data-test="project table row-${id}"]`)
-            .contains(new_description)
+            .contains(new_description.slice(0, 10))
     })
 
     it ('delete_the_inserted_file', function () {

@@ -66,7 +66,7 @@ export class APIHobby extends MyAPI {
     }
 
     editProject (projectID, data) {
-        return super.xhrPatch(URL.coding.projectDetails(projectID, data))
+        return super.xhrPatch(URL.coding.projectDetails(projectID), data)
     }
 
     getCodingProjects () {

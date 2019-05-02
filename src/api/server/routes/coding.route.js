@@ -123,4 +123,33 @@ router.delete(URL.coding.projectDetails, (req, res) => {
 
 })
 
+/**
+ * EDIT A PROJECT
+ * coding/project/:projectID
+ */
+router.patch(URL.coding.projectDetails, (req, res) => {
+    const projectID = req.params.projectID
+    const data = {
+        name: req.body.name,
+        description: req.body.description,
+        tool: req.body.tool,
+        existing: req.body.existing,
+        projectType: req.body.projectType
+    }
+    // Get db connection
+    req.getConnection(async (error, db) => {
+        if (error) return res.JSONerror();
+
+        const projectModel = new CodingModel.Project(db)
+
+        projectModel.editProject(projectID, data)
+                    .then(() => res.JSONsuccess())
+                    .catch(err => {
+                        // eslint-disable-next-line
+                        console.trace(err)
+                        return res.JSONerror()
+                    })
+    })
+})
+
 module.exports = router

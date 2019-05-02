@@ -152,23 +152,6 @@ export default {
             this.OPEN_MODAL('editProject')
         },
         /**
-         * SETS THE STATUS OF THE ACTION if[Success or Error]
-         * @param { String } type - [success|error]
-         * @param { String } msg - message of the status - to be displayed on screen
-         */
-        setStatus (type, msg) {
-            if (!this.status.hasOwnProperty(type)) {
-                // eslint-disable-next-line
-                console.error('TYPEERROR Wrong (type) given: ' + type + '\nShould equal to [success or error] only')
-            }
-            this.status[type] = true
-            this.status.msg = msg
-            setTimeout(() => {
-                this.status[type] = false
-                this.status.msg = ''
-            }, 5000)
-        },
-        /**
          * HANDLES ALL SUCCESS ACTION
          * @param { Number } statusCode - status code of the success
          */
@@ -176,7 +159,7 @@ export default {
             switch (statusCode) {
                 case this.status.codes.deleteSuccess:
                     this.getProjects()
-                    this.setStatus('success', 'Project was successfully deleted!')
+                    this.SET_STATUS('success', 'Project was successfully deleted!')
                     break;
                 default:
                     break;
@@ -195,7 +178,7 @@ export default {
 
             switch (statusCode) {
                 case this.status.codes.deleteError:
-                    this.setStatus('error', 'Unable to delete project')
+                    this.SET_STATUS('error', 'Unable to delete project')
                     break;
                 default:
                     break;

@@ -55,6 +55,24 @@ const GLOBAL_MIXINS = {
             return link_arr[link_arr.length - 1]
 		},
         /**
+         * SETS THE STATUS OF THE ACTION if[Success or Error]
+         * @param { String } type - [success|error]
+         * @param { String } msg - message of the status - to be displayed on screen
+         */
+        SET_STATUS (type, msg) {
+			try {
+				this.status[type] = true
+				this.status.msg = msg
+				setTimeout(() => {
+					this.status[type] = false
+					this.status.msg = ''
+				}, 5000)
+			} catch (err) {
+				//eslint-disable-next-line
+				console.error(err)
+			}
+        },
+        /**
          * OPEN A MODAL based on the name
          * @param { String } modalName - modal property from data ()
          */
