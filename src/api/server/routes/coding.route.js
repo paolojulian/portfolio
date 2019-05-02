@@ -221,4 +221,26 @@ router.patch(URL.coding.skillDetails, (req, res) => {
     })
 })
 
+/**
+ * Delete a Skill
+ * coding/skills/:skillID
+ */
+router.delete(URL.coding.skillDetails, (req, res) => {
+    const skillID = req.params.skillID
+    // Get db connection
+    req.getConnection(async (error, db) => {
+        if (error) return res.JSONerror();
+
+        const skillModel = new CodingModel.Skill(db)
+
+        skillModel.deleteSkill(skillID)
+                    .then(() => res.JSONdeleted())
+                    .catch(err => {
+                        // eslint-disable-next-line
+                        console.trace(err)
+                        return res.JSONerror()
+                    })
+    })
+})
+
 module.exports = router

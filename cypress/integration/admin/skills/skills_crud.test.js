@@ -98,7 +98,7 @@ describe('Skills_add', () => {
 
         cy
             .get('[data-test="skills"]')
-            .contains(`Successfully deleted ${name}`)
+            .contains(`Successfully deleted ID: ${id}`)
         
         cy
             .get(`[data-test="skills table row-${id}"]`)

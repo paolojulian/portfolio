@@ -107,6 +107,10 @@ class Skill extends Model {
     updateSkill (skillID, skill) {
         return super.update(this.tableName, skillID, skill)
     }
+
+    deleteSkill (skillID) {
+        return super.deleteByID(this.tableName, skillID)
+    }
 }
 
 module.exports = {

@@ -81,6 +81,10 @@ export class APIHobby extends MyAPI {
         return super.xhrPatch(URL.coding.skillDetails(skillID), data)
     }
 
+    deleteSkill (skillID) {
+        return super.xhrDelete(URL.coding.skillDetails(skillID))
+    }
+
     getCodingProjects () {
         return super.xhrGetAll([
             URL.coding.companyProjects,

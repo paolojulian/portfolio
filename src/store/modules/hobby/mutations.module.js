@@ -24,6 +24,22 @@ const mutations = {
         state[hobbyList.hobbyName].list = hobbyList.list
     },
 
+    setStatusError: (state, msg) => {
+        state.admin.status.error = true
+        state.admin.status.msg = msg
+    },
+
+    setStatusSuccess: (state, msg) => {
+        state.admin.status.success = true
+        state.admin.status.msg = msg
+    },
+
+    resetStatus: (state) => {
+        state.admin.status.success = false
+        state.admin.status.error = false
+        state.admin.status.msg = ''
+    },
+
     load (state) {
         state.cooking.pageLoader.onLoad()
     },

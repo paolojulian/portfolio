@@ -87,7 +87,8 @@ export default {
     methods: {
         ...mapActions($hobbies, [
             'getSkillList',
-            'deleteSkill'
+            'deleteSkill',
+            'setStatus',
         ]),
 
         handleEditSkill ({ id, name, level, type }) {
@@ -100,26 +101,28 @@ export default {
 
         handleDeleteSkill (id) {
             this.deleteSkill(id)
-                .then(() => this.handleSuccess(this.codes.successDelete))
+                .then(() => this.handleSuccess(this.codes.successDelete, id))
                 .catch(err => this.handleError(this.codes.errorDelete, err))
         },
         /**
          * Handles the success function for all actions
          */
-        handleSuccess (statusCode) {
+        handleSuccess (statusCode, ...params) {
             switch (statusCode) {
                 case this.codes.successEdit:
                     this.getSkillList()
                     this.CLOSE_MODAL('editSkill')
+                    this.setStatus({ type: 'success', msg: `Successfully updated ID ${this.modal.editSkill.id}` })
                     break;
                 case this.codes.successDelete:
+                    this.setStatus({ type: 'success', msg: `Successfully deleted ID: ${params[0]}` })
                     this.getSkillList()
-                    this.
                     break;
                 default:
-                    this.setStatus('error', 'Oops! Something went wrong. Please try again later')
+                    this.setStatus({ type: 'error', msg: 'Oops! Something went wrong. Please try again later' })
                     break;
             }
+            
         },
         /**
          * Handles the errors for all actions
@@ -132,8 +135,14 @@ export default {
                 console.error(err)
             }
             switch (statusCode) {
+                case this.codes.errorEdit:
+                    this.setStatus({ type: 'error', msg: 'Unable to update data' })
+                    break;
+                case this.codes.errorDelete:
+                    this.setStatus({ type: 'error', msg: 'Unable to delete data' })
+                    break;
                 default:
-                    this.setStatus('error', 'Oops! Something went wrong. Please try again later')
+                    this.setStatus({ type: 'error', msg: 'Oops! Something went wrong. Please try again later' })
                     break;
             }
         },

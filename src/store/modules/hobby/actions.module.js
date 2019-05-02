@@ -10,6 +10,32 @@ const cookingList = [
 ]
 const actions = {
 
+    /**
+     * Sets the status for the action, used for displays success/error messages on screen
+     * @param { String } type - type of the status [success|error]
+     * @param { String } msg
+     */
+    setStatus: ({ commit }, { type, msg }) => {
+        if (type == 'success') {
+            return commit('setStatusSuccess', msg)
+        }
+        switch (type) {
+            case 'success':
+                commit('setStatusSuccess', msg)
+                break;
+            case 'msg':
+                commit('setStatusError', msg)
+                break;
+            default:
+                // eslint-disable-next-line
+                console.error('Wrong status inserted!')
+                break;
+        }
+        setTimeout(() => {
+            commit('resetStatus')
+        }, 5000)
+    },
+
     getHobbyList: ({ commit }) => {
         let cooking = new Hobby('cooking', cookingList)
 
@@ -142,6 +168,10 @@ const actions = {
 
     editSkill: (context, { skillID, data }) => {
         return apiHobby.editSkill(skillID, data)
+    },
+
+    deleteSkill: (context, skillID) => {
+        return apiHobby.deleteSkill(skillID)
     },
 
     getCodingProjects: () => {
