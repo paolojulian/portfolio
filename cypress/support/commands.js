@@ -64,3 +64,25 @@ Cypress.Commands.add('upload_file', (fileName, selector, type = 'image/png') => 
         })
         .trigger('change')
 })
+
+Cypress.Commands.add('add_ingredient', (index, ingredient) => {
+    cy
+        .get(`[data-test="cooking update ingredient-${index} name"]`)
+        .select(ingredient.name)
+        .should('have.value', ingredient.name)
+    cy
+        .get(`[data-test="cooking update ingredient-${index} quantity"]`)
+        .type(ingredient.quantity)
+        .should('have.value', ingredient.quantity)
+    return cy
+        .get(`[data-test="cooking update ingredient-${index} description"]`)
+        .type(ingredient.description)
+        .should('have.value', ingredient.description)
+})
+
+Cypress.Commands.add('add_procedure', (index, procedure) => {
+    return cy
+        .get(`[data-test="cooking update procedure-${index} name"]`)
+        .type(procedure)
+        .should('have.value', procedure)
+})

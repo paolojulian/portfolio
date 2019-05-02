@@ -1,0 +1,26 @@
+{
+    "recipe": {
+        "name": "renameTEst"
+    },
+    "ingredients": [
+        {
+            "quantity": "1",
+            "description": "Test description",
+            "name": "Baking Soda"
+        },
+        {
+            "quantity": "1",
+            "description": "Test description",
+            "name": "Basil"
+        },
+        {
+            "quantity": "1",
+            "description": "Test description",
+            "name": "Bread Flour"
+        }
+    ],
+    "procedures": [
+        "Test 1",
+        "Test 2"
+    ]
+}
