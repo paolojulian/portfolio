@@ -127,6 +127,23 @@ const actions = {
         return apiHobby.addSkill(form)
     },
 
+    getSkillList: ({ commit }) => {
+        commit($pageLoader + '/pageLoading', {}, { root: true })
+        apiHobby.getSkillList()
+            .then(list => {
+                commit($pageLoader + '/pagePost', {}, { root: true })
+                let hobbyList = new HobbyList('skills', list)
+                commit('setHobbyList', hobbyList)
+            })
+            .catch(() => {
+                commit($pageLoader + '/pageError', {}, { root: true })
+            })
+    },
+
+    editSkill: (context, { skillID, data }) => {
+        return apiHobby.editSkill(skillID, data)
+    },
+
     getCodingProjects: () => {
         return apiHobby.getCodingProjects()
     },

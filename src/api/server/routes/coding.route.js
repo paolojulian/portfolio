@@ -177,4 +177,48 @@ router.post(URL.coding.skills, (req, res) => {
     })
 })
 
+/**
+ * GET SKILL LIST
+ * coding/skills
+ */
+router.get(URL.coding.skills, (req, res) => {
+    req.getConnection((connectionErr, db) => {
+        if (connectionErr) return res.JSONerror(connectionErr);
+        const skillModel = new CodingModel.Skill(db)
+        skillModel.getSkillList()
+            .then(skills => res.JSONsuccess(skills))
+            .catch(err => {
+                //eslint-disable-next-line
+                console.error(err)
+                return res.JSONerror(err)
+            })
+    })
+})
+
+/**
+ * UPDATE A SKILL
+ * coding/skills/:skillID
+ */
+router.patch(URL.coding.skillDetails, (req, res) => {
+    const item = req.body
+
+    const skillID = req.params.skillID
+    const skill = {
+        name: item.name,
+        level: item.level,
+        type: item.type
+    }
+    req.getConnection((connectionErr, db) => {
+        if (connectionErr) return res.JSONerror(connectionErr);
+        const skillModel = new CodingModel.Skill(db)
+        skillModel.updateSkill(skillID, skill)
+            .then(() => res.JSONsuccess())
+            .catch(err => {
+                //eslint-disable-next-line
+                console.error(err)
+                return res.JSONerror(err)
+            })
+    })
+})
+
 module.exports = router

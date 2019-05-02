@@ -24,6 +24,24 @@ const mutations = {
         state[hobbyList.hobbyName].list = hobbyList.list
     },
 
+    setAdminStatus: (state, type, msg) => {
+        try {
+            state.admin.status[type] = true
+            state.admin.status.msg = msg
+            setTimeout(() => {
+                state.admin.status[type] = false
+                state.admin.status.msg = ''
+            }, 5000)
+        } catch (err) {
+            state.admin.status.error = true
+            state.admin.status.msg = 'Ooops! Something went wrong'
+            setTimeout(() => {
+                state.admin.status.error = false
+                state.admin.status.msg = ''
+            }, 5000)
+        }
+    },
+
     prevSong: (state) => {
         state.music.currentPlaying--
     },

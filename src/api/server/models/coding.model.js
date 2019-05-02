@@ -96,6 +96,17 @@ class Skill extends Model {
     addSkill (skill) {
         return super.insert(this.tableName, skill)
     }
+
+    getSkillList () {
+        return super.getQuery({
+            table: this.tableName,
+            fields: 'id, name, level, type'
+        })
+    }
+    
+    updateSkill (skillID, skill) {
+        return super.update(this.tableName, skillID, skill)
+    }
 }
 
 module.exports = {

@@ -77,7 +77,8 @@ export default {
     },
     methods: {
         ...mapActions($hobbies, [
-            'addSkill'
+            'addSkill',
+            'getSkillList'
         ]),
         resetForm () {
             this.form.name = ''
@@ -99,6 +100,7 @@ export default {
             switch (statusCode) {
                 case this.codes.success:
                     this.SET_STATUS('success', `Successfully added ${this.form.name}`)
+                    this.getSkillList()
                     this.resetForm()
                     break;
                 default:

@@ -96,7 +96,7 @@ const GLOBAL_MIXINS = {
                 this.modal[modalName].toggle = boolean
             } catch (error) {
                 // eslint-disable-next-line
-                console.trace(err)
+                console.trace(error)
             }
 		},
 

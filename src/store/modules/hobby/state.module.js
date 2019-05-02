@@ -6,6 +6,14 @@ import { PageLoader } from '@/helpers/libraries'
 const state = {
     language,
 
+    admin: {
+        status: {
+            success: false,
+            error: false,
+            msg: ''
+        }
+    },
+
     modal: {
         viewRecipe: {
             toggle: false,
@@ -34,6 +42,9 @@ const state = {
     coding: {
         header: 'Coding',
         categories: [],
+        list: [],
+    },
+    skills: {
         list: []
     }
 }

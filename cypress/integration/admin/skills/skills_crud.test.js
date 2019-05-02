@@ -1,11 +1,13 @@
 describe('Skills_add', () => {
+    let id = null
+    const now = Date.now().toString()
+    let name = ''
     beforeEach(() => {
         cy.fixture("skills").as("skills")
     })
 
     it ('add_a_skill', function () {
-        const now = Date.now().toString()
-        const name = this.skills.sample.name + now.slice(-4)
+        name = this.skills.sample.name + now.slice(-4)
 
         cy.visit('/admin/skills')
 
@@ -48,9 +50,58 @@ describe('Skills_add', () => {
         cy
             .get('[data-test="skills add"]')
             .contains(`Successfully added ${name}`)
+        
+        // Table should have the inserted value
+        cy
+            .get('[data-test="skills table"]')
+            .contains(name)
+        
+        // GET THE INSERTED ID OF THE FILE
+        cy
+            .get('[data-test="skills table id"]')
+            .last()
+            .then(el => {
+                id = el.text()
+            })
     })
     it ('update_a_skill', function () {
+        const new_name = 'testName'
+        // CLICK EDIT BUTTON FROM TABLE
+        cy
+            .get(`button[data-test="skills table update-${id}"]`)
+            .click()
+            .wait(200)
+        // CHANGE THE NAME
+        cy
+            .get('input[data-test="skills update name"]')
+            .clear()
+            .type(new_name)
+            .should('have.value', new_name)
+        // SUBMIT FORM
+        cy
+            .get('[data-test="skills update submit"]')
+            .click()
+            .wait(2000)
+        
+        // TABLE SHOULD CONTAIN THE NEW NAME
+        cy
+            .get(`[data-test="skills table row-${id}"]`)
+            .contains(new_name)
     })
+
     it ('remove_a_skill', function () {
+        // CLICK DELETE BUTTON FROM TABLE
+        cy
+            .get(`button[data-test="skills table delete-${id}"]`)
+            .click()
+            .wait(200)
+
+        cy
+            .get('[data-test="skills"]')
+            .contains(`Successfully deleted ${name}`)
+        
+        cy
+            .get(`[data-test="skills table row-${id}"]`)
+            .should('not.exist')
     })
 })
