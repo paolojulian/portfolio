@@ -54,6 +54,33 @@ const GLOBAL_MIXINS = {
             const link_arr = link.split('/')
             return link_arr[link_arr.length - 1]
 		},
+        /**
+         * OPEN A MODAL based on the name
+         * @param { String } modalName - modal property from data ()
+         */
+		OPEN_MODAL (modalName) {
+			this.TOGGLE_MODAL(modalName, true)
+		},
+        /**
+         * CLOSES A MODAL based on the name
+         * @param { String } modalName - modal property from data ()
+         */
+		CLOSE_MODAL (modalName) {
+			this.TOGGLE_MODAL(modalName, false)
+		},
+		/**
+		 * TOGGLES A MODAL
+		 * @param { Sting } modalName - modal property
+		 * @param { Boolean } boolean - True = open modal, False = close modal
+		 */
+		TOGGLE_MODAL (modalName, boolean) {
+            try {
+                this.modal[modalName].toggle = boolean
+            } catch (error) {
+                // eslint-disable-next-line
+                console.trace(err)
+            }
+		},
 
 		waitImagesToLoad () {
 			let images = document.images

@@ -27,6 +27,7 @@
                             backgroundColor="var(--my-paprika)"
                             color="#ffffff"
                             @click="$emit('close')"
+                            data-test="modal close"
                         >
                             <font-awesome-icon icon="times"/>
                         </VFab>

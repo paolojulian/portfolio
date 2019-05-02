@@ -1,4 +1,5 @@
-describe('add_projects', () => {
+describe('add_update_then_remove_project', () => {
+    let id = null
     beforeEach(() => {
         cy.fixture("projects").as("projects")
     })
@@ -11,7 +12,6 @@ describe('add_projects', () => {
         // IMAGE
         cy
             .upload_file('images/sample_image.png', 'input[data-test="project form image"]')
-            .trigger('change')
 
         // NAME
         cy
@@ -47,6 +47,7 @@ describe('add_projects', () => {
         cy
             .get('[data-test="project form submit"]')
             .click()
+            .wait(2000)
         
         // SHOULD FINISH SUCCESSFULLY
         cy
@@ -63,11 +64,65 @@ describe('add_projects', () => {
         cy.get('select[data-test="project form projectType"]')
             .should('have.value', '')
         
-        // SHOULD BE ON THE LIST
-        cy.wait(2000)
+        // SHOULD DISPLAY ON THE LIST
         cy
             .get('table[data-test="project table"]')
             .contains(name)
+        
+        // GET THE INSERTED ID OF THE FILE
+        cy
+            .get('[data-test="project table id"]')
+            .last()
+            .then(el => {
+                id = el.text()
+            })
+    })
+
+    it ('update_the_inserted_file', function () {
+        const new_description = 'New Description'
+        // Click the update button for the selected project
+        cy
+            .get(`[data-test="project table update-${id}"]`)
+            .click()
+
+        // Clear and enter the new description of the project
+        cy
+            .get('[data-test="project update description"]')
+            .clear()
+            .type(new_description)
+            .should('have.value', new_description)
+        
+        // Submit the update
+        cy
+            .get('button[data-test="project update submit"]')
+            .click()
+            .wait(2000)
+        
+        // Close modal after update
+        cy
+            .get('[data-test="modal close"]')
+            .click()
+            .wait(200)
+        
+        // Table list should contain new description
+        cy
+            .get(`[data-test="project table row-${id}"]`)
+            .contains(new_description)
+    })
+
+    it ('delete_the_inserted_file', function () {
+        cy
+            .get(`[data-test="project table delete-${id}"]`)
+            .click()
+            .wait(200)
+        
+        cy
+            .get('div[data-test="project list"]')
+            .contains('Project was successfully deleted!')
+
+        cy
+            .get(`[data-test="project table row-${id}"]`)
+            .should('not.exist')
     })
 })
 

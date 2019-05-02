@@ -33,14 +33,32 @@
             <td>{{ projectType | filterProjectType }}</td>
             <td>
                 <AdminButton
+                    @click="handleEditProject({ id, name, description, tool, existing, projectType })"
+                    :data-test="`project table update-${id}`"
+                    type="edit"
+                    :fab="true"
+                    background-color="#212121"
+                    color="#ffffff"
+                />
+                <AdminButton
                     @click="handleDeleteProject(id, imagePath)"
-                    data-test="project table delete"
+                    :data-test="`project table delete-${id}`"
                     type="delete"
                     :fab="true"
                 />
             </td>
         </tr>
     </table>
+    <EditProject
+        v-if="modal.editProject.toggle"
+        @close="CLOSE_MODAL('editProject')"
+        :id="Number(modal.editProject.data.id)"
+        :name="modal.editProject.data.name"
+        :description="modal.editProject.data.description"
+        :tool="modal.editProject.data.tool"
+        :existing="Number(modal.editProject.data.existing)"
+        :project-type="Number(modal.editProject.data.projectType)"
+    />
 </div>
 </template>
 
@@ -49,6 +67,9 @@ import { $hobbies } from '@/helpers/constants'
 import { mapActions, mapGetters } from 'vuex';
 export default {
     name: 'AdminProjectList',
+    components: {
+        EditProject: () => import('./EditProject')
+    },
     filters: {
         filterDescription: (description) => {
             return description.length > 10
@@ -89,6 +110,12 @@ export default {
                 error: false,
                 success: false,
                 msg: ''
+            },
+            modal: {
+                editProject: {
+                    toggle: false,
+                    data: null
+                }
             }
         }
     },
@@ -114,6 +141,15 @@ export default {
             this.deleteProject({ projectID, key })
                 .then(() => this.handleSuccess(this.status.codes.deleteSuccess))
                 .catch(err => this.handleError(this.status.codes.deleteError, err))
+        },
+        /**
+         * Handles the editing per project
+         * @param { Object } project - the project to be edited
+         */
+        handleEditProject (project) {
+            this.modal.editProject.data = project
+            // from src/helpers/mixins.js
+            this.OPEN_MODAL('editProject')
         },
         /**
          * SETS THE STATUS OF THE ACTION if[Success or Error]

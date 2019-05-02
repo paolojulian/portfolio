@@ -49,16 +49,18 @@
 //   }
 // )
 Cypress.Commands.add('upload_file', (fileName, selector, type = 'image/png') => {
-    return cy.get(selector).then(subject => {
-        return cy.fixture(fileName, 'base64')
-        .then(Cypress.Blob.base64StringToBlob)
-        .then(blob => {
-            const el = subject[0]
-            const testFile = new File([blob], fileName, { type })
-            const dataTransfer = new DataTransfer()
-            dataTransfer.items.add(testFile)
-            el.files = dataTransfer.files
-            return subject;
+    return cy.get(selector)
+        .then(subject => {
+            return cy.fixture(fileName, 'base64')
+                .then(Cypress.Blob.base64StringToBlob)
+                .then(blob => {
+                    const el = subject[0]
+                    const testFile = new File([blob], fileName, { type })
+                    const dataTransfer = new DataTransfer()
+                    dataTransfer.items.add(testFile)
+                    el.files = dataTransfer.files
+                    return subject;
+                })
         })
-    })
+        .trigger('change')
 })
