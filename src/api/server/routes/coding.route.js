@@ -129,12 +129,13 @@ router.delete(URL.coding.projectDetails, (req, res) => {
  */
 router.patch(URL.coding.projectDetails, (req, res) => {
     const projectID = req.params.projectID
+    const item = req.body
     const data = {
-        name: req.body.name,
-        description: req.body.description,
-        tool: req.body.tool,
-        existing: req.body.existing,
-        projectType: req.body.projectType
+        name: item.name,
+        description: item.description,
+        tool: item.tool,
+        existing: item.existing,
+        projectType: item.projectType
     }
     // Get db connection
     req.getConnection(async (error, db) => {
@@ -149,6 +150,30 @@ router.patch(URL.coding.projectDetails, (req, res) => {
                         console.trace(err)
                         return res.JSONerror()
                     })
+    })
+})
+
+/**
+ * ADD A SKILL
+ * coding/skills
+ */
+router.post(URL.coding.skills, (req, res) => {
+    const item = req.body
+    const skill = {
+        name: item.name,
+        level: item.level,
+        type: item.type
+    }
+    req.getConnection((connectionErr, db) => {
+        if (connectionErr) return res.JSONerror(connectionErr);
+        const skillModel = new CodingModel.Skill(db)
+        skillModel.addSkill(skill)
+            .then(() => res.JSONcreated())
+            .catch(err => {
+                // eslint-disable-next-line
+                console.error(err)
+                return res.JSONerror(err)
+             })
     })
 })
 

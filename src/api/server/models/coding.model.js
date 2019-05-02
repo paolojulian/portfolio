@@ -87,7 +87,19 @@ class Project extends Model {
     }
 }
 
+class Skill extends Model {
+    constructor (db) {
+        super (db)
+        this.tableName = 'coding_skills'
+    }
+
+    addSkill (skill) {
+        return super.insert(this.tableName, skill)
+    }
+}
+
 module.exports = {
     Coding,
-    Project
+    Project,
+    Skill
 }

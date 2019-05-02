@@ -42,7 +42,10 @@ const URL = {
         personalProjects: `/coding/projects/personal`,
 
         projects: `/coding/projects`,
-        projectDetails: projectID => `/coding/projects/${projectID}`
+        projectDetails: projectID => `/coding/projects/${projectID}`,
+
+        skills: `/coding/skills`,
+        skillDetails: skillID => `/coding/skills/${skillID}`
     }
 }
 

@@ -66,9 +66,13 @@
         </div>
         
         <button
+            @click="resetForm"
+            data-test="project form submit">
+            Reset
+        </button>
+        <button
             type="submit"
-            data-test="project form submit"
-        >
+            data-test="project form submit">
             SUBMIT
         </button>
     </form>
@@ -152,7 +156,7 @@ export default {
         handleSuccess (statusCode) {
             switch (statusCode) {
                 case this.status.codes.addProject:
-                    this.setStatus('success', 'Project Added Successfully')
+                    this.SET_STATUS('success', 'Project Added Successfully')
                     // Reset the form
                     this.resetForm()
                     // Gets all projects again
@@ -174,14 +178,14 @@ export default {
             }
             switch (statusCode) {
                 case this.status.codes.addProject:
-                    this.setStatus('error', 'Unable to add project')
+                    this.SET_STATUS('error', 'Unable to add project')
                     break;
                 
                 case this.status.codes.incompleteForm:
-                    this.setStatus('error', 'Please fill in the missing fields')
+                    this.SET_STATUS('error', 'Please fill in the missing fields')
                     break;
                 default:
-                    this.setStatus('error', 'Oops! Something went wrong. Please try again later')
+                    this.SET_STATUS('error', 'Oops! Something went wrong. Please try again later')
                     break;
             }
         },
@@ -195,21 +199,6 @@ export default {
                 this.form.name = this.file.name
             }
             return true
-        },
-        /**
-         * The type of status [success, error]
-         */
-        setStatus (type, msg) {
-            if (!this.status.hasOwnProperty(type)) {
-                // eslint-disable-next-line
-                console.error('TYPEERROR Wrong type given: ' + type + '\nShould equal to [success or error] only')
-            }
-            this.status[type] = true
-            this.status.msg = msg
-            setTimeout(() => {
-                this.status[type] = false
-                this.status.msg = ''
-            }, 5000)
         }
     }
 }

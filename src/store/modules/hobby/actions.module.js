@@ -123,6 +123,10 @@ const actions = {
         return apiHobby.editProject(projectID, data)
     },
 
+    addSkill: (context, form) => {
+        return apiHobby.addSkill(form)
+    },
+
     getCodingProjects: () => {
         return apiHobby.getCodingProjects()
     },
