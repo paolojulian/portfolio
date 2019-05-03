@@ -4,6 +4,7 @@
     <div class="recipe-name">
         <label>Name: </label>
         <input type="text"
+            data-test="recipe add name"
             v-model="recipe.name"
             placeholder="Recipe Name"
             />
@@ -11,7 +12,9 @@
 
     <div class="recipe-category">
         <label>Category: </label>
-        <select v-model="recipe.foodCategoryID">
+        <select v-model="recipe.foodCategoryID"
+            data-test="recipe add category"
+        >
             <option disabled :value="null">Please select one</option>
             <option v-for="{ id, name } in foodCategories"
                 :value="id"
@@ -24,7 +27,7 @@
 
     <div class="recipe-img">
         <label>Image: </label>
-        <input data-test="cooking add-recipe image"
+        <input data-test="recipe add image"
             type="file"
             ref="imageFile"
             @change="handleFileUpload"/>
@@ -36,18 +39,23 @@
         <br />
         <div v-for="(ingredient, key) in ingredients"
             :key="`ingredient_${key}`"
+            :data-test="`recipe add ingredient-${key}`"
         >
             <input type="text"
+                :data-test="`recipe add ingredient-${key} quantity`"
                 placeholder="Quantity"
                 v-model="ingredient.quantity"
                 />
             <br />
             <input type="text"
+                :data-test="`recipe add ingredient-${key} description`"
                 placeholder="Description"
                 v-model="ingredient.description"
                 />
             <br />
-            <select v-model="ingredient.id">
+            <select v-model="ingredient.id"
+                :data-test="`recipe add ingredient-${key} name`"
+                >
                 <option disabled :value="null">Please select one</option>
                 <option
                     v-for="{ id, name } in ingredientList"
@@ -59,11 +67,17 @@
             </select>
             <br />
         </div>
-        <button @click="addIngredient">
+        <!-- ADD INGREDIENT-->
+        <button
+            @click="addIngredient"
+            data-test="recipe add ingredients add"
+            >
             <font-awesome-icon icon="plus"/>
         </button>
+        <!-- REMOVE INGREDIENT-->
         <button @click="removeIngredient"
             v-if="ingredients.length > 1"
+            data-test="recipe add ingredients remove"
         >
             <font-awesome-icon icon="minus"/>
         </button>
@@ -74,16 +88,25 @@
         <br />
         <div v-for="(procedure, key) in procedures"
             :key="`procedure_${key}`"
+            :data-test="`recipe add procedure-${key}`"
         >
             {{ key + 1 }}. 
-            <textarea v-model="procedures[key]"></textarea>
+            <textarea v-model="procedures[key]"
+                :data-test="`recipe add procedure-${key} name`"
+            ></textarea>
         </div>
-        <button @click="addProcedure">
+        <!-- ADD PROCEDURE -->
+        <button
+            @click="addProcedure"
+            data-test="recipe add procedures add"
+            >
             <font-awesome-icon icon="plus"/>
         </button>
+        <!-- REMOVE PROCEDURE -->
         <button @click="removeProcedure"
             v-if="procedures.length > 1"
-        >
+            data-test="recipe add procedures remove"
+            >
             <font-awesome-icon icon="minus"/>
         </button>
     </div>
@@ -91,7 +114,9 @@
         <button @click="resetForm">
             RESET
         </button>
-        <button @click="submit">
+        <button @click="submit"
+            data-test="recipe add submit"
+            >
             SUBMIT
         </button>
     </div>

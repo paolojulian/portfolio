@@ -1,4 +1,30 @@
 {
+    "sample": {
+        "name": "Sample Recipe",
+        "category": "3",
+        "ingredients": [
+            {
+                "quantity": "1",
+                "description": "Test 1 description",
+                "name": "Baking Soda"
+            },
+            {
+                "quantity": "2",
+                "description": "Test 2 description",
+                "name": "Basil"
+            },
+            {
+                "quantity": "3ml",
+                "description": "Test 3 description",
+                "name": "Bread Flour"
+            }
+        ],
+        "procedures": [
+            "11",
+            "22"
+        ]
+    },
+
     "recipe": {
         "name": "renameTEst"
     },

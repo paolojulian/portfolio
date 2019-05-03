@@ -65,24 +65,39 @@ Cypress.Commands.add('upload_file', (fileName, selector, type = 'image/png') => 
         .trigger('change')
 })
 
-Cypress.Commands.add('add_ingredient', (index, ingredient) => {
+/**
+ * Used for adding an ingredient in recipe
+ */
+Cypress.Commands.add('add_ingredient', (index, ingredient, type="add") => {
     cy
-        .get(`[data-test="cooking update ingredient-${index} name"]`)
+        .get(`[data-test="recipe ${type} ingredient-${index} name"]`)
         .select(ingredient.name)
         .should('have.value', ingredient.name)
     cy
-        .get(`[data-test="cooking update ingredient-${index} quantity"]`)
+        .get(`[data-test="recipe ${type} ingredient-${index} quantity"]`)
         .type(ingredient.quantity)
         .should('have.value', ingredient.quantity)
     return cy
-        .get(`[data-test="cooking update ingredient-${index} description"]`)
+        .get(`[data-test="recipe ${type} ingredient-${index} description"]`)
         .type(ingredient.description)
         .should('have.value', ingredient.description)
 })
 
-Cypress.Commands.add('add_procedure', (index, procedure) => {
+/**
+ * Used for adding a procedure in recipe
+ */
+Cypress.Commands.add('add_procedure', (index, procedure, type="add") => {
     return cy
-        .get(`[data-test="cooking update procedure-${index} name"]`)
+        .get(`[data-test="recipe ${type} procedure-${index} name"]`)
         .type(procedure)
         .should('have.value', procedure)
+})
+
+/**
+ * Handles the checker if the element is already reset
+ */
+Cypress.Commands.add('should_reset', (selector, value="") => {
+    return cy
+        .get(selector)
+        .should('have.value', value)
 })
