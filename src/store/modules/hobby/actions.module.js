@@ -16,9 +16,6 @@ const actions = {
      * @param { String } msg
      */
     setStatus: ({ commit }, { type, msg }) => {
-        if (type == 'success') {
-            return commit('setStatusSuccess', msg)
-        }
         switch (type) {
             case 'success':
                 commit('setStatusSuccess', msg)
@@ -28,7 +25,7 @@ const actions = {
                 break;
             default:
                 // eslint-disable-next-line
-                console.error('Wrong status inserted!')
+                console.error('Wrong status inserted! : ' + type)
                 break;
         }
         setTimeout(() => {
@@ -114,6 +111,10 @@ const actions = {
 
     addRecipe: (context, payload) => {
         return apiHobby.addRecipe(payload)
+    },
+
+    updateRecipe: (context, { recipeID, data }) => {
+        return apiHobby.updateRecipe(recipeID, data)
     },
 
     deleteRecipe: (context, { recipeID, key }) => {

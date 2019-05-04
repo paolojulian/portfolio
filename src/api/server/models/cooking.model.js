@@ -82,6 +82,18 @@ class RecipeIngredient extends Model {
         ).catch(err => { throw err })
     }
 
+    updateIngredientByRecipe ({ recipeID, recipeIngredients }) {
+        return new Promise((resolve, reject) => {
+            const promises = [
+                this.deleteByRecipe(recipeID),
+                this.addRecipeIngredients(recipeID, recipeIngredients)
+            ]
+            Promise.all(promises)
+                .then(() => resolve())
+                .catch(err => reject(err))
+        });
+    }
+
     deleteByRecipe(recipeID) {
         const params = {
             'recipe_id': recipeID
@@ -114,9 +126,9 @@ class Procedure extends Model {
     }
 
     addProcedures (recipeID, procedures) {
-        const buildProcedures = () => procedures.map((recipeName, index) => {
+        const buildProcedures = () => procedures.map((description, index) => {
             return [
-                recipeName, // description
+                description, // description
                 index + 1, // order
                 recipeID
             ]
@@ -142,6 +154,22 @@ class Procedure extends Model {
         }
 
         return this.getQuery(condition)
+    }
+    
+    /**
+     * UPDATES THE PROCEDURES OF THE RECIPE
+     */
+    updateProcedureByRecipe ({ recipeID, procedures }) {
+        return new Promise ((resolve, reject) => {
+            const promises = [
+                this.deleteByRecipe(recipeID),
+                this.addProcedures(recipeID, procedures)
+            ]
+
+            Promise.all(promises)
+                .then(() => resolve())
+                .catch(err => reject(err))
+        })
     }
 
     deleteByRecipe(recipeID) {
@@ -238,6 +266,20 @@ class Recipe extends Model {
             })
         })
     }
+
+    updateRecipe ({ recipeID, recipeIngredients, procedures }) {
+        return this.transaction(async() => {
+            const _recipeIngredient = new RecipeIngredient(this.db)
+            const _procedure = new Procedure(this.db)
+            const promises = [
+                _recipeIngredient.updateIngredientByRecipe({ recipeID, recipeIngredients }),
+                _procedure.updateProcedureByRecipe({ recipeID, procedures })
+            ]
+
+            await Promise.all(promises).catch(err => { throw err })
+        })
+    }
+
     updateRecipeInfo (form) {
         return this.transaction(async() => {
             let promises = [

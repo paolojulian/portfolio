@@ -194,5 +194,34 @@ router.delete(URL.cooking.recipe, (req, res) => {
                     })
     })
 })
+/**
+ * UPDATES THE WHOLE RECIPE
+ * cooking/recipe/:recipeID
+ */
+router.patch(URL.cooking.recipe, (req, res) => {
+    const item = req.body
+    const recipeID = req.params.recipeID
+    const recipeIngredients = JSON.parse(item.recipeIngredients).map((recipeIngredient) => {
+        return {
+            quantity: recipeIngredient.quantity,
+            description: recipeIngredient.description,
+            id: recipeIngredient.ingredient_id
+        }
+    })
+    const procedures = JSON.parse(item.procedures).map(procedure => procedure.description)
+    // Get db connection
+    req.getConnection(async (error, db) => {
+        if (error) return res.JSONerror();
+
+        const recipeModel = new CookingModel.Recipe(db)
+        recipeModel.updateRecipe({ recipeID, recipeIngredients, procedures })
+                    .then(() => res.JSONsuccess())
+                    .catch(err => {
+                        // eslint-disable-next-line
+                        console.trace(err)
+                        res.JSONerror()
+                    })
+    })
+})
 
 module.exports = router;

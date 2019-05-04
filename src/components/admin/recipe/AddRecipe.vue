@@ -126,13 +126,7 @@
 <script>
 import { $hobbies } from '@/helpers/constants'
 import { mapActions } from 'vuex'
-class Ingredient {
-    constructor () {
-        this.id = null
-        this.quantity = '' 
-        this.description = ''
-    }
-}
+import { Ingredient } from '@/classes/cooking.js'
 const recipe = {
     name: '',
     favorite: 0,
@@ -154,14 +148,17 @@ export default {
             // FOR LIST
             ingredientList: [],
             foodCategories: [],
+            codes: {
+                success: 23
+            },
             errors: {
                 unableToUpload: {
-                    code: 321312319,
+                    code: 321,
                     status: false,
                     message: ''
                 },
                 unableToAddRecipe: {
-                    code: 321312320,
+                    code: 123,
                     status: false,
                     message: ''
                 }
@@ -236,7 +233,7 @@ export default {
                     procedures: JSON.stringify(this.procedures)
                 }
                 this.addRecipe(form)
-                    .then(this.handleSuccess)
+                    .then(() => this.handleSuccess(this.codes.success))
                     .catch(err => { throw err; })
 
             } catch (err) {
@@ -254,9 +251,17 @@ export default {
             this.$refs.imageFile.value = null
         },
 
-        handleSuccess () {
-            alert('Success')
-            this.getHobbyCooking()
+        handleSuccess (statusCode) {
+            switch (statusCode) {
+                case this.codes.success:
+                    alert('Success')
+                    this.getHobbyCooking()
+                    this.resetForm()
+                    break;
+                default:
+                    this.handleError()
+                    break;
+            }
         },
 
         handleError (errorCode = '', errorMessage = '') {

@@ -3,7 +3,7 @@ describe('add_whole_recipe.js', () => {
         cy.fixture("cooking").as("cooking")
     })
 
-    it ('edit_recipe', function () {
+    it ('add_recipe', function () {
         const now = Date.now().toString()
         const name = this.cooking.sample.name + now.slice(-4)
         const category = this.cooking.sample.category
@@ -14,7 +14,7 @@ describe('add_whole_recipe.js', () => {
         // Enter Name
         cy
             .get('[data-test="recipe add name"]')
-            .type(name)
+            .type(name, {force: true})
             .should('have.value', name)
 
         // Select category
@@ -31,7 +31,7 @@ describe('add_whole_recipe.js', () => {
             cy.add_ingredient(c, ingredients[c])
 
             // So that will not add an ingredient on the last loop
-            if (c < l) {
+            if (c < l - 1) {
                 cy.get('[data-test="recipe add ingredients add"]').click()
             }
         }
@@ -41,7 +41,7 @@ describe('add_whole_recipe.js', () => {
             cy.add_procedure(c, procedures[c])
 
             // So that will not add a procedure on the last loop
-            if (c < l) {
+            if (c < l - 1) {
                 cy.get('[data-test="recipe add procedures add"]').click()
             }
         }
@@ -54,7 +54,7 @@ describe('add_whole_recipe.js', () => {
 
         // Reset form
         cy.should_reset('[data-test="recipe add name"]')
-        cy.should_reset('[data-test="recipe add ingredient-0 name"]')
+        cy.should_reset('[data-test="recipe add ingredient-0 name"]', null)
         cy.should_reset('[data-test="recipe add ingredient-0 quantity"]')
         cy.should_reset('[data-test="recipe add ingredient-0 description"]')
         cy.should_reset('[data-test="recipe add procedure-0 name"]')

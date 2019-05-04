@@ -1,6 +1,8 @@
 <template>
 <div class="AdminRecipeList">
-    <table>
+    <table
+        data-test="recipe table"
+    >
         <tr>
             <th>ID</th>
             <th>Name</th>
@@ -64,6 +66,14 @@
                     color="#ffffff"
                 />
                 <AdminButton
+                    @click="handleEditRecipe(id)"
+                    data-test="recipe table update"
+                    type="edit"
+                    :fab="true"
+                    background-color="#ffffff"
+                    color="#212121"
+                />
+                <AdminButton
                     @click="deleteRecipeAndRemoveImage(id, image_path)"
                     type="delete"
                     :fab="true"
@@ -75,6 +85,11 @@
         :recipe-id="modal.viewRecipe.id"
         :recipe-name="modal.viewRecipe.name"
         @close="closeViewRecipe()"
+    />
+    <EditRecipe
+        v-if="modal.editRecipe.toggle"
+        :recipe-id="modal.editRecipe.id"
+        @close="CLOSE_MODAL('editRecipe')"
     />
 </div>
 </template>
@@ -93,7 +108,8 @@ export default {
     name: 'AdminRecipeList',
 
     components: {
-        ViewRecipe: () => import('./ViewRecipe.vue')
+        ViewRecipe: () => import('./ViewRecipe.vue'),
+        EditRecipe: () => import('./EditRecipe.vue'),
     },
 
     data () {
@@ -101,6 +117,10 @@ export default {
             editing: { ...editing },
             modal: {
                 viewRecipe: {
+                    toggle: false,
+                    id: null
+                },
+                editRecipe: {
                     toggle: false,
                     id: null
                 }
@@ -129,6 +149,11 @@ export default {
             this.modal.viewRecipe.id = Number(id)
             this.modal.viewRecipe.name = name
             this.modal.viewRecipe.toggle = true
+        },
+
+        handleEditRecipe (id) {
+            this.modal.editRecipe.toggle = true
+            this.modal.editRecipe.id = id
         },
 
         closeViewRecipe () {

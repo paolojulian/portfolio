@@ -11,7 +11,7 @@
                     </slot>
                 </div>
 
-                <div>
+                <div class="modal-body">
                     <slot name="body">
                         <p class="modal__body">
                             Ikatten ta atoyen?
@@ -104,7 +104,6 @@ export default {
 
 .modal__body {
     text-align: center;
-    overflow-y: auto;
 }
 .modal-footer {
     height: 50px;
@@ -139,7 +138,6 @@ export default {
     .modal-container {
         border-radius: 2px;
         width: 500px;
-        height: unset;
         max-height: 80vh;
         margin: 0px auto;
     }
@@ -167,5 +165,9 @@ export default {
     transform: translateY(-5%);
     /* -webkit-transform: scale(1.1);
     transform: scale(1.1); */
+}
+.modal-body {
+    overflow-y: auto;
+    height: 90%;
 }
 </style>

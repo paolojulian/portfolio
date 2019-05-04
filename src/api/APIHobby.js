@@ -10,6 +10,10 @@ export class APIHobby extends MyAPI {
                 )
     }
 
+    updateRecipe (recipeID, data) {
+        return super.xhrPatch(URL.cooking.recipe(recipeID), data)
+    }
+
     getRecipes (recipeId, sortBy = 'favorite') {
         let url = recipeId
             ? `${URL.cooking.recipeList}/${recipeId}`

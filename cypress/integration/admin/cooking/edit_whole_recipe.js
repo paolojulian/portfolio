@@ -15,38 +15,25 @@ describe('edit_whole_recipe.js', () => {
             .click()
             .wait(100)
 
-        // Rename the recipe
-        cy
-            .get('[data-test="recipe update name"]')
-            .clear()
-            .type(name)
-            .should('have.value', name)
-
-        // Remove its ingredients
-        cy
-            .get('[data-test="recipe update ingredients remove"]')
-            .click()
-            .click()
-            .click()
-            .click()
-        // Remove its procedures
-        cy
-            .get('[data-test="recipe update procedures remove"]')
-            .click()
-            .click()
-            .click()
-            .click()
+        // // Remove its ingredients
+        // cy.get('[data-test="recipe update ingredients remove"]')
+        // // Remove its procedures
+        // cy.get('[data-test="recipe update procedures remove"]')
+        //     .click()
+        //     .click()
+        //     .click()
+        //     .click()
         
         // Add the new ingredients
         cy.add_ingredient(0, this.cooking.ingredients[0], 'update')
         cy.get('[data-test="recipe update ingredients add"]').click()
-        cy.add_ingredient(0, this.cooking.ingredients[1], 'update')
+        cy.add_ingredient(1, this.cooking.ingredients[1], 'update')
         cy.get('[data-test="recipe update ingredients add"]').click()
-        cy.add_ingredient(0, this.cooking.ingredients[2], 'update')
+        cy.add_ingredient(2, this.cooking.ingredients[2], 'update')
         // Add the new procedures
         cy.add_procedure(0, this.cooking.procedures[0], 'update')
         cy.get('[data-test="recipe update procedures add"]').click()
-        cy.add_procedure(0, this.cooking.procedures[1], 'update')
+        cy.add_procedure(1, this.cooking.procedures[1], 'update')
 
         // Submit the update
         cy
@@ -56,12 +43,8 @@ describe('edit_whole_recipe.js', () => {
         
         // Should have success message
         cy
-            .get('[data-test="cooking"]')
-            .contains('Successfully edited data')
+            .get('[data-test="recipe"]')
+            .contains('Successfully updated the recipe')
 
-        // New recipe name should have changed in the table
-        cy
-            .get('[data-test="recipe table"]')
-            .contains(name)
     })
 })

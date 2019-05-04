@@ -72,13 +72,15 @@ Cypress.Commands.add('add_ingredient', (index, ingredient, type="add") => {
     cy
         .get(`[data-test="recipe ${type} ingredient-${index} name"]`)
         .select(ingredient.name)
-        .should('have.value', ingredient.name)
+        .should('have.value', ingredient.value)
     cy
         .get(`[data-test="recipe ${type} ingredient-${index} quantity"]`)
+        .clear()
         .type(ingredient.quantity)
         .should('have.value', ingredient.quantity)
     return cy
         .get(`[data-test="recipe ${type} ingredient-${index} description"]`)
+        .clear()
         .type(ingredient.description)
         .should('have.value', ingredient.description)
 })
@@ -89,6 +91,7 @@ Cypress.Commands.add('add_ingredient', (index, ingredient, type="add") => {
 Cypress.Commands.add('add_procedure', (index, procedure, type="add") => {
     return cy
         .get(`[data-test="recipe ${type} procedure-${index} name"]`)
+        .clear()
         .type(procedure)
         .should('have.value', procedure)
 })

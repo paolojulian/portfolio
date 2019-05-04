@@ -6,17 +6,20 @@
             {
                 "quantity": "1",
                 "description": "Test 1 description",
-                "name": "Baking Soda"
+                "name": "Baking Soda",
+                "value": "4"
             },
             {
                 "quantity": "2",
                 "description": "Test 2 description",
-                "name": "Basil"
+                "name": "Basil",
+                "value": "39"
             },
             {
                 "quantity": "3ml",
                 "description": "Test 3 description",
-                "name": "Bread Flour"
+                "name": "Bread Flour",
+                "value": "2"
             }
         ],
         "procedures": [
@@ -32,17 +35,20 @@
         {
             "quantity": "1",
             "description": "Test description",
-            "name": "Baking Soda"
+            "name": "Baking Soda",
+            "value": "4"
         },
         {
             "quantity": "1",
             "description": "Test description",
-            "name": "Basil"
+            "name": "Basil",
+            "value": "39"
         },
         {
             "quantity": "1",
             "description": "Test description",
-            "name": "Bread Flour"
+            "name": "Bread Flour",
+            "value": "2"
         }
     ],
     "procedures": [
