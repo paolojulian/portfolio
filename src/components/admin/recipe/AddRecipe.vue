@@ -101,6 +101,7 @@
             data-test="recipe add procedures add"
             >
             <font-awesome-icon icon="plus"/>
+            
         </button>
         <!-- REMOVE PROCEDURE -->
         <button @click="removeProcedure"
