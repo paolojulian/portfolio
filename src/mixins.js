@@ -71,7 +71,7 @@ const GLOBAL_MIXINS = {
 				//eslint-disable-next-line
 				console.error(err)
 			}
-        },
+		},
         /**
          * OPEN A MODAL based on the name
          * @param { String } modalName - modal property from data ()

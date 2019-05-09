@@ -56,7 +56,7 @@
         :name="modal.editProject.data.name"
         :description="modal.editProject.data.description"
         :tool="modal.editProject.data.tool"
-        :existing="Number(modal.editProject.data.existing)"
+        :existing="modal.editProject.data.existing ? 1 : 0"
         :project-type="Number(modal.editProject.data.projectType)"
     />
 </div>

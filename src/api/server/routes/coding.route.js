@@ -59,12 +59,33 @@ router.get(URL.coding.personalProjects, (req, res) => {
     })
 })
 
-// coding/projects
+/**
+ * GET ALL PROJECTS
+ * coding/projects
+ */
 router.get(URL.coding.projects, (req, res) => {
     req.getConnection((connectionErr, db) => {
         const codingModel = new CodingModel.Project(db)
         codingModel.getProjects()
             .then(data => res.JSONsuccess(data))
+            .catch(err => {
+                // eslint-disable-next-line
+                console.error(err)
+                res.JSONerror(err)
+            })
+    })
+})
+
+/**
+ * GET PROJECT BY PK
+ * coding/projects/:projectID
+ */
+router.get(URL.coding.projectDetails, (req, res) => {
+    const projectID = req.params.projectID
+    req.getConnection((connectionErr, db) => {
+        const codingModel = new CodingModel.Project(db)
+        codingModel.getProject(projectID)
+            .then(project => res.JSONsuccess(project))
             .catch(err => {
                 // eslint-disable-next-line
                 console.error(err)
@@ -87,7 +108,7 @@ router.post(URL.coding.projects, (req, res) => {
             description: item.description,
             tool: item.tool,
             imagePath: item.imagePath,
-            existing: item.existing == 'true' ? 1: 0,
+            existing: item.existing,
             projectType: item.projectType,
         }
         codingModel.addProject(project)

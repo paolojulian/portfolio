@@ -141,6 +141,8 @@ export default {
                 // get image path first before saving
                 await this.uploadImageAndGetPath();
 
+                // Convert existing to 1 or 0
+                this.form.existing = this.form.existing ? 1 : 0
                 this.addProject(this.form)
                     .then(() => this.handleSuccess(this.status.codes.addProject))
                     .catch(err => { throw err })

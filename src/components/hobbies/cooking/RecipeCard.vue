@@ -25,6 +25,7 @@
 </template>
 
 <script type="text/javascript">
+import { getDefaultRecipeImg } from '../../../helpers/constants.js'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faClock } from '@fortawesome/free-solid-svg-icons'
 library.add(faClock)
@@ -70,18 +71,12 @@ export default {
             return `${from}m - ${to}m`
         }
     },
-
-    data () {
-        return {
-            defaultImg: require('../../../assets/img/cooking/default.png')
-        }
-    },
     
     methods: {
         imageLoadError (event) {
             // Change the image of the recipe card to the default image
             event.error = null
-            event.target.src = this.defaultImg
+            event.target.src = getDefaultRecipeImg
         }
     }
 }

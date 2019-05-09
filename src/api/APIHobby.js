@@ -10,7 +10,7 @@ export class APIHobby extends MyAPI {
                 )
     }
 
-    updateRecipe (recipeID, data) {
+    updateRecipeprojectID (recipeID, data) {
         return super.xhrPatch(URL.cooking.recipe(recipeID), data)
     }
 
@@ -50,6 +50,10 @@ export class APIHobby extends MyAPI {
 
     addProject (data) {
         return super.xhrPost(URL.coding.projects, data)
+    }
+
+    getProject (projectID) {
+        return super.xhrGet(URL.coding.projectDetails(projectID))
     }
 
     getProjects () {

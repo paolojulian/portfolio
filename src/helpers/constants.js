@@ -39,6 +39,10 @@ export const hobbiesHeader = {
         coding: 'Coding'
     }
 }
+/**
+ * DEFAULT IMAGES
+ */
+export const getDefaultRecipeImg = require('../assets/img/cooking/default.png')
 
 export default {
     API_URL

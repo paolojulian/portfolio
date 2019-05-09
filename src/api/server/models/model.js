@@ -35,6 +35,10 @@ class Model {
         return Promise.all(queries)
     }
 
+    /**
+     * GET QUERY with PARAMS
+     * @param { Object } conditions - { table, fields = '*', where = [], join = [], sort = [] }
+     */
     getQuery (conditions) {
         let { table, fields = '*', where = [], join = [], sort = [] } = conditions
 

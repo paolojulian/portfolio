@@ -13,7 +13,7 @@
             :name="project.name"
             :description="project.description"
             :tool="project.tool"
-            :image-name="project.imageName"
+            :image-path="project.imagePath"
             @openProject="openProject"
         /><ProjectCard
             v-for="(project, i) in personalProjects"
@@ -22,7 +22,7 @@
             :name="project.name"
             :description="project.description"
             :tool="project.tool"
-            :image-name="project.imageName"
+            :image-path="project.imagePath"
             @openProject="openProject"
         />
     </div>
@@ -30,7 +30,7 @@
         v-if="modal.projects.toggle"
         @close="modal.projects.setToggle(false)"
         :id="Number(modal.projects.data.projectID)"
-        :description="modal.projects.data.projectDescription"
+        :name="modal.projects.data.name"
     />
 </div>
 </template>
@@ -66,8 +66,8 @@ export default {
                     this.personalProjects = projects[1];
                 })
         },
-        openProject ({ projectID, projectDescription }) {
-            this.modal.projects.setData({ projectID, projectDescription })
+        openProject ({ projectID, name }) {
+            this.modal.projects.setData({ projectID, name })
             this.modal.projects.setToggle(true)
         }
     },

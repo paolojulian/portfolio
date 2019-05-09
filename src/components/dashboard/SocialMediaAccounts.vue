@@ -11,7 +11,7 @@
 	</div>
 </template>
 <script type="text/javascript">
-import { FabIcon } from '../classes/classes.js'
+import { FabIcon } from '../../classes/classes.js'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faFacebook, faGithub, faLinkedin, faInstagram, faSteam } from '@fortawesome/free-brands-svg-icons'
 library.add( faFacebook, faGithub, faLinkedin, faInstagram, faSteam )

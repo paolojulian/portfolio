@@ -152,6 +152,9 @@ export default {
          */
         handleSubmit () {
             this.validateForm()
+            this.form.existing = this.form.existing
+                ? 1
+                : 0
 
             const payload = {
                 projectID: this.id,

@@ -142,6 +142,10 @@ const actions = {
             })
     },
 
+    getProject: (context, projectID) => {
+        return apiHobby.getProject(projectID)
+    },
+
     deleteProject: (context, { projectID, key }) => {
         return apiHobby.deleteProject(projectID, key)
     },

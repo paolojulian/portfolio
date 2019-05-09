@@ -1,6 +1,10 @@
 <template lang="html">
 <div class="ProjectCard" @click="openProject">
-    <div class="ProjectCard__img" :style="imageStyle"/>
+    <img
+        class="ProjectCard__img"
+        :src="imagePath"
+        @error="imageLoadError"
+        />
     <div class="ProjectCard__text">
         <div class="ProjectCard__name">
             <span>{{ name }}</span>
@@ -35,7 +39,7 @@ export default {
             type: String,
             required: true
         },
-        imageName: {
+        imagePath: {
             type: String,
             default: 'portfolio.png'
         },
@@ -44,21 +48,27 @@ export default {
             required: true
         }
     },
-    computed: {
-        imageStyle () {
-            let style = {}
-            let image = require(`../../../assets/img/coding/projects/${this.imageName}`)
-            style['backgroundImage'] = `url('${image}')`
-            return style
+
+    data () {
+        return {
+            defaultImg: require(`../../../assets/img/coding/projects/portfolio.png`)
         }
     },
     methods: {
         openProject () {
             let load = {
                 projectID: this.id,
-                projectDescription: this.description
+                name: this.name
             }
             this.$emit('openProject', load)
+        },
+        /**
+         * Replaces with the default image
+         */
+        imageLoadError (event) {
+            // Change the image of the recipe card to the default image
+            event.error = null
+            event.target.src = this.defaultImg
         }
     }
 }
@@ -69,6 +79,8 @@ export default {
     position: relative;
     display: inline-block;
     background-color: var(--my-dark);
+
+    opacity: 0.9;
 
     width: 17rem;
     height: 20rem;
@@ -83,23 +95,10 @@ export default {
     cursor: pointer;
     transition: all 200ms ease-in-out;
 }
-/* .ProjectCard:hover{
-    opacity: 1;
-} */
-/* .ProjectCard:hover .ProjectCard__text{
-    height: 100%;
-} */
-/* .ProjectCard:hover .ProjectCard__img{
-    transform: scale(1.2);
-} */
 .ProjectCard__img {
     position: absolute;
     left: 0;
     top: 0;
-
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
     height: 100%;
     width: 100%;
     

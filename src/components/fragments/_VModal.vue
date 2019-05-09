@@ -4,8 +4,7 @@
         <div class="modal-wrapper">
             <div class="modal-container"
                 :style="backgroundColor">
-                <div class="modal-header"
-                    :style="headerColor">
+                <div class="modal-header">
                     <slot name="header">
                         Nya ngay?
                     </slot>
@@ -59,9 +58,6 @@ export default {
         }
     },
     computed: {
-        headerColor () {
-            return this.setBackgroundColor('dark')
-        },
         backgroundColor () {
             return this.setBackgroundColor('light')
         }
@@ -98,8 +94,7 @@ export default {
 }
 .modal-header {
     padding: 10px;
-    background-color: rgba(0, 0, 0, 0.75);
-    color: #ffffff;
+    border-bottom: 2px solid #a3a3a3
 }
 
 .modal__body {
@@ -126,7 +121,6 @@ export default {
     background-color: #fff;
     box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
     transition: all .3s ease;
-    font-family: Helvetica, Arial, sans-serif;
 
     width: 100%;
     height: 100vh;
@@ -140,6 +134,18 @@ export default {
         width: 500px;
         max-height: 80vh;
         margin: 0px auto;
+    }
+}
+@media screen and (min-width: 1000px){
+    .modal-container {
+        border-radius: 2px;
+        width: 700px;
+        max-height: 80vh;
+        margin: 0px auto;
+    }
+    .modal-close-button {
+        right: 15px;
+        bottom: 15px;
     }
 }
 

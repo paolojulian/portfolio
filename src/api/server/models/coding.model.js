@@ -75,6 +75,10 @@ class Project extends Model {
         return super.query(query)
     }
 
+    getProject (projectID) {
+        return super.getByID(this.tableName, projectID)
+    }
+
     addProject (project) {
         return super.insert(this.tableName, project)
     }

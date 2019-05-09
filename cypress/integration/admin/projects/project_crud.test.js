@@ -6,7 +6,11 @@ describe('add_update_then_remove_project', () => {
 
     it ('add_a_project', function () {
         const now = Date.now().toString()
-        const name = this.projects.sample.name + now.slice(-4)
+        const { projectName, description, tool, existing, projectType, link, sourceCode } = this.projects.sample
+        const name = projectName + now.slice(-4)
+        const descriptionSliced = description.length > 10
+                ? description.slice(0, 10) + '...'
+                : description
         cy.visit('/admin/projects')
 
         // IMAGE
@@ -23,14 +27,14 @@ describe('add_update_then_remove_project', () => {
         // DESCRIPTION
         cy
             .get('textarea[data-test="project form description"]')
-            .type(this.projects.sample.description)
-            .should('have.value', this.projects.sample.description)
+            .type(description)
+            .should('have.value', description)
         
         // TOOL
         cy
             .get('input[data-test="project form tool"]')
-            .type(this.projects.sample.tool)
-            .should('have.value', this.projects.sample.tool)
+            .type(tool)
+            .should('have.value', tool)
 
         // EXISTING
         cy
@@ -40,8 +44,8 @@ describe('add_update_then_remove_project', () => {
         // PROJECT TYPE
         cy
             .get('select[data-test="project form projectType"]')
-            .select(this.projects.sample.projectType)
-            .should('have.value', this.projects.sample.projectType)
+            .select(projectType)
+            .should('have.value', projectType)
         
         // SUBMIT
         cy
@@ -68,6 +72,10 @@ describe('add_update_then_remove_project', () => {
         cy
             .get('table[data-test="project table"]')
             .contains(name)
+            .contains(descriptionSliced)
+            .contains(tool)
+            .contains(existing ? "1" : "0")
+            .contains(projectType ? "Personal" : "Company")
         
         // GET THE INSERTED ID OF THE FILE
         cy
