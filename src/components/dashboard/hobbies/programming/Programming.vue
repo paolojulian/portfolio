@@ -1,12 +1,18 @@
 <template>
 <div class="Programming">
     <div class="programming-text-container">
-        <div class="programming-title">
+        <div class="dashboard-title">
             My Programming Life
         </div>
         <div class="programming-main-languages">
+            <label>My Personal Favorite Languages</label>
+            <div v-for="(language, i) in favoriteLanguages"
+                :key="i">
+                {{ language.name }}
+            </div>
         </div>
         <div class="programming-quote">
+            
         </div>
     </div>
     <div class="programming-img-container">
@@ -23,6 +29,13 @@ class FavoriteLanguage {
         this.text = text
     }
 }
+class BestPractices {
+    constructor (name, description, image_path) {
+        this.name = name
+        this.description = description
+        this.image_path = image_path
+    }
+}
 export default {
     name: 'Programming-Dashboard',
     data () {
@@ -31,6 +44,11 @@ export default {
                 new FavoriteLanguage('Python', '70'),
                 new FavoriteLanguage('Javascript', '85'),
                 new FavoriteLanguage('Java', '50')
+            ],
+            bestPractices: [
+                new BestPractices('Simplicity', 'Keeping my functions and designs as simple as possible', ''),
+                new BestPractices('Order', "One step at a time, don't overthink yourself thinking about other things"),
+                new BestPractices('Order', "One step at a time, don't overthink yourself thinking about other things")
             ]
         }
     }

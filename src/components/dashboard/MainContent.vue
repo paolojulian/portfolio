@@ -7,29 +7,43 @@
         <div class="center-absolute">
             <div
                 data-aos="fade-right"
-                class="MainContent__header shake-start shake-hover">
+                class="MainContent__header shake-start shake-hover main-content-text">
                 <span>HELLO THERE!<br />PAOLO HERE</span>
             </div>
-            <div class="MainContent__description">
-                <div data-aos="fade-left" data-aos-delay="100">
+            <div class="MainContent__description main-content-text">
+                <div data-aos="fade-left"
+                    data-aos-delay="300"
+                    data-aos-anchor-placement="top-bottom">
                     Hi,  I am a software developer.
                 </div>
-                <div data-aos="fade-left" data-aos-delay="500">
+                <div data-aos="fade-left"
+                    data-aos-delay="600"
+                    data-aos-anchor-placement="top-bottom">
                     Aside from my job as a programmer which I most love to do,
                 </div>
-                <div data-aos="fade-left" data-aos-delay="0">
+                <div data-aos="fade-left"
+                    data-aos-delay="100"
+                    data-aos-anchor-placement="top-bottom">
                     I also do a lot of things I consider as my hobbies
                 </div>
-                <div data-aos="fade-left" data-aos-delay="400">
+                <div data-aos="fade-left"
+                    data-aos-delay="400"
+                    data-aos-anchor-placement="top-bottom">
                     such as playing computer games and basketball with friends,
                 </div>
-                <div data-aos="fade-left" data-aos-delay="350">
+                <div data-aos="fade-left"
+                    data-aos-delay="700"
+                    data-aos-anchor-placement="top-bottom">
                     cooking good food from different cuisines that I definitely share with people close to me.
                 </div>
-                <div data-aos="fade-left" data-aos-delay="200">
+                <div data-aos="fade-left"
+                    data-aos-delay="200"
+                    data-aos-anchor-placement="top-bottom">
                     I am passionate about music and that motivates me to sing and play musical instruments
                 </div>
-                <div data-aos="fade-left" data-aos-delay="50">
+                <div data-aos="fade-left"
+                    data-aos-delay="500"
+                    data-aos-anchor-placement="top-bottom">
                     like guitar, piano, and flute and I think music gives life to everything we do. 
                 </div>
             </div>
@@ -118,7 +132,7 @@ export default {
         left: 20%;
         transform: translateX(-20%);
     }
-    .MainContent__text div.center-absolute div{
+    .MainContent__text div.center-absolute div.main-content-text {
         margin-bottom: 1.5rem;
     }
     .MainContent__description {
