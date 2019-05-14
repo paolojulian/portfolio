@@ -5,12 +5,33 @@
         <div class="img-responsive"/>
     </div><div class="MainContent__text">
         <div class="center-absolute">
-            <div class="MainContent__header shake-start shake-hover">
+            <div
+                data-aos="fade-right"
+                class="MainContent__header shake-start shake-hover">
                 <span>HELLO THERE!<br />PAOLO HERE</span>
             </div>
             <div class="MainContent__description">
+                <div data-aos="fade-left" data-aos-delay="100">
                     Hi,  I am a software developer.
-                    Aside from my job as a programmer which I most love to do, I also do a lot of things I consider as my hobbies such as playing computer games and basketball with friends, cooking good food from different cuisines that I definitely share with people close to me. I am passionate about music and that motivates me to sing and play musical instruments like guitar, piano, and flute and I think music gives life to everything we do. 
+                </div>
+                <div data-aos="fade-left" data-aos-delay="500">
+                    Aside from my job as a programmer which I most love to do,
+                </div>
+                <div data-aos="fade-left" data-aos-delay="0">
+                    I also do a lot of things I consider as my hobbies
+                </div>
+                <div data-aos="fade-left" data-aos-delay="400">
+                    such as playing computer games and basketball with friends,
+                </div>
+                <div data-aos="fade-left" data-aos-delay="350">
+                    cooking good food from different cuisines that I definitely share with people close to me.
+                </div>
+                <div data-aos="fade-left" data-aos-delay="200">
+                    I am passionate about music and that motivates me to sing and play musical instruments
+                </div>
+                <div data-aos="fade-left" data-aos-delay="50">
+                    like guitar, piano, and flute and I think music gives life to everything we do. 
+                </div>
             </div>
         </div>
     </div>

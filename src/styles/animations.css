@@ -1,0 +1,21 @@
+[start-animate] {
+    animation-duration: 1s;
+    animation-delay: 400ms;
+    animation-timing-function: ease;
+}
+[start-animate="fade-right"] {
+    animation-name: fadeInRight;
+}
+
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(20px);
+        transform: translateZ(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+        transform: translateZ(0);
+    }
+}

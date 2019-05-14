@@ -73,3 +73,4 @@ export default {
 <style src='./styles/app.css'></style>
 <style src='./styles/transition.css'></style>
 <style src='./styles/constants.css'></style>
+<style src='./styles/animations.css'></style>
