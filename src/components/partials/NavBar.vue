@@ -48,11 +48,11 @@ export default {
         return {
             routes: [
                 new NavbarRoute('Home', '/', 'home'),
-                new NavbarRoute('Cooking', '/hobby/cooking/mainCourse', 'fire'),
-                new NavbarRoute('Music', '/hobby/music', 'music'),
+                new NavbarRoute('Recipes', '/hobby/cooking/mainCourse', 'fire'),
+                new NavbarRoute('Songs', '/hobby/music', 'music'),
                 new NavbarRoute('Sports', '/hobby/sports', 'gamepad'),
                 new NavbarRoute('Programming', '/hobby/coding', 'keyboard'),
-                new NavbarRoute('CurriculumVitae', '/curriculum-vitae', 'newspaper')
+                new NavbarRoute('CV', '/curriculum-vitae', 'newspaper')
             ],
             isDark: true
         }

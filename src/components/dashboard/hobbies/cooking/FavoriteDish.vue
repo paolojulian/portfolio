@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { getDefaultRecipeImg } from '../../../helpers/constants.js'
+import { getDefaultRecipeImg } from '@/helpers/constants.js'
 export default {
     name: 'FavoriteDish',
 

@@ -65,11 +65,8 @@ export default {
 /* MOBILE */
 .MainContent {
     text-align: center;
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - var(--my-navbar-height));
     overflow: hidden;
     background-color: #ffffff;
 }
