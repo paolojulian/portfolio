@@ -49,6 +49,10 @@
             </div>
         </div>
     </div>
+    <div class="MainContent__divider MainContent__divider__left">
+    </div>
+    <div class="MainContent__divider MainContent__divider__right">
+    </div>
 </div>
 </template>
 
@@ -65,8 +69,8 @@ export default {
 /* MOBILE */
 .MainContent {
     text-align: center;
-    width: 100vw;
-    height: calc(100vh - var(--my-navbar-height));
+    width: 100%;
+    height: 91vh;
     overflow: hidden;
     background-color: #ffffff;
 }
@@ -123,6 +127,9 @@ export default {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
 }
+.MainContent__divider {
+    display: none;
+}
 /* TAB */
 @media screen and (min-width: 600px){
     .MainContent__image div.img-responsive{
@@ -135,6 +142,25 @@ export default {
     .MainContent__description {
         font-size: 1rem;
         margin-bottom: 1rem;
+    }
+    .MainContent__divider {
+        display: unset;
+        position: absolute;
+        bottom: 0;
+        width: 0;
+        height: 0;
+    }
+    .MainContent__divider.MainContent__divider__left {
+        left: 0;
+        border-bottom: 100px solid var(--google-grey-primary);
+        border-right: 60vw solid transparent;
+        z-index: 10;
+    }
+    .MainContent__divider.MainContent__divider__right {
+        right: 0;
+        border-bottom: 100px solid var(--google-grey-secondary);
+        border-left: 60vw solid transparent;
+        z-index: 9;
     }
 }
 /* WEB */

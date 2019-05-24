@@ -1,9 +1,6 @@
 <template>
 <div class="Programming">
     <div class="programming-text-container">
-        <div class="dashboard-title">
-            Programming Life
-        </div>
         <div class="programming-practices">
             <span v-for="(practice, i) in bestPractices"
                 class="practices"
@@ -64,6 +61,8 @@ export default {
 .Programming {
     min-height: 91.5vh;
     width: 100%;
+    background-color: var(--google-grey-primary);
+    color: var(--google-font-white-primary);
 }
 .programming-title {
 
@@ -72,7 +71,6 @@ export default {
 }
 @media screen and (min-width: 1000px) {
     .Programming {
-        width: 600px;
         margin: 0 auto;
     }
 }

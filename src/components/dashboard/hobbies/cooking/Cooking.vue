@@ -7,17 +7,22 @@
         <span v-for="(recipe, i) in favoriteRecipes"
             :key="`recipe_${i}`"
         >
-            <span class="cooking-recipe">{{ recipe.name }}</span>
+            <img
+                class="cooking-content-cards"
+                :src="recipe.image_path"
+                :alt="recipe.name"
+            />
         </span>
     </div>
 </div>
 </template>
 
 <script>
+import { S3_IMG_URL } from '@/helpers/constants';
 class Recipe {
-    constructor (name, image_path = null) {
+    constructor (name, image_name = 'RAMEN_CARD') {
         this.name = name
-        this.image_path = image_path
+        this.image_path = `${S3_IMG_URL + image_name}.png`
     }
 }
 export default {
@@ -25,9 +30,9 @@ export default {
     data () {
         return {
             favoriteRecipes: [
-                new Recipe('Ramen'),
-                new Recipe('Taco'),
-                new Recipe('Pizza')
+                new Recipe('Ramen', 'RAMEN_CARD'),
+                new Recipe('Taco', 'TACO_CARD'),
+                new Recipe('Pizza', 'PIZZA_CARD')
             ]
         }
     },
@@ -43,6 +48,11 @@ export default {
 .cooking-content {
     height: 100%;
     width: 100%;
+}
+.cooking-content-cards {
+    margin: 50px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
 }
 @media screen and (min-width: 600px) {
 }

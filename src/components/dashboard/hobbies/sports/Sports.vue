@@ -1,26 +1,27 @@
 <template>
 <div class="Sports">
-    <div class="dashboard-title">
-        Sportsmanship
-    </div>
-    <div class="sports-vector">
+    <div class="sports-divider">
 
     </div>
     <div class="sports-content">
         <span v-for="(sport, i) in sports"
             :key="`sports_${i}`"
         >
-            <span class="sports-name">{{ sport.name }}</span>
+            <img :src="sport.image_path"
+                :alt="sport.name"
+            />
+            <!-- <span class="sports-name">{{ sport.name }}</span> -->
         </span>
     </div>
 </div>
 </template>
 
 <script>
+import { S3_IMG_URL } from '@/helpers/constants';
 class Sport {
-    constructor (name, image_path = null) {
+    constructor (name, image_name = 'HIKING_200') {
         this.name = name
-        this.image_path = image_path
+        this.image_path = `${S3_IMG_URL + image_name}.png`
     }
 }
 export default {
@@ -28,11 +29,11 @@ export default {
     data () {
         return {
             sports: [
-                new Sport('hiking'),
-                new Sport('basketball'),
-                new Sport('dota'),
-                new Sport('csgo'),
-                new Sport('apex'),
+                new Sport('hiking', 'HIKING_200'),
+                new Sport('basketball', 'BasketBall_200'),
+                new Sport('dota', 'DOTA_200'),
+                new Sport('csgo', 'CSGO_200'),
+                new Sport('apex', 'APEX_200'),
             ]
         }
     }
@@ -45,11 +46,21 @@ export default {
     height: 91.5vh;
     width: 100%;
     color: var(--google-font-white-primary);
+    background-color: var(--google-grey-primary);
+}
+.sports-divider {
+    background-color: var(--google-light-secondary);
+    width: 0;
+    height: 0;
+    border-left: 50vw solid transparent;
+    border-right: 50vw solid transparent;
+    border-bottom: 100px solid var(--google-grey-primary);
 }
 .sports-content {
-    height: calc(100% - 132px);
+    box-sizing: border-box;
+    padding-top: 200px;
+    height: calc(100% - 100px);
     width: 100%;
-    background-color: var(--google-grey-primary);
 }
 .sports-name {
     text-transform: uppercase;

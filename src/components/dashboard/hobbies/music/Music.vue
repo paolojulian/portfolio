@@ -36,6 +36,7 @@ export default {
 
 <style scoped>
 .Music {
+    background-color: var(--google-light-secondary);
     height: 91.5vh;
     width: 100%;
 }

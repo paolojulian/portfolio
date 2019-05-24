@@ -28,8 +28,10 @@
     --google-font-dark-primary: rgba(0, 0, 0, 0.87);
     --google-font-white-primary: #ffffff;
 
+    --google-light-secondary: #eeeeee;
     --google-light-light: #FAFAFA;
     --google-grey-primary: #212121;
+    --google-grey-secondary: #303030;
 }
 
 .dark-theme {
