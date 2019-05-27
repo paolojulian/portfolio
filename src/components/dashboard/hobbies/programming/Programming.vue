@@ -1,5 +1,7 @@
 <template>
-<div class="Programming">
+<div class="Programming"
+    id="Dashboard__Programming"
+>
     <div class="programming-text-container">
         <div class="programming-practices">
             <span v-for="(practice, i) in bestPractices"
@@ -59,7 +61,7 @@ export default {
 
 <style scoped>
 .Programming {
-    min-height: 91.5vh;
+    min-height: 100vh;
     width: 100%;
     background-color: var(--google-grey-primary);
     color: var(--google-font-white-primary);

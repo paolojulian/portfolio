@@ -49,6 +49,11 @@
             </div>
         </div>
     </div>
+    <div class="MainContent__arrow"
+        @click="handleScrollDown"
+    >
+        <i class="arrow arrow-down"/>
+    </div>
     <div class="MainContent__divider MainContent__divider__left">
     </div>
     <div class="MainContent__divider MainContent__divider__right">
@@ -61,6 +66,19 @@ export default {
     name: 'MainContent',
     components: {
         SocialMediaAccounts: () => import('./SocialMediaAccounts.vue')
+    },
+    data () {
+        return {
+
+        }
+    },
+    methods: {
+        handleScrollDown () {
+            const element = document.getElementById('Dashboard__Programming')
+            element.scrollIntoView({
+                behavior: 'smooth'
+            })
+        }
     }
 }
 </script>
@@ -130,6 +148,25 @@ export default {
 .MainContent__divider {
     display: none;
 }
+.MainContent__arrow {
+    cursor: pointer;
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: moveCarret 1s infinite;
+    z-index: 11; /* Should be greater than 10 */
+}
+i.arrow {
+    border: solid var(--google-grey-primary);
+    border-width: 0 6px 6px 0;
+    display: inline-block;
+    padding: 10px;
+}
+i.arrow.arrow-down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
 /* TAB */
 @media screen and (min-width: 600px){
     .MainContent__image div.img-responsive{
@@ -197,6 +234,18 @@ export default {
     }
     .MainContent__button:hover{
         background-color: var(--my-dark-blue);
+    }
+}
+
+@keyframes moveCarret {
+    0% {
+        transform: translateY(-10px);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+    100% {
+        transform: translateY(-10px);
     }
 }
 </style>

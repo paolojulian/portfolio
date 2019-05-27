@@ -36,6 +36,10 @@ export default {
     text-align: center;
     color: var(--google-font-dark-primary);
 }
+.Dashboard >>> .dashboard-title span {
+    transition: 
+}
+
 .Dashboard >>> .dashboard-title.dashboard-title-light {
     color: var(--google-font-white-primary);
 }
