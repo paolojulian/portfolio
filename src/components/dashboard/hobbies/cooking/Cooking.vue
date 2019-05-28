@@ -11,6 +11,7 @@
                 class="cooking-content-cards"
                 :src="recipe.image_path"
                 :alt="recipe.name"
+                :width=""
             />
         </span>
     </div>
@@ -42,7 +43,7 @@ export default {
 <style scoped>
 .Cooking {
     background-color: var(--google-light-light);
-    height: 91.5vh;
+    height: 100vh;
     width: 100%;
 }
 .cooking-content {
@@ -50,11 +51,13 @@ export default {
     width: 100%;
 }
 .cooking-content-cards {
-    margin: 50px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
 }
 @media screen and (min-width: 600px) {
+    .cooking-content-cards {
+        margin: 50px;
+    }
 }
 @media screen and (min-width: 1000px) {
 }

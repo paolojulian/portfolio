@@ -10,7 +10,6 @@
             </span>
         </div>
         <div class="programming-main-languages">
-            <label>My Personal Favorite Languages</label>
             <br />
             <span v-for="(language, i) in favoriteLanguages"
                 :key="i">
@@ -19,6 +18,8 @@
         </div>
         <div class="programming-img"></div>
     </div>
+    <div class="programming-background"></div>
+    <div class="programming-anchor"></div>
 </div>
 </template>
 
@@ -59,7 +60,9 @@ export default {
 
 <style scoped>
 .Programming {
-    min-height: 91.5vh;
+    position: relative;
+    padding-top: 50px;
+    height: 100vh;
     width: 100%;
     background-color: var(--google-grey-primary);
     color: var(--google-font-white-primary);
@@ -67,7 +70,34 @@ export default {
 .programming-title {
 
 }
+.programming-background {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    height: 300px;
+    width: 100%;
+    background-image: url('https://s3-ap-southeast-1.amazonaws.com/chefpipz-api-portfolio/images/computer.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+.programming-anchor {
+    position: absolute;
+    bottom: calc(300px - 100px);/** Height of background - height of anchor */
+    left: 0;
+
+    width: 0; 
+    height: 0; 
+    border-left: 50vw solid transparent;
+    border-right: 50vw solid transparent;
+    
+    border-top: 100px solid var(--google-grey-primary);
+}
 @media screen and (min-width: 600px) {
+    .Programming {
+        padding-top: 250px;
+    }
 }
 @media screen and (min-width: 1000px) {
     .Programming {

@@ -1,8 +1,5 @@
 <template>
 <div class="Sports">
-    <div class="sports-divider">
-
-    </div>
     <div class="sports-content">
         <span v-for="(sport, i) in sports"
             :key="`sports_${i}`"
@@ -47,14 +44,6 @@ export default {
     width: 100%;
     color: var(--google-font-white-primary);
     background-color: var(--google-grey-primary);
-}
-.sports-divider {
-    background-color: var(--google-light-secondary);
-    width: 0;
-    height: 0;
-    border-left: 50vw solid transparent;
-    border-right: 50vw solid transparent;
-    border-bottom: 100px solid var(--google-grey-primary);
 }
 .sports-content {
     box-sizing: border-box;
