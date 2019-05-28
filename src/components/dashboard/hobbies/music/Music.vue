@@ -67,4 +67,7 @@ export default {
 .music-content div {
     display: inline-block;
 }
+.music-content div {
+    display: inline-block;
+}
 </style>
