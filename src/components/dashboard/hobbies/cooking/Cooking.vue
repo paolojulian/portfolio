@@ -8,6 +8,8 @@
             :key="`recipe_${i}`"
         >
             <img
+                data-aos="flip-left"
+                :data-aos-delay="recipe.aos_delay"
                 class="cooking-content-cards"
                 :src="recipe.image_path"
                 :alt="recipe.name"
@@ -21,9 +23,10 @@
 <script>
 import { S3_IMG_URL } from '@/helpers/constants';
 class Recipe {
-    constructor (name, image_name = 'RAMEN_CARD') {
+    constructor (name, image_name = 'RAMEN_CARD', aos_delay = 0) {
         this.name = name
         this.image_path = `${S3_IMG_URL + image_name}.png`
+        this.aos_delay = aos_delay
     }
 }
 export default {
@@ -31,9 +34,9 @@ export default {
     data () {
         return {
             favoriteRecipes: [
-                new Recipe('Ramen', 'RAMEN_CARD'),
-                new Recipe('Taco', 'TACO_CARD'),
-                new Recipe('Pizza', 'PIZZA_CARD')
+                new Recipe('Ramen', 'RAMEN_CARD', 0),
+                new Recipe('Taco', 'TACO_CARD', 200),
+                new Recipe('Pizza', 'PIZZA_CARD', 400)
             ]
         }
     },
@@ -42,6 +45,7 @@ export default {
 
 <style scoped>
 .Cooking {
+    position: relative;
     background-color: var(--google-light-light);
     height: 100vh;
     width: 100%;

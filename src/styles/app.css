@@ -21,6 +21,7 @@ ul {
 html {
     overflow-x: hidden;
     height: 100%;
+    overflow-x: hidden;
 }
 body {
     margin: 0;
