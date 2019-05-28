@@ -20,7 +20,13 @@
         </div>
         <div class="programming-img"></div>
     </div>
-    <div class="programming-background"></div>
+    <div class="programming-background">
+        <LinkButton
+            class="center-absolute"
+            :text="`Check out my projects`"
+            :linkName="'HobbyCoding'"
+        />
+    </div>
     <div class="programming-anchor"></div>
 </div>
 </template>
@@ -42,6 +48,9 @@ class BestPractices {
 }
 export default {
     name: 'Programming-Dashboard',
+    components: {
+        LinkButton: () => import('../../LinkButton.vue')
+    },
     data () {
         return {
             favoriteLanguages: [
@@ -88,7 +97,7 @@ export default {
 }
 .programming-anchor {
     position: absolute;
-    bottom: calc(300px - 100px);/** Height of background - height of anchor */
+    bottom: calc(300px - 50px);/** Height of background - height of anchor */
     left: 0;
 
     width: 0; 

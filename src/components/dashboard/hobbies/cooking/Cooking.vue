@@ -13,9 +13,17 @@
                 class="cooking-content-cards"
                 :src="recipe.image_path"
                 :alt="recipe.name"
-                :width=""
             />
         </span>
+    </div>
+    <div class="relative">
+        <LinkButton
+            class="center-absolute"
+            :text="`View my recipes`"
+            :backgroundColor="`#219653`"
+            :color="`#FFFFFF`"
+            :linkName="'HobbyCooking'"
+        />
     </div>
 </div>
 </template>
@@ -31,6 +39,9 @@ class Recipe {
 }
 export default {
     name: 'Cooking-Dashboard',
+    components: {
+        LinkButton: () => import('../../LinkButton.vue')
+    },
     data () {
         return {
             favoriteRecipes: [
@@ -51,12 +62,13 @@ export default {
     width: 100%;
 }
 .cooking-content {
-    height: 100%;
-    width: 100%;
+    margin-bottom: 2rem;
 }
 .cooking-content-cards {
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
+    width: 15%;
+    height: auto;
 }
 @media screen and (min-width: 600px) {
     .cooking-content-cards {
