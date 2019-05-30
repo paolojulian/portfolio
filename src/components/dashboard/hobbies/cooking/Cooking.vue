@@ -1,6 +1,7 @@
 <template>
 <div class="Cooking">
-    <div class="dashboard-title">
+    <div class="dashboard-title"
+        data-aos="zoom-in">
         MY ART OF COOKING
     </div>
     <div class="cooking-content">
@@ -10,6 +11,7 @@
             <img
                 data-aos="flip-left"
                 :data-aos-delay="recipe.aos_delay"
+                data-aos-anchor-placement="bottom-bottom"
                 class="cooking-content-cards"
                 :src="recipe.image_path"
                 :alt="recipe.name"
@@ -17,13 +19,14 @@
         </span>
     </div>
     <div class="relative">
-        <LinkButton
-            class="center-absolute"
-            :text="`View my recipes`"
-            :backgroundColor="`#219653`"
-            :color="`#FFFFFF`"
-            :linkName="'HobbyCooking'"
-        />
+        <div class="center-absolute">
+            <LinkButton
+                data-aos="zoom-in"
+                :text="`View my recipes`"
+                :backgroundColor="`#219653`"
+                :color="`#FFFFFF`"
+                :linkName="'HobbyCooking'"/>
+        </div>
     </div>
 </div>
 </template>
@@ -58,7 +61,7 @@ export default {
 .Cooking {
     position: relative;
     background-color: var(--google-light-light);
-    height: 100vh;
+    height: 110vh;
     width: 100%;
 }
 .cooking-content {

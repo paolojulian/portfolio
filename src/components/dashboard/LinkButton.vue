@@ -8,6 +8,17 @@
 </template>
 
 <script>
+/**
+ * ERROR CLASSES
+ */
+class WrongColorFormatException extends Error{
+    constructor (color, ...params) {
+        super (...params)
+        this.name = 'WrongColorFormatException'
+        this.message = 'The Color should be in hex-format. Given - ' + color
+        this.date = Date.now()
+    }
+}
 export default {
     name: 'LinkButton',
 
@@ -53,10 +64,16 @@ export default {
          * VALIDATES the styles to be given in the button
          */
         validateStyles () {
-            // IF COLOR IS NOT HEX
-            if (this.color.length !== 6) {
+            try {
+                if (this.color.length !== 7) {
+                    throw new WrongColorFormatException(this.color)
+                }
+                if (this.color[0] !== '#') {
+                    throw new WrongColorFormatException(this.color)
+                }
+            } catch (err) {
                 // eslint-disable-next-line
-                console.error('The Color should be in hex-format. Given - ' + this.color);
+                console.error(err.message);
             }
         },
 

@@ -8,26 +8,31 @@
             :key="`musicList_${i}`"
             class="music-content-card"
         >
-            <div class="music-content-img">
+            <div class="music-content-img"
+                data-aos="zoom-in-right"
+            >
                 <img
                     :src="music.image_path"
                     :alt="music.name"
                     />
             </div>
-            <div class="music-content-desc">
+            <div class="music-content-desc"
+                data-aos="zoom-in-right"
+            >
                 <span class="text-shadow-light">
                     {{ music.description }}
                 </span>
             </div>
         </div>
         <div class="relative">
-            <LinkButton
-                class="center-absolute"
-                :text="`Check out my songs`"
-                :backgroundColor="`#EB5757`"
-                :color="`#FFFFFF`"
-                :linkName="'HobbyMusic'"
-            />
+            <div class="center-absolute">
+                <LinkButton
+                    data-aos="zoom-in"
+                    :text="`Check out my songs`"
+                    :backgroundColor="`#EB5757`"
+                    :color="`#FFFFFF`"
+                    :linkName="'HobbyMusic'"/>
+            </div>
         </div>
     </div>
     <div class="music-divider"/>

@@ -1,5 +1,10 @@
 <template>
 <div class="Sports">
+    <div class="dashboard-title dashboard-title-light"
+        data-aos="zoom-in"
+        data-aos-anchor-placement="bottom-bottom">
+        Play with me
+    </div>
     <div class="sports-content">
         <span v-for="(sport, i) in sports"
             :key="`sports_${i}`"
@@ -51,7 +56,7 @@ export default {
 }
 .sports-content {
     box-sizing: border-box;
-    padding-top: 200px;
+    padding-top: 100px;
     height: calc(100% - 100px);
     width: 100%;
 }

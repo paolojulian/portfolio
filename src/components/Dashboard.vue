@@ -30,14 +30,11 @@ export default {
 }
 .Dashboard >>> .dashboard-title {
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: 5px;
     padding: 50px;
     font-size: 32px;
     text-align: center;
     color: var(--google-font-dark-primary);
-}
-.Dashboard >>> .dashboard-title span {
-    transition: 
 }
 
 .Dashboard >>> .dashboard-title.dashboard-title-light {

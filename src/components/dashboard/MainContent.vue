@@ -1,6 +1,5 @@
 <template>
 <div class="MainContent">
-    <social-media-accounts/>
     <div class="MainContent__image">
         <div class="img-responsive"/>
     </div><div class="MainContent__text">
@@ -14,7 +13,7 @@
                 <div data-aos="fade-left"
                     data-aos-delay="300"
                     data-aos-anchor-placement="top-bottom">
-                    Hi,  I am a software developer.
+                    Hi, I am a fullstack web developer.
                 </div>
                 <div data-aos="fade-left"
                     data-aos-delay="600"
@@ -64,14 +63,6 @@
 <script>
 export default {
     name: 'MainContent',
-    components: {
-        SocialMediaAccounts: () => import('./SocialMediaAccounts.vue')
-    },
-    data () {
-        return {
-
-        }
-    },
     methods: {
         handleScrollDown () {
             const element = document.getElementById('Dashboard__Programming')

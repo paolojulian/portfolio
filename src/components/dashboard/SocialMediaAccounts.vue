@@ -40,15 +40,12 @@ export default {
 </script>
 <style>
 .SocialMediaAccounts {
-	position: absolute;
-	top: 0.5rem;
-	right: 0.5rem;
-
 	display: flex;
 	flex-wrap: wrap;
 	text-align: center;
 	vertical-align: middle;
 	font-size: 1.5rem;
+	color: var(--google-font-white-primary);
 
 	z-index: 1;
 }
