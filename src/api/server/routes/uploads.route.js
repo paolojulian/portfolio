@@ -6,7 +6,7 @@ const fs = require('fs');
 const s3 = require('../aws')
 const path = require('path');
 
-const config = require('../config.json')
+const config = require('../hashed.config.json')
 const imageBucket = `${config.aws.bucket}/images`
 
 const MAX_SIZE = {
