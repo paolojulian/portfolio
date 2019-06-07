@@ -1,16 +1,13 @@
 <template>
 <div class="Programming"
-    id="Dashboard__Programming"
->
+    id="Dashboard__Programming">
     <div class="programming-text-container">
         <div class="programming-practices">
             <div v-for="(practice, i) in bestPractices"
                 class="practices"
-                :key="`practices_${i}`"
-            >
+                :key="`practices_${i}`">
                 <div class="programming-practice-img">
-                    <img
-                        data-aos="fade-down"
+                    <img data-aos="fade-down"
                         :data-aos-delay="practice.aos_delay"
                         :src="practice.image_path"
                         :alt="practice.name"/>
