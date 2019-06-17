@@ -4,9 +4,10 @@
         :class="{'dark': isDark}">
         <div id="NavBar__icon">
             <span class="NavBar__icon__text">
-                <span class="NavBar__start"
+                <!-- <span class="NavBar__start"
                     :style="'color: ' + theme.primary"
-                >chef</span>.PIPZ
+                >chef</span>.PIPZ -->
+                PIPZ
             </span>
         </div>
         <!-- <div id="NavBar__title" class="xl-only">

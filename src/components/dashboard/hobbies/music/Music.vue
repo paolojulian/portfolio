@@ -85,6 +85,7 @@ export default {
     background-image: url('https://s3-ap-southeast-1.amazonaws.com/chefpipz-api-portfolio/images/music_background.png');
     background-size: cover;
     background-position: cover;
+    background-attachment: fixed;
 }
 .music-divider {
     position: absolute;

@@ -1,7 +1,7 @@
 <template lang="html">
 <div class="LoadingScreen">
 	<div class="LoadingScreen__logo">
-		<span class="chef">Chef</span>.<span class="pipz">PIPZ</span>
+		<span class="pipz">PIPZ</span>
 	</div>
 </div>
 </template>

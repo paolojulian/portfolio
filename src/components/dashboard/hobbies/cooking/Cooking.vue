@@ -1,45 +1,41 @@
 <template>
-<div class="Cooking">
+<div class="Cooking clearfix">
     <div class="dashboard-title"
-        data-aos="zoom-in">
+        data-aos="fade-up">
         MY ART OF COOKING
     </div>
     <div class="cooking-content">
-        <span v-for="(recipe, i) in favoriteRecipes"
-            :key="`recipe_${i}`"
-        >
+        <div class="cooking-images relative">
             <img
-                data-aos="flip-left"
-                :data-aos-delay="recipe.aos_delay"
-                data-aos-anchor-placement="bottom-bottom"
-                class="cooking-content-cards"
-                :src="recipe.image_path"
-                :alt="recipe.name"
-            />
-        </span>
-    </div>
-    <div class="relative">
-        <div class="center-absolute">
-            <LinkButton
-                data-aos="zoom-in"
-                :text="`View my recipes`"
-                :backgroundColor="`#219653`"
-                :color="`#FFFFFF`"
-                :linkName="'HobbyCooking'"/>
+                class="cooking-content-img cooking-fire"
+                :src="images.fire.imagePath"
+                />
+            <img
+                class="cooking-content-img cooking-pan"
+                :src="images.pan.imagePath"
+                />
+        </div>
+        <div class="cooking-footer relative">
+            <div class="cooking-footer-description">
+                <LinkButton
+                    data-aos="fade-up"
+                    :text="`CHECK MY RECIPES`"
+                    :backgroundColor="`#219653`"
+                    :color="`#FFFFFF`"
+                    :linkName="'HobbyCooking'"/>
+                <br />
+                <div class="cooking-footer-txt"
+                    data-aos="fade-up">
+                    I Love cooking good food for everyone, from different cuisines and different spices
+                </div>
+            </div>
         </div>
     </div>
 </div>
 </template>
 
 <script>
-import { S3_IMG_URL } from '@/helpers/constants';
-class Recipe {
-    constructor (name, image_name = 'RAMEN_CARD', aos_delay = 0) {
-        this.name = name
-        this.image_path = `${S3_IMG_URL + image_name}.png`
-        this.aos_delay = aos_delay
-    }
-}
+import { S3IMG } from '@/helpers/constants';
 export default {
     name: 'Cooking-Dashboard',
     components: {
@@ -47,11 +43,10 @@ export default {
     },
     data () {
         return {
-            favoriteRecipes: [
-                new Recipe('Ramen', 'RAMEN_CARD', 0),
-                new Recipe('Taco', 'TACO_CARD', 200),
-                new Recipe('Pizza', 'PIZZA_CARD', 400)
-            ]
+            images: {
+                pan: new S3IMG('Pan.png'),
+                fire: new S3IMG('Fire.png')
+            }
         }
     },
 }
@@ -61,23 +56,53 @@ export default {
 .Cooking {
     position: relative;
     background-color: var(--google-light-light);
-    height: 110vh;
     width: 100%;
 }
 .cooking-content {
     margin-bottom: 2rem;
+    height: 800px;
 }
-.cooking-content-cards {
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    width: 15%;
-    height: auto;
+.cooking-content-img {
+    position: absolute;
+    left: 45%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+}
+.cooking-pan {
+    animation: movePan 1s infinite;
+}
+.cooking-footer-description {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.cooking-images {
+    width: 100%;
+    height: 70%;
+}
+.cooking-footer {
+    width: 100%;
+    height: 30%;
 }
 @media screen and (min-width: 600px) {
-    .cooking-content-cards {
-        margin: 50px;
-    }
 }
 @media screen and (min-width: 1000px) {
+}
+
+@keyframes movePan {
+    0% {
+        left: 45%;
+    }
+    30% {
+        left: 47%;
+    }
+    60% {
+        left: 45%;
+    }
+    100% {
+        left: 45%;
+    }
 }
 </style>

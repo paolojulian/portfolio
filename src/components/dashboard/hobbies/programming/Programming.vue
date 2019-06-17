@@ -1,67 +1,59 @@
 <template>
-<div class="Programming"
-    id="Dashboard__Programming">
-    <div class="programming-text-container">
+<div class="Programming-content">
+    <div class="Programming__divider Programming__divider__left"/>
+    <div class="Programming__divider Programming__divider__right"/>
+
+    <div class="programming-text-container clearfix"
+        id="Programming__container">
         <div class="programming-practices">
-            <div v-for="(practice, i) in bestPractices"
-                class="practices"
-                :key="`practices_${i}`">
-                <div class="programming-practice-img">
-                    <img data-aos="fade-down"
-                        :data-aos-delay="practice.aos_delay"
-                        :src="practice.image_path"
-                        :alt="practice.name"/>
-                </div>
-
-                <div class="programming-practice-name uppercase"
-                    data-aos="fade-right"
-                    :data-aos-delay="practice.aos_delay">
-                    {{ practice.name }}
-                </div>
-
-                <br />
-
-                <div class="programming-practice-description"
-                    data-aos="fade-up"
-                    :data-aos-delay="practice.aos_delay">
-                    {{ practice.description }}
-                </div>
+            <div class="practices-label uppercase">
+                Best Practices
             </div>
+            <Practice
+                v-for="(practice, i) in bestPractices"
+                :key="`practices_${i}`"
+                :name="practice.name"
+                :description="practice.description"
+                :image-path="practice.image_path"/>
         </div>
 
-        <div class="favorite-languages-label uppercase"
-            data-aos="zoom-out">
-            My Favorite Languages
-        </div>
-        <div class="programming-favorite-languages">
-            <br />
-            <div v-for="(language, i) in favoriteLanguages"
-                class="favorite-languages-content"
-                data-aos="flip-up"
-                :data-aos-delay="language.aos_delay"
-                data-aos-anchor-placement="bottom-bottom"
-                :key="i">
-                <div class="favorite-language-img">
-                    <img
-                        :src="language.image_path"
-                        :alt="language.name"/>
-                </div>
+        <div class="favorite-languages">
+            <div class="favorite-languages-label uppercase"
+                data-aos="fade-up">
+                My Favorite Languages
+            </div>
+            <div class="programming-favorite-languages">
+                <br />
+                <div v-for="(language, i) in favoriteLanguages"
+                    class="favorite-languages-content"
+                    data-aos="fade-up"
+                    data-aos-anchor-placement="bottom-bottom"
+                    :key="i">
+                    <div class="favorite-language-img">
+                        <img
+                            :src="language.image_path"
+                            :alt="language.name"/>
+                    </div>
 
-                <div class="favorite-language-name uppercase">
-                    {{ language.name }}
+                    <div class="favorite-language-name uppercase">
+                        {{ language.name }}
+                    </div>
                 </div>
             </div>
         </div>
         <div class="programming-img"></div>
     </div>
+
     <div class="programming-background">
         <div class="center-absolute">
             <LinkButton
                 data-aos="zoom-in"
                 data-aos-anchor-placement="bottom-bottom"
-                :text="`Check out my projects`"
+                :text="`Check out more...`"
                 :linkName="'HobbyCoding'"
             />
+            <br />
+            <div>Check out my different projects and skillset along with my coding creed.</div>
         </div>
     </div>
     <div class="programming-anchor"></div>
@@ -88,7 +80,8 @@ class BestPractices {
 export default {
     name: 'Programming-Dashboard',
     components: {
-        LinkButton: () => import('../../LinkButton.vue')
+        LinkButton: () => import('../../LinkButton.vue'),
+        Practice: () => import('./Practice.vue')
     },
     data () {
         return {
@@ -109,89 +102,82 @@ export default {
 </script>
 
 <style scoped>
-.Programming {
+/* VARIABLES */
+.Programming-content {
+    --triangle-height: 80px;
+    --negative-triangle-height: calc(var(--triangle-height) * -1);
+}
+.Programming-content {
+    color: var(--google-font-white-primary);
     position: relative;
+    width: 100%;
+}
+.Programming {
+    position: absolute;
+    top: var(--negative-triangle-height);
+    left: 0;
     font-weight: 100;
 
-    padding-top: 20px;
-    height: 100vh;
+    height: 100%;
     width: 100%;
 
-    background-color: var(--google-grey-primary);
-    color: var(--google-font-white-primary);
-}
-.programming-title {
+    z-index: 11;
 
+    /* background-color: var(--google-grey-primary); */
+}
+.Programming__divider {
+    display: none;
+}
+.programming-text-container {
+    position: static;
+    background-color: var(--google-grey-primary);
+    padding-top: 150px;
+    padding-bottom: 100px;
 }
 .programming-background {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-
+    position: relative;
     height: 300px;
     width: 100%;
-    background-image: url('https://s3-ap-southeast-1.amazonaws.com/chefpipz-api-portfolio/images/computer.png');
+    background-image: url('https://s3-ap-southeast-1.amazonaws.com/chefpipz-api-portfolio/images/Laptop_blurr_720p.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
 }
-.programming-anchor {
-    position: absolute;
-    bottom: calc(300px - 50px);/** Height of background - height of anchor */
-    left: 0;
-
-    width: 0; 
-    height: 0; 
-    border-left: 50vw solid transparent;
-    border-right: 50vw solid transparent;
-    
-    border-top: 100px solid var(--google-grey-primary);
-}
-.programming-practices,
-.programming-favorite-languages {
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    width: 75%;
-    margin: auto;
-}
-.programming-practices .practices,
-.favorite-languages-content {
-    display: flex;
-    flex-direction: column;
-}
-.programming-practices .practices{
-    display: inline-block;
-}
-.programming-practices {
-    margin-bottom: 100px;
-}
-.programming-favorite-languages {
-    margin-top: 50px;
-}
-.favorite-languages-label {
-    font-size: 1.1rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-}
-.programming-practice-name,
-.favorite-language-name {
-    margin-top: 15px;
-    font-size: 1.1rem;
-    letter-spacing: 2px;
-}
 @media screen and (min-width: 600px) {
-    .Programming {
-        padding-top: 150px;
-        padding-bottom: 200px;
+    .Programming__divider {
+        display: unset;
+        position: absolute;
+        top: var(--negative-triangle-height);
+        width: 0;
+        height: 0;
     }
-    .programming-practices .practices {
-        margin-left: 20px;
-        margin-right: 20px;
+    .Programming__divider.Programming__divider__left {
+        left: 0;
+        border-bottom: 200px solid var(--google-grey-primary);
+        border-right: 150vw solid transparent;
+        z-index: 10;
     }
-    .favorite-languages-content {
-        margin-left: 50px;
-        margin-right: 50px;
+    .Programming__divider.Programming__divider__right {
+        right: 0;
+        border-bottom: 200px solid var(--google-grey-secondary);
+        border-left: 150vw solid transparent;
+        z-index: 9;
+    }
+    .programming-practices,
+    .favorite-languages {
+        float: left;
+        width: 500px;
+    }
+    .programming-practices {
+        padding-left: 100px;
+    }
+    .practices-label{
+        letter-spacing: 10px;
+        font-weight: 200;
+        font-size: 36px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        margin-bottom: 50px;
+        text-align: left;
     }
 }
 @media screen and (min-width: 1000px) {

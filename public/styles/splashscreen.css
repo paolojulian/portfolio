@@ -22,7 +22,8 @@
     color: #7C2D37;
 }
 .SplashScreen__logo span.pipz{
-    color: #1F5725;
+    /* color: #1F5725; */
+    color: #7C2D37;
 }
 .SplashScreen__lines span {
     position: absolute;

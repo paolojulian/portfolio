@@ -40,7 +40,7 @@ export default {
 .Dashboard >>> .dashboard-title.dashboard-title-light {
     color: var(--google-font-white-primary);
 }
-.Dashboard >>> .dashboard-title::after {
+/* .Dashboard >>> .dashboard-title::after {
     content: "";
     display: block;
     position: absolute;
@@ -51,7 +51,7 @@ export default {
     width: 150px;
     height: 5px;
     background-color: var(--google-grey-primary);
-}
+} */
 .Dashboard >>> .dashboard-title.dashboard-title-light::after {
     background-color: var(--google-light-light);
 }

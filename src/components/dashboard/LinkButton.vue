@@ -90,10 +90,13 @@ export default {
     cursor: pointer;
 
     font-size: 1.5rem;
+    font-weight: 200;
 
     display: flex;
     align-items: center;
     justify-content: center;
+
+    text-transform: uppercase;
 
     border-radius: 5px;
     box-shadow: 0 2px 5px 0px #131313;

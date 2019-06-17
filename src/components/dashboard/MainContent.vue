@@ -53,10 +53,6 @@
     >
         <i class="arrow arrow-down"/>
     </div>
-    <div class="MainContent__divider MainContent__divider__left">
-    </div>
-    <div class="MainContent__divider MainContent__divider__right">
-    </div>
 </div>
 </template>
 
@@ -65,7 +61,7 @@ export default {
     name: 'MainContent',
     methods: {
         handleScrollDown () {
-            const element = document.getElementById('Dashboard__Programming')
+            const element = document.getElementById('Programming__container')
             element.scrollIntoView({
                 behavior: 'smooth'
             })
@@ -136,17 +132,14 @@ export default {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
 }
-.MainContent__divider {
-    display: none;
-}
 .MainContent__arrow {
     cursor: pointer;
     position: absolute;
-    top: 90%;
+    top: 85%;
     left: 50%;
     transform: translateX(-50%);
     animation: moveCarret 1s infinite;
-    z-index: 11; /* Should be greater than 10 */
+    z-index: 20; /* Should be greater than 11 */
 }
 i.arrow {
     border: solid var(--google-grey-primary);
@@ -170,25 +163,6 @@ i.arrow.arrow-down {
     .MainContent__description {
         font-size: 1rem;
         margin-bottom: 1rem;
-    }
-    .MainContent__divider {
-        display: unset;
-        position: absolute;
-        bottom: 0;
-        width: 0;
-        height: 0;
-    }
-    .MainContent__divider.MainContent__divider__left {
-        left: 0;
-        border-bottom: 100px solid var(--google-grey-primary);
-        border-right: 60vw solid transparent;
-        z-index: 10;
-    }
-    .MainContent__divider.MainContent__divider__right {
-        right: 0;
-        border-bottom: 100px solid var(--google-grey-secondary);
-        border-left: 60vw solid transparent;
-        z-index: 9;
     }
 }
 /* WEB */
