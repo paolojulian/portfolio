@@ -3,44 +3,11 @@
     <div class="Programming__divider Programming__divider__left"/>
     <div class="Programming__divider Programming__divider__right"/>
 
-    <div class="programming-text-container clearfix"
+    <div class="programming-container clearfix"
         id="Programming__container">
-        <div class="programming-practices">
-            <div class="practices-label uppercase">
-                Best Practices
-            </div>
-            <Practice
-                v-for="(practice, i) in bestPractices"
-                :key="`practices_${i}`"
-                :name="practice.name"
-                :description="practice.description"
-                :image-path="practice.image_path"/>
-        </div>
+        <BestPractices class="programming-practices"/>
+        <FavoriteLanguages class="favorite-languages"/>
 
-        <div class="favorite-languages">
-            <div class="favorite-languages-label uppercase"
-                data-aos="fade-up">
-                My Favorite Languages
-            </div>
-            <div class="programming-favorite-languages">
-                <br />
-                <div v-for="(language, i) in favoriteLanguages"
-                    class="favorite-languages-content"
-                    data-aos="fade-up"
-                    data-aos-anchor-placement="bottom-bottom"
-                    :key="i">
-                    <div class="favorite-language-img">
-                        <img
-                            :src="language.image_path"
-                            :alt="language.name"/>
-                    </div>
-
-                    <div class="favorite-language-name uppercase">
-                        {{ language.name }}
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="programming-img"></div>
     </div>
 
@@ -49,11 +16,15 @@
             <LinkButton
                 data-aos="zoom-in"
                 data-aos-anchor-placement="bottom-bottom"
-                :text="`Check out more...`"
+                :text="`Check out my portfolio`"
                 :linkName="'HobbyCoding'"
             />
             <br />
-            <div>Check out my different projects and skillset along with my coding creed.</div>
+            <div
+                data-aos="zoom-in"
+                data-aos-anchor-placement="bottom-bottom"
+            >Check out my different projects and skillset along with my coding creed.
+            </div>
         </div>
     </div>
     <div class="programming-anchor"></div>
@@ -61,43 +32,13 @@
 </template>
 
 <script>
-import { S3_IMG_URL } from '@/helpers/constants';
-class FavoriteLanguage {
-    constructor (name, image_name = '', aos_delay = 0) {
-        this.name = name
-        this.image_path = `${S3_IMG_URL + image_name}.png`
-        this.aos_delay = aos_delay
-    }
-}
-class BestPractices {
-    constructor (name, description, image_name = null, aos_delay = 0) {
-        this.name = name
-        this.description = description
-        this.image_path = `${S3_IMG_URL + image_name}.png`
-        this.aos_delay = aos_delay
-    }
-}
 export default {
     name: 'Programming-Dashboard',
     components: {
         LinkButton: () => import('../../LinkButton.vue'),
-        Practice: () => import('./Practice.vue')
+        BestPractices: () => import('./BestPractices.vue'),
+        FavoriteLanguages: () => import('./FavoriteLanguages.vue')
     },
-    data () {
-        return {
-            favoriteLanguages: [
-                new FavoriteLanguage('Python', 'PYTHON_100', 100),
-                new FavoriteLanguage('Javascript', 'JAVASCRIPT_100', 250),
-                new FavoriteLanguage('Java', 'JAVA_100', 400)
-            ],
-            bestPractices: [
-                new BestPractices('Simple', 'Keeping my functions and designs as simple as possible.', 'SIMPLE_100', 200),
-                new BestPractices('Organized', "One step at a time, don't overthink yourself thinking about other things.", 'ORDER_100', 600),
-                new BestPractices('Clean', "I’ve always like to make my codes as clean as possible for a better debugging process.", 'CLEAN_100', 1000),
-                new BestPractices('Kind', "Kindness always paves off. Keeps your team intact, and also with your clients.", 'KIND_100', 1400)
-            ]
-        }
-    }
 }
 </script>
 
@@ -128,11 +69,12 @@ export default {
 .Programming__divider {
     display: none;
 }
-.programming-text-container {
+.programming-container {
+    display: flex;
     position: static;
+
     background-color: var(--google-grey-primary);
-    padding-top: 150px;
-    padding-bottom: 100px;
+    padding: 150px 100px 100px 100px;
 }
 .programming-background {
     position: relative;
@@ -163,20 +105,27 @@ export default {
         border-left: 150vw solid transparent;
         z-index: 9;
     }
+    .programming-favorite-languages {
+        display: flex;
+    }
     .programming-practices,
     .favorite-languages {
-        float: left;
-        width: 500px;
+        margin: auto;
     }
     .programming-practices {
-        padding-left: 100px;
+        flex: 1;
     }
-    .practices-label{
+    .favorite-languages {
+        flex: 1;
+    }
+    .practices-label,
+    .favorite-languages-label{
         letter-spacing: 10px;
         font-weight: 200;
-        font-size: 36px;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         margin-bottom: 50px;
+    }
+    .practices-label{
+        font-size: 36px;
         text-align: left;
     }
 }
