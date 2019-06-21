@@ -17,16 +17,16 @@
         </div>
         <div class="cooking-footer relative">
             <div class="cooking-footer-description">
-                <LinkButton
-                    data-aos="fade-up"
-                    :text="`CHECK MY RECIPES`"
-                    :backgroundColor="`#219653`"
-                    :color="`#FFFFFF`"
-                    :linkName="'HobbyCooking'"/>
-                <br />
-                <div class="cooking-footer-txt"
-                    data-aos="fade-up">
-                    I Love cooking good food for everyone, from different cuisines and different spices
+                <div data-aos="fade-up">
+                    <LinkButton
+                        :text="`CHECK OUT MORE...`"
+                        :backgroundColor="`#219653`"
+                        :color="`#FFFFFF`"
+                        :linkName="'HobbyCooking'"/>
+                    <br />
+                    <div class="cooking-footer-txt">
+                        Check out my recipes from different cuisines and multiple meal courses.
+                    </div>
                 </div>
             </div>
         </div>
@@ -59,7 +59,7 @@ export default {
     width: 100%;
 }
 .cooking-content {
-    margin-bottom: 2rem;
+    margin-bottom: 5rem;
     height: 800px;
 }
 .cooking-content-img {
@@ -72,6 +72,9 @@ export default {
 .cooking-pan {
     animation: movePan 1s infinite;
 }
+.cooking-footer {
+    height: 200px;
+}
 .cooking-footer-description {
     position: absolute;
     top: 50%;
@@ -81,10 +84,6 @@ export default {
 .cooking-images {
     width: 100%;
     height: 70%;
-}
-.cooking-footer {
-    width: 100%;
-    height: 30%;
 }
 @media screen and (min-width: 600px) {
 }
