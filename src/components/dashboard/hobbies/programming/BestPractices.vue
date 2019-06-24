@@ -1,6 +1,8 @@
 <template>
 <div class="BestPractices">
-    <div class="practices-label uppercase">
+    <div class="practices-label uppercase"
+        data-aos="fade-up"
+        data-aos-duration="500">
         Best Practices
     </div>
     <div class="practices-container">
@@ -9,18 +11,23 @@
             :key="i"
             >
             <div class="Practice__img">
-                <img data-aos="fade-up"
+                <img data-aos="fade-right"
+                    data-aos-duration="500"
+                    :data-aos-delay="i * 200"
                     :src="practice.imagePath"
                     :alt="practice.name"/>
             </div>
 
             <div class="Practice__text">
                 <div class="Practice__name uppercase"
-                    data-aos="fade-left">
+                    data-aos="fade-left"
+                    :data-aos-delay="i * 200"
+                    data-aos-duration="500">
                     {{ practice.name }}
                 </div>
 
                 <div class="Practice__description"
+                    :data-aos-delay="i * 200"
                     data-aos="fade-up">
                     {{ practice.description }}
                 </div>

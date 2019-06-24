@@ -11,19 +11,18 @@
         <div class="programming-img"></div>
     </div>
 
-    <div class="programming-background">
+    <div class="programming-footer">
         <div class="center-absolute">
             <LinkButton
                 data-aos="zoom-in"
                 data-aos-anchor-placement="bottom-bottom"
                 :text="`Check out my portfolio`"
-                :linkName="'HobbyCoding'"
-            />
-            <br />
+                :linkName="'HobbyCoding'"/>
             <div
+                class="footer-description"
                 data-aos="zoom-in"
-                data-aos-anchor-placement="bottom-bottom"
-            >Check out my different projects and skillset along with my coding creed.
+                data-aos-anchor-placement="bottom-bottom">
+                Check out my different projects and skillset along with my coding creed.
             </div>
         </div>
     </div>
@@ -76,7 +75,7 @@ export default {
     background-color: var(--google-grey-primary);
     padding: 150px 100px 100px 100px;
 }
-.programming-background {
+.programming-footer {
     position: relative;
     height: 300px;
     width: 100%;
@@ -84,6 +83,9 @@ export default {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+}
+.footer-description {
+    margin-top: 1.5rem;
 }
 @media screen and (min-width: 600px) {
     .Programming__divider {
