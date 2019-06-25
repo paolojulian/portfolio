@@ -7,14 +7,18 @@
         <MusicCard
             v-for="(music, i) in musicList"
             :key="i"
+            data-aos="fade-right"
+            data-aos-duration="500"
+            :data-aos-delay="(i + 2) * 100"
             :name="music.name"
+            :favorite="music.favorite"
             :description="music.description"
             :image-path="music.imagePath"
             :background-color="music.backgroundColor"/>
     </div>
     <div class="music-footer">
         <LinkButton
-            data-aos="zoom-in"
+            data-aos="fade-down"
             :text="`Check out my songs`"
             :backgroundColor="`#EB5757`"
             :color="`#FFFFFF`"
@@ -27,8 +31,9 @@
 <script>
 import { S3_IMG_URL } from '@/helpers/constants';
 class Music {
-    constructor (name, description, imageName = 'DEFAULT', backgroundColor) {
+    constructor (name, favorite, description, imageName = 'DEFAULT', backgroundColor) {
         this.name = name
+        this.favorite = favorite
         this.description = description
         this.imagePath = S3_IMG_URL + imageName
         this.backgroundColor = backgroundColor
@@ -44,17 +49,20 @@ export default {
         return {
             musicList: [
                 new Music (
-                    'Rock',
+                    'Rock N Roll \\m/',
+                    'Linkin Park',
                     'Linkin Park have helped me cope up during my youthful days as I was sometimes depressed and in anger.',
                     'rock_150px.png',
                     '#2F80ED70'),
                 new Music (
-                    'Blues',
+                    '~ Blues ~',
+                    'John Mayer',
                     'John Mayer always gives me inspiration about music, not only his skill in guitar but the overall tone and depth on how the music should be played.',
                     'blues_150px.png',
                     '#21212170'),
                 new Music (
                     'Guitar',
+                    'Fender Stratocaster',
                     'Guitar is my instrument of choice. Whenever I play it, It’s like being one with my heart and soul.',
                     'guitar_150px.png',
                     '#F2994A70')
@@ -87,7 +95,9 @@ export default {
     border-bottom: 100px solid var(--google-grey-primary);
 }
 .music-content {
-    height: 500px;
+    display: flex;
+    justify-content: center;
+    height: 300px;
 }
 .music-footer {
     position: relative;

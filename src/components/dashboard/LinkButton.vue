@@ -96,5 +96,10 @@ export default {
 
     border-radius: 5px;
     box-shadow: 0 2px 5px 0px #131313;
+
+    transition: all 400ms ease-in-out;
+}
+.LinkButton:hover {
+    opacity: 0.85 !important;
 }
 </style>
