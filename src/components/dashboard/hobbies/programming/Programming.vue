@@ -103,7 +103,7 @@ export default {
     }
     .Programming__divider.Programming__divider__right {
         right: 0;
-        border-bottom: 200px solid var(--google-grey-secondary);
+        border-bottom: 200px solid var(--google-grey-light);
         border-left: 150vw solid transparent;
         z-index: 9;
     }
