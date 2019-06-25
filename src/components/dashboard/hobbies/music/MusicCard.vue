@@ -77,7 +77,10 @@ export default {
 .music-card-name {
     flex: 1;
     font-weight: 600;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    margin-bottom: 1rem;
 }
 .music-card-favorite {
     font-weight: 100;

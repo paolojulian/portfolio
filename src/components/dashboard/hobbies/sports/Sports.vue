@@ -6,17 +6,13 @@
         Play with me
     </div>
     <div class="sports-content">
-        <span v-for="(sport, i) in sports"
-            :key="`sports_${i}`"
-        >
-            <img
-                data-aos="flip-up"
-                :data-aos-delay="sport.aos_delay"
-                :src="sport.image_path"
-                :alt="sport.name"
-            />
-            <!-- <span class="sports-name">{{ sport.name }}</span> -->
-        </span>
+        <SportsCard
+            v-for="(sport, i) in sports"
+            :key="i"
+            :index="i"
+            :name="sport.name"
+            :image-path="sport.imagePath"
+        />
     </div>
 </div>
 </template>
@@ -24,22 +20,26 @@
 <script>
 import { S3_IMG_URL } from '@/helpers/constants';
 class Sport {
-    constructor (name, image_name = 'HIKING_200', aos_delay = 0) {
+    constructor (name, imageName = 'HIKING_200') {
         this.name = name
-        this.image_path = `${S3_IMG_URL + image_name}.png`
-        this.aos_delay = aos_delay
+        this.imagePath = `${S3_IMG_URL + imageName}.png`
     }
 }
 export default {
     name: 'Sports-Dashboard',
+
+    components: {
+        SportsCard: () => import('./SportsCard.vue')
+    },
+
     data () {
         return {
             sports: [
-                new Sport('hiking', 'HIKING_200', 0),
-                new Sport('basketball', 'BasketBall_200', 100),
-                new Sport('dota', 'DOTA_200', 200),
-                new Sport('csgo', 'CSGO_200', 300),
-                new Sport('apex', 'APEX_200', 400),
+                new Sport('hiking', 'HIKING_200'),
+                new Sport('basketball', 'BasketBall_200'),
+                new Sport('dota', 'DOTA_200'),
+                new Sport('csgo', 'CSGO_200'),
+                new Sport('apex', 'APEX_200'),
             ]
         }
     }
@@ -59,10 +59,7 @@ export default {
     padding-top: 100px;
     height: calc(100% - 100px);
     width: 100%;
-}
-.sports-name {
-    text-transform: uppercase;
-    font-size: 24px;
-    letter-spacing: 1px;
+    display: flex;
+    justify-content: center;
 }
 </style>

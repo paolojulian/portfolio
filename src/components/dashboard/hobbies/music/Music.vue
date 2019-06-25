@@ -1,7 +1,7 @@
 <template>
 <div class="Music">
     <div class="dashboard-title dashboard-title-light">
-        <span>The Sound of my Life</span>
+        <span>My Musical Inspiration</span>
     </div>
     <div class="music-content">
         <MusicCard
@@ -49,7 +49,7 @@ export default {
         return {
             musicList: [
                 new Music (
-                    'Rock N Roll \\m/',
+                    'Rock N Roll',
                     'Linkin Park',
                     'Linkin Park have helped me cope up during my youthful days as I was sometimes depressed and in anger.',
                     'rock_150px.png',
