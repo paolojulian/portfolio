@@ -19,7 +19,7 @@ export default {
         Cooking: () => import('./dashboard/hobbies/cooking/Cooking'),
         Music: () => import('./dashboard/hobbies/music/Music'),
         Sports: () => import('./dashboard/hobbies/sports/Sports'),
-        Footer: () => import('./dashboard/Footer')
+        Footer: () => import('./dashboard/footer/Footer')
     }
 }
 </script>

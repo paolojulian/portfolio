@@ -24,7 +24,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 /* 
     HEADER IS ONLY FOR MOBILE VIEW
 */

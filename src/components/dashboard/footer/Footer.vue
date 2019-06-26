@@ -3,16 +3,17 @@
     <div class="dashboard-title dashboard-title-light">
         CONTACT
     </div>
-    <div class="social-media-accounts">
-        <social-media-accounts/>
-    </div>
+
+    <social-media-accounts/>
+    <mail/>
 </div>
 </template>
 
 <script>
 export default {
     components: {
-        SocialMediaAccounts: () => import('./SocialMediaAccounts.vue')
+        SocialMediaAccounts: () => import('./SocialMediaAccounts.vue'),
+        Mail: () => import('./Mail.vue')
     },
 }
 </script>
@@ -21,13 +22,6 @@ export default {
 .Footer {
     position: relative;
     background-color: var(--google-grey-primary);
-    height: 70vh;
     width: 100%;
-}
-.social-media-accounts {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-    transform: translate(-50%, -50%);
 }
 </style>
