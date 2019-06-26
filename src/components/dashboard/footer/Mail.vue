@@ -190,6 +190,14 @@ export default {
     height: 100%;
     border-radius: 5px;
     padding-left: 10px;
+
+    box-shadow: inset 3px 3px 8px rgba(0, 0, 0, 0.4);
+    transition: all 200ms ease-in-out;
+}
+.name input:hover,
+.email input:hover,
+.message textarea:hover{
+    box-shadow: inset 3px 3px 8px rgba(0, 0, 0, 0.2);
 }
 .message textarea {
     padding-top: 10px;
@@ -215,4 +223,5 @@ export default {
 .mail-submit button:hover {
     opacity: 0.85;
 }
+
 </style>

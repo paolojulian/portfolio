@@ -3,7 +3,7 @@
     <div class="MainContent__image">
         <div class="img-responsive"/>
     </div><div class="MainContent__text">
-        <div class="center-absolute">
+        <div class="MainContent__container">
             <div
                 data-aos="fade-right"
                 class="MainContent__header shake-start shake-hover main-content-text">
@@ -41,8 +41,7 @@
                     I am passionate about music and that motivates me to sing and play musical instruments
                 </div>
                 <div data-aos="fade-left"
-                    data-aos-delay="500"
-                    data-aos-anchor-placement="top-bottom">
+                    data-aos-delay="500">
                     like guitar, piano, and flute and I think music gives life to everything we do. 
                 </div>
             </div>
@@ -106,8 +105,9 @@ export default {
     height: calc(var(--my-display-height) * 0.55);
     width: 100%;
 }
-.MainContent__text div.center-absolute{
+.MainContent__text div.MainContent__container{
     width: 90%;
+    margin-top: 10%
 }
 .MainContent__header,
 .MainContent__description {
@@ -157,7 +157,7 @@ i.arrow.arrow-down {
         left: 20%;
         transform: translateX(-20%);
     }
-    .MainContent__text div.center-absolute div.main-content-text {
+    .MainContent__text div.MainContent__container div.main-content-text {
         margin-bottom: 1.5rem;
     }
     .MainContent__description {
@@ -167,6 +167,9 @@ i.arrow.arrow-down {
 }
 /* WEB */
 @media screen and (min-width: 1000px){
+    .MainContent__text div.MainContent__container{
+        margin-top: 20%
+    }
     .MainContent__image {
         position: relative;
         display: inline-block;
