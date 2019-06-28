@@ -1,13 +1,24 @@
 <template lang="html">
 <div class="RecipeCard"
     @click="$emit('view-recipe')">
-    <div class="RecipeCard__box">
-        <div class="RecipeCard__view_recipe">
-            <span>View Recipe</span>
+    <div class="RecipeCard__img">
+        <div class="RecipeCard__information">
+            <div class="RecipeCard__info_circle">
+                <font-awesome-icon icon="info-circle"/>
+            </div>
+            <div class="RecipeCard__info_details">
+                <div class="prep-time">
+                    PREPARATION TIME:
+                </div>
+                <div class="cooking-time">
+                    COOKING TIME:
+                </div>
+                <div class="btn-view-recipe">
+                    View Recipe
+                </div>
+            </div>
         </div>
-        <!-- <div class="RecipeCard__img" /> -->
         <img
-            class="RecipeCard__img"
             :src="imagePath"
             @error="imageLoadError($event)"
         />
@@ -27,8 +38,8 @@
 <script type="text/javascript">
 import { getDefaultRecipeImg } from '../../../helpers/constants.js'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faClock } from '@fortawesome/free-solid-svg-icons'
-library.add(faClock)
+import { faClock, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+library.add(faClock, faInfoCircle)
 export default {
     name: 'RecipeCard',
     props: {
@@ -84,118 +95,92 @@ export default {
 
 <style scoped>
 .RecipeCard {
-    position: relative;
-    margin-bottom: 0.5rem;
-    width: 100%;
-    height: 250px;
-    background-color: #fff;
-    overflow: hidden;
+    cursor: pointer;
+    height: 400px;
+    width: 300px;
+    background-color: var(--google-light-light);
+    margin: 10px;
+
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
 }
-.RecipeCard__box {
-    position: relative;
-    overflow: hidden;
-    height: 100%;
-}
+
 .RecipeCard__img {
+    height: 300px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+.RecipeCard__img img{
     position: absolute;
     top: 0;
     left: 0;
+    height: 100%;
     width: 100%;
-    margin: auto;
+    transition: transform 400ms ease-in-out;
 }
-.RecipeCard__content {
+
+.RecipeCard__information {
     position: absolute;
-    height: 25%;
-    width: 100%;
-    top: 75%;
-    text-align: left;
-    background-color: rgba(0, 0, 0, 0.75);
-    color: #ffffff;
+    top: -20px;
+    right: -20px;
+    background-color: rgba(255, 255, 255, 0.70);
+    width: 80px;
+    height: 80px;
+    z-index: 1;
+    border-bottom-left-radius: 50%;
+    transition: all 400ms ease-in-out;
+}
+.RecipeCard__information .RecipeCard__info_circle {
+    position: absolute;
+    top: 60%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+}
+
+.RecipeCard__information .RecipeCard__info_details {
+    opacity: 0;
+    transition: opacity 400ms ease-out 0ms;
+}
+
+.RecipeCard__content {
+    color: var(--google-grey-primary);
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .RecipeCard__name {
+    font-size: 18px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
     font-weight: 600;
-    height: 15%;
-    padding: 0.5rem;
 }
 .RecipeCard__duration {
-    position: absolute;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: 200;
+}
+
+/*
+    HOVER EFFECTS
+*/
+
+.RecipeCard:hover .RecipeCard__img img {
+    transform: scale(1.15);
+}
+
+.RecipeCard:hover .RecipeCard__information {
+    top: 0;
     right: 0;
-    bottom: 0;
-    padding: 0.5rem;
+    width: 100%;
+    height: 100%;
+    border-radius: unset;
 }
-.RecipeCard__buttons {
-    position: absolute;
-    left: 50%;
-    bottom: 5px;
-    transform: translateX(-50%);
+.RecipeCard:hover .RecipeCard__information .RecipeCard__info_circle {
+    opacity: 0;
 }
-@media screen and (min-width: 600px){
-    .RecipeCard {
-        cursor: pointer;
-        display: inline-block;
-        background-color: #fff;
-        overflow: hidden;
-        margin: 0.5rem;
-        box-shadow: 0 5px 10px #131313;
-        width: 300px;
-        height: 300px;
-        border-radius: 5px;
-        transition: transform 300ms ease-in-out, box-shadow 200ms linear;
-    }
-    .RecipeCard:hover{
-        transform: scale(1.05);
-        box-shadow: 0 10px 15px #131313;
-    }
-
-    .RecipeCard__box {
-        height: 70%;
-    }
-
-    .RecipeCard__img{
-        transition: transform 300ms ease-in-out;
-    }
-
-    .RecipeCard__content {
-        height: 30%;
-        top: 70%;
-        text-align: left;
-
-        background-color: unset;
-        color: unset;
-    }
-
-    .RecipeCard__name {
-        font-weight: 600;
-        height: 15%;
-        padding: 0.5rem;
-    }
-
-    .RecipeCard__view_recipe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-        transition: all 300ms ease-in-out;
-        background-color: rgba(50, 50, 50, 0.60);
-    }
-
-    .RecipeCard__view_recipe span{
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: #ffffff;
-    }
-
-    .RecipeCard:hover .RecipeCard__img{
-        transform: scale(1.3);
-    }
-
-    .RecipeCard:hover .RecipeCard__view_recipe{
-        z-index: 1;
-    }
+.RecipeCard:hover .RecipeCard__information .RecipeCard__info_details {
+    opacity: 1;
+    transition: opacity 400ms ease-in 200ms;
 }
 </style>

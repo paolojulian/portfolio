@@ -1,7 +1,7 @@
 <template>
 <div class="Music">
     <div class="dashboard-title dashboard-title-light">
-        <span>My Musical Inspiration</span>
+        <span>My Musical Inspirations</span>
     </div>
     <div class="music-content">
         <MusicCard

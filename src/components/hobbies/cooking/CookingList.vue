@@ -7,7 +7,8 @@
             No Recipe
         </div>
         <VLoader v-if="hobbyCooking.pageLoader.loading"/>
-        <div v-if="hobbyCooking.pageLoader.post">
+        <div v-if="hobbyCooking.pageLoader.post"
+            class="recipe-list">
             <recipe-card
                 v-for="recipe in hobbyCooking.list"
                 :key="'recipe_id_' + recipe.id"
@@ -110,6 +111,10 @@ export default {
     text-align: center;
     font-size: 2rem;
     padding: 1rem;
+}
+.recipe-list {
+    display: flex;
+    justify-content: center;
 }
 @media screen and (min-width: 600px){
     #CookingList__list {
