@@ -22,7 +22,7 @@
                 class="footer-description"
                 data-aos="zoom-in"
                 data-aos-anchor-placement="bottom-bottom">
-                Check out my different projects and skillset along with my coding creed.
+                Check out my different projects and skillsets along with my coding creed.
             </div>
         </div>
     </div>

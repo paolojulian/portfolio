@@ -18,14 +18,22 @@
             </div>
             <div>
                 <span>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                    I started cooking when i was in high school,
+                    when my family always cooked the same recipe over and over again.
+                    I got tired of it and started testing out different recipes from the internet.
+                    I failed a lot but kept trying and trying until I got the outcome I wanted,
+                    and today, guess what? I am the one who cooks for them now.
                 </span>
             </div>
         </div>
         <div class="cooking-chalkboard">
             <div>
                 <span>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                    Cooking is like programming, everything needs to be accurate and well designed.
+                    One mistake can really cost you the whole product. Some can be fixed, some cannot be.
+                    You have to put in your heart and soul when cooking and programming because if you 
+                    dont like doing these things, you'll end up being unhappy and have a lower productivity.
+                    So... Find that thing that you love, and eventually it'll come back at you.
                 </span>
                 <div class="btn-link-to-recipes">
                     <LinkButton
