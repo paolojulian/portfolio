@@ -1,11 +1,12 @@
 <template lang="html">
 <div id="CookingDashboard">
-    <div id="CookingDashboard__gallery">
+    <!-- <div id="CookingDashboard__gallery">
         <div class="CookingDashboard__logo"/>
         <div class="CookingDashboard__saying">
             "Cooking is the most satisfying art to master"
         </div>
-    </div>
+    </div> -->
+    <CookingSearchBar/>
     <div id="CookingDashboard__categories">
         <router-link
             :class="{'selected': $route.params.sortBy === 'hors'}"
@@ -43,7 +44,10 @@
 
 <script type="text/javascript">
 export default {
-    name: 'CookingDashboard'
+    name: 'CookingDashboard',
+    components: {
+        CookingSearchBar: () => import('./CookingSearchBar.vue')
+    }
 }
 </script>
 
@@ -63,12 +67,11 @@ export default {
     width: 100%;
     height: 4rem;
 
-    background-color: var(--pipz-primary);
+    background-color: var(--google-light-light);
     color: var(--pipz-font);
     display: flex;
     text-align: center;
     font-weight: 300;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 #CookingDashboard__categories a {
     color: inherit;
@@ -76,6 +79,9 @@ export default {
     height: 100%;
     position: relative;
     transition: color, background-color 400ms ease-in-out;
+}
+#CookingDashboard__categories a:not(:last-child) {
+    border-right: 1px solid rgba(0, 0, 0, 0.6)
 }
 #CookingDashboard__categories a span{
     position: absolute;
@@ -85,7 +91,7 @@ export default {
 }
 #CookingDashboard__categories a.selected {
     color: #131313;
-    background-color: rgba(255, 251, 0);
+    background-color: var(--my-yellow);
 }
 @media screen and (min-width: 600px) {
     .CookingDashboard__logo {

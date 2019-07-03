@@ -52,7 +52,7 @@ export default {
                 new NavbarRoute('Recipes', '/hobby/cooking/mainCourse', 'fire'),
                 new NavbarRoute('Songs', '/hobby/music', 'music'),
                 new NavbarRoute('Sports', '/hobby/sports', 'gamepad'),
-                new NavbarRoute('Programming', '/hobby/coding', 'keyboard'),
+                new NavbarRoute('Portfolio', '/portfolio', 'keyboard'),
                 new NavbarRoute('CV', '/curriculum-vitae', 'newspaper')
             ],
             isDark: true

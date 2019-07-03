@@ -152,7 +152,7 @@ export default {
         }
     },
     components: {
-        ProgressBar: () => import('../../fragments/ProgressBar.vue')
+        ProgressBar: () => import('@/components/fragments/ProgressBar.vue')
     }
 }
 </script>

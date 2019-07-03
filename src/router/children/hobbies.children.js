@@ -54,18 +54,6 @@ const hobbyMusic = {
     },
 }
 
-const hobbyCoding = {
-    path: '/hobby/coding',
-    name: 'HobbyCoding',
-    component: () => import('@/components/hobbies/HobbyCoding'),
-    meta: {
-        en_title: hobbiesHeader.en.coding,
-        back_link: 'Hobby',
-        header: true,
-        theme: 'light'
-    },
-}
-
 const hobbySports = {
     path: '/hobby/sports',
     name: 'HobbySports',
@@ -83,6 +71,5 @@ export default [
     hobbyList,
     hobbyCooking,
     hobbyMusic,
-    hobbyCoding,
     hobbySports
 ]

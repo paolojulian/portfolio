@@ -51,7 +51,7 @@ export default {
 
     data () {
         return {
-            defaultImg: require(`../../../assets/img/coding/projects/portfolio.png`)
+            defaultImg: require(`@/assets/img/coding/projects/portfolio.png`)
         }
     },
     methods: {

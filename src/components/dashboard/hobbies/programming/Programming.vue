@@ -17,7 +17,7 @@
                 data-aos="zoom-in"
                 data-aos-anchor-placement="bottom-bottom"
                 :text="`Check out my portfolio`"
-                :linkName="'HobbyCoding'"/>
+                :linkName="'Portfolio'"/>
             <div
                 class="footer-description"
                 data-aos="zoom-in"

@@ -2,6 +2,7 @@
 <div id="HobbyCooking">
     <cooking-dashboard/>
     <transition name="fade" mode="out-in">
+        <!-- ./cooking/CookingList.vue -->
         <router-view :key="$route.fullPath"/>
     </transition>
 </div>
@@ -17,4 +18,6 @@ export default {
 </script>
 
 <style scoped>
+.HobbyCooking {
+}
 </style>

@@ -34,7 +34,8 @@ export const headers = {
         login: 'Login',
         dashboard: 'Dashboard',
         hobbies: 'Hobbies',
-        cv: 'Curriculum Vitae'
+        cv: 'Curriculum Vitae',
+        portfolio: 'Portfolio'
     }
 }
 

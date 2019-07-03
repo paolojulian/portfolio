@@ -101,6 +101,9 @@ export default {
 </script>
 
 <style scoped>
+#CookingList {
+    background-color: var(--google-light-primary);
+}
 #CookingList__list {
     position: relative;
     top: 4rem;

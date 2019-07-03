@@ -1,6 +1,6 @@
 
 <template lang="html">
-<div id="HobbyCoding">
+<div id="Portfolio">
     <div class="clearfix coding-skills">
         <codingSkills/>
     </div>
@@ -13,16 +13,16 @@
 
 <script type="text/javascript">
 export default {
-    name: 'HobbyCoding',
+    name: 'Portfolio',
     components: {
-        codingSkills: () => import('./coding/CodingSkills.vue'),
-        codingProjects: () => import('./coding/CodingProjects.vue')
+        codingSkills: () => import('./CodingSkills.vue'),
+        codingProjects: () => import('./CodingProjects.vue')
     }
 }
 </script>
 
 <style scoped>
-#HobbyCoding {
+#Portfolio {
     position: relative;
     height: 93vh;
     overflow-x: hidden;
