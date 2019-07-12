@@ -2,9 +2,15 @@ export const API_URL = process.env.VUE_APP_API
 export const API_FAKE = process.env.VUE_APP_API_FAKE
 
 export const S3_IMG_URL = 'https://s3-ap-southeast-1.amazonaws.com/chefpipz-api-portfolio/images/';
+export const S3_IMG_STATIC_URL = 'https://s3-ap-southeast-1.amazonaws.com/chefpipz-api-portfolio/images/static/';
 export class S3IMG {
     constructor (name) {
         this.imagePath = S3_IMG_URL + name
+    }
+}
+export class S3IMG_STATIC {
+    constructor (name) {
+        this.imagePath = S3_IMG_STATIC_URL + name
     }
 }
 // normal

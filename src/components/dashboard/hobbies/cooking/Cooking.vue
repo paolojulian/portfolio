@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import { S3IMG } from '@/helpers/constants';
+import { S3IMG_STATIC } from '@/helpers/constants';
 export default {
     name: 'Cooking-Dashboard',
     components: {
@@ -66,9 +66,9 @@ export default {
     data () {
         return {
             images: {
-                pan: new S3IMG('Pan.png'),
-                fire: new S3IMG('Fire.png'),
-                chalkboard: new S3IMG('Cooking_chalkboard.jpg')
+                pan: new S3IMG_STATIC('Pan.png'),
+                fire: new S3IMG_STATIC('Fire.png'),
+                chalkboard: new S3IMG_STATIC('Cooking_chalkboard.jpg')
             }
         }
     },

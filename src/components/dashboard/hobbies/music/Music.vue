@@ -29,13 +29,13 @@
 </template>
 
 <script>
-import { S3_IMG_URL } from '@/helpers/constants';
+import { S3_IMG_STATIC_URL } from '@/helpers/constants';
 class Music {
     constructor (name, favorite, description, imageName = 'DEFAULT', backgroundColor) {
         this.name = name
         this.favorite = favorite
         this.description = description
-        this.imagePath = S3_IMG_URL + imageName
+        this.imagePath = S3_IMG_STATIC_URL + imageName
         this.backgroundColor = backgroundColor
     }
 }
@@ -78,7 +78,7 @@ export default {
 
     background-color: var(--google-light-secondary);
     width: 100%;
-    background-image: url('https://s3-ap-southeast-1.amazonaws.com/chefpipz-api-portfolio/images/music_background.jpg');
+    background-image: url('https://s3-ap-southeast-1.amazonaws.com/chefpipz-api-portfolio/images/static/music_background.jpg');
     background-size: cover;
     background-position: cover;
     background-attachment: fixed;

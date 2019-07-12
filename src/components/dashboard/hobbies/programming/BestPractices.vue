@@ -39,12 +39,12 @@
 </template>
 
 <script>
-import { S3_IMG_URL } from '@/helpers/constants';
+import { S3_IMG_STATIC_URL } from '@/helpers/constants';
 class BestPractices {
     constructor (name, description, image_name = null, aos_delay = 0) {
         this.name = name
         this.description = description
-        this.imagePath = `${S3_IMG_URL + image_name}.png`
+        this.imagePath = `${S3_IMG_STATIC_URL + image_name}.png`
         this.aosDelay = aos_delay
     }
 }

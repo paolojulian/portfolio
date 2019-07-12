@@ -89,7 +89,7 @@ export default {
     bottom: 0;
     left: 40%;
     transform: translateX(-36%);
-    background-image: url('../../assets/img/pipz.png');
+    background-image: url('https://chefpipz-api-portfolio.s3-ap-southeast-1.amazonaws.com/images/static/pipz.png');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: bottom center;

@@ -68,11 +68,11 @@
 </template>
 
 <script>
-import { S3_IMG_URL } from '@/helpers/constants';
+import { S3_IMG_STATIC_URL } from '@/helpers/constants';
 class FavoriteLanguage {
     constructor (name, image_name = '', aos_delay = 0) {
         this.name = name
-        this.image_path = `${S3_IMG_URL + image_name}.png`
+        this.image_path = `${S3_IMG_STATIC_URL + image_name}.png`
         this.aos_delay = aos_delay
     }
 }
@@ -80,7 +80,7 @@ class BestPractices {
     constructor (name, description, image_name = null, aos_delay = 0) {
         this.name = name
         this.description = description
-        this.image_path = `${S3_IMG_URL + image_name}.png`
+        this.image_path = `${S3_IMG_STATIC_URL + image_name}.png`
         this.aos_delay = aos_delay
     }
 }

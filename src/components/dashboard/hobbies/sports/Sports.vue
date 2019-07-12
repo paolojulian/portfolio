@@ -18,11 +18,11 @@
 </template>
 
 <script>
-import { S3_IMG_URL } from '@/helpers/constants';
+import { S3_IMG_STATIC_URL } from '@/helpers/constants';
 class Sport {
     constructor (name, imageName = 'HIKING_200') {
         this.name = name
-        this.imagePath = `${S3_IMG_URL + imageName}.png`
+        this.imagePath = `${S3_IMG_STATIC_URL + imageName}.png`
     }
 }
 export default {
