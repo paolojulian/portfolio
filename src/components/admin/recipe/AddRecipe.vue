@@ -181,13 +181,12 @@ export default {
                 this.getIngredients(),
                 this.getFoodCategories()
             ]
-
             Promise.all(promises)
                 .then(response => {
                     this.ingredientList = response[0],
                     this.foodCategories = response[1]
                 })
-                //eslint-disable-next-line
+                // eslint-disable-next-line
                 .catch(err => console.log(err))
         },
 
@@ -306,7 +305,7 @@ export default {
         }
     },
 
-    mounted () {
+    created () {
         this.initialData()
     }
 }

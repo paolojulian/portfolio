@@ -7,14 +7,16 @@
                 <font-awesome-icon icon="info-circle"/>
             </div>
             <div class="RecipeCard__info_details">
-                <div class="prep-time">
+                <!-- <div class="prep-time">
                     PREPARATION TIME:
                 </div>
                 <div class="cooking-time">
                     COOKING TIME:
-                </div>
+                </div> -->
                 <div class="btn-view-recipe">
-                    View Recipe
+                    <button type="button">
+                        View
+                    </button>
                 </div>
             </div>
         </div>
@@ -135,10 +137,16 @@ export default {
     top: 60%;
     left: 40%;
     transform: translate(-50%, -50%);
+
+    transition: opacity 400ms ease-out 200ms;
 }
 
 .RecipeCard__information .RecipeCard__info_details {
     opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     transition: opacity 400ms ease-out 0ms;
 }
 
@@ -160,6 +168,19 @@ export default {
     letter-spacing: 1px;
     font-weight: 200;
 }
+.btn-view-recipe button {
+    cursor: pointer;
+
+    background-color: var(--google-grey-primary);
+    color: var(--google-font-white-primary);
+    border-radius: 40%;
+
+    transition: all 300ms ease-in-out;
+
+    padding: 5px 15px;
+    margin: 10px 0;
+    font-size: 16px;
+}
 
 /*
     HOVER EFFECTS
@@ -178,9 +199,11 @@ export default {
 }
 .RecipeCard:hover .RecipeCard__information .RecipeCard__info_circle {
     opacity: 0;
+    transition: opacity 200ms ease-in 0ms;
 }
 .RecipeCard:hover .RecipeCard__information .RecipeCard__info_details {
     opacity: 1;
+    /**200ms delay is needed for the details to show up until the container is at full width (takes 200ms)*/
     transition: opacity 400ms ease-in 200ms;
 }
 </style>

@@ -1,10 +1,8 @@
 <template lang="html">
 <div id="HobbyCooking">
     <cooking-dashboard/>
-    <transition name="fade" mode="out-in">
-        <!-- ./cooking/CookingList.vue -->
-        <router-view :key="$route.fullPath"/>
-    </transition>
+    <!-- ./cooking/CookingList.vue -->
+    <router-view :key="$route.fullPath"/>
 </div>
 </template>
 
