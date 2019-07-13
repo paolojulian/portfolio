@@ -147,7 +147,8 @@ export default {
                 new OtherSkill('CodeIgniter', 80),
                 new OtherSkill('Laravel', 40),
                 new OtherSkill('Django', 40),
-                new OtherSkill('Maven', 60)
+                new OtherSkill('Maven', 60),
+                new OtherSkill('UI/UX', 70)
             ]
         }
     },
