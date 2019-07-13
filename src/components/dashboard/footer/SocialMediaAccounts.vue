@@ -52,6 +52,7 @@ export default {
 	color: var(--google-font-white-primary);
 
 	z-index: 1;
+
 }
 .SocialMediaAccounts svg{
 	margin: auto;
@@ -62,6 +63,7 @@ export default {
 @media screen and (min-width: 600px) {
 	.SocialMediaAccounts a {
 		cursor: pointer;
+		transition: transform 200ms ease-in-out;
 	}
 }
 /* WEB */
@@ -69,5 +71,9 @@ export default {
 	.SocialMediaAccounts {
 		top: calc(var(--my-navbar-height) + 0.5rem);
 	}
+}
+/* TRANSITIONS */
+.SocialMediaAccounts a:hover {
+	transform: scale(1.2);
 }
 </style>
