@@ -13,7 +13,7 @@
             :name="project.name"
             :description="project.description"
             :tool="project.tool"
-            :image-path="project.imagePath"
+            :image-name="project.imageName"
             @openProject="openProject"
         /><ProjectCard
             v-for="(project, i) in personalProjects"
@@ -22,7 +22,7 @@
             :name="project.name"
             :description="project.description"
             :tool="project.tool"
-            :image-path="project.imagePath"
+            :image-name="project.imageName"
             @openProject="openProject"
         />
     </div>

@@ -2,7 +2,7 @@
 <div class="ProjectCard" @click="openProject">
     <img
         class="ProjectCard__img"
-        :src="imagePath"
+        :src="image.imagePath"
         @error="imageLoadError"
         />
     <div class="ProjectCard__text">
@@ -25,6 +25,7 @@
 </template>
 
 <script type="text/javascript">
+import { S3IMG } from '@/helpers/constants.js'
 export default {
     props: {
         id: {
@@ -39,7 +40,7 @@ export default {
             type: String,
             required: true
         },
-        imagePath: {
+        imageName: {
             type: String,
             default: 'portfolio.png'
         },
@@ -51,7 +52,12 @@ export default {
 
     data () {
         return {
-            defaultImg: require(`@/assets/img/coding/projects/portfolio.png`)
+            defaultImg: require(`@/assets/img/coding/projects/portfolio.jpg`)
+        }
+    },
+    computed: {
+        image () {
+            return new S3IMG(`projects/${this.imageName}`)
         }
     },
     methods: {
