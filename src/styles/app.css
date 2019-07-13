@@ -68,9 +68,9 @@ body {
     }
 }
 @media screen and (max-width: 1000px) {
-    .main-has-navbar {
+    /* .main-has-navbar {
         margin-bottom: 7vh;
-    }
+    } */
     .lg-only {
         display: none;
     }

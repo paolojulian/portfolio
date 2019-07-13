@@ -16,6 +16,13 @@ export default {
 </script>
 
 <style scoped>
-.HobbyCooking {
+
+#HobbyCooking {
+    margin-top: 7vh;
+}
+@media screen and (min-width: 1000px) {
+    #HobbyCooking {
+        margin-top: unset;
+    }
 }
 </style>
