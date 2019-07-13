@@ -35,6 +35,13 @@
 
 
     <div class="recipe-ingredients">
+        <div>
+            <AdminButton 
+                type="redo"
+                @click="reloadIngredients">
+                Reload Ingredients
+            </AdminButton>
+        </div>
         <label>Ingredients: </label>
         <br />
         <div v-for="(ingredient, key) in ingredients"
@@ -185,6 +192,18 @@ export default {
                 .then(response => {
                     this.ingredientList = response[0],
                     this.foodCategories = response[1]
+                })
+                // eslint-disable-next-line
+                .catch(err => console.log(err))
+        },
+
+        /**
+         * Used to reload the ingredient list
+         */
+        reloadIngredients () {
+            this.getIngredients()
+                .then(data => {
+                    this.ingredientList = data
                 })
                 // eslint-disable-next-line
                 .catch(err => console.log(err))
