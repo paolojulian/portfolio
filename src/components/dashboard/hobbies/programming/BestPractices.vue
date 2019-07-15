@@ -53,10 +53,10 @@ export default {
     data () {
         return {
             bestPractices: [
-                new BestPractices('Simple', 'Keeping my functions and designs as simple as possible.', 'SIMPLE_100', 200),
-                new BestPractices('Organized', "One step at a time, don't overthink yourself thinking about other things.", 'ORDER_100', 600),
-                new BestPractices('Clean', "I’ve always like to make my codes as clean as possible for a better debugging process.", 'CLEAN_100', 1000),
-                new BestPractices('Kind', "Kindness always paves off. Keeps your team intact, and also with your clients.", 'KIND_100', 1400)
+                new BestPractices('Simple', 'Keeping my functions and designs as simple as possible.', 'SIMPLE_87x100', 200),
+                new BestPractices('Organized', "One step at a time, don't overthink yourself thinking about other things.", 'ORDER_87x100', 600),
+                new BestPractices('Clean', "I’ve always like to make my codes as clean as possible for a better debugging process.", 'CLEAN_87x100', 1000),
+                new BestPractices('Kind', "Kindness always paves off. Keeps your team intact, and also with your clients.", 'KIND_87x100', 1400)
             ]
         }
     }

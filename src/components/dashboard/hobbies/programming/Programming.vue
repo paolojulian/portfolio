@@ -72,7 +72,8 @@ export default {
     display: flex;
     position: static;
 
-    background-color: var(--google-grey-primary);
+    background: linear-gradient(180deg, var(--google-grey-primary) 28.65%, var(--google-grey-secondary) 52.29%, var(--google-grey-light) 100%);
+    /* background-color: var(--google-grey-primary); */
     padding: 150px 100px 100px 100px;
 }
 .programming-footer {

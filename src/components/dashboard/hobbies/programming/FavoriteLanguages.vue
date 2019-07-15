@@ -39,9 +39,9 @@ export default {
     data () {
         return {
             favoriteLanguages: [
-                new FavoriteLanguage('Python', 'PYTHON_100', 100),
-                new FavoriteLanguage('Javascript', 'JAVASCRIPT_100', 250),
-                new FavoriteLanguage('Java', 'JAVA_100', 400)
+                new FavoriteLanguage('Python', 'PYTHON_100x100', 100),
+                new FavoriteLanguage('Javascript', 'JAVASCRIPT_100x100', 250),
+                new FavoriteLanguage('Java', 'JAVA_100x100', 400)
             ],
         }
     }
