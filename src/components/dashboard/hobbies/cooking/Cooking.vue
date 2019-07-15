@@ -82,6 +82,8 @@ export default {
     width: 100%;
 }
 .cooking-content {
+    border-top: 2px solid var(--google-grey-light);
+    padding-top: 50px;
     margin-bottom: 100px;
 }
 .pan-in-fire,

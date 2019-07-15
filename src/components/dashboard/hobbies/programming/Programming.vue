@@ -78,7 +78,7 @@ export default {
 }
 .programming-footer {
     position: relative;
-    height: 300px;
+    height: 400px;
     width: 100%;
     background-image: url('https://s3-ap-southeast-1.amazonaws.com/chefpipz-api-portfolio/images/static/Laptop_blurr_720p.jpg');
     background-size: cover;
