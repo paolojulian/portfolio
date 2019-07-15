@@ -86,9 +86,6 @@ export default {
     font-weight: 100;
     font-size: 1rem;
 }
-.MusicCard:hover .music-card-description{
-    opacity: 1;
-}
 .music-card-description {
     position: absolute;
     left: 0;
@@ -107,5 +104,9 @@ export default {
 }
 .music-card-description span {
     padding: 10px;
+}
+/* TRANSITIONS */
+.MusicCard:hover .music-card-description{
+    opacity: 0.9;
 }
 </style>
