@@ -42,11 +42,13 @@ export default {
 </script>
 
 <style scoped>
-/* VARIABLES */
+/* Variables */
 .Programming-content {
     --triangle-height: 80px;
     --negative-triangle-height: calc(var(--triangle-height) * -1);
 }
+
+/* Styles */
 .Programming-content {
     color: var(--google-font-white-primary);
     position: relative;
@@ -62,8 +64,6 @@ export default {
     width: 100%;
 
     z-index: 11;
-
-    /* background-color: var(--google-grey-primary); */
 }
 .Programming__divider {
     display: none;
@@ -73,7 +73,6 @@ export default {
     position: static;
 
     background: linear-gradient(180deg, var(--google-grey-primary) 28.65%, var(--google-grey-secondary) 52.29%, var(--google-grey-light) 100%);
-    /* background-color: var(--google-grey-primary); */
     padding: 150px 100px 100px 100px;
 }
 .programming-footer {
@@ -84,6 +83,8 @@ export default {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+
+    box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.5);
 }
 .footer-description {
     margin-top: 1.5rem;

@@ -1,20 +1,20 @@
 /* src/router/children/hobbies.children.js */
 
-import { headers, hobbiesHeader } from '@/helpers/constants'
+import { hobbiesHeader } from '@/helpers/constants'
 
-const hobbies = {
-    path: '/hobby',
-    name: 'Hobby',
-    component: () => import('@/components/hobbies/Hobby'),
-    meta: { en_title: headers.en.hobbies },
-}
+// const hobbies = {
+//     path: '/hobby',
+//     name: 'Hobby',
+//     component: () => import('@/components/hobbies/Hobby'),
+//     meta: { en_title: headers.en.hobbies },
+// }
 
-const hobbyList = {
-    path: '/hobby/list',
-    name: 'HobbyList',
-    component: () => import('@/components/hobbies/HobbyList'),
-    meta: { en_title: headers.en.hobbies },
-}
+// const hobbyList = {
+//     path: '/hobby/list',
+//     name: 'HobbyList',
+//     component: () => import('@/components/hobbies/HobbyList'),
+//     meta: { en_title: headers.en.hobbies },
+// }
 
 const hobbyCooking = {
     path: '/hobby/cooking',
@@ -67,8 +67,6 @@ const hobbySports = {
 }
 
 export default [
-    hobbies,
-    hobbyList,
     hobbyCooking,
     hobbyMusic,
     hobbySports

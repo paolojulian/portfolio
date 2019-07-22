@@ -31,21 +31,22 @@
                     <li>
                         My key to learning faster is to
                         master the basics and understand the
-                        meaning
+                        meaning.
                     </li>
                     <label>-Team Player</label>
                     <li>
                         A team should play as a team, not as individuals.
                         Communicate, and understand one another.
                     </li>
-                    <label>-Passionate</label> 
+                    <label>-Eager to learn</label> 
                     <li>
                         I always want to continue developing myself and learning
-                        new things because programming is my passion
+                        new things because programming is my passion.
                     </li>
                     <label>-Friendly</label> 
                     <li>
-                        I forgive others easily and don't hold grudges
+                        Being friendly and kind will boost the morale of not only your
+                        team but also to your clients.
                     </li>
                 </ul>
 

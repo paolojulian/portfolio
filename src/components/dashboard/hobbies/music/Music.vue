@@ -82,6 +82,8 @@ export default {
     background-size: cover;
     background-position: cover;
     background-attachment: fixed;
+
+    box-shadow: inset 0 10px 10px rgba(0, 0, 0, 0.7);
 }
 .music-divider {
     position: absolute;

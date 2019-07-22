@@ -40,7 +40,7 @@
                 </div>
 
                 <div data-aos="fade-right" data-aos-delay="200">
-                    I must be strict too avoid my bugs,
+                    I must be strict too avoid them bugs,
                 </div>
 
                 <div data-aos="fade-right" data-aos-delay="600">
@@ -132,23 +132,22 @@ export default {
     data () {
         return {
             skills: [
-                new CodingSkill('HTML', 60),
-                new CodingSkill('CSS', 50),
+                new CodingSkill('HTML/CSS', 65),
                 new CodingSkill('Javascript', 80),
                 new CodingSkill('PHP', 80),
-                new CodingSkill('Python', 55),
-                new CodingSkill('Java', 50)
+                new CodingSkill('Python', 65),
+                new CodingSkill('Java', 40)
             ],
             frameworks: [
                 new OtherSkill('Node', 40),
                 new OtherSkill('Vue', 85),
                 new OtherSkill('Vuex', 70),
                 new OtherSkill('React', 40),
-                new OtherSkill('CodeIgniter', 80),
-                new OtherSkill('Laravel', 40),
-                new OtherSkill('Django', 40),
-                new OtherSkill('Maven', 60),
-                new OtherSkill('UI/UX', 70)
+                new OtherSkill('CodeIgniter', 75),
+                new OtherSkill('Laravel', 60),
+                new OtherSkill('Django', 60),
+                new OtherSkill('UI/UX', 70),
+                new OtherSkill('Maven', 60)
             ]
         }
     },
