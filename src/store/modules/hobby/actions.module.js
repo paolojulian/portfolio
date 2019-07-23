@@ -93,7 +93,7 @@ const actions = {
                 commit('setHobbyList', hobbyList)
             })
             .catch(() => {
-                commit($pageLoader + '/pageError', {}, { root: true })
+                // commit($pageLoader + '/pageError', {}, { root: true })
             })
     },
 
@@ -138,7 +138,7 @@ const actions = {
                 commit('setHobbyList', hobbyList)
             })
             .catch(() => {
-                commit($pageLoader + '/pageError', {}, { root: true })
+                // commit($pageLoader + '/pageError', {}, { root: true })
             })
     },
 
@@ -167,7 +167,7 @@ const actions = {
                 commit('setHobbyList', hobbyList)
             })
             .catch(() => {
-                commit($pageLoader + '/pageError', {}, { root: true })
+                // commit($pageLoader + '/pageError', {}, { root: true })
             })
     },
 

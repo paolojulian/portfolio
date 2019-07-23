@@ -38,24 +38,24 @@ export default {
         nameStyle () {
             switch (this.theme) {
             case 'alternate-green':
-                return {background: `var(--my-dark-green)`}
+                return {background: `#17252A`}
             case 'blue':
-                return {background: `var(--my-light-blue)`}
+                return {background: `#2B7A78`}
             default:
-                return {background: `var(--my-semidark-green)`}
+                return {background: `#17252A`}
             }
         },
         progressStyle () {
             let style = {}
             switch (this.theme) {
             case 'alternate-green':
-                style['--line-theme'] = `var(--my-semidark-green)`
+                style['--line-theme'] = `#3AAFA9`
                 break
             case 'blue':
-                style['--line-theme'] = `var(--my-dark-blue)`
+                style['--line-theme'] = `#3AAFA9`
                 break
             default:
-                style['--line-theme'] = `var(--my-dark-green)`
+                style['--line-theme'] = `#3AAFA9`
                 break
             }
 
@@ -124,7 +124,7 @@ export default {
     left: 0;
     top: 0;
     height: var(--bar-height);
-    background: #d2d2d2;
+    background: #DEF2F1;
     z-index: 1;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
