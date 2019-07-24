@@ -3,7 +3,7 @@
         @close="$emit('close')"
         >
         <div slot="header">
-            {{ name }}
+            <!-- {{ name }} -->
         </div>
         <div slot="body" class="CodingProject">
             <div v-if="state.post" class="CodingProject__body">
@@ -12,13 +12,11 @@
                         <img/>
                     </slide>
                 </Carousel> -->
-                <div class="CodingProjectModal__carousel">
+                <!-- <div class="CodingProjectModal__carousel">
                     <div v-for="(imagePath, i) in [project.imagePath]"
-                        :key="i"
-                    >
-                        <!-- <ProjectCarousel :image-path="imagePath"/> -->
+                        :key="i">
                     </div>
-                </div>
+                </div> -->
                 <div class="project-text">
                     <div class="project-header">
                         <div class="project-title">
