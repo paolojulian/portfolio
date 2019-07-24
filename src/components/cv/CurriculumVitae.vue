@@ -88,6 +88,7 @@ export default {
 .cv {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     width: 100%;
+    margin-bottom: 7vh;
 }
 .cv-card {
     position: relative;
@@ -169,9 +170,6 @@ export default {
     }
     .cv-quote {
         margin-bottom: 30px;
-    }
-    .cv-descriptions {
-        padding: 20px;
     }
     .cv-informations,
     .cv-descriptions {

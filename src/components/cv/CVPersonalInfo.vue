@@ -12,6 +12,11 @@
                     {{ website }}
                 </a>
             </div>
+            <div class="cv-personal-github">
+                <a :href="github" target="__blank">
+                    {{ github }}
+                </a>
+            </div>
         </div>
     </div>
 </template>
@@ -24,7 +29,8 @@ export default {
             address: 'Block 310B 14-19 Anchorvale Road. Singapore, 542310',
             mobile: '65-9483-5657',
             email: 'paolovincentarch@gmail.com',
-            website: 'https://chefpipz.herokuapp.com/'
+            website: 'https://chefpipz.herokuapp.com/',
+            github: 'https://github.com/scottypipz'
         }
     }
 }
