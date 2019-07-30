@@ -1,6 +1,5 @@
 <template>
 <div class="dashboard">
-    <div class="main-background"/>
     <div class="dashboard-name">
         <!-- PIPZ -->
     </div>
@@ -45,18 +44,25 @@ export default {
     width: 0;
     margin: auto;
 }
-.main-background {
+.dashboard, .dashboard:before {
+    background: 50% 50% / cover;
+}
+.dashboard::before {
+    content: " ";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    display: block;
 
     background-image: url('https://chefpipz-api-portfolio.s3-ap-southeast-1.amazonaws.com/images/static/Laptop_720p.jpg');
     background-attachment: fixed;
     background-size: cover;
+    transform-origin: center center 0;
     mix-blend-mode: multiply;
-    opacity: 0.90;
+    transform: translateZ(-1px) scale(1.1);
+    z-index: -1;
+    min-height: 100vh;
 }
 .dashboard-end {
     position: relative;
