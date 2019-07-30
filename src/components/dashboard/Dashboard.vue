@@ -13,8 +13,8 @@
         <img src="https://chefpipz-api-portfolio.s3-ap-southeast-1.amazonaws.com/images/static/puzzle.png"
         style="visibility: hidden;"/>
     </div>
-    <Footer/>
     <div class="end-background"/>
+    <Footer/>
 </div>
 </template>
 
@@ -89,7 +89,7 @@ export default {
     position: absolute;
     bottom: 0;
     left: 0;
-    height: calc(60vh + 90px);
+    height: calc(60vh + 200px);
     width: 100%;
     background-color: rgba(0, 0, 0, 0.35);
 }
