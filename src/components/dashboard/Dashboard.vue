@@ -2,7 +2,7 @@
 <div class="dashboard">
     <div class="main-background"/>
     <div class="dashboard-name">
-        PIPZ
+        <!-- PIPZ -->
     </div>
     <div class="dashboard-card">
         <Main/>

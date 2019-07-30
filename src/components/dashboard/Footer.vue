@@ -47,13 +47,13 @@ export default {
     height: 60vh;
     margin: auto;
     width: calc(100% - 5rem);
-    margin-top: 50px;
+    margin-top: 25px;
 }
 .footer input,
 .footer textarea,
 .footer button{
     border-radius: 5px;
-    background-color: #262626;
+    background-color: #363636;
     padding: 15px;
     margin: 5px;
     font-size: 24px;

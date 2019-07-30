@@ -4,22 +4,31 @@
         <div v-for="(practice, i) in practices"
             :key="`practice_${i}`"
             class="practice">
-            <div class="practice-name">{{ practice.name }}</div>
-            <div class="practice-description">{{ practice.description }}</div>
+            <div class="practice-name"
+                data-aos="fade-up"
+                :data-aos-duration="400"
+                :data-aos-delay="(i + 1) * 150"
+                >
+                {{ practice.name }}
+            </div>
+            <div class="practice-description"
+                data-aos="fade-up"
+                :data-aos-duration="400"
+                :data-aos-delay="(i + 1) * 150"
+                >
+                {{ practice.description }}
+            </div>
         </div>
     </div>
     <div class="skill-list">
-        <ProgressBar
+        <SkillsBar
             v-for="(skill, i) in skills"
             :key="`skill_${i}`"
-            :name="skill.name"
-            :percent="skill.level"/>
-        <!-- <div v-for="(skill, i) in skills"
-            :key="`skill_${i}`"
-            class="skill">
-            <div class="skill-name">{{ skill.name }}</div>
-            <div class="skill-level">{{ skill.level }}</div>
-        </div> -->
+            :percent="skill.percent"
+            class="skill"
+        >
+            {{ skill.name }}
+        </SkillsBar>
     </div>
 </div>
 </template>
@@ -33,9 +42,9 @@ class Practice {
 }
 
 class Skill {
-    constructor(name, level) {
+    constructor(name, percent) {
         this.name = name
-        this.level = level
+        this.percent = percent
     }
 }
 
@@ -66,7 +75,7 @@ export default {
         }
     },
     components: {
-        ProgressBar: () => import('../fragments/ProgressBar.vue')
+        SkillsBar: () => import('./SkillsBar.vue')
     }
 }
 </script>
@@ -77,6 +86,7 @@ export default {
     color: #f9f9f9;
     background-color: #121013;
     padding: 200px 100px;
+    text-shadow: 0 2px 5px rgba(255, 255, 255, 0.25);
 }
 .practices {
     flex: 1;
