@@ -44,9 +44,6 @@ export default {
     width: 0;
     margin: auto;
 }
-.dashboard, .dashboard:before {
-    background: 50% 50% / cover;
-}
 .dashboard::before {
     content: " ";
     position: absolute;
@@ -61,7 +58,7 @@ export default {
     transform-origin: center center 0;
     mix-blend-mode: multiply;
     transform: translateZ(-1px) scale(1.1);
-    z-index: -1;
+    /* z-index: -1; */
     min-height: 100vh;
 }
 .dashboard-end {
