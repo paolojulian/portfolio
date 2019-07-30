@@ -1,5 +1,6 @@
 <template>
-<div class="LanguageCard">
+<div class="footer">
+    Footer
 </div>
 </template>
 
@@ -10,5 +11,8 @@ export default {
 </script>
 
 <style scoped>
-
+.footer {
+    height: 60vh;
+    width: 100%;
+}
 </style>
