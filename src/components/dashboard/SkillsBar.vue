@@ -1,7 +1,6 @@
 <template>
 <div class="skills-bar"
     ref="skillsBar"
-    :class="{ 'scrolled': isScrolled }"
     >
     <div class="bar-name">
         <h4><slot/></h4>
@@ -21,29 +20,6 @@ export default {
             type: Number,
             required: true
         }
-    },
-    data () {
-        return {
-            isScrolled: false,
-        }
-    },
-    methods: {
-        handleScroll () {
-            let targetPosition = this.$refs.skillsBar.getBoundingClientRect().top
-            let startPosition = window.pageYOffset
-            let distance = targetPosition - startPosition
-
-            if (distance < 0) {
-                this.triggerAnimation()
-            }
-        },
-        triggerAnimation () {
-            this.isScrolled = true
-            window.removeEventListener('scroll', this.handleScroll)
-        }
-    },
-    mounted () {
-        window.addEventListener('scroll', this.handleScroll)
     },
     computed: {
         style () {
@@ -73,11 +49,6 @@ export default {
 .skills-bar {
     display: flex;
     margin-bottom: 20px;
-    opacity: 0;
-    transition: all 400ms ease-in-out;
-}
-.scrolled {
-    opacity: 1;
 }
 .bar-name {
     flex: 2;
@@ -126,24 +97,14 @@ export default {
     display: block;
     transition: 800ms;
     width: var(--percent-width);
+    opacity: 0;
     
     position: absolute;
     top: 0;
     left: 0;
     z-index: 1;
 }
-.skills-bar.scrolled .bar-line::after {
-    animation: animate 1.2s;
-}
 
-@keyframes animate {
-    0% {
-        width: 0;
-    }
-    100% {
-        width: 100;
-    }
-}
 @keyframes leftToRight {
     0% {
         left: 0;

@@ -20,7 +20,10 @@
             </div>
         </div>
     </div>
-    <div class="skill-list">
+    <div class="skill-list"
+        ref="skillList"
+        :class="{ 'scrolled': isScrolled }"
+        >
         <SkillsBar
             v-for="(skill, i) in skills"
             :key="`skill_${i}`"
@@ -71,12 +74,33 @@ export default {
 
                 new Skill('DjangoREST', 60),
                 new Skill('UI/UX', 70),
-            ]
+            ],
+
+            /* Turns true if user scrolled to this component */
+            isScrolled: false
         }
     },
     components: {
         SkillsBar: () => import('./SkillsBar.vue')
-    }
+    },
+    methods: {
+        handleScroll () {
+            let targetPosition = this.$refs.skillList.getBoundingClientRect().top
+            let startPosition = window.pageYOffset
+            let distance = targetPosition - startPosition
+
+            if (distance < 0) {
+                this.triggerAnimation()
+            }
+        },
+        triggerAnimation () {
+            this.isScrolled = true
+            window.removeEventListener('scroll', this.handleScroll)
+        }
+    },
+    mounted () {
+        window.addEventListener('scroll', this.handleScroll)
+    },
 }
 </script>
 
@@ -87,6 +111,31 @@ export default {
     background-color: #121013;
     text-shadow: 0 2px 5px rgba(255, 255, 255, 0.25);
 }
+.skill-list {
+    margin-top: 2rem;
+}
+.skill-list .skill {
+    opacity: 0;
+    transition: all 800ms ease-in-out;
+}
+.skill-list.scrolled .skill {
+    opacity: 1;
+}
+.skill-list.scrolled >>> .bar-line::after {
+    animation: animate 1.2s;
+    opacity: 1;
+}
+.skill-list.scrolled >>> .skill:nth-child(1) .bar-line::after { animation-delay: 100ms; transition-delay: 100ms }
+.skill-list.scrolled >>> .skill:nth-child(2) .bar-line::after { animation-delay: 200ms; transition-delay: 200ms }
+.skill-list.scrolled >>> .skill:nth-child(3) .bar-line::after { animation-delay: 300ms; transition-delay: 300ms }
+.skill-list.scrolled >>> .skill:nth-child(4) .bar-line::after { animation-delay: 400ms; transition-delay: 400ms }
+.skill-list.scrolled >>> .skill:nth-child(5) .bar-line::after { animation-delay: 500ms; transition-delay: 500ms }
+.skill-list.scrolled >>> .skill:nth-child(6) .bar-line::after { animation-delay: 600ms; transition-delay: 600ms }
+.skill-list.scrolled >>> .skill:nth-child(7) .bar-line::after { animation-delay: 700ms; transition-delay: 700ms }
+.skill-list.scrolled >>> .skill:nth-child(8) .bar-line::after { animation-delay: 800ms; transition-delay: 800ms }
+.skill-list.scrolled >>> .skill:nth-child(9) .bar-line::after { animation-delay: 900ms; transition-delay: 900ms }
+.skill-list.scrolled >>> .skill:nth-child(10) .bar-line::after { animation-delay: 1000ms; transition-delay: 1000ms }
+
 .practices {
     flex: 1;
     text-align: right;
@@ -101,9 +150,6 @@ export default {
     letter-spacing: 4px;
     margin-bottom: 5px;
 }
-.skill-list {
-    margin-top: 2rem;
-}
 @media screen and (min-width: 600px){
     .skills {
         display: flex;
@@ -117,5 +163,13 @@ export default {
 }
 @media screen and (min-width: 1000px){
     
+}
+@keyframes animate {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100;
+    }
 }
 </style>
