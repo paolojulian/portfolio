@@ -82,10 +82,9 @@ export default {
 
 <style scoped>
 .skills {
-    display: flex;
+    padding: 5rem 1rem 2rem 1rem;
     color: #f9f9f9;
     background-color: #121013;
-    padding: 200px 100px;
     text-shadow: 0 2px 5px rgba(255, 255, 255, 0.25);
 }
 .practices {
@@ -103,7 +102,20 @@ export default {
     margin-bottom: 5px;
 }
 .skill-list {
-    flex: 1;
-    padding-left: 50px;
+    margin-top: 2rem;
+}
+@media screen and (min-width: 600px){
+    .skills {
+        display: flex;
+        padding: 200px 100px;
+    }
+    .skill-list {
+        flex: 1;
+        padding-left: 50px;
+        margin-top: 0;
+    }
+}
+@media screen and (min-width: 1000px){
+    
 }
 </style>

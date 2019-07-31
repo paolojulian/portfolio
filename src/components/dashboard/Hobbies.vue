@@ -70,13 +70,13 @@ export default {
 }
 
 .hobby-list {
-    width: 400px;
+    width: 100%;
     margin: auto;
 }
 
 .hobby {
     position: relative;
-    width: 400px;
+    width: 100%;
     height: 250px;
     float: left;
     margin: auto;
@@ -95,6 +95,13 @@ export default {
     opacity: 0;
 }
 @media screen and (min-width: 600px) {
+    .hobby {
+        width: 400px;
+        height: 250px;
+    }
+    .hobby-list {
+        width: 400px;
+    }
 }
 @media screen and (min-width: 1000px) {
 

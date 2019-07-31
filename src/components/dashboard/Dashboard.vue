@@ -29,6 +29,11 @@ export default {
 </script>
 
 <style scoped>
+/* VARIABLES */
+.dashboard {
+    --card-width: calc(100% - 2rem);
+}
+/** SKILLS */
 .dashboard {
     position: relative;
     min-height: 100vh;
@@ -38,40 +43,38 @@ export default {
     background-size: cover;
     background-repeat: no-repeat;
 }
+
 .dashboard-name {
     box-sizing: border-box;
     padding: 50px;
     width: 0;
     margin: auto;
 }
+
 .dashboard::before {
     content: " ";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
+    height: 30vh;
+    min-height: 50vh;
     display: block;
 
     background-image: url('https://chefpipz-api-portfolio.s3-ap-southeast-1.amazonaws.com/images/static/Laptop_720p.jpg');
     background-attachment: fixed;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
     transform-origin: center center 0;
     mix-blend-mode: multiply;
     transform: translateZ(-1px) scale(1.1);
     /* z-index: -1; */
-    min-height: 100vh;
 }
-.dashboard-end {
-    position: relative;
-    width: calc(100% - 2rem);
-    margin-left: auto;
-    margin-right: auto;
 
-}
 .dashboard-card {
     position: relative;
 
-    width: calc(100% - 5rem);
+    width: var(--card-width);
     margin-left: auto;
     margin-right: auto;
 
@@ -79,15 +82,20 @@ export default {
     background-color: rgba(0, 0, 0, 0.35);
     z-index: 5;
 }
+
 .dashboard-end {
+    position: relative;
+    width: var(--card-width);
+    margin-left: auto;
+    margin-right: auto;
     background-image: url('https://chefpipz-api-portfolio.s3-ap-southeast-1.amazonaws.com/images/static/puzzle.png');
-    width: 100%;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 
     z-index: 6;
 }
+
 .end-background {
     position: absolute;
     bottom: 0;
@@ -98,11 +106,18 @@ export default {
 }
 
 @media screen and (min-width: 600px) {
+    .dashboard::before {
+        background-image: url('https://chefpipz-api-portfolio.s3-ap-southeast-1.amazonaws.com/images/static/Laptop_720p.jpg');
+        background-size: cover;
+        transform: translateZ(-1px) scale(1.1);
+        min-height: 100vh;
+    }
     .dashboard-card,
     .dashboard-end {
         width: calc(100% - 50px);
     }
 }
+
 @media screen and (min-width: 1000px) {
     .dashboard-card,
     .dashboard-end {

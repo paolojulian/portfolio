@@ -63,7 +63,9 @@ export default {
     position: relative;
     height: 80vh;
     width: 100%;
-    display: flex;
+    padding: 0 1rem;
+    padding-top: 2rem;
+    box-sizing: border-box;
     text-align: center;
     color: #f9f9f9;
     background-image: linear-gradient(transparent, transparent, #121013);
@@ -74,13 +76,19 @@ export default {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    height: 100px;
+    height: 5rem;
     width: 100%;
     cursor: pointer;
 }
 .carret-down img {
-    height: 30px;
+    height: 1.5rem;
     animation: upDownInfinite 2000ms ease-in-out infinite;
+}
+.profile-pic img {
+    height: 20vh;
+}
+.profile-description h3 {
+    font-size: 2rem;
 }
 .profile-description p {
     font-size: 1rem;
@@ -90,6 +98,7 @@ export default {
 
 @media screen and (min-width: 600px){
     .main {
+        display: flex;
         box-sizing: border-box;
         padding: 0 50px;
         padding-top: 150px;
@@ -100,6 +109,12 @@ export default {
     .profile-description {
         flex: 1;
         text-align: center;
+    }
+    .carret-down {
+        height: 100px;
+    }
+    .carret-down img {
+        height: 30px;
     }
     .profile-description h3 {
         font-size: 40px;
