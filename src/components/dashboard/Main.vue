@@ -78,7 +78,7 @@ export default {
     transform: translateX(-50%);
     height: 5rem;
     width: 100%;
-    cursor: pointer;
+    opacity: 0.75;
 }
 .carret-down img {
     height: 1.5rem;
@@ -106,6 +106,9 @@ export default {
     .profile-pic {
         flex: 1;
     }
+    .profile-pic img {
+        height: unset;
+    }
     .profile-description {
         flex: 1;
         text-align: center;
@@ -121,6 +124,11 @@ export default {
         margin-bottom: 10px;
         letter-spacing: 5px;
         text-transform: uppercase;
+    }
+}
+@media screen and (min-width: 1000px) {
+    .carret-down {
+        cursor: pointer;
     }
 }
 

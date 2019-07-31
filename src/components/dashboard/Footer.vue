@@ -69,12 +69,9 @@ export default {
     resize: none;
 }
 .footer button {
-    background-color: #99351E;
+    background-color: #99351E88;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.75);
     transition: background-color 200ms ease-in-out;
-}
-.footer button:hover {
-    background-color: #99351E88;
 }
 @media screen and (min-width: 600px) {
     .footer {
@@ -113,6 +110,10 @@ export default {
         cursor: pointer;
         width: 400px;
         margin-top: 20px;
+        background-color: #99351E;
+    }
+    .footer button:hover {
+        background-color: #99351E88;
     }
 }
 
