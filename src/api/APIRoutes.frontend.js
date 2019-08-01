@@ -5,6 +5,7 @@ const coding = '/coding'
 const dropzone = '/dropzone'
 
 const URL = {
+    mail: '/mail',
     uploads: {
         audio: `${dropzone}/audio`,
         image: `${dropzone}/image`

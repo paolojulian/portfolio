@@ -6,6 +6,9 @@ a {
     color: inherit;
     text-decoration: none;
 }
+.form-error {
+    border: 2px solid #99351E !important;
+}
 button,
 input,
 select,
