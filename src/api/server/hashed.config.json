@@ -3,5 +3,9 @@
         "accessKeyId": "@KI@3PVWU23BY@KNEUVU",
         "secretAccessKey": "/kYGfhwWZX3nXEGfNt0Bz3VdRQ4k2H8YdK6IWh!!",
         "bucket": "chefpipz-api-portfolio"
+    },
+    "mail": {
+        "email": "pipz.porftolio.mailer@gmail.com",
+        "password": "Qwerty12345!"
     }
 }

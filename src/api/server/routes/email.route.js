@@ -1,5 +1,5 @@
 const URL = require('../../APIRoutes')
-const config = require('../config.json')
+const config = require('../hashed.config.json')
 const router = require('./router')
 
 class MissingParamError extends Error {
