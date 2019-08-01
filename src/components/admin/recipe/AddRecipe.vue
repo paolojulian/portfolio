@@ -1,134 +1,124 @@
 <template>
-<div class="AddRecipe">
-    Add Recipe
-    <div class="recipe-name">
-        <label>Name: </label>
-        <input type="text"
-            data-test="recipe add name"
-            v-model="recipe.name"
-            placeholder="Recipe Name"
-            />
+<VModal class="AddRecipe"
+    type="submit"
+    @close="$emit('close')"
+    @submit="submit"
+    >
+    <div slot="header">
+        Add Recipe
     </div>
-
-    <div class="recipe-category">
-        <label>Category: </label>
-        <select v-model="recipe.foodCategoryID"
-            data-test="recipe add category"
-        >
-            <option disabled :value="null">Please select one</option>
-            <option v-for="{ id, name } in foodCategories"
-                :value="id"
-                :key="`foodCategory_${id}`"
-            >
-                {{ name }}
-            </option>
-        </select>
-    </div>
-
-    <div class="recipe-img">
-        <label>Image: </label>
-        <input data-test="recipe add image"
-            type="file"
-            ref="imageFile"
-            @change="handleFileUpload"/>
-    </div>
-
-
-    <div class="recipe-ingredients">
-        <div>
-            <AdminButton 
-                type="redo"
-                @click="reloadIngredients">
-                Reload Ingredients
-            </AdminButton>
+    <div slot="body"
+        class="add-recipe-body">
+        <div class="recipe-name">
+            <input type="text"
+                data-test="recipe add name"
+                v-model="recipe.name"
+                placeholder="Recipe Name"
+                />
         </div>
-        <label>Ingredients: </label>
-        <br />
-        <div v-for="(ingredient, key) in ingredients"
-            :key="`ingredient_${key}`"
-            :data-test="`recipe add ingredient-${key}`"
-        >
-            <input type="text"
-                :data-test="`recipe add ingredient-${key} quantity`"
-                placeholder="Quantity"
-                v-model="ingredient.quantity"
-                />
-            <br />
-            <input type="text"
-                :data-test="`recipe add ingredient-${key} description`"
-                placeholder="Description"
-                v-model="ingredient.description"
-                />
-            <br />
-            <select v-model="ingredient.id"
-                :data-test="`recipe add ingredient-${key} name`"
-                >
-                <option disabled :value="null">Please select one</option>
-                <option
-                    v-for="{ id, name } in ingredientList"
-                    :key="`ingredient${id}`"
+
+        <div class="recipe-category">
+            <select v-model="recipe.foodCategoryID"
+                data-test="recipe add category"
+            >
+                <option disabled :value="null">Please select a Category</option>
+                <option v-for="{ id, name } in foodCategories"
                     :value="id"
+                    :key="`foodCategory_${id}`"
                 >
                     {{ name }}
                 </option>
             </select>
-            <br />
         </div>
-        <!-- ADD INGREDIENT-->
-        <button
-            @click="addIngredient"
-            data-test="recipe add ingredients add"
-            >
-            <font-awesome-icon icon="plus"/>
-        </button>
-        <!-- REMOVE INGREDIENT-->
-        <button @click="removeIngredient"
-            v-if="ingredients.length > 1"
-            data-test="recipe add ingredients remove"
-        >
-            <font-awesome-icon icon="minus"/>
-        </button>
-    </div>
 
-    <div class="recipe-procedures">
-        <label>Procedures:</label>
-        <br />
-        <div v-for="(procedure, key) in procedures"
-            :key="`procedure_${key}`"
-            :data-test="`recipe add procedure-${key}`"
-        >
-            {{ key + 1 }}. 
-            <textarea v-model="procedures[key]"
-                :data-test="`recipe add procedure-${key} name`"
-            ></textarea>
+        <div class="recipe-img">
+            <input data-test="recipe add image"
+                type="file"
+                ref="imageFile"
+                @change="handleFileUpload"/>
         </div>
-        <!-- ADD PROCEDURE -->
-        <button
-            @click="addProcedure"
-            data-test="recipe add procedures add"
+
+
+        <div class="recipe-ingredients">
+            <div>
+                <AdminButton 
+                    :fab="true"
+                    type="redo"
+                    @click="reloadIngredients"/>
+                <span>&nbsp;Reload Ingredient List</span>
+            </div>
+            <div>
+                <label>Ingredients: </label>
+                <AdminButton 
+                    :fab="true"
+                    type="plus"
+                    @click="addIngredient"/>
+                <AdminButton 
+                    :fab="true"
+                    type="delete"
+                    color="#f9f9f9"
+                    background-color="#99351E"
+                    v-if="ingredients.length > 1"
+                    @click="removeIngredient"/>
+            </div>
+            <div v-for="(ingredient, key) in ingredients"
+                :key="`ingredient_${key}`"
+                :data-test="`recipe add ingredient-${key}`"
             >
-            <font-awesome-icon icon="plus"/>
-            
-        </button>
-        <!-- REMOVE PROCEDURE -->
-        <button @click="removeProcedure"
-            v-if="procedures.length > 1"
-            data-test="recipe add procedures remove"
+                <select v-model="ingredient.id"
+                    :data-test="`recipe add ingredient-${key} name`"
+                    >
+                    <option disabled :value="null">Ingredient</option>
+                    <option
+                        v-for="{ id, name } in ingredientList"
+                        :key="`ingredient${id}`"
+                        :value="id"
+                    >
+                        {{ name }}
+                    </option>
+                </select>
+                <input type="text"
+                    :data-test="`recipe add ingredient-${key} quantity`"
+                    placeholder="Quantity"
+                    v-model="ingredient.quantity"
+                    />
+                <input type="text"
+                    :data-test="`recipe add ingredient-${key} description`"
+                    placeholder="Description"
+                    v-model="ingredient.description"
+                    />
+            </div>
+        </div>
+
+        <div class="recipe-procedures">
+            <div>
+                <label>Procedures:</label>
+                <AdminButton 
+                    :fab="true"
+                    type="plus"
+                    @click="addProcedure"/>
+                <AdminButton 
+                    :fab="true"
+                    type="delete"
+                    color="#f9f9f9"
+                    background-color="#99351E"
+                    v-if="procedures.length > 1"
+                    @click="removeProcedure"/>
+            </div>
+            <div v-for="(procedure, key) in procedures"
+                :key="`procedure_${key}`"
+                :data-test="`recipe add procedure-${key}`"
             >
-            <font-awesome-icon icon="minus"/>
-        </button>
+                <textarea v-model="procedures[key]"
+                    rows="5"
+                    cols="100%"
+                    :data-test="`recipe add procedure-${key} name`"
+                ></textarea>
+            </div>
+        </div>
+
     </div>
-    <div class="submit-add-recipe">
-        <button @click="resetForm">
-            RESET
-        </button>
-        <button @click="submit"
-            data-test="recipe add submit"
-            >
-            SUBMIT
-        </button>
-    </div>
-</div>
+</VModal>
 </template>
 
 <script>
@@ -336,9 +326,8 @@ export default {
     padding: 1rem;
 }
 @media screen and (min-width: 600px) {
-    .AddRecipe {
-        width: 50%;
-        margin: auto;
+    .add-recipe-body {
+        padding: 25px;
     }
 }
 @media screen and (min-width: 1000px) {

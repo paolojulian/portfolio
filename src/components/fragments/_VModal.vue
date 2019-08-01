@@ -20,16 +20,29 @@
 
                 <div class="modal-footer">
                     <slot name="footer">
-                        <VFab 
-                            class="modal-close-button"
-                            size="5vh"
-                            backgroundColor="var(--my-paprika)"
-                            color="#ffffff"
-                            @click="$emit('close')"
-                            data-test="modal close"
-                        >
-                            <font-awesome-icon icon="times"/>
-                        </VFab>
+                        <div class="modal-action-buttons">
+                            <VFab 
+                                class="modal-submit-button"
+                                size="5vh"
+                                backgroundColor="var(--my-parsley)"
+                                color="#ffffff"
+                                v-if="type === 'submit'"
+                                @click="$emit('submit')"
+                            >
+                                <font-awesome-icon icon="check"/>
+                            </VFab>
+
+                            <VFab 
+                                class="modal-close-button"
+                                size="5vh"
+                                backgroundColor="var(--my-paprika)"
+                                color="#ffffff"
+                                @click="$emit('close')"
+                                data-test="modal close"
+                            >
+                                <font-awesome-icon icon="times"/>
+                            </VFab>
+                        </div>
                     </slot>
                 </div>
             </div>
@@ -41,14 +54,22 @@
 <script type="text/javascript">
 import { mangoTheme, theme } from '@/helpers/constants'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
-library.add( faTimes )
+import { faTimes, faCheck } from '@fortawesome/free-solid-svg-icons'
+library.add( faTimes, faCheck )
 export default {
     name: 'VModal',
     props: {
         variant: {
             type: String,
             default: 'default'
+        },
+        /**
+         * The type of modal to be used
+         * [alert, submit]
+         */
+        type: {
+            type: String,
+            default: 'alert'
         }
     },
     data () {
@@ -105,7 +126,7 @@ export default {
     width: 100%;
 }
 
-.modal-close-button {
+.modal-action-buttons {
     position: absolute;
     right: 5px;
     bottom: 5px;
@@ -115,6 +136,7 @@ export default {
   display: table-cell;
   vertical-align: middle;
 }
+
 .modal-container {
     position: relative;
     max-height: 80vh;
@@ -142,10 +164,6 @@ export default {
         width: 700px;
         max-height: 80vh;
         margin: 0px auto;
-    }
-    .modal-close-button {
-        right: 15px;
-        bottom: 15px;
     }
 }
 
