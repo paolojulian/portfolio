@@ -10,6 +10,7 @@ const cookingRoutes = require('./routes/cooking.route.js')
 const musicRoutes = require('./routes/music.route.js')
 const codingRoutes = require('./routes/coding.route.js')
 const uploadRoutes = require('./routes/uploads.route')
+const emailRoutes = require('./routes/email.route.js')
 
 app.use(responses)
 app.use(connection)
@@ -22,7 +23,8 @@ app.use('/api', [
     cookingRoutes,
     musicRoutes,
     codingRoutes,
-    uploadRoutes
+    uploadRoutes,
+    emailRoutes
 ])
 
 module.exports = app
