@@ -1,7 +1,7 @@
 export const strings = {
     en: {
         fullName: 'Paolo Vincent M. Julian',
-        jobTitle: 'Junior Software Developer',
+        jobTitle: 'Software Developer',
         // address: '#100 Upper Dagsian, Baguio City',
         address: 'Block 310B 14-19 Anchorvale Road. 542310, Singapore',
         // mobile: '(+63) 927-948-8654',
