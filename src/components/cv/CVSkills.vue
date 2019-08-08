@@ -50,17 +50,16 @@ export default {
                 new Skill('HTML/CSS', 65),
                 new Skill('Javascript', 80),
                 new Skill('PHP', 80),
-                new Skill('Python', 65),
-                new Skill('Java', 40)
+                new Skill('Java', 70),
+                new Skill('Python', 70)
             ],
             others: [
                 new Skill('Node', 40),
                 new Skill('Vue', 90),
                 new Skill('Vuex', 70),
-                new Skill('React', 40),
-                new Skill('Code Igniter', 75),
+                new Skill('React', 60),
+                new Skill('Spring Boot', 70),
                 new Skill('Laravel', 73),
-                new Skill('Lumen', 60),
                 new Skill('Django REST', 60),
                 new Skill('UI/UX', 60)
             ]

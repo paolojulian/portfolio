@@ -48,10 +48,10 @@ export default {
                     'Beijing Bangnishou Internet Education Technology Limited',
                     'Oct-2017',
                     'Nov-2018',
-                    'Junior Software Developer',
+                    'Software Developer',
                     [
                         'Led the development of School management systems using PHP frameworks such as Laravel, Codeigniter and Weixin along with Javascript frameworks like VueJS and JQuery.',
-                        'Took park in maintaining the payroll system and booking system.',
+                        'Used Java Spring framework for booking systems and schedule management',
                         'Tested websites and performed troubleshooting prior to deployment.',
                         'Worked under pressure and heavy work load.'
                     ])
