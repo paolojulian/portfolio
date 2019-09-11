@@ -57,6 +57,7 @@ const mutations = {
     },
 
     nextSong: (state) => {
+        // TODO if shuffle, random
         state.music.currentPlaying++
     },
 

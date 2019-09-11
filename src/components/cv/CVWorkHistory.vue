@@ -51,10 +51,22 @@ export default {
                     'Software Developer',
                     [
                         'Led the development of School management systems using PHP frameworks such as Laravel, Codeigniter and Weixin along with Javascript frameworks like VueJS and JQuery.',
-                        'Used Java Spring framework for booking systems and schedule management',
-                        'Tested websites and performed troubleshooting prior to deployment.',
+                        'Used Java Spring framework for booking systems and schedule management.',
+                        'Tested websites using unit tests and performed troubleshooting prior to deployment.',
                         'Worked under pressure and heavy work load.'
-                    ])
+                    ]),
+                new Work(
+                    'Koderos',
+                    'Dec-2018',
+                    'Present',
+                    'Software Developer',
+                    [
+                        'Our own IT solutions',
+                        'Made Fullstack jobs mainly using React.js, Vue.js, Java and PHP',
+                        'Developing microservices for Hospital System, Inventory System using Java Spring and MySQL',
+                        'Developing EMS services to be connected with the hospital system'
+                    ]),
+
             ]
         }
     },

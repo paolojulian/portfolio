@@ -85,7 +85,9 @@ export default {
     },
     methods: {
         handleScroll () {
-            let targetPosition = this.$refs.skillList.getBoundingClientRect().top
+            let boundingClientRect = this.$refs.skillList.getBoundingClientRect()
+            if ( ! boundingClientRect) return;
+            let targetPosition = boundingClientRect.top
             let startPosition = window.pageYOffset
             let distance = targetPosition - startPosition
 

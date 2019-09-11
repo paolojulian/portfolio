@@ -215,4 +215,12 @@ export default {
         font-size: 23px
     }
 }
+@media print {
+    .cv {
+        background-color: #ffffff;
+    }
+    .cv-card {
+        box-shadow: none;
+    }
+}
 </style>
