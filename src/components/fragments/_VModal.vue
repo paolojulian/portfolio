@@ -20,7 +20,7 @@
 
                 <div class="modal-footer">
                     <slot name="footer">
-                        <VFab 
+                        <VFab
                             class="modal-close-button"
                             size="5vh"
                             backgroundColor="var(--my-paprika)"
