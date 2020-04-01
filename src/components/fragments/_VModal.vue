@@ -22,7 +22,7 @@
                 <div class="modal-footer">
                     <slot name="footer">
                         <div class="modal-action-buttons">
-                            <VFab 
+                            <VFab
                                 class="modal-submit-button"
                                 size="5vh"
                                 backgroundColor="var(--my-parsley)"
@@ -33,7 +33,7 @@
                                 <font-awesome-icon icon="check"/>
                             </VFab>
 
-                            <VFab 
+                            <VFab
                                 class="modal-close-button"
                                 size="5vh"
                                 backgroundColor="var(--my-paprika)"

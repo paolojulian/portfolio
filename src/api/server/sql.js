@@ -21,8 +21,8 @@ const db = {
 // const db = {
 //     host: 'localhost',
 //     user: 'root',
-//     password: 'Sadface2',
-//     database: 'portfolio'
+//     password: 'toor',
+//     database: 'heroku_d9838c7ffb34abb'
 // };
 const connection = myConnection(mysql, db, 'single')
 // Connect DB

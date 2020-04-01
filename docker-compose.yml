@@ -1,0 +1,26 @@
+version: '3.3'
+services:
+  # webserver:
+  #     image: nginx:alpine
+  #     volumes:
+  #         - ./code:/var/www
+  #         - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+  #     ports:
+  #         - "8080:80"
+  db:
+      image: mysql:5.7
+      restart: always
+      environment:
+        MYSQL_DATABASE: 'heroku_d9838c7ffb34abb'
+        MYSQL_USER: 'user'
+        MYSQL_PASSWORD: 'admin123'
+        MYSQL_ROOT_PASSWORD: 'toor'
+      ports:
+          - "3306:3306"
+      expose:
+        - '3306'
+      volumes:
+        - my-db:/var/lib/mysql
+volumes:
+  my-db:
+
