@@ -48,13 +48,26 @@ export default {
                     'Beijing Bangnishou Internet Education Technology Limited',
                     'Oct-2017',
                     'Nov-2018',
-                    'Junior Software Developer',
+                    'Software Developer',
                     [
-                        'Led the development of School management systems using PHP frameworks such as Laravel, Codeigniter and Weixin along with Javascript frameworks like VueJS and JQuery.',
-                        'Took park in maintaining the payroll system and booking system.',
-                        'Tested websites and performed troubleshooting prior to deployment.',
+                        'Led the development of School management systems using PHP frameworks such as Laravel and Codeigniter with Javascript frameworks like VueJS and JQuery.',
+                        'Developed Booking systems and Schedule management.',
+                        'Implements Unit Testing for Restful Services',
                         'Worked under pressure and heavy work load.'
-                    ])
+                    ]),
+                new Work(
+                    'Koderos',
+                    'Dec-2018',
+                    'Present',
+                    'Software Developer',
+                    [
+                        'Our own IT solutions',
+                        'Made Fullstack jobs mainly using React, Redux, Node JS, Express and MongoDB',
+                        'Developing services Inventory Systems, Blogsites, Personal Websites and others',
+                        'Implements Unit Testing for Restful Services',
+                        'Developing EMS services to be connected with the hospital system'
+                    ]),
+
             ]
         }
     },

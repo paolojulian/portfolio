@@ -12,8 +12,16 @@
 .AdminMain textarea
 {
     border: 0;
-    padding: 5px 10px;
-    border-radius: 30px;
+    padding: 8px 15px;
+    margin: 5px 0;
+    border-radius: 5px;
+
+    background-color: #f9f9f9;
+    color: #120112;
+
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.50);
 }
-
-
+.AdminMain select {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    height: 32px;
+}

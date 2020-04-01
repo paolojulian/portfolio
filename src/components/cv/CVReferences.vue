@@ -38,21 +38,21 @@ export default {
                 new Reference(
                     'Kenny Lowell Ngaosi',
                     'Senior Back-end Developer',
-                    'Beijing Bangnishou Internet Education Technology Limited Philippines',
+                    'Koderos',
                     '+639205686989',
                     'kenjirofuma@gmail.com'
                 ),
                 new Reference(
                     'Earvin Canaveral',
                     'Senior Front-end Developer',
-                    'Beijing Bangnishou Internet Education Technology Limited Philippines',
+                    'Beijing Bangnishou',
                     '+639453129490',
                     'nivrae.ec@gmail.com'
                 ),
                 new Reference(
                     'Acey Rosete',
                     'Senior Software Developer',
-                    'Beijing Bangnishou Internet Education Technology Limited Philippines',
+                    'Beijing Bangnishou',
                     '+639068304106',
                     'Aceyclay@gmail.com'
                 ),

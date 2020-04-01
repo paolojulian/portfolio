@@ -193,6 +193,9 @@ export default {
     .cv >>> table.cv-table {
         border-spacing: 0 15px;
     }
+    .cv-personal-info {
+        margin-top: -15px;
+    }
 }
 @media screen and (min-width: 1000px) {
     .cv {
@@ -210,6 +213,14 @@ export default {
     }
     .cv >>> .cv-section-header {
         font-size: 23px
+    }
+}
+@media print {
+    .cv {
+        background-color: #ffffff;
+    }
+    .cv-card {
+        box-shadow: none;
     }
 }
 </style>

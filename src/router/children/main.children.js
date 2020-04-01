@@ -11,7 +11,7 @@ const NotFound = {
 const Dashboard = {
     path: '/',
     name: 'Dashboard',
-    component: () => AsyncComponent(import('@/components/Dashboard')),
+    component: () => AsyncComponent(import('@/components/dashboard/Dashboard')),
     meta: {
         en_title: headers.en.dashboard,
         navbarAnimate: true

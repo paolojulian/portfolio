@@ -9,8 +9,8 @@
 
 <script>
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faRedo, faTrashAlt, faEdit, faCheck, faTimes, faBookOpen } from '@fortawesome/free-solid-svg-icons'
-library.add( faTrashAlt, faEdit, faCheck, faTimes, faBookOpen, faRedo )
+import { faRedo, faTrashAlt, faEdit, faCheck, faTimes, faBookOpen, faPlus } from '@fortawesome/free-solid-svg-icons'
+library.add( faTrashAlt, faEdit, faCheck, faTimes, faBookOpen, faRedo, faPlus )
 
 export default {
     name: 'AdminButton',
@@ -53,7 +53,8 @@ export default {
                 ok: 'check',
                 cancel: 'times',
                 bookOpen: 'book-open',
-                redo: 'redo'
+                redo: 'redo',
+                plus: 'plus'
             }
         }
     },

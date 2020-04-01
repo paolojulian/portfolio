@@ -22,12 +22,14 @@
 </template>
 
 <script>
+import strings from './store/language.js';
+
 export default {
     name: 'CVPersonalInfo',
     data () {
         return {
-            address: 'Block 310B 14-19 Anchorvale Road. Singapore, 542310',
-            mobile: '65-9483-5657',
+            address: strings.en.address,
+            mobile: strings.en.mobile,
             email: 'paolovincentarch@gmail.com',
             website: 'https://chefpipz.herokuapp.com/',
             github: 'https://github.com/scottypipz'

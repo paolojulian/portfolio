@@ -1,6 +1,8 @@
 import { $pageLoader } from '@/helpers/constants'
 import { APIHobby } from '@/api/APIHobby'
+import APIMail from '@/api/APIMail'
 const apiHobby = new APIHobby()
+const apiMail = new APIMail()
 
 const cookingList = [
     'Indian',
@@ -95,6 +97,10 @@ const actions = {
             .catch(() => {
                 // commit($pageLoader + '/pageError', {}, { root: true })
             })
+    },
+
+    sendMail: (context, payload) => {
+        return apiMail.send(payload)
     },
 
     getRecipe: (context, recipeId) => {
