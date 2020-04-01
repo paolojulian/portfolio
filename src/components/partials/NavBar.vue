@@ -106,7 +106,7 @@ export default {
     color: #d3d3d3;
     font-weight: 300;
 
-    opacity: 90%;
+    opacity: 0.9;
     background-color: var(--my-transparent-dark);
 }
 #NavBar__title {

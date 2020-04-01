@@ -9,7 +9,7 @@
     <div class="form-recipe-time">
         <label>Max Time:</label>
         <span class="time-container">
-            <input 
+            <input
                 @input="numbersMaxLength"
                 type="number"
                 min="0"
@@ -63,7 +63,7 @@ export default {
             if ( ! event) return;
             const maxLength = event.target.maxLength
             const value = event.target.value
-            
+
             if (value > maxLength) {
                 return this.form.time = value.slice(0, maxLength);
             }
@@ -77,7 +77,8 @@ export default {
         },
 
         handleSearch (value) {
-            console.log(value);
+            // eslint-disable-next-line no-console
+            console.log(value)
         }
     }
 }

@@ -59,13 +59,22 @@ export default {
                     'Koderos',
                     'Dec-2018',
                     'Present',
-                    'Software Developer',
+                    'Freelance Software Developer',
                     [
                         'Our own IT solutions',
-                        'Made Fullstack jobs mainly using React, Redux, Node JS, Express and MongoDB',
-                        'Developing services Inventory Systems, Blogsites, Personal Websites and others',
-                        'Implements Unit Testing for Restful Services',
-                        'Developing EMS services to be connected with the hospital system'
+                        'Made Fullstack jobs mainly using React, Redux, Node JS, and Express',
+                        'Developing services Inventory Systems, Blogsites, Personal Websites and others'
+                    ]),
+                new Work(
+                    'YNS Philippines Inc',
+                    'Oct-2019',
+                    'Present',
+                    'Software Engineer',
+                    [
+                        'Experience in CakePHP(2 and 3) and Laravel for back-end.',
+                        'VanillaJS (Ecma-6), VueJS with Vuex and ReactJS with Redux on front end side.',
+                        'Implemented PHPUnit and Cypress Tests',
+                        'Experience in Docker and kubernetes for deployment and configurations.'
                     ]),
 
             ]
