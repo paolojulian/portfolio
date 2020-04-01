@@ -7,6 +7,11 @@ services:
   #         - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
   #     ports:
   #         - "8080:80"
+
+
+  #NODE
+
+  # MYSQL
   db:
       image: mysql:5.7
       restart: always
