@@ -2,6 +2,9 @@
   "name": "Chefpipz",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "10.15.2"
+  },
   "scripts": {
     "api-serve": "python3 api/manage.py runserver 127.0.0.1:8081",
     "api-windows-serve": "py api/manage.py runserver 127.0.0.1:8081",
