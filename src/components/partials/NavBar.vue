@@ -18,7 +18,7 @@
                 :key="`links${index}`"
                 :class="{ 'active': $route.path === route.link }"
             >
-                <nav-bar-routes 
+                <nav-bar-routes
                     :link="route.link"
                     :name="route.name"
                     :icon="route.icon"
@@ -106,7 +106,7 @@ export default {
     color: #d3d3d3;
     font-weight: 300;
 
-    opacity: 20%;
+    opacity: 90%;
     background-color: var(--my-transparent-dark);
 }
 #NavBar__title {
