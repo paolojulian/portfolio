@@ -1,0 +1,42 @@
+0 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'ci' ]
+1 info using npm@7.0.14
+2 info using node@v15.3.0
+3 timing config:load:defaults Completed in 1ms
+4 timing config:load:file:/usr/local/lib/node_modules/npm/npmrc Completed in 1ms
+5 timing config:load:builtin Completed in 1ms
+6 timing config:load:cli Completed in 1ms
+7 timing config:load:env Completed in 0ms
+8 timing config:load:file:/usr/src/app/.npmrc Completed in 0ms
+9 timing config:load:project Completed in 1ms
+10 timing config:load:file:/root/.npmrc Completed in 0ms
+11 timing config:load:user Completed in 0ms
+12 timing config:load:file:/usr/local/etc/npmrc Completed in 0ms
+13 timing config:load:global Completed in 0ms
+14 timing config:load:cafile Completed in 0ms
+15 timing config:load:validate Completed in 0ms
+16 timing config:load:setUserAgent Completed in 0ms
+17 timing config:load:setEnvs Completed in 1ms
+18 timing config:load Completed in 6ms
+19 verbose npm-session 438a42991fa9526c
+20 timing npm:load Completed in 13ms
+21 http fetch GET 200 https://registry.npmjs.org/npm 156ms
+22 timing arborist:ctor Completed in 1ms
+23 timing idealTree Completed in 0ms
+24 timing command:ci Completed in 2032ms
+25 verbose stack JSONParseError: Unexpected token "}" (0x7D) in JSON at position 1187 while parsing near "...p serve watch:*\",\n  },\n  \"devDependencie..."
+25 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-package-json-fast/index.js:6:27
+25 verbose stack     at async Arborist.buildIdealTree (/usr/local/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/build-ideal-tree.js:206:7)
+25 verbose stack     at async Promise.all (index 1)
+25 verbose stack     at async Arborist.reify (/usr/local/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/reify.js:122:5)
+25 verbose stack     at async ci (/usr/local/lib/node_modules/npm/lib/ci.js:37:3)
+26 verbose cwd /usr/src/app
+27 verbose Linux 4.19.128-microsoft-standard
+28 verbose argv "/usr/local/bin/node" "/usr/local/bin/npm" "ci"
+29 verbose node v15.3.0
+30 verbose npm  v7.0.14
+31 error code EJSONPARSE
+32 error path /usr/src/app/package.json
+33 error JSON.parse Unexpected token "}" (0x7D) in JSON at position 1187 while parsing near "...p serve watch:*\",\n  },\n  \"devDependencie..."
+34 error JSON.parse Failed to parse JSON data.
+34 error JSON.parse Note: package.json must be actual JSON, not just JavaScript.
+35 verbose exit 1

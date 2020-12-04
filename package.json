@@ -1,79 +1,51 @@
 {
-  "name": "Chefpipz",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "api-serve": "python3 api/manage.py runserver 127.0.0.1:8081",
-    "api-windows-serve": "py api/manage.py runserver 127.0.0.1:8081",
-    "json-serve": "json-server --watch src/api/fake/db.json --route src/api/fake/routes.json --port 3004",
-    "serve": "vue-cli-service serve --mode development",
-    "build": "vue-cli-service build --mode production",
-    "lint": "vue-cli-service lint",
-    "postinstall": "npm run build",
-    "start": "node server.js",
-    "opencypress": "./node_modules/.bin/cypress open"
+  "name": "static-website-template",
+  "version": "1.0.1",
+  "description": "template for static website",
+  "author": "Vincent Will <vincent.will@vaitrade.de>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Vincenius/static-website-template"
   },
-  "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.15",
-    "@fortawesome/free-brands-svg-icons": "^5.7.2",
-    "@fortawesome/free-solid-svg-icons": "^5.7.2",
-    "@fortawesome/vue-fontawesome": "^0.1.5",
-    "aos": "^3.0.0-beta.6",
-    "aws-sdk": "^2.435.0",
-    "axios": "^0.18.0",
-    "body-parser": "^1.18.3",
-    "dotenv": "^6.2.0",
-    "express": "^4.16.4",
-    "express-myconnection": "^1.0.4",
-    "moment": "^2.24.0",
-    "multer": "^1.4.1",
-    "multer-s3": "^2.9.0",
-    "mysql": "^2.16.0",
-    "sharp": "^0.22.0",
-    "vue": "^2.6.7",
-    "vue-carousel": "^0.18.0-alpha",
-    "vue-router": "^3.0.2",
-    "vuex": "^3.1.0"
+  "scripts": {
+    "clean": "rimraf dist/*",
+    "css:autoprefixer": "postcss -u autoprefixer -r dist/*.css",
+    "css:scss": "node-sass --output-style compressed -o dist src/scss",
+    "css:lint": "stylelint src/scss/*.scss --syntax scss",
+    "build:css": "npm run css:lint && npm run css:scss && npm run css:autoprefixer",
+    "build:js": "webpack --mode=production",
+    "build:html": "posthtml -c posthtml.json",
+    "build:images": "imagemin src/images/**/* --out-dir=dist/images",
+    "build": "run-s build:*",
+    "serve": "browser-sync start --server \"dist\" --files \"dist\"",
+    "watch:css": "onchange \"src/scss\" -- npm run build:css",
+    "watch:html": "onchange \"src/views\" -- npm run build:html",
+    "watch:images": "onchange \"src/images\" -- npm run build:images",
+    "watch:js": "onchange \"src/js\" -- webpack --mode=development",
+    "watch": "run-p serve watch:*"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.4.0",
-    "@vue/cli-plugin-eslint": "^3.4.0",
-    "@vue/cli-service": "^3.4.0",
-    "babel-eslint": "^10.0.1",
-    "cypress": "^3.2.0",
-    "eslint": "^5.14.1",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-html": "^5.0.3",
-    "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-node": "^8.0.1",
-    "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "eslint-plugin-vue": "^5.0.0",
-    "serve-static": "^1.13.2",
-    "vue-template-compiler": "^2.6.7"
+    "@babel/preset-env": "^7.8.4",
+    "autoprefixer": "^9.7.4",
+    "babel-loader": "^8.0.6",
+    "browser-sync": "^2.26.7",
+    "eslint": "^6.8.0",
+    "eslint-loader": "^3.0.3",
+    "htmlnano": "^0.2.5",
+    "imagemin-cli": "^5.1.0",
+    "node-sass": "^4.13.1",
+    "npm-run-all": "^4.1.5",
+    "onchange": "^6.1.0",
+    "postcss-cli": "^7.1.0",
+    "posthtml": "^0.12.0",
+    "posthtml-cli": "^0.5.2",
+    "posthtml-modules": "^0.4.2",
+    "stylelint": "^13.0.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
   },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "rules": {},
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ]
+  "dependencies": {
+    "concurrently": "^5.3.0"
+  }
 }
