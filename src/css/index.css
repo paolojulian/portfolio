@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+button {
+  @apply focus:outline-none;
+}
+
+dialog {
+  background: none;
+}
+
+a {
+  @apply text-teal;
+}
+.title {
+  @apply text-3xl mb-8 tracking-wide;
+}
+
+input,
+textarea {
+  @apply outline-none;
+}
+form .form-group input,
+form .form-group textarea,
+form .form-group select {
+  @apply w-full mb-1 py-1 px-2 focus:ring-2 focus:ring-teal;
+}
+
+.card {
+  @apply bg-gray-100 mb-2 md:ml-2 rounded-md overflow-hidden md:w-96 shadow-md transform hover:shadow-lg hover:-translate-y-1 transition cursor-pointer;
+}
+
+.card__img {
+  @apply w-full h-72 object-cover;
+}
+
+.card figcaption {
+  @apply text-left p-5;
+}
+
+.topography-bg {
+  background-color: #d6d3d1;
+  background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='brick-wall' fill='%23292524' fill-opacity='0.15'%3E%3Cpath d='M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}

@@ -1,0 +1,19 @@
+[
+  {
+    "name": "LaCosina",
+    "description": "Social Media Platform for home cooks, aspiring chefs, and even professional chefs.",
+    "imagePath": "/images/lacosina.png",
+    "screenshots": [
+      "/images/lacosina_1.png",
+      "/images/lacosina_2.png",
+      "/images/lacosina_3.png"
+    ],
+    "tags": [
+      "vue",
+      "tailwindcss",
+      "nodejs",
+      "expressjs",
+      "mongodb"
+    ]
+  }
+]
