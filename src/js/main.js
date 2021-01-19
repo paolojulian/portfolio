@@ -1,5 +1,6 @@
 import { logSomething } from './module';
 import { openModal, closeModal } from './modal';
+import './navbar';
 // import axios from 'axios';
 
 logSomething('Hello World');
