@@ -1,22 +1,57 @@
-// Navlinks
-// const about = document.querySelector('.nav-about');
-// const portfolio = document.querySelector('.nav-portfolio');
-// const contact = document.querySelector('.nav-contact');
+// Navbar
+const navbar = document.querySelector('nav#navbar');
+const home = navbar.querySelector('.home');
+const about = navbar.querySelector('.about');
+const portfolio = navbar.querySelector('.portfolio');
+const contact = navbar.querySelector('.contact');
 
 // Sections
 const sectionAbout = document.querySelector('section#about');
 const sectionPortfolio = document.querySelector('section#portfolio');
 const footer = document.querySelector('footer');
 
+/**
+ * Highlight navlink
+ * @param { HTMLElement } el 
+ */
+const highlightNavlink = (el) => {
+  const activeNavlink = navbar.querySelector('.active')
+  if (activeNavlink) {
+    activeNavlink.classList.remove('active');
+  }
+
+  el.classList.add('active');
+}
+
 document.addEventListener('scroll', () => {
-  const scrollTop = window.scrollY;
-  if (scrollTop >= sectionAbout.offsetTop && scrollTop < sectionPortfolio.offsetTop) {
-    console.log('about');
+  const pos = window.scrollY;
+
+  // Sticky navbar
+  if (pos >= sectionAbout.offsetTop) {
+    navbar.classList.remove('nav-bottom');
+    navbar.classList.add('nav-fixed');
+  } else {
+    navbar.classList.remove('nav-fixed');
+    navbar.classList.add('nav-bottom');
   }
-  if (scrollTop >= sectionPortfolio.offsetTop && scrollTop < footer.offsetTop) {
-    console.log('portfolio');
+
+  // Top
+  if (pos >= 0 && pos < sectionAbout.offsetTop) {
+    highlightNavlink(home);
   }
-  if (scrollTop >= footer.offsetTop) {
-    console.log('contact');
+  
+  // About
+  if (pos >= sectionAbout.offsetTop && pos < sectionPortfolio.offsetTop) {
+    highlightNavlink(about);
+  }
+
+  // Portfolio
+  if (pos >= sectionPortfolio.offsetTop && pos < footer.offsetTop) {
+    highlightNavlink(portfolio);
+  }
+
+  // Contact
+  if (pos >= footer.offsetTop) {
+    highlightNavlink(contact);
   }
 });
