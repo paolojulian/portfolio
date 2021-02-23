@@ -30,7 +30,8 @@ form .form-group select {
 }
 
 .card {
-  @apply bg-gray-100 mb-2 md:ml-2 rounded-md overflow-hidden md:w-96 shadow-md transform hover:shadow-lg hover:-translate-y-1 transition cursor-pointer;
+  @apply mb-2 md:ml-2 rounded-md overflow-hidden md:w-96 shadow-md cursor-pointer;
+  background-color: #fff;
 }
 
 .card__img {
