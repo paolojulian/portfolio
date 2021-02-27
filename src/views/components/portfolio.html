@@ -1,9 +1,26 @@
-<section id="portfolio" class="bg-gray-300 py-32 w-full topography-bg shadow-inner">
-  <div class="max-w-screen-lg xl:max-w-screen-xl mx-auto">
-    <h1 class="title">
-      PROJECTS
-    </h1>
+<section id="portfolioTitle" class="w-full bg-gray-200">
+  <div class="justify-center text-center flex flex-wrap">
+    <div class="w-full md:w-6/12 px-12 md:px-4">
+      <h2 class="font-semibold text-4xl">Portfolio</h2>
+      <p class="text-lg leading-relaxed mt-4 mb-4 text-gray-600">These are some of the personal and professional
+        projects i have done or collabed with in the past.</p>
+    </div>
+  </div>
+</section>
 
+<section id="portfolio" class="bg-gray-700 py-32 w-full shadow-inner">
+  <div class="container mx-auto max-w-screen-lg xl:max-w-screen-xl">
+    <div class="justify-center flex flex-wrap">
+      <div class="w-full lg:w-12/2 px-4 -mt-24">
+        <div class="flex flex-wrap">
+          <div class="w-full lg:w-4/12"></div>
+          <div class="w-full lg:w-4/12"></div>
+          <div class="w-full lg:w-4/12"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="max-w-screen-lg xl:max-w-screen-xl mx-auto">
     <div class="md:flex md:flex-wrap justify-center md:p-2">
 
       <!-- ============ Hirano ============ -->
@@ -15,6 +32,32 @@
           </div>
           <div class="text-red">
             #javascript #tailwindcss
+          </div>
+        </figcaption>
+      </figure>
+
+      <!-- ============ Sonomanmaso ============ -->
+      <figure class="card js__project__card">
+        <img class="card__img" src="/images/sonomanmaso.png" alt="vlogger">
+        <figcaption>
+          <div class="text-teal text-lg font-bold tracking-wider">
+            Sonomanmaso
+          </div>
+          <div class="text-red">
+            #vue #sass #cakephp #mysql
+          </div>
+        </figcaption>
+      </figure>
+
+      <!-- ============ LaCosina ============ -->
+      <figure class="card js__project__card">
+        <img class="card__img" src="/images/lacosina.png" alt="lacosina">
+        <figcaption>
+          <div class="text-teal text-lg font-bold tracking-wider">
+            LaCosina
+          </div>
+          <div class="text-red">
+            #vue #tailwindcss #nodejs #express #mongodb
           </div>
         </figcaption>
       </figure>
@@ -45,32 +88,6 @@
         </figcaption>
       </figure>
 
-      <!-- ============ Sonomanmaso ============ -->
-      <figure class="card js__project__card">
-        <img class="card__img" src="/images/sonomanmaso.png" alt="vlogger">
-        <figcaption>
-          <div class="text-teal text-lg font-bold tracking-wider">
-            Sonomanmaso
-          </div>
-          <div class="text-red">
-            #vue #sass #cakephp #mysql
-          </div>
-        </figcaption>
-      </figure>
-      
-      <!-- ============ LaCosina ============ -->
-      <figure class="card js__project__card">
-        <img class="card__img" src="/images/lacosina.png" alt="lacosina">
-        <figcaption>
-          <div class="text-teal text-lg font-bold tracking-wider">
-            LaCosina
-          </div>
-          <div class="text-red">
-            #vue #tailwindcss #nodejs #express #mongodb
-          </div>
-        </figcaption>
-      </figure>
-
       <!-- ============ Asta ============ -->
       <figure class="card js__project__card">
         <img class="card__img" src="/images/asta.png" alt="asta">
@@ -90,39 +107,59 @@
 
 <dialog id="project-info" class="bg-gray-50 bg-opacity-0 z-0 fixed w-screen h-screen">
 
-  <div class="wrapper pt-0 md:p-7 flex justify-center items-center fixed left-0 top-0 w-full h-full bg-gray-900 bg-opacity-50 z-50 transition-opacity duration-50 opacity-0">
+  <div
+    class="wrapper pt-0 md:p-7 flex justify-center items-center fixed left-0 top-0 w-full h-full bg-gray-900 bg-opacity-50 z-50 transition-opacity duration-50 opacity-0">
 
-    <div class="modal-card bg-gray-50 flex md:rounded-md max-w-screen-md max-h-full relative transition-transform duration-400 transform scale-50">
+    <div
+      class="modal-card bg-gray-50 flex md:rounded-md max-w-screen-md max-h-full relative transition-transform duration-400 transform scale-50">
       <div class="flex flex-col items-start">
         <div class="p-7 flex items-center w-full">
           <div class="text-gray-900 font-bold text-lg">Modal Centered</div>
-          <svg onclick="closeModal('project-info')" class="ml-auto fill-current text-gray-700 w-5 h-5 cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
-            <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z" />
+          <svg onclick="closeModal('project-info')" class="ml-auto fill-current text-gray-700 w-5 h-5 cursor-pointer"
+            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+            <path
+              d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z" />
           </svg>
         </div>
 
         <div class="px-7 overflow-x-hidden overflow-y-auto max-h-full md:max-h-96">
           <p>First Line</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua.</p>
           <p>Last Line</p>
         </div>
 
         <div class="p-7 flex justify-center items-center w-full">
-          <button type="button" class="hover:bg-red text-red hover:text-gray-50 font-bold py-2 px-4 rounded mr-3" onclick="closeModal('project-info')">
+          <button type="button" class="hover:bg-red text-red hover:text-gray-50 font-bold py-2 px-4 rounded mr-3"
+            onclick="closeModal('project-info')">
             Close
           </button>
         </div>

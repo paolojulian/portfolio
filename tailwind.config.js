@@ -19,6 +19,11 @@ module.exports = {
       pink: colors.pink,
       violet: colors.violet,
       yellow: colors.yellow,
+      midnightBlue: {
+        700: '#0F2027',
+        600: '#203a43',
+        300: '#2C5364'
+      }
     },
     fontFamily: {
       body: ['Nunito']

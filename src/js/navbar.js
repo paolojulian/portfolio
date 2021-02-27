@@ -23,7 +23,7 @@ const highlightNavlink = (el) => {
   el.classList.add('active');
 }
 
-document.addEventListener('scroll', () => {
+function onScroll() {
   const pos = window.scrollY;
 
   // Sticky navbar
@@ -54,4 +54,6 @@ document.addEventListener('scroll', () => {
   if (pos >= footer.offsetTop) {
     highlightNavlink(contact);
   }
-});
+}
+
+document.addEventListener('scroll', onScroll);

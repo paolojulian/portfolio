@@ -30,8 +30,12 @@ form .form-group select {
 }
 
 .card {
-  @apply mb-2 md:ml-2 rounded-md overflow-hidden md:w-96 shadow-md cursor-pointer;
+  @apply overflow-hidden md:w-96 shadow-md cursor-pointer;
   background-color: #fff;
+}
+
+.card figcaption {
+  display:none;
 }
 
 .card__img {
@@ -61,4 +65,8 @@ nav.nav-bottom {
 
 nav.nav-fixed {
   @apply fixed top-0 left-0 right-0;
+}
+
+.gradient {
+  background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
 }
