@@ -1,4 +1,5 @@
 {
+  "homepage": "http://pipz.github.io",
   "name": "portfolio",
   "version": "1.0.1",
   "description": "Paolo Vincent Julian",
@@ -9,6 +10,8 @@
     "url": "https://github.com/Vincenius/static-website-template"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d -dist",
     "start": "webpack-dev-server --mode=development --config",
     "clean": "rimraf dist/*",
     "build:css": "tailwindcss build src/css/index.css -o dist/index.css",
@@ -30,6 +33,7 @@
     "css-loader": "^5.0.1",
     "eslint": "^6.8.0",
     "eslint-loader": "^3.0.3",
+    "gh-pages": "^3.1.0",
     "grunt-contrib-imagemin": "^4.0.0",
     "htmlnano": "^0.2.5",
     "imagemin-cli": "^6.0.0",
